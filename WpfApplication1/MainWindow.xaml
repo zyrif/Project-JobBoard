@@ -1,0 +1,23 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="WelcomeWindow" mc:Ignorable="d" x:Class="WpfApplication1.MainWindow"
+        Title="MainWindow" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="Manual" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="7*"/>
+			<RowDefinition Height="90*"/>
+		</Grid.RowDefinitions>
+		<Label x:Name="WelcomeTitile" Content="job board software" Margin="55.993,9.783,0,0" FontFamily="/WpfApplication1;component/Fonts/#Stencil Std" Background="#00000000" Foreground="White" FontSize="48" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+		<Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="31" Foreground="#FF999999" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee"/>
+		<Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,10,46,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="31" Foreground="#FF999999" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee"/>
+		<Grid Margin="65.993,83,0,230" Grid.Row="1" Width="881.007" HorizontalAlignment="Left">
+			<Label x:Name="WelcomeHeading" Content="Welcome!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60" Width="254.572"/>
+			<Label x:Name="WelcomeText" Content="To use the software, you'll need to create your own profile first. &#xA;Click the button below to setup your profile." HorizontalAlignment="Left" Margin="10,64.167,0,0" VerticalAlignment="Top" Foreground="White" Width="552.374" Height="69.204" FontSize="14.667" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI"/>
+		</Grid>
+		<Grid HorizontalAlignment="Center" Height="100" Margin="10,494.021,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="927">
+			<Button x:Name="WelcomeEnter" Content="Enter" Margin="375,30,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" FontSize="32" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" Click="WelcomeEnter_Click"/>
+		</Grid>
+        
+	</Grid>
+</Window>
