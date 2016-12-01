@@ -18,18 +18,16 @@ namespace WpfApplication1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginRegister : Window
     {
-        public MainWindow()
+        public LoginRegister()
         {
             InitializeComponent();
         }
 
         private void WelcomeEnter_Click(object sender, RoutedEventArgs e)
         {
-            LoginRegister lr = new LoginRegister();
-            lr.Show();
-            this.Hide();
+
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
