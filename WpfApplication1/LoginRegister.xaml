@@ -125,16 +125,16 @@
                         <Label x:Name="Username" Content="Username: " HorizontalAlignment="Left" Margin="10,71.371,0,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2"/>
                         <Label x:Name="Password" Content="Password: " HorizontalAlignment="Left" Margin="10,0,0,73.784" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2" VerticalAlignment="Bottom"/>
                         <TextBox x:Name="UsernameBox" Height="36.6" Margin="189.64,71.371,420.367,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam"/>
-                        <PasswordBox x:Name="PasswordBox" Margin="189.64,0,420.367,73.784" VerticalAlignment="Bottom" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB"/>
+                        <PasswordBox x:Name="PasswordBox" Margin="189.64,0,420.367,73.784" VerticalAlignment="Bottom" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Height="36.597"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="Register" Header="Register" Background="#FF666666" BorderBrush="{x:Null}" Style="{DynamicResource LRCustomTabStyle}" Margin="58.04,0,-81.68,0" d:LayoutOverrides="VerticalAlignment" FontFamily="Calibri Bold" FontSize="24">
-                    <Grid Background="#FF1D1D1D">
-                        <Label x:Name="Username_Copy" Content="Username: " HorizontalAlignment="Left" Margin="10,54.803,0,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2"/>
-                        <Label x:Name="Password_Copy" Content="Password: " HorizontalAlignment="Left" Margin="10,102.892,0,97.364" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2" d:LayoutOverrides="Height"/>
-                        <TextBox x:Name="UsernameBox_Copy" Height="36.6" Margin="189.257,54.803,420.75,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam"/>
-                        <PasswordBox x:Name="PasswordBox_Copy" Margin="189.257,105.896,420.75,97.364" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" d:LayoutOverrides="Height"/>
-                        <PasswordBox x:Name="PasswordBox_Copy1" Margin="189.257,0,420.75,46.364" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" VerticalAlignment="Bottom"/>
+                    <Grid Background="#FF1D1D1D" Margin="0,-1.5,0,1.5">
+                        <Label x:Name="Username_Copy" Content="Username: " HorizontalAlignment="Left" Margin="10,56.303,0,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2"/>
+                        <Label x:Name="Password_Copy" Content="Password: " HorizontalAlignment="Left" Margin="10,105.892,0,94.364" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2" d:LayoutOverrides="Height"/>
+                        <TextBox x:Name="UsernameBox_Copy" Height="36.6" Margin="189.257,56.303,420.75,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam"/>
+                        <PasswordBox x:Name="PasswordBox_Copy" Margin="189.257,105.896,420.75,94.364" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB"/>
+                        <PasswordBox x:Name="PasswordBox_Copy1" Margin="189.257,0,420.75,46.364" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" VerticalAlignment="Bottom" Height="35.097"/>
                         <Label x:Name="Password_Copy1" Content="Confirm Password: " HorizontalAlignment="Left" Margin="10,0,0,46.364" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" FontSize="20" Foreground="#FFA2A2A2" VerticalAlignment="Bottom"/>
                     </Grid>
                 </TabItem>
