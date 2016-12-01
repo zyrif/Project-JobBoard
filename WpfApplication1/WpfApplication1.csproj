@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ProfileCreation1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +78,9 @@
     </Compile>
     <Compile Include="LoginRegister.xaml.cs">
       <DependentUpon>LoginRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileCreation1.xaml.cs">
+      <DependentUpon>ProfileCreation1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
