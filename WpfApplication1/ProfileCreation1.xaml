@@ -11,10 +11,9 @@
         <Label x:Name="ChooseProfile" Content="You are a:&#xD;&#xA;" Margin="55.993,14.407,288.507,0" FontFamily="/WpfApplication1;component/Fonts/#Calibri Light" Background="#00000000" Foreground="White" Grid.Row="1" VerticalAlignment="Top" FontSize="44" Height="63.593"/>
         <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowClose_Click"/>
         <Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,10,46,0" Style="{DynamicResource MinimizeButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowMinimize_Click" Background="#FF1D1D1D"/>
-        <Grid Margin="65.993,93,0,10" Grid.Row="1" Width="807.007" HorizontalAlignment="Left">
-            <GridSplitter x:Name="gridSplitter" Margin="405.007,22,0,48.95" HorizontalAlignment="Left" Width="5" Background="#FFA0A0A0"/>
-            <Grid HorizontalAlignment="Left" Margin="0,0,0,30.95" Width="368.007" Background="#5973B9FF">
-                <RichTextBox x:Name="RecruiterDesc" Margin="21,59.167,21,58" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Grid Margin="66,93,74,10" Grid.Row="1">
+            <Grid Background="#5973B9FF" Margin="10,9.167,0,0" Width="367" d:LayoutOverrides="Width" HorizontalAlignment="Left">
+                <RichTextBox x:Name="RecruiterDesc" Margin="21,59.167,21,90" Background="{x:Null}" BorderBrush="{x:Null}">
                     <FlowDocument>
                         <Paragraph>
                             <Run Text="RichTextBox"/>
@@ -22,10 +21,10 @@
                     </FlowDocument>
                 </RichTextBox>
                 <Label x:Name="RecruiterHeading" Content="Recruiter" Margin="10,-0.833,103.435,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60"/>
-                <Button x:Name="RecruiterNext" Content="Proceed" Margin="98.572,410.071,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FF0070A4" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28"/>
+                <Button x:Name="RecruiterNext" Content="Proceed" Margin="97.565,0,103.435,10" Style="{DynamicResource SimpleButton}" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FF0070A4" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="41" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28" VerticalAlignment="Bottom"/>
             </Grid>
-            <Grid HorizontalAlignment="Right" Margin="0,0,-8,30.95" Width="367.007" d:LayoutOverrides="HorizontalAlignment" Background="#59DCFFA4">
-                <RichTextBox x:Name="JobHunterDesc" Margin="10,60,21,87" Background="{x:Null}" BorderBrush="{x:Null}">
+            <Grid Margin="0,9.167,0,0" Width="367" Background="#59DCFFA4" HorizontalAlignment="Right" d:LayoutOverrides="Width">
+                <RichTextBox x:Name="JobHunterDesc" Margin="10,60,21,90" Background="{x:Null}" BorderBrush="{x:Null}">
                     <FlowDocument>
                         <Paragraph>
                             <Run Text="RichTextBox"/>
@@ -33,8 +32,9 @@
                     </FlowDocument>
                 </RichTextBox>
                 <Label x:Name="JobHunterHeading" Content="Job-Hunter" HorizontalAlignment="Right" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60" Width="254.572" VerticalAlignment="Top" Margin="0,0,94.435,0"/>
-                <Button x:Name="JobHunterNext" Content="Proceed" Margin="106.572,410.072,0,19" Style="{DynamicResource SimpleButton}" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" HorizontalAlignment="Left" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28"/>
+                <Button x:Name="JobHunterNext" Content="Proceed" Margin="106.565,0,94.435,10" Style="{DynamicResource SimpleButton}" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28" Height="41" VerticalAlignment="Bottom"/>
             </Grid>
+            <GridSplitter x:Name="gridSplitter" Margin="377,0,367,0" HorizontalAlignment="Center" Background="#FF1D1D1D"/>
         </Grid>
 
     </Grid>
