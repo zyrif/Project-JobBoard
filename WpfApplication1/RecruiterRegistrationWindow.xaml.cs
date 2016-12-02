@@ -23,5 +23,15 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
+
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void WindowMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }
