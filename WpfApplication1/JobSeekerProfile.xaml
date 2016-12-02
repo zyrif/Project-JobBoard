@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         x:Name="JobSeekerProfileWindow" mc:Ignorable="d" x:Class="WpfApplication1.JobSeekerProfile"
         Title="JobSeekerProfile" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" 
-        WindowStartupLocation="Manual" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="RecruiterRegWindow_MouseLeftButtonDown">
+        WindowStartupLocation="Manual" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="JobSeekerProfileWindow_MouseLeftButtonDown">
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -16,7 +16,7 @@
             <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
         <Label x:Name="JobSeekerProfileTitle" Content="Profile " Margin="10,0,0,0" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="48" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"/>
-        <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Grid.Column="2" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" Click="WindowClose_Click"/>
+        <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Style="{DynamicResource CloseButton}" VerticalAlignment="Bottom" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Grid.Column="2" d:LayoutOverrides="HorizontalAlignment" Click="WindowClose_Click" Margin="0,0,0,25.979"/>
         <Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,0,36,0" Style="{DynamicResource MinimizeButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Grid.Column="2" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" Click="WindowMinimize_Click"/>
         <Grid Grid.Column="1" Margin="10,88.844,10,10" Grid.Row="1">
             <Grid Height="150" VerticalAlignment="Top" Margin="10,10,10,0" Background="#FF2B2B2B">

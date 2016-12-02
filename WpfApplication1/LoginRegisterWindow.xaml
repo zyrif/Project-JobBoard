@@ -144,7 +144,7 @@
             </TabControl>
         </Grid>
         <Grid HorizontalAlignment="Center" Height="100" Margin="10,494.021,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="927">
-            <Button x:Name="WelcomeEnter" Content="Proceed" Margin="375,30,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28"/>
+            <Button x:Name="LRProceed" Content="Proceed" Margin="375,30,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" Click="LRProceed_Click" FontSize="28"/>
         </Grid>
 
     </Grid>

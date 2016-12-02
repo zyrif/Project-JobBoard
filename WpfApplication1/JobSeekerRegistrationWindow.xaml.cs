@@ -38,5 +38,12 @@ namespace WpfApplication1
         {
             this.DragMove();
         }
+
+        private void JSRegProceed_Click(object sender, RoutedEventArgs e)
+        {
+            JobSeekerProfile jp = new JobSeekerProfile();
+            jp.Show();
+            this.Hide();
+        }
     }
 }
