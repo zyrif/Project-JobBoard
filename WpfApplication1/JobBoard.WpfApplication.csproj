@@ -60,15 +60,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginRegister.xaml">
+    <Page Include="LoginRegisterWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ProfileCreation1.xaml">
+    <Page Include="ProfileCreation1Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="WelcomeWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -76,14 +76,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoginRegister.xaml.cs">
-      <DependentUpon>LoginRegister.xaml</DependentUpon>
+    <Compile Include="LoginRegisterWindow.xaml.cs">
+      <DependentUpon>LoginRegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProfileCreation1.xaml.cs">
-      <DependentUpon>ProfileCreation1.xaml</DependentUpon>
+    <Compile Include="ProfileCreation1Window.xaml.cs">
+      <DependentUpon>ProfileCreation1Window.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="WelcomeWindow.xaml.cs">
+      <DependentUpon>WelcomeWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Simple Styles.xaml">
