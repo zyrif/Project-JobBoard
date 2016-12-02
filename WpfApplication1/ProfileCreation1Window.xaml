@@ -4,15 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="ProfileCreation1Window" mc:Ignorable="d" x:Class="WpfApplication1.ProfileCreation1"
         Title="Choose a profile type" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="Manual" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671">
     <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="ChooseProfile" Content="You are a:&#xD;&#xA;" Margin="55.993,14.407,288.507,0" FontFamily="/WpfApplication1;component/Fonts/#Calibri Light" Background="#00000000" Foreground="White" Grid.Row="1" VerticalAlignment="Top" FontSize="44" Height="63.593"/>
-        <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowClose_Click"/>
-        <Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,10,46,0" Style="{DynamicResource MinimizeButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowMinimize_Click" Background="#FF1D1D1D"/>
-        <Grid Margin="66,93,74,10" Grid.Row="1">
-            <Grid Background="#5973B9FF" Margin="10,9.167,0,0" Width="367" d:LayoutOverrides="Width" HorizontalAlignment="Left">
+        <Label x:Name="ChooseProfile" Content="You are a:" Margin="55.993,14.407,296.739,0" FontFamily="/WpfApplication1;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" Grid.Row="1" VerticalAlignment="Top" FontSize="44" Height="63.593" d:LayoutOverrides="TopMargin, BottomMargin"/>
+        <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Margin="0,10,10,15.979" Style="{DynamicResource CloseButton}" Width="31" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowClose_Click" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Top"/>
+        <Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,10,46,15.979" Style="{DynamicResource MinimizeButton}" Width="31" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication1;component/Fonts/#Leelawadee" Click="WindowMinimize_Click" Background="#FF1D1D1D" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" VerticalAlignment="Top"/>
+        <Grid Margin="66,93,74,10" Grid.Row="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="384*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="383*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="#5973B9FF" Margin="10,9.167,13.761,0">
                 <RichTextBox x:Name="RecruiterDesc" Margin="21,59.167,21,90" Background="{x:Null}" BorderBrush="{x:Null}">
                     <FlowDocument>
                         <Paragraph>
@@ -23,7 +31,7 @@
                 <Label x:Name="RecruiterHeading" Content="Recruiter" Margin="10,-0.833,103.435,0" VerticalAlignment="Top" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60"/>
                 <Button x:Name="RecruiterNext" Content="Proceed" Margin="97.565,0,103.435,10" Style="{DynamicResource SimpleButton}" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FF0070A4" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="41" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28" VerticalAlignment="Bottom"/>
             </Grid>
-            <Grid Margin="0,9.167,0,0" Width="367" Background="#59DCFFA4" HorizontalAlignment="Right" d:LayoutOverrides="Width">
+            <Grid Margin="15.829,9.167,0.171,0" Background="#59DCFFA4" Grid.Column="2">
                 <RichTextBox x:Name="JobHunterDesc" Margin="10,60,21,90" Background="{x:Null}" BorderBrush="{x:Null}">
                     <FlowDocument>
                         <Paragraph>
@@ -31,10 +39,10 @@
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
-                <Label x:Name="JobHunterHeading" Content="Job-Hunter" HorizontalAlignment="Right" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60" Width="254.572" VerticalAlignment="Top" Margin="0,0,94.435,0"/>
+                <Label x:Name="JobHunterHeading" Content="Job-Hunter" HorizontalAlignment="Left" FontFamily="/WpfApplication1;component/Fonts/#Calibri" FontWeight="Bold" FontSize="34.667" Foreground="White" Height="60" Width="254.572" VerticalAlignment="Top" Margin="10,0,0,0"/>
                 <Button x:Name="JobHunterNext" Content="Proceed" Margin="106.565,0,94.435,10" Style="{DynamicResource SimpleButton}" Width="166" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" Click="WelcomeEnter_Click" FontSize="28" Height="41" VerticalAlignment="Bottom"/>
             </Grid>
-            <GridSplitter x:Name="gridSplitter" Margin="377,0,367,0" HorizontalAlignment="Center" Background="#FF1D1D1D"/>
+            <GridSplitter x:Name="gridSplitter" Margin="24.403,0,15.746,0" HorizontalAlignment="Center" Background="#FF1D1D1D" Grid.Column="1"/>
         </Grid>
 
     </Grid>
