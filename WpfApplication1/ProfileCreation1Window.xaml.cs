@@ -41,5 +41,10 @@ namespace WpfApplication1
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void ProfileCreation1Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

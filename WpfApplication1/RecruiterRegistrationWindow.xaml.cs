@@ -33,5 +33,10 @@ namespace WpfApplication1
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void RecruiterRegWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

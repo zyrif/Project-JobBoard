@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApplication1
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RecruiterRegistrationWindow.xaml
     /// </summary>
-    public partial class Welcome : Window
+    public partial class EmployerRegistration : Window
     {
-        public Welcome()
+        public EmployerRegistration()
         {
             InitializeComponent();
-        }
-
-        private void WelcomeEnter_Click(object sender, RoutedEventArgs e)
-        {
-            LoginRegister lr = new LoginRegister();
-            lr.Show();
-            this.Hide();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -42,7 +34,7 @@ namespace WpfApplication1
             this.WindowState = WindowState.Minimized;
         }
 
-        private void WelcomeWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void RecruiterRegWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
