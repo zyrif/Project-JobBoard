@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         x:Name="JobSeekerProfileWindow" mc:Ignorable="d" x:Class="WpfApplication1.JobSeekerProfile"
         Title="JobSeekerProfile" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" 
-        WindowStartupLocation="Manual" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="JobSeekerProfileWindow_MouseLeftButtonDown">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="JobSeekerProfileWindow_MouseLeftButtonDown">
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -28,9 +28,18 @@
             </Grid>
             <Grid Margin="10,177.12,10,178.058" Background="#FF2B2B2B"/>
             <Grid Margin="10,0,10,10" Height="149.999" VerticalAlignment="Bottom" Background="#FF2B2B2B"/>
+            <Grid Margin="673,20,-226,443.156" Background="#FF2B2B2B"/>
+            <Grid Margin="797,-19,-226,500.156" Background="#FF2B2B2B"/>
+            <Grid Margin="731,-19,-161,500.156" Background="#FF2B2B2B"/>
         </Grid>
-        <Grid Grid.Column="2" Height="151" Margin="43,104.021,36,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF2B2B2B">
+        <Grid Grid.Column="2" Height="151" Margin="43,169,36,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF2B2B2B">
             <Label x:Name="label" Content="picture" Margin="50,63.999,53.006,61.04" d:LayoutOverrides="Height" Foreground="#FFB9B9B9"/>
+            <Label x:Name="label_Copy" Content="Search/Post Job Details" Margin="-6,-56,-15,174" Foreground="#FFB9B9B9" FontSize="16"/>
+            <Label x:Name="label_Copy1" Content="Inbox" Margin="50,-102,53,227" Foreground="#FFB9B9B9"/>
+            <Label x:Name="label_Copy2" Content="Logout" Margin="118,-102,-15,227" Foreground="#FFB9B9B9"/>
+        </Grid>
+        <Grid Grid.Column="2" Height="231" Margin="43,345,36,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF2B2B2B">
+            <Label x:Name="label1" Content="User Details" Margin="41,106,41,98" Foreground="#FFB9B9B9"/>
         </Grid>
 
     </Grid>
