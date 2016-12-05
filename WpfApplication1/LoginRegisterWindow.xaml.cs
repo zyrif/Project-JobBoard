@@ -25,10 +25,6 @@ namespace WpfApplication1
             InitializeComponent();
         }
 
-        private void WelcomeEnter_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
@@ -43,6 +39,13 @@ namespace WpfApplication1
         private void LoginRegisterWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void LRProceed_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileCreation1 pc = new ProfileCreation1();
+            pc.Show();
+            this.Hide();
         }
     }
 }

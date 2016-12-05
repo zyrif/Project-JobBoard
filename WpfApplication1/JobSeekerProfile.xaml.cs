@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfApplication1
 {
     /// <summary>
-    /// Interaction logic for RecruiterRegistrationWindow.xaml
+    /// Interaction logic for JobSeekerProfile.xaml
     /// </summary>
-    public partial class EmployerRegistration : Window
+    public partial class JobSeekerProfile : Window
     {
-        public EmployerRegistration()
+        public JobSeekerProfile()
         {
             InitializeComponent();
         }
@@ -34,16 +34,9 @@ namespace WpfApplication1
             this.WindowState = WindowState.Minimized;
         }
 
-        private void RecruiterRegWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void JobSeekerProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-        }
-
-        private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
-        {
-            JobSeekerProfile jp = new JobSeekerProfile();
-            jp.Show();
-            this.Hide();
         }
     }
 }

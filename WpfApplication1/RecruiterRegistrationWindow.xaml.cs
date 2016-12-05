@@ -38,5 +38,12 @@ namespace WpfApplication1
         {
             this.DragMove();
         }
+
+        private void RecRegProceed_Click(object sender, RoutedEventArgs e)
+        {
+            EmployerRegistration er = new EmployerRegistration();
+            er.Show();
+            this.Hide();
+        }
     }
 }
