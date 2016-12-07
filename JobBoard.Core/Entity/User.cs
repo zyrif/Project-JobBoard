@@ -9,6 +9,7 @@ namespace JobBoard.Core
 {
     class User
     {
+        public static User currentUser;
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public string FirstName { get; set; }

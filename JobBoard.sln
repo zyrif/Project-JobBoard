@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.WpfApplication", "WpfApplication1\JobBoard.WpfApplication.csproj", "{0178BE0B-BC1B-4635-8C2D-47D33B2D4649}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.WpfApplication", "JobBoard.WpfApplication\JobBoard.WpfApplication.csproj", "{0178BE0B-BC1B-4635-8C2D-47D33B2D4649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.Core", "ClassLibrary1\JobBoard.Core.csproj", "{35E754CC-E41E-4ED4-8EE8-A91A4BCC4E3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.Core", "JobBoard.Core\JobBoard.Core.csproj", "{35E754CC-E41E-4ED4-8EE8-A91A4BCC4E3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.Data", "JobBoard.Data\JobBoard.Data.csproj", "{D4CFB2D6-1AB0-4924-9607-F6C7EC298762}"
 EndProject

@@ -7,8 +7,8 @@
     <ProjectGuid>{35E754CC-E41E-4ED4-8EE8-A91A4BCC4E3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>JobBoard.Core</RootNamespace>
+    <AssemblyName>JobBoard.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,11 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\DBConnectionControl.cs" />
     <Compile Include="Control\LoginControl.cs" />
+    <Compile Include="Entity\Company.cs" />
     <Compile Include="Entity\JobSeeker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Recruiter.cs" />
     <Compile Include="Entity\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JobBoard.Data\JobBoard.Data.csproj">
+      <Project>{d4cfb2d6-1ab0-4924-9607-f6c7ec298762}</Project>
+      <Name>JobBoard.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
