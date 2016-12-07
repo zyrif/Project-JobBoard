@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace JobBoard.WpfApplication
 {
     /// <summary>
     /// Interaction logic for JobSeekerProfile.xaml
@@ -37,6 +37,12 @@ namespace WpfApplication1
         private void JobSeekerProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CVUserControl uc = new CVUserControl();
+            this.CVview.Children.Add(uc);
         }
     }
 }
