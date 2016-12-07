@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using JobBoard.Core;
 using JobBoard.Core.Control;
 
-namespace WpfApplication1
+namespace JobBoard.WpfApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -51,20 +51,7 @@ namespace WpfApplication1
 
         private void LRProceed_Click(object sender, RoutedEventArgs e)
         {
-            /*if (tabControl.SelectedIndex == 1)
-            {
-                if (!loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
-                {*/
-                    ProfileCreation1 pc = new ProfileCreation1();
-                    pc.Show();
-                    this.Hide();
-                /*}
-                else
-                {
-                    MessageBox.Show("An Account is already created with this Username");
-                }
-            }*/
-            /*else
+            if (tabControl.SelectedIndex == 0)
             {
                 if (loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
                 {
@@ -76,7 +63,20 @@ namespace WpfApplication1
                 {
                     MessageBox.Show("Username PassWord mismatch");
                 }
-            }*/
+            }
+            else
+            {
+                if (loginControl.checkUser(UsernameBox.Text))
+                {
+                    ProfileCreation1 pc = new ProfileCreation1();
+                    pc.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("An Account is already created with this Username");
+                }
+            }
         }
     }
 }

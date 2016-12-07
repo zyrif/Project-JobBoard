@@ -22,6 +22,17 @@ namespace JobBoard.Data
                 return -1;
         }
 
+        public int getSystemId(string userName)
+        {
+            string query = "select * from LoginInfo where username ='" + userName.Trim()+"'";
+            dataTable = DBReadWrite.selectQuery(query);
+
+            if (dataTable.Rows.Count == 1)
+                return Convert.ToInt32(dataTable.Rows[0]["SystemId"]);
+            else
+                return -1;
+        }
+
         public DataTable getUserInfo(int systemId)
         {
             string query = "select * from UserDetail where SystemId =" + systemId;
