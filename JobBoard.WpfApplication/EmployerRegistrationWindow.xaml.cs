@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RecruiterRegistrationWindow.xaml
     /// </summary>
-    public partial class LoginRegister : Window
+    public partial class EmployerRegistration : Window
     {
-        public LoginRegister()
+        public EmployerRegistration()
         {
             InitializeComponent();
-        }
-
-        private void WelcomeEnter_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -38,6 +32,18 @@ namespace WpfApplication1
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void RecruiterRegWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
+        {
+            JobSeekerProfile jp = new JobSeekerProfile();
+            jp.Show();
+            this.Hide();
         }
     }
 }
