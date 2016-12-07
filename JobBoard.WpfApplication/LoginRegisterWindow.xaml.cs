@@ -51,16 +51,32 @@ namespace WpfApplication1
 
         private void LRProceed_Click(object sender, RoutedEventArgs e)
         {
-            if (loginControl.login(UsernameBox.Text,PasswordBox.Password.ToString()))
+            /*if (tabControl.SelectedIndex == 1)
             {
-                ProfileCreation1 pc = new ProfileCreation1();
-                pc.Show();
-                this.Hide();
-            }
-            else
+                if (!loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
+                {*/
+                    ProfileCreation1 pc = new ProfileCreation1();
+                    pc.Show();
+                    this.Hide();
+                /*}
+                else
+                {
+                    MessageBox.Show("An Account is already created with this Username");
+                }
+            }*/
+            /*else
             {
-                MessageBox.Show("Invalid USerName and Password");
-            }
+                if (loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
+                {
+                    JobSeekerProfile jobSeekerProfile = new JobSeekerProfile();
+                    jobSeekerProfile.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Username PassWord mismatch");
+                }
+            }*/
         }
     }
 }

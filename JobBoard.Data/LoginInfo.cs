@@ -12,7 +12,7 @@ namespace JobBoard.Data
     {
         public int getSystemId(string userName, string passWord)
         {
-            SqlCommand sqlCommand = new SqlCommand("select * from LoginInfo where username ='" + userName.Trim() + "' and password='" + passWord.Trim() + "'", DatabaseConnection.sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("select * from LoginInfo where username ='" + userName.Trim() + "' and password='" + passWord.Trim() + "'", DBReadWrite.sqlConnection);
 
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
