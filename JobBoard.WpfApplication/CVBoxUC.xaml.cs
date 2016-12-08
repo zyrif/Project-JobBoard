@@ -18,9 +18,9 @@ namespace JobBoard.WpfApplication
     /// <summary>
     /// Interaction logic for CVUserControl.xaml
     /// </summary>
-    public partial class CVUserControl : UserControl
+    public partial class CVBoxUC : UserControl
     {
-        public CVUserControl()
+        public CVBoxUC()
         {
             InitializeComponent();
         }
