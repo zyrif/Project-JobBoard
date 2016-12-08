@@ -22,6 +22,8 @@ namespace JobBoard.WpfApplication
         public JobSeekerProfile()
         {
             InitializeComponent();
+            UserOverviewUC uo = new UserOverviewUC();
+            this.UserOverviewGrid.Children.Add(uo);
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace JobBoard.WpfApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CVUserControl uc = new CVUserControl();
+            CVUserControl uc = new CVUserControl();   
             this.CVview.Children.Add(uc);
         }
     }
