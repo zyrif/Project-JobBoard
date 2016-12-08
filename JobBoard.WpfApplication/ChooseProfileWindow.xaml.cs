@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for JobSeekerProfile.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class JobSeekerProfile : Window
+    public partial class ChooseProfile : Window
     {
-        public JobSeekerProfile()
+        public ChooseProfile()
         {
             InitializeComponent();
-            JSUserOverviewUC uo = new JSUserOverviewUC();
-            this.UserOverviewGrid.Children.Add(uo);
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -36,15 +35,23 @@ namespace JobBoard.WpfApplication
             this.WindowState = WindowState.Minimized;
         }
 
-        private void JobSeekerProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ChooseProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void RecruiterNext_Click(object sender, RoutedEventArgs e)
         {
-            CVUserControl uc = new CVUserControl();   
-            this.CVview.Children.Add(uc);
+            RecruiterRegistration rr = new RecruiterRegistration();
+            rr.Show();
+            this.Hide();
+        }
+
+        private void JobHunterNext_Click(object sender, RoutedEventArgs e)
+        {
+            JobSeekerRegistration jr = new JobSeekerRegistration();
+            jr.Show();
+            this.Hide();
         }
     }
 }

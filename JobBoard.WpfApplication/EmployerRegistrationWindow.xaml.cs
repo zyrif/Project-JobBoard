@@ -41,7 +41,7 @@ namespace JobBoard.WpfApplication
 
         private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            JobSeekerProfile jp = new JobSeekerProfile();
+            Profile jp = new Profile();
             jp.Show();
             this.Hide();
         }

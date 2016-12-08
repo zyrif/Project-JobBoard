@@ -55,8 +55,8 @@ namespace JobBoard.WpfApplication
             {
                 if (loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
                 {
-                    JobSeekerProfile jobSeekerProfile = new JobSeekerProfile();
-                    jobSeekerProfile.Show();
+                    Profile jp = new Profile();
+                    jp.Show();
                     this.Hide();
                 }
                 else
@@ -68,8 +68,8 @@ namespace JobBoard.WpfApplication
             {
                 if (loginControl.checkUser(UsernameBox.Text))
                 {
-                    ProfileCreation1 pc = new ProfileCreation1();
-                    pc.Show();
+                    ChooseProfile cp = new ChooseProfile();
+                    cp.Show();
                     this.Hide();
                 }
                 else
