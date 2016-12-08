@@ -22,7 +22,7 @@ namespace JobBoard.WpfApplication
         public JobSeekerProfile()
         {
             InitializeComponent();
-            UserOverviewUC uo = new UserOverviewUC();
+            JSUserOverviewUC uo = new JSUserOverviewUC();
             this.UserOverviewGrid.Children.Add(uo);
         }
 

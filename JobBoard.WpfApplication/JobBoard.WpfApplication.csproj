@@ -93,7 +93,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserOverviewUC.xaml">
+    <Page Include="JSUserOverviewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,8 +126,8 @@
     <Compile Include="RecruiterRegistrationWindow.xaml.cs">
       <DependentUpon>RecruiterRegistrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserOverviewUC.xaml.cs">
-      <DependentUpon>UserOverviewUC.xaml</DependentUpon>
+    <Compile Include="JSUserOverviewUC.xaml.cs">
+      <DependentUpon>JSUserOverviewUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>

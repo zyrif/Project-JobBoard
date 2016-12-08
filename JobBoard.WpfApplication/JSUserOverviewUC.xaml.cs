@@ -18,9 +18,9 @@ namespace JobBoard.WpfApplication
     /// <summary>
     /// Interaction logic for UserOverviewUC.xaml
     /// </summary>
-    public partial class UserOverviewUC : UserControl
+    public partial class JSUserOverviewUC : UserControl
     {
-        public UserOverviewUC()
+        public JSUserOverviewUC()
         {
             InitializeComponent();
         }
