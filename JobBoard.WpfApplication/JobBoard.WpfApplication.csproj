@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddVacancy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,9 @@
     </Page>
     <Compile Include="AddSectionWindow.xaml.cs">
       <DependentUpon>AddSectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddVacancy.xaml.cs">
+      <DependentUpon>AddVacancy.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
