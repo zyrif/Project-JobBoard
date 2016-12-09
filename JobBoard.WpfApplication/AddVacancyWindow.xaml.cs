@@ -17,9 +17,9 @@ namespace JobBoard.WpfApplication
     /// <summary>
     /// Interaction logic for AddVacancy.xaml
     /// </summary>
-    public partial class AddVacancy : Window
+    public partial class AddVacancyWindow : Window
     {
-        public AddVacancy()
+        public AddVacancyWindow()
         {
             InitializeComponent();
         }
