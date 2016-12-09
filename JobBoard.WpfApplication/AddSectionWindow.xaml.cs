@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for Profile.xaml
+    /// Interaction logic for AddCVBoxWindow.xaml
     /// </summary>
-    public partial class Profile : Window
+    public partial class AddSectionWindow : Window
     {
-        public Profile()
+        public AddSectionWindow()
         {
             InitializeComponent();
-            JSUserOverviewUC uo = new JSUserOverviewUC();
-            this.UserOverviewGrid.Children.Add(uo);
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -36,15 +34,9 @@ namespace JobBoard.WpfApplication
             this.WindowState = WindowState.Minimized;
         }
 
-        private void ProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AddSection_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-        }
-
-        private void AddSectionBtn_Click(object sender, RoutedEventArgs e)
-        {
-            CVBoxUC uc = new CVBoxUC();
-            this.CVview.Children.Add(uc);
         }
     }
 }
