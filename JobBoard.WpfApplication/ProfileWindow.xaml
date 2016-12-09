@@ -9,23 +9,23 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="62*"/>
             <ColumnDefinition Width="651*"/>
-            <ColumnDefinition Width="234*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="115*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
-            <RowDefinition Height="558*"/>
-            <RowDefinition Height="46*"/>
+            <RowDefinition Height="604*"/>
         </Grid.RowDefinitions>
         <Label x:Name="ProfileTitle" Content="Profile " Margin="10,0,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="48" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Height="68" Width="158"/>
-        <Button x:Name="WindowClose" Content="X" HorizontalAlignment="Right" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Grid.Column="2" Click="WindowClose_Click" Margin="0,0,0,26"/>
-        <Button x:Name="WindowMinimize" Content="___" HorizontalAlignment="Right" Margin="0,0,36,0" Style="{DynamicResource MinimizeButton}" VerticalAlignment="Top" Width="31" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Grid.Column="2" Click="WindowMinimize_Click"/>
-        <ScrollViewer x:Name="ContentScrollBox" Margin="10,103,10,6" Grid.Row="1" Grid.Column="1" MinHeight="405" MinWidth="631">
+        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Grid.Column="3" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31.142" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="WindowMinimize" Content="___" Margin="0,0,36.142,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Grid.Column="3" Click="WindowMinimize_Click" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30.85"/>
+        <ScrollViewer x:Name="ContentScrollBox" Margin="10,103,10,10" Grid.Row="1" Grid.Column="1" MinHeight="405" MinWidth="631">
             <StackPanel x:Name="CVview" VerticalAlignment="Top" Margin="0"/>
         </ScrollViewer>
-        <Button x:Name="DebugButton" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="566,14,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="22"/>
-        <Grid x:Name="UserOverviewGrid" Grid.Column="2" Margin="10,44,10,10" Grid.Row="1" Grid.RowSpan="2"/>
-        <Button x:Name="UserLogout" Content="Logout" Margin="139,10,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Left" FontFamily="Calibri bold" Grid.Column="2" Grid.Row="1" FontSize="16"/>
-        <Button x:Name="UserInbox" Content="Inbox" Margin="59,10,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Left" FontFamily="Calibri bold" Grid.Column="2" Grid.Row="1" FontSize="16"/>
+        <Grid x:Name="UserOverviewGrid" Grid.Column="2" Margin="10,44,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="UserLogout" Content="Logout" Margin="6.181,10,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" Grid.Column="3" Grid.Row="1" FontSize="16" HorizontalAlignment="Left" Width="74.819"/>
+        <Button x:Name="UserInbox" Content="Inbox" Margin="0,10,6.85,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" Grid.Column="2" Grid.Row="1" FontSize="16" HorizontalAlignment="Right" Width="74.897"/>
+        <Button x:Name="AddCVBox" Content="Add" Margin="0,69,10,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" Grid.Column="1" Grid.Row="1" FontSize="16" Click="AddCVBox_Click"/>
 
     </Grid>
 </Window>
