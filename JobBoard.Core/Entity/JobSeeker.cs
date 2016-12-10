@@ -8,7 +8,7 @@ namespace JobBoard.Core
 {
     class JobSeeker:User
     {
-        List<string> skillList = new List<string>();
+        public List<string> skillList = new List<string>();
         public string BirthDay { get; set; }
         
         public void setSkill(string skill)

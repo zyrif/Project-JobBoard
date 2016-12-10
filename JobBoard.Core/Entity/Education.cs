@@ -10,14 +10,14 @@ namespace JobBoard.Core.Entity
     {
         public string DegreeType { set; get; }
         public string StartTime { set; get; }
-        public string FinishTime { set; get; }
+        public string EndTime { set; get; }
         public string InstitutionName { set; get; }
 
-        public Education(string degreeType,string timePeriod,string institutionName)
+        public Education(string degreeType,string startTime, string endTime, string institutionName)
         {
             this.DegreeType = degreeType;
             this.StartTime = startTime;
-            this.FinishTime = FinishTime;
+            this.EndTime = endTime;
             this.InstitutionName = institutionName;
         }
     }

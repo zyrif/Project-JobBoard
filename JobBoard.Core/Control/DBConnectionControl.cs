@@ -12,7 +12,6 @@ namespace JobBoard.Core.Control
         public DBConnectionControl()
         {
             DBReadWrite dbReadWrite = new DBReadWrite();
-            //dbReadWrite.createConnection();
         }
     }
 }

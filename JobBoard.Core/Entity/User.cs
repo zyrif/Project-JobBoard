@@ -10,12 +10,20 @@ namespace JobBoard.Core
     class User
     {
         public static User currentUser;
+        public enum UserType: byte
+        {
+            JobSeeker,
+            Employer
+        }
+
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+
+        public User() { }
 
         public User(string username,string userpass,string firstName,string lastName,string email,string phNumber)
         {
