@@ -23,13 +23,13 @@ namespace JobBoard.WpfApplication
     public partial class LoginRegister : Window
     {
         DBConnectionControl connectionControl;
-        LoginControl loginControl;
+        LoginRegistrationControl loginRegistrationControl;
 
 
         public LoginRegister()
         {
             connectionControl = new DBConnectionControl();
-            loginControl = new LoginControl();
+            loginRegistrationControl = new LoginRegistrationControl();
             InitializeComponent();
         }
 
@@ -53,7 +53,7 @@ namespace JobBoard.WpfApplication
         {
             if (tabControl.SelectedIndex == 0)
             {
-                if (loginControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
+                if (loginRegistrationControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
                 {
                     JobSeekerProfile jobSeekerProfile = new JobSeekerProfile();
                     jobSeekerProfile.Show();
@@ -61,13 +61,14 @@ namespace JobBoard.WpfApplication
                 }
                 else
                 {
-                    MessageBox.Show("Username PassWord mismatch");
+                    MessageBox.Show("Username Password Mismatch");
                 }
             }
             else
             {
-                if (loginControl.checkUser(UsernameBox.Text))
+                if (!loginRegistrationControl.checkUser(UsernameBox.Text))
                 {
+                    loginRegistrationControl.register(UsernameBox_Copy.Text,PasswordBox_Copy.Password.ToString());
                     ProfileCreation1 pc = new ProfileCreation1();
                     pc.Show();
                     this.Hide();
