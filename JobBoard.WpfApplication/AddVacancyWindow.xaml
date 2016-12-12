@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobBoard.WpfApplication"
         mc:Ignorable="d"
-        Title="AddVacancy" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
+        Title="AddVacancyWindow" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left" MouseDown="Window_MouseDown">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>

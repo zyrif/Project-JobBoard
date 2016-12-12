@@ -109,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VacancyBoxUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WelcomeWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,6 +153,9 @@
     </Compile>
     <Compile Include="RecUserOverviewUC.xaml.cs">
       <DependentUpon>RecUserOverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyBoxUC.xaml.cs">
+      <DependentUpon>VacancyBoxUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
