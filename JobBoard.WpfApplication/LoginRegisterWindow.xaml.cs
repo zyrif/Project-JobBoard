@@ -53,10 +53,10 @@ namespace JobBoard.WpfApplication
         {
             if (tabControl.SelectedIndex == 0)
             {
-                if (loginRegistrationControl.login(UsernameBox.Text, PasswordBox.Password.ToString()))
+                if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
                 {
-                    JobSeekerProfile jobSeekerProfile = new JobSeekerProfile();
-                    jobSeekerProfile.Show();
+                    Profile jp = new Profile();
+                    jp.Show();
                     this.Hide();
                 }
                 else
@@ -66,11 +66,11 @@ namespace JobBoard.WpfApplication
             }
             else if(tabControl.SelectedIndex == 1)
             {
-                if (!loginRegistrationControl.checkUser(UsernameBox_Copy.Text))
+                if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
                 {
-                    loginRegistrationControl.register(UsernameBox_Copy.Text,PasswordBox_Copy.Password.ToString());
-                    ProfileCreation1 pc = new ProfileCreation1();
-                    pc.Show();
+                    loginRegistrationControl.register(RUsernameBox.Text,RPasswordBox.Password.ToString());
+                    ChooseProfile pc = new ChooseProfile();
+                    cp.Show();
                     this.Hide();
                 }
                 else
