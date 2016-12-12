@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for CVUserControl.xaml
+    /// Interaction logic for RecUserOverviewUC.xaml
     /// </summary>
-    public partial class CVUserControl : UserControl
+    public partial class RecUserOverviewUC : UserControl
     {
-        public CVUserControl()
+        public RecUserOverviewUC()
         {
             InitializeComponent();
         }

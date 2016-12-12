@@ -51,9 +51,10 @@ namespace JobBoard.WpfApplication
 
         private void LRProceed_Click(object sender, RoutedEventArgs e)
         {
-            if (tabControl.SelectedIndex == 0)
+            if (LRTabControl.SelectedIndex == 0)
             {
                 if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
+
                 {
                     Profile jp = new Profile();
                     jp.Show();
@@ -66,10 +67,10 @@ namespace JobBoard.WpfApplication
             }
             else if(tabControl.SelectedIndex == 1)
             {
-                if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
+                if (loginRegistrationControl.checkUser(RUsernameBox.Text))
                 {
                     loginRegistrationControl.register(RUsernameBox.Text,RPasswordBox.Password.ToString());
-                    ChooseProfile pc = new ChooseProfile();
+                    ChooseProfile cp = new ChooseProfile();
                     cp.Show();
                     this.Hide();
                 }
