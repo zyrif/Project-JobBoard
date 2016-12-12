@@ -12,9 +12,11 @@ namespace JobBoard.Data
     {
         DBReadWrite dbReadWrite = new DBReadWrite();
         DataTable dataTable;
+        string query;
+
         public bool getUser(string userName, string passWord)
         {
-            string query = "select * from LoginInfo where username ='" + userName.Trim() + "' and password='" + passWord.Trim() + "'";
+            query = "select * from LoginInfo where username ='" + userName.Trim() + "' and password='" + passWord.Trim() + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
             if (dataTable.Rows.Count == 1)
@@ -25,7 +27,7 @@ namespace JobBoard.Data
 
         public bool getUser(string userName)
         {
-            string query = "select * from LoginInfo where username ='" + userName.Trim()+"'";
+            query = "select * from LoginInfo where username ='" + userName.Trim()+"'";
             dataTable = dbReadWrite.selectQuery(query);
 
             if (dataTable.Rows.Count == 1)
@@ -36,20 +38,15 @@ namespace JobBoard.Data
 
         public DataTable getUserInfo(string userName)
         {
-            string query = "select * from UserDetail where UserName ='" + userName + "'";
+            query = "select * from UserDetail where UserName ='" + userName + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
-
-            if (dataTable.Rows.Count > 0)
-                System.Windows.Forms.MessageBox.Show("1");
-            else
-                System.Windows.Forms.MessageBox.Show("2");
             return dataTable;
         }
 
         public DataTable getBirthday(string userName)
         {
-            string query = "select * from JobSeeker where UserName ='" + userName + "'";
+            query = "select * from JobSeeker where UserName ='" + userName + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
@@ -57,7 +54,7 @@ namespace JobBoard.Data
 
         public DataTable getSkill(string userName)
         {
-            string query = "select * from Skill where UserName ='" + userName+"'";
+            query = "select * from Skill where UserName ='" + userName+"'";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
@@ -65,8 +62,14 @@ namespace JobBoard.Data
 
         public void createUser(string userName, string passWord)
         {
-            string query = "INSERT INTO LoginInfo VALUES('" + userName.Trim() + "','" + passWord.Trim() + "')";
-            dataTable = dbReadWrite.selectQuery(query);
+            query = "INSERT INTO LoginInfo VALUES ('" + userName + "', '"+ passWord + "')";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void createUserProfile(string userName, string firstName, string lastName, string email, string phoneNumber, byte userType)
+        {
+            query = "INSERT INTO UserDetail (UserName, FirstName, LastName, Email, Phone, UserType) VALUES('" + userName.Trim() + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "'," + userType + ")";
+            dbReadWrite.insertQuery(query);
         }
     }
 }
