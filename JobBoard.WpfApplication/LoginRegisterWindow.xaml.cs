@@ -53,7 +53,7 @@ namespace JobBoard.WpfApplication
         {
             if (LRTabControl.SelectedIndex == 0)
             {
-                if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
+                if (loginRegistrationControl.login(LUsernameBox.Text, LPassBox.Password.ToString()))
 
                 {
                     Profile jp = new Profile();
@@ -69,7 +69,7 @@ namespace JobBoard.WpfApplication
             {
                 if (loginRegistrationControl.checkUser(RUsernameBox.Text))
                 {
-                    loginRegistrationControl.register(RUsernameBox.Text,RPasswordBox.Password.ToString());
+                    loginRegistrationControl.register(RUsernameBox.Text,RPassBox.Password.ToString());
                     ChooseProfile cp = new ChooseProfile();
                     cp.Show();
                     this.Hide();
