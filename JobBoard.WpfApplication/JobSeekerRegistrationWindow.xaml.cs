@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JobSeekerRegistration : Window
     {
+        LoginRegistrationControl loginRegistrationControl = new LoginRegistrationControl();
+
         public JobSeekerRegistration()
         {
             InitializeComponent();
@@ -41,6 +44,7 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
+            loginRegistrationControl.registerProfile(firstnameBox.Text,lastnameBox.Text,emailBox.Text,phoneBox.Text,1);
             JobSeekerProfile jp = new JobSeekerProfile();
             jp.Show();
             this.Hide();

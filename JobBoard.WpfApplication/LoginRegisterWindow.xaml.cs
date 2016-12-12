@@ -64,9 +64,9 @@ namespace JobBoard.WpfApplication
                     MessageBox.Show("Username Password Mismatch");
                 }
             }
-            else
+            else if(tabControl.SelectedIndex == 1)
             {
-                if (!loginRegistrationControl.checkUser(UsernameBox.Text))
+                if (!loginRegistrationControl.checkUser(UsernameBox_Copy.Text))
                 {
                     loginRegistrationControl.register(UsernameBox_Copy.Text,PasswordBox_Copy.Password.ToString());
                     ProfileCreation1 pc = new ProfileCreation1();
