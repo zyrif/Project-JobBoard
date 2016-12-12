@@ -53,7 +53,7 @@ namespace JobBoard.WpfApplication
         {
             if (LRTabControl.SelectedIndex == 0)
             {
-                if (loginRegistrationControl.login(LUsernameBox.Text, LPassBox.Password.ToString()))
+                if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
 
                 {
                     Profile jp = new Profile();
@@ -65,7 +65,7 @@ namespace JobBoard.WpfApplication
                     MessageBox.Show("Username Password Mismatch");
                 }
             }
-            else if(tabControl.SelectedIndex == 1)
+            else if(LRTabControl.SelectedIndex == 1)
             {
                 if (loginRegistrationControl.checkUser(RUsernameBox.Text))
                 {
