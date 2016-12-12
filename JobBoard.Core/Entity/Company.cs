@@ -21,6 +21,15 @@ namespace JobBoard.Core
             Large,
             International
         }
+        public Company(string name,string address,string country,string phone,string email,string website)
+        {
+            this.Name = name;
+            this.Address = address;
+            this.Country = country;
+            this.Phone = phone;
+            this.Email = email;
+            this.Website = website;
+        }
 
     }
 }
