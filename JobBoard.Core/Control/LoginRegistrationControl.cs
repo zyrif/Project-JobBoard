@@ -11,13 +11,13 @@ namespace JobBoard.Core
 {
     public class LoginRegistrationControl
     {
-        UserInfo userInfo = new UserInfo();
+        static UserInfo userInfo = new UserInfo();
 
         public bool login(string userName, string userPassword)
         {
             if (userInfo.getUser(userName, userPassword))
             {
-                this.initializeUserInfo(userName);
+                //this.initializeUserInfo(userName);
                 return true;
             }
             return false;
@@ -53,7 +53,21 @@ namespace JobBoard.Core
 
         public void register(string userName, string passWord)
         {
+            User.currentUser.UserName = userName;
+            User.currentUser.UserPassword = passWord;
+
             userInfo.createUser(userName,passWord);
+        }
+
+        public void registerProfile(string firstName,string lastName,string email,string phoneNumber,byte userType)
+        {
+            User.currentUser.FirstName = firstName;
+            User.currentUser.LastName = lastName;
+            User.currentUser.Email = email;
+            User.currentUser.PhoneNumber = phoneNumber;
+
+            //Writes information into Datatbase
+            userInfo.createUserProfile(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
     }
 }
