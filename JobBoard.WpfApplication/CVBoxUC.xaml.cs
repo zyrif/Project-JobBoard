@@ -24,5 +24,15 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
         }
+
+        private void CVBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Height = Double.NaN;
+        }
+
+        private void CVBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.Height = 123;
+        }
     }
 }
