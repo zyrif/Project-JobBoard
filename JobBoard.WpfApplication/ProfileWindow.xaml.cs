@@ -36,16 +36,15 @@ namespace JobBoard.WpfApplication
             this.WindowState = WindowState.Minimized;
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CVBoxUC uc = new CVBoxUC();   
-            this.CVview.Children.Add(uc);
-        }
-
         private void ProfileWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void AddSectionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CVBoxUC uc = new CVBoxUC();
+            this.CVview.Children.Add(uc);
         }
     }
 }

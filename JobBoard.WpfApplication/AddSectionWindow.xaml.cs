@@ -1,5 +1,4 @@
-﻿using JobBoard.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +15,11 @@ using System.Windows.Shapes;
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for RecruiterRegistrationWindow.xaml
+    /// Interaction logic for AddCVBoxWindow.xaml
     /// </summary>
-    public partial class JobSeekerRegistration : Window
+    public partial class AddSectionWindow : Window
     {
-        LoginRegistrationControl loginRegistrationControl = new LoginRegistrationControl();
-
-        public JobSeekerRegistration()
+        public AddSectionWindow()
         {
             InitializeComponent();
         }
@@ -37,16 +34,9 @@ namespace JobBoard.WpfApplication
             this.WindowState = WindowState.Minimized;
         }
 
-        private void RecruiterRegWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AddSection_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-        }
-
-        private void JSRegProceed_Click(object sender, RoutedEventArgs e)
-        {
-            Profile jp = new Profile();
-            jp.Show();
-            this.Hide();
         }
     }
 }
