@@ -44,8 +44,7 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            loginRegistrationControl.registerProfile(firstnameBox.Text,lastnameBox.Text,emailBox.Text,phoneBox.Text,1);
-            JobSeekerProfile jp = new JobSeekerProfile();
+            Profile jp = new Profile();
             jp.Show();
             this.Hide();
         }
