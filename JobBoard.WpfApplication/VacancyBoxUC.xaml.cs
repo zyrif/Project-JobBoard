@@ -24,5 +24,15 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
         }
+
+        private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
