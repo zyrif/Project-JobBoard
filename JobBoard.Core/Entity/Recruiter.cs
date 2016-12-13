@@ -11,9 +11,9 @@ namespace JobBoard.Core
         public string JobPosition { get; set; }
         public string Employer { get; set; }
 
-        public Recruiter(string username,string userpass,string firstName,string lastName,string email,string phNumber,string jobposition, string employer):base(username,userpass,firstName, lastName, email, phNumber)
+        public Recruiter(string userName, string userPass, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string employer):base(userName, userPass, firstName, lastName, email, phoneNumber)
         {
-            this.JobPosition = jobposition;
+            this.JobPosition = jobPosition;
             this.Employer = employer;
         }
     } 

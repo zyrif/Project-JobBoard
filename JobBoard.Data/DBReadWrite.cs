@@ -25,7 +25,6 @@ namespace JobBoard.Data
             SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
-            MessageBox.Show(query);
         }
 
         public DataTable selectQuery(string query)
