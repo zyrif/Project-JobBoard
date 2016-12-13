@@ -109,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SearchJobWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VacancyBoxUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCandidatesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,8 +162,14 @@
     <Compile Include="RecUserOverviewUC.xaml.cs">
       <DependentUpon>RecUserOverviewUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchJobWindow.xaml.cs">
+      <DependentUpon>SearchJobWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VacancyBoxUC.xaml.cs">
       <DependentUpon>VacancyBoxUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCandidatesWindow.xaml.cs">
+      <DependentUpon>ViewCandidatesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
