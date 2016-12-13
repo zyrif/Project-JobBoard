@@ -59,15 +59,26 @@ namespace JobBoard.Core
             userInfo.createUser(userName,passWord);
         }
 
-        public void registerProfile(string firstName,string lastName,string email,string phoneNumber,byte userType)
+        private void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
         {
-            User.currentUser.FirstName = firstName;
-            User.currentUser.LastName = lastName;
-            User.currentUser.Email = email;
-            User.currentUser.PhoneNumber = phoneNumber;
-
             //Writes information into Datatbase
             userInfo.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
+        }
+
+        public void registerJobSeekerProfile(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
+        {
+            registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 0);
+            userInfo.writeBirthDay(User.currentUser.UserName, Convert.ToDateTime(birthDay));
+            foreach(string skill in skillList)
+            {
+                userInfo.writeSkill(User.currentUser.UserName, skill);
+            }
+        }
+
+        public void registerEmployerProfile(string firstName, string lastName, string email, string phoneNumber, string jobPosition, int companyId)
+        {
+            registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 1);
+            userInfo.writeAdditionalEmployerInfo(User.currentUser.UserName, jobPosition, companyId);
         }
     }
 }
