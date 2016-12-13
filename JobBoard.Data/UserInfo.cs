@@ -88,7 +88,5 @@ namespace JobBoard.Data
         {
             query = "INSERT INTO EmployerInfo VALUES ('" + userName.Trim() + "','" + jobPosition.Trim() + "'," + companyId + ")";
         }
-
-
     }
 }
