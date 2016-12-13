@@ -46,7 +46,7 @@ namespace JobBoard.Data
 
         public DataTable getBirthday(string userName)
         {
-            query = "select * from JobSeeker where UserName ='" + userName + "'";
+            query = "select * from BirthDay where UserName ='" + userName + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
@@ -55,6 +55,14 @@ namespace JobBoard.Data
         public DataTable getSkill(string userName)
         {
             query = "select * from Skill where UserName ='" + userName+"'";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
+
+        public DataTable getEmployerInfo(string userName)
+        {
+            query = "select * from EmployerInfo where UserName ='" + userName + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;

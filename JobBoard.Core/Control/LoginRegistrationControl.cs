@@ -11,13 +11,14 @@ namespace JobBoard.Core
 {
     public class LoginRegistrationControl
     {
-        static UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = new UserInfo();
+        DataTable dataTable;
 
         public bool login(string userName, string userPassword)
         {
             if (userInfo.getUser(userName, userPassword))
             {
-                //this.initializeUserInfo(userName);
+                this.initializeUserInfo(userName);
                 return true;
             }
             return false;
@@ -25,21 +26,47 @@ namespace JobBoard.Core
 
         void initializeUserInfo(string userName)
         {
+            dataTable = userInfo.getUserInfo(userName);
+            if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
+                initializeJobSeekerInfo(userName);
+            else
+                initializeEmployerInfo(userName);
+        }
+
+        void initializeJobSeekerInfo(string userName)
+        {
             JobSeeker jobSeeker = new JobSeeker();
-            DataTable dataTable = userInfo.getUserInfo(userName);
+
             jobSeeker.FirstName = dataTable.Rows[0]["FirstName"].ToString();
             jobSeeker.LastName = dataTable.Rows[0]["LastName"].ToString();
             jobSeeker.Email = dataTable.Rows[0]["Email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-
+            
             dataTable = userInfo.getBirthday(userName);
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
-
+           
             dataTable = userInfo.getSkill(userName);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
+                MessageBox.Show(dataTable.Rows[i]["Skill"].ToString());
             }
+
+            
+        }
+
+        void initializeEmployerInfo(string userName)
+        {
+            Recruiter recruiter = new Recruiter();
+
+            recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
+            recruiter.Email = dataTable.Rows[0]["Email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
+
+            dataTable = userInfo.getEmployerInfo(userName);
+            recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
+            recruiter.CompanyId = Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]);
         }
 
         public bool checkUser(string userName)

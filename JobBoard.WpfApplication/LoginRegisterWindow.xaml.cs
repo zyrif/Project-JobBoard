@@ -54,7 +54,6 @@ namespace JobBoard.WpfApplication
             if (LRTabControl.SelectedIndex == 0)
             {
                 if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
-
                 {
                     Profile jp = new Profile();
                     jp.Show();
