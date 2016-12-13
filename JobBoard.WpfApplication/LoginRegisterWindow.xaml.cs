@@ -28,9 +28,9 @@ namespace JobBoard.WpfApplication
 
         public LoginRegister()
         {
+            InitializeComponent();
             connectionControl = new DBConnectionControl();
             loginRegistrationControl = new LoginRegistrationControl();
-            InitializeComponent();
         }
 
 

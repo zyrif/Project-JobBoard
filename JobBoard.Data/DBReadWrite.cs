@@ -32,12 +32,24 @@ namespace JobBoard.Data
         public DataTable selectQuery(string query)
         {
             //Reading Login Data and putting them in a Data Table
+            try
+            {
+                MySqlCommand sqlCommand0 = new MySqlCommand(query, connection);
+                MySqlDataAdapter dataAdapter0 = new MySqlDataAdapter(sqlCommand0);
+                DataTable dataTable0 = new DataTable();
+                dataAdapter0.Fill(dataTable0);
+
+                
+            }
+            catch (Exception ex)
+            { MessageBox.Show(ex.ToString()); }
+
             MySqlCommand sqlCommand = new MySqlCommand(query, connection);
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
-
             return dataTable;
+
         }
 
         //To create Connection with DataBase
@@ -46,22 +58,25 @@ namespace JobBoard.Data
             using (client = new SshClient("128.199.155.62", "projectjb", "JbOop2Prjct5.12.16"))
             {
                 client.Connect();
-                if(client.IsConnected)
+                if (client.IsConnected)
                 {
                     var pf = new ForwardedPortLocal("127.0.0.1", 3306, "127.0.0.1", 3306);
                     client.AddForwardedPort(pf);
                     pf.Start();
                 }
+                else
+                    MessageBox.Show("Error while establishing ssh connection to the server.");
             }
 
             //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
-            connection = new MySqlConnection("SERVER=127.0.0.1;PORT=3306;UID=JBapp;PASSWORD=jason6;DATABASE=dbJobBoard");
+            connection = new MySqlConnection("Server=127.0.0.1; Database=dbJobBoard; Uid=JBapp; Password=jason6;");
         }
 
         //To close the connection
         void closeConnection()
         {
             connection.Close();
+            client.Disconnect();
             
         }
     }
