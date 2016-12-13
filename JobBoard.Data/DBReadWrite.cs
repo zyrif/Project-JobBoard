@@ -60,9 +60,11 @@ namespace JobBoard.Data
                 client.Connect();
                 if (client.IsConnected)
                 {
-                    var pf = new ForwardedPortLocal("127.0.0.1", 3306, "127.0.0.1", 3306);
+                    ForwardedPortDynamic pf = new ForwardedPortDynamic("127.0.0.1", 3306);
                     client.AddForwardedPort(pf);
                     pf.Start();
+                    if (pf.IsStarted)
+                        MessageBox.Show("Port forward started in " + pf.BoundHost + ":" + pf.BoundPort);
                 }
                 else
                     MessageBox.Show("Error while establishing ssh connection to the server.");
@@ -76,7 +78,6 @@ namespace JobBoard.Data
         void closeConnection()
         {
             connection.Close();
-            client.Disconnect();
             
         }
     }
