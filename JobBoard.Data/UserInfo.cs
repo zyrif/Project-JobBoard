@@ -66,10 +66,29 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        public void createUserProfile(string userName, string firstName, string lastName, string email, string phoneNumber, byte userType)
+        public void writeCommonUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, byte userType)
         {
             query = "INSERT INTO UserDetail (UserName, FirstName, LastName, Email, Phone, UserType) VALUES('" + userName.Trim() + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "'," + userType + ")";
             dbReadWrite.insertQuery(query);
         }
+
+        public void writeBirthDay(string userName, DateTime birthDay)
+        {
+            query = "INSERT INTO JobSeeker VALUES('" + userName.Trim() +"'," + birthDay + ")";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void writeSkill(string userName, string skill)
+        {
+            query = "INSERT INTO Skill VALUES('" + userName.Trim() + "','" + skill.Trim() + "')";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void writeAdditionalEmployerInfo(string userName, string jobPosition, int companyId)
+        {
+            query = "INSERT INTO EmployerInfo VALUES ('" + userName.Trim() + "','" + jobPosition.Trim() + "'," + companyId + ")";
+        }
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace JobBoard.Core
             jobSeeker.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
 
             dataTable = userInfo.getBirthday(userName);
-            jobSeeker.BirthDay = dataTable.Rows[0]["BirthDay"].ToString();
+            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
 
             dataTable = userInfo.getSkill(userName);
             for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -67,7 +67,7 @@ namespace JobBoard.Core
             User.currentUser.PhoneNumber = phoneNumber;
 
             //Writes information into Datatbase
-            userInfo.createUserProfile(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
+            userInfo.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
     }
 }
