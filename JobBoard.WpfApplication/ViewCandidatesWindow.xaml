@@ -1,0 +1,17 @@
+﻿<Window x:Name="View_Candidates" x:Class="JobBoard.WpfApplication.ViewCandidatesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobBoard.WpfApplication"
+        mc:Ignorable="d"
+        Title="View Suitable Candidates for this vacancy posting" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
+    <Grid>
+        <DataGrid x:Name="dataGrid" Margin="25.631,123,42.369,38" Background="#FF1D1D1D" BorderBrush="{x:Null}"/>
+        <Label x:Name="viewcandidatesTitle" Content="Suitable Candidates for this job: " Margin="25.631,51.233,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="28" VerticalAlignment="Top" HorizontalAlignment="Left" Height="51"/>
+
+
+
+    </Grid>
+</Window>

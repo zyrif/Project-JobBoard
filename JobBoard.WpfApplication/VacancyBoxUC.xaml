@@ -3,10 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="123" MinHeight="123" MinWidth="625" MouseEnter="VacancyBox_MouseEnter" MouseLeave="VacancyBox_MouseLeave" Background="#FF3A3A3A" Margin="0,0,0,10">
+             mc:Ignorable="d" Height="170" MinHeight="123" MinWidth="625" MouseEnter="VacancyBox_MouseEnter" MouseLeave="VacancyBox_MouseLeave" Background="#FF3A3A3A" Margin="0,0,0,10">
 
     <Grid x:Name="VCBMainGrid" Margin="0,5,10,10">
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="employerLabel" Content="Employer: " HorizontalAlignment="Right" Margin="0,10,244.006,0" VerticalAlignment="Top" Foreground="#FFA2A2A2"/>
+        <Label x:Name="jobtitleLabel" Content="Title: " HorizontalAlignment="Left" Margin="32,10,0,0" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
+        <Label x:Name="locationLabel" Content="Location: " HorizontalAlignment="Left" Margin="32,40.96,0,0" Foreground="#FFA2A2A2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <Label x:Name="skillsLabel" Content="Skills: " HorizontalAlignment="Left" Margin="32,71.92,0,0" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
+        <Label x:Name="deadlineLabel" Content="Deadline:" Margin="305.454,40.96,250.202,0" VerticalAlignment="Top" Foreground="#FFA2A2A2" d:LayoutOverrides="Width"/>
+        <Grid x:Name="vbsubGrid" Margin="305.454,71.93,0,-42.89" VerticalAlignment="Top" MinWidth="309">
+            <RichTextBox x:Name="richTextBox" Margin="0,10,0,94" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" HorizontalAlignment="Left" Width="268" VerticalAlignment="Top">
+                <FlowDocument IsEnabled="False">
+                    <Paragraph>
+                        <Run Text="Details....."/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <Label x:Name="jobtypeLabel" Content="Job Type: " HorizontalAlignment="Left" Margin="0,0,0,63" Foreground="#FFA2A2A2" VerticalAlignment="Bottom"/>
+            <Label x:Name="jobtypeLabel_Copy" Content="Salary Bracket: " HorizontalAlignment="Left" Margin="0,0,0,32.08" Foreground="#FFA2A2A2" VerticalAlignment="Bottom"/>
+            <Button x:Name="recruiterdetailsBtn" Content="Button" Margin="144,0,90,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Background="Gray" BorderBrush="{x:Null}"/>
+            <Button x:Name="contactBtn" Content="Button" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Background="Gray" BorderBrush="{x:Null}"/>
+        </Grid>
 
     </Grid>
 </UserControl>
