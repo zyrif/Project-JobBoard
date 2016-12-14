@@ -14,6 +14,7 @@ namespace JobBoard.Core
         UserInfo userInfo = new UserInfo();
         DataTable dataTable;
 
+        //Login portion
         public bool login(string userName, string userPassword)
         {
             if (userInfo.getUser(userName, userPassword))
@@ -49,7 +50,6 @@ namespace JobBoard.Core
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
-                MessageBox.Show(dataTable.Rows[i]["Skill"].ToString());
             }
 
             
@@ -78,6 +78,7 @@ namespace JobBoard.Core
             return false;
         }
 
+        //Registration portion
         public void register(string userName, string passWord)
         {
             User.currentUser.UserName = userName;
@@ -86,13 +87,13 @@ namespace JobBoard.Core
             userInfo.createUser(userName,passWord);
         }
 
-        private void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
+        void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
         {
             //Writes information into Datatbase
             userInfo.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
 
-        public void registerJobSeekerProfile(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
+        public void register(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
         {
             registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 0);
             userInfo.writeBirthDay(User.currentUser.UserName, Convert.ToDateTime(birthDay));
@@ -102,7 +103,7 @@ namespace JobBoard.Core
             }
         }
 
-        public void registerEmployerProfile(string firstName, string lastName, string email, string phoneNumber, string jobPosition, int companyId)
+        public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, int companyId)
         {
             registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 1);
             userInfo.writeAdditionalEmployerInfo(User.currentUser.UserName, jobPosition, companyId);
