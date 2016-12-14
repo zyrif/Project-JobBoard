@@ -50,6 +50,7 @@ namespace JobBoard.Core
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
+                MessageBox.Show(dataTable.Rows[i]["Skill"].ToString());
             }
 
             
@@ -87,11 +88,13 @@ namespace JobBoard.Core
             userInfo.createUser(userName,passWord);
         }
 
+
         void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
         {
             //Writes information into Datatbase
             userInfo.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
+
 
         public void register(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
         {
