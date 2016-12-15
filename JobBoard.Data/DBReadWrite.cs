@@ -60,7 +60,7 @@ namespace JobBoard.Data
             //}
 
             if (connection == null)
-                connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
+                connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\git-source-folder\Project-JobBoard\JobBoard.Data\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
             //connection = new MySqlConnection("Server=127.0.0.1; Database=dbJobBoard; Uid=JBapp; Password=jason6;");
         }
 

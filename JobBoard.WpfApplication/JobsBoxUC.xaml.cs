@@ -16,24 +16,23 @@ using System.Windows.Shapes;
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for VacancyBoxUC.xaml
+    /// Interaction logic for JobsBoxUC.xaml
     /// </summary>
-    public partial class VacancyBoxUC : UserControl
+    public partial class JobsBoxUC : UserControl
     {
-        public VacancyBoxUC()
+        public JobsBoxUC()
         {
             InitializeComponent();
         }
 
-        private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
+        private void JobsBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = 110;
+
         }
 
-        private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
+        private void JobsBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 270;
+
         }
     }
 }
-//

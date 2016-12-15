@@ -43,8 +43,16 @@ namespace JobBoard.WpfApplication
 
         private void AddSectionBtn_Click(object sender, RoutedEventArgs e)
         {
+
             CVBoxUC uc = new CVBoxUC();
             this.CVview.Children.Add(uc);
+        }
+
+        private void AddSectionBtn2_Click(object sender, RoutedEventArgs e)
+        {
+
+            VacancyBoxUC vb = new VacancyBoxUC();
+            this.CVview.Children.Add(vb);
         }
     }
 }

@@ -9,12 +9,13 @@
         ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
     <Grid x:Name="mainGrid">
         <Label x:Name="availablejobsTitle" Content="Available Jobs: " Margin="25.631,40.233,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="32" VerticalAlignment="Top" HorizontalAlignment="Left" Height="51"/>
-        <ComboBox x:Name="employerComboBox" HorizontalAlignment="Left" Margin="25.631,115,0,0" VerticalAlignment="Top" Width="140" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" ToolTip="Search by Employer Name"/>
-        <ComboBox x:Name="locationComboBox" Margin="170.631,115,0,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" Width="140" HorizontalAlignment="Left" ToolTip="Search by location"/>
-        <Button x:Name="expdateBtn" Content="Button" HorizontalAlignment="Right" Margin="0,115,42.369,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="57" Height="25" ToolTip="Sort by expiration date" Background="#FF3A3A3A"/>
-        <ComboBox x:Name="skillsComboBox" Margin="315.631,115,282.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" Width="140" ToolTip="Search by skills"/>
+        <ComboBox x:Name="employerComboBox" HorizontalAlignment="Left" Margin="25.631,147,0,0" VerticalAlignment="Top" Width="225" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" ToolTip="Search by Employer Name"/>
+        <ComboBox x:Name="locationComboBox" Margin="256.122,147,282.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" ToolTip="Search by location"/>
+        <Button x:Name="expdateBtn" Content="Button" HorizontalAlignment="Right" Margin="0,115.606,42.369,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="57" Height="25" ToolTip="Sort by expiration date" Background="#FF3A3A3A"/>
+        <ComboBox x:Name="skillsComboBox" Margin="0,147,42.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" IsEditable="True" ToolTip="Search by skills" HorizontalAlignment="Right" Width="235"/>
         <DataGrid x:Name="dataGrid" Margin="25.631,177,42.369,38" Background="#FF1D1D1D" BorderBrush="{x:Null}"/>
-        <ComboBox x:Name="salarybrctComboBox" Margin="0,115,183.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" Width="94" ToolTip="Search by skills" HorizontalAlignment="Right"/>
-        <ComboBox x:Name="emptypeComboBox" Margin="0,115,104.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" Width="74" ToolTip="Search by skills" HorizontalAlignment="Right"/>
+        <ComboBox x:Name="salarybrctComboBox" Margin="0,115.606,183.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" Width="94" ToolTip="Search by skills" HorizontalAlignment="Right" Foreground="White"/>
+        <ComboBox x:Name="emptypeComboBox" Margin="0,115.606,104.369,0" VerticalAlignment="Top" Height="25" BorderBrush="{x:Null}" Background="#FF3A3A3A" Width="74" ToolTip="Search by skills" HorizontalAlignment="Right"/>
+        <TextBox x:Name="titlesearchBox" Height="25" Margin="25.631,115.606,282.369,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Background="#FF343434" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>
