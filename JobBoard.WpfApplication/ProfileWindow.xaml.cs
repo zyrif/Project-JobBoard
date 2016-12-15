@@ -54,5 +54,11 @@ namespace JobBoard.WpfApplication
             VacancyBoxUC vb = new VacancyBoxUC();
             this.CVview.Children.Add(vb);
         }
+
+        private void UserInbox_Click(object sender, RoutedEventArgs e)
+        {
+            MailboxWindow mbw = new MailboxWindow();
+            mbw.Show();
+        }
     }
 }
