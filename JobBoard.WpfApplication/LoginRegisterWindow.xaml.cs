@@ -66,12 +66,19 @@ namespace JobBoard.WpfApplication
             }
             else if(LRTabControl.SelectedIndex == 1)
             {
-                if (loginRegistrationControl.checkUser(RUsernameBox.Text))
+                if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
                 {
-                    loginRegistrationControl.register(RUsernameBox.Text,RPassBox.Password.ToString());
-                    ChooseProfile cp = new ChooseProfile();
-                    cp.Show();
-                    this.Hide();
+                    if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
+                    {
+                        loginRegistrationControl.register(RUsernameBox.Text, RPassBox.Password.ToString());
+                        ChooseProfile cp = new ChooseProfile();
+                        cp.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Passwords don't match");
+                    }
                 }
                 else
                 {
