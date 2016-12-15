@@ -13,7 +13,7 @@ namespace JobBoard.Data
 {
     public class DBReadWrite
     {
-        static MySqlConnection connection;
+        static SqlConnection connection;
         SshClient client;
 
         public DBReadWrite()
@@ -23,8 +23,8 @@ namespace JobBoard.Data
 
         public void insertQuery(string query)
         {
-            MySqlCommand sqlCommand = new MySqlCommand(query, connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
+            SqlCommand sqlCommand = new SqlCommand(query, connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
         }
@@ -32,37 +32,43 @@ namespace JobBoard.Data
         public DataTable selectQuery(string query)
         {
             //Reading Login Data and putting them in a Data Table
-            MySqlCommand sqlCommand = new MySqlCommand(query, connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
+
+            SqlCommand sqlCommand = new SqlCommand(query, connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
-
             return dataTable;
+
         }
 
         //To create Connection with DataBase
         public void createConnection()
         {
-            using (client = new SshClient("128.199.155.62", "projectjb", "JbOop2Prjct5.12.16"))
-            {
-                client.Connect();
-                if(client.IsConnected)
-                {
-                    var pf = new ForwardedPortLocal("127.0.0.1", 3306, "127.0.0.1", 3306);
-                    client.AddForwardedPort(pf);
-                    pf.Start();
-                }
-            }
+            //using (client = new SshClient("128.199.155.62", "projectjb", "JbOop2Prjct5.12.16"))
+            //{
+            //    client.Connect();
+            //    if (client.IsConnected)
+            //    {
+            //        ForwardedPortDynamic pf = new ForwardedPortDynamic("127.0.0.1", 3306);
+            //        client.AddForwardedPort(pf);
+            //        pf.Start();
+            //        if (pf.IsStarted)
+            //            MessageBox.Show("Port forward started in " + pf.BoundHost + ":" + pf.BoundPort);
+            //    }
+            //    else
+            //        MessageBox.Show("Error while establishing ssh connection to the server.");
+            //}
 
-            //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
-            connection = new MySqlConnection("SERVER=127.0.0.1;PORT=3306;UID=JBapp;PASSWORD=jason6;DATABASE=dbJobBoard");
+            if (connection == null)
+                connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
+            //connection = new MySqlConnection("Server=127.0.0.1; Database=dbJobBoard; Uid=JBapp; Password=jason6;");
         }
 
         //To close the connection
         void closeConnection()
         {
             connection.Close();
-            
+
         }
     }
 }
