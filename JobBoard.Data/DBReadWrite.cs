@@ -8,17 +8,19 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
 using Renci.SshNet;
+using System.Threading;
 
 namespace JobBoard.Data
 {
     public class DBReadWrite
     {
         static MySqlConnection connection;
-        SshClient client;
+        static SshClient client;
 
         public DBReadWrite()
         {
-            this.createConnection();
+            if (connection == null)
+                createConnection();
         }
 
         public void insertQuery(string query)
@@ -48,14 +50,16 @@ namespace JobBoard.Data
                 client.Connect();
                 if(client.IsConnected)
                 {
-                    var pf = new ForwardedPortLocal("127.0.0.1", 3306, "127.0.0.1", 3306);
-                    client.AddForwardedPort(pf);
-                    pf.Start();
+                    var port = new ForwardedPortLocal("127.0.0.1",3306,"127.0.0.1", 3306);
+                    client.AddForwardedPort(port);
+                    port.Start();
+                    port.Stop();
+                    client.Disconnect();
                 }
             }
-
+            
             //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
-            connection = new MySqlConnection("SERVER=127.0.0.1;PORT=3306;UID=JBapp;PASSWORD=jason6;DATABASE=dbJobBoard");
+            connection = new MySqlConnection(@"SERVER=localhost;PORT=3306;DATABASE=dbJobBoard;UID=JBapp;PASSWORD=jason6");
         }
 
         //To close the connection

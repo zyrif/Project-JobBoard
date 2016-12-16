@@ -11,13 +11,13 @@ namespace JobBoard.Core
 {
     public class LoginRegistrationControl
     {
-        UserInfo userInfo = new UserInfo();
+        LoginRegistrationQuery query = new LoginRegistrationQuery();
         DataTable dataTable;
 
         //Login portion
         public bool login(string userName, string userPassword)
         {
-            if (userInfo.getUser(userName, userPassword))
+            if (query.getUser(userName, userPassword))
             {
                 this.initializeUserInfo(userName);
                 return true;
@@ -27,7 +27,7 @@ namespace JobBoard.Core
 
         void initializeUserInfo(string userName)
         {
-            dataTable = userInfo.getUserInfo(userName);
+            dataTable = query.getUserInfo(userName);
             if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
                 initializeJobSeekerInfo(userName);
             else
@@ -43,10 +43,10 @@ namespace JobBoard.Core
             jobSeeker.Email = dataTable.Rows[0]["Email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
             
-            dataTable = userInfo.getBirthday(userName);
+            dataTable = query.getBirthday(userName);
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
            
-            dataTable = userInfo.getSkill(userName);
+            dataTable = query.getSkill(userName);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
@@ -65,14 +65,14 @@ namespace JobBoard.Core
             recruiter.Email = dataTable.Rows[0]["Email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
 
-            dataTable = userInfo.getEmployerInfo(userName);
+            dataTable = query.getEmployerInfo(userName);
             recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
             recruiter.CompanyId = Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]);
         }
 
         public bool checkUser(string userName)
         {
-            if (userInfo.getUser(userName))
+            if (query.getUser(userName))
             {
                 return true;
             }
@@ -85,31 +85,31 @@ namespace JobBoard.Core
             User.currentUser.UserName = userName;
             User.currentUser.UserPassword = passWord;
 
-            userInfo.createUser(userName,passWord);
+            query.createUser(userName,passWord);
         }
 
 
         void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
         {
             //Writes information into Datatbase
-            userInfo.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
+            query.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
 
 
         public void register(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
         {
             registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 0);
-            userInfo.writeBirthDay(User.currentUser.UserName, Convert.ToDateTime(birthDay));
+            query.writeBirthDay(User.currentUser.UserName, Convert.ToDateTime(birthDay));
             foreach(string skill in skillList)
             {
-                userInfo.writeSkill(User.currentUser.UserName, skill);
+                query.writeSkill(User.currentUser.UserName, skill);
             }
         }
 
         public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, int companyId)
         {
             registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 1);
-            userInfo.writeAdditionalEmployerInfo(User.currentUser.UserName, jobPosition, companyId);
+            query.writeAdditionalEmployerInfo(User.currentUser.UserName, jobPosition, companyId);
         }
     }
 }

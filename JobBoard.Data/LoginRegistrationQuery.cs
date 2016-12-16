@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Data
 {
-    public class UserInfo
+    public class LoginRegistrationQuery
     {
         DBReadWrite dbReadWrite = new DBReadWrite();
         DataTable dataTable;
@@ -95,6 +95,13 @@ namespace JobBoard.Data
         public void writeAdditionalEmployerInfo(string userName, string jobPosition, int companyId)
         {
             query = "INSERT INTO EmployerInfo VALUES ('" + userName.Trim() + "','" + jobPosition.Trim() + "'," + companyId + ")";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void writeCompanyInfo(string companyName, string address, short countryCode, string phone, string email, string website, byte businessType, int companyId)
+        {
+            query = "INSERT INTO Company VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + countryCode + ",'"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + businessType + companyId + ")";
+            dbReadWrite.insertQuery(query);
         }
     }
 }
