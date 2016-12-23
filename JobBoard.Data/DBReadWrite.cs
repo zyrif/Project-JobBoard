@@ -28,8 +28,8 @@ namespace JobBoard.Data
 
         public void insertQuery(string query)
         {
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+            MySqlCommand sqlCommand = new MySqlCommand(query, connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
         }
@@ -38,8 +38,8 @@ namespace JobBoard.Data
         {
             //Reading Login Data and putting them in a Data Table
 
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+            MySqlCommand sqlCommand = new MySqlCommand(query, connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             return dataTable;
