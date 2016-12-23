@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Data
 {
-    public class UserInfo
+    public class LoginRegistrationQuery
     {
         DBReadWrite dbReadWrite = new DBReadWrite();
         DataTable dataTable;
@@ -27,7 +27,7 @@ namespace JobBoard.Data
 
         public bool getUser(string userName)
         {
-            query = "select * from LoginInfo where username ='" + userName.Trim()+"'";
+            query = "select * from login_info where user_name ='" + userName.Trim()+"'";
             dataTable = dbReadWrite.selectQuery(query);
 
             if (dataTable.Rows.Count == 1)
@@ -43,15 +43,7 @@ namespace JobBoard.Data
 
             return dataTable;
         }
-
-        public DataTable getBirthday(string userName)
-        {
-            query = "select * from BirthDay where UserName ='" + userName + "'";
-            dataTable = dbReadWrite.selectQuery(query);
-
-            return dataTable;
-        }
-
+        
         public DataTable getSkill(string userName)
         {
             query = "select * from Skill where UserName ='" + userName+"'";
@@ -59,18 +51,11 @@ namespace JobBoard.Data
 
             return dataTable;
         }
-
-        public DataTable getEmployerInfo(string userName)
-        {
-            query = "select * from EmployerInfo where UserName ='" + userName + "'";
-            dataTable = dbReadWrite.selectQuery(query);
-
-            return dataTable;
-        }
-
+        
+        //Registration Portion
         public void createUser(string userName, string passWord)
         {
-            query = "INSERT INTO LoginInfo VALUES ('" + userName + "', '"+ passWord + "')";
+            query = "INSERT INTO login_info VALUES ('" + userName + "', '"+ passWord + "')";
             dbReadWrite.insertQuery(query);
         }
 
@@ -95,6 +80,13 @@ namespace JobBoard.Data
         public void writeAdditionalEmployerInfo(string userName, string jobPosition, int companyId)
         {
             query = "INSERT INTO EmployerInfo VALUES ('" + userName.Trim() + "','" + jobPosition.Trim() + "'," + companyId + ")";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void writeCompanyInfo(string companyName, string address, short countryCode, string phone, string email, string website, byte businessType, int companyId)
+        {
+            query = "INSERT INTO Company VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + countryCode + ",'"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + businessType + companyId + ")";
+            dbReadWrite.insertQuery(query);
         }
     }
 }
