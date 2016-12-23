@@ -15,10 +15,6 @@ namespace JobBoard.Data
     public class DBReadWrite
     {
         static MySqlConnection connection;
-        //static SshClient client;
-
-        //static SqlConnection connection;
-        //SshClient client;
 
         public DBReadWrite()
         {

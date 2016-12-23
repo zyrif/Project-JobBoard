@@ -82,15 +82,13 @@ namespace JobBoard.Core
 
             query.createUser(userName,passWord);
         }
-
-
+        
         void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
         {
             //Writes information into Datatbase
             query.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
         }
-
-
+        
         public void register(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
         {
             registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 0);
