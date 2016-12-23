@@ -10,30 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for VacancyBoxUC.xaml
+    /// Interaction logic for MailboxWindow.xaml
     /// </summary>
-    public partial class VacancyBoxUC : UserControl
+    public partial class MailboxWindow : Window
     {
-        public VacancyBoxUC()
+        public MailboxWindow()
         {
             InitializeComponent();
-        }
-
-        private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
-        {
-            this.Height = 110;
-        }
-
-        private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            this.Height = 270;
+            for(int i=0; i<5; i++)
+            {
+                MailUC muc = new MailUC();
+                this.mailView.Children.Add(muc);
+            }
         }
     }
 }
-//

@@ -16,24 +16,23 @@ using System.Windows.Shapes;
 namespace JobBoard.WpfApplication
 {
     /// <summary>
-    /// Interaction logic for VacancyBoxUC.xaml
+    /// Interaction logic for MailUC.xaml
     /// </summary>
-    public partial class VacancyBoxUC : UserControl
+    public partial class MailUC : UserControl
     {
-        public VacancyBoxUC()
+        public MailUC()
         {
             InitializeComponent();
         }
 
-        private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
+        private void amail_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = 110;
+            this.Height = Double.NaN;
         }
 
-        private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
+        private void amail_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 270;
+            this.Height = 50;
         }
     }
 }
-//
