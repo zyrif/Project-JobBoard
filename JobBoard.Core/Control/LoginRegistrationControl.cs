@@ -42,15 +42,12 @@ namespace JobBoard.Core
             jobSeeker.LastName = dataTable.Rows[0]["LastName"].ToString();
             jobSeeker.Email = dataTable.Rows[0]["Email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-            
-            dataTable = query.getBirthday(userName);
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
            
             dataTable = query.getSkill(userName);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
-                MessageBox.Show(dataTable.Rows[i]["Skill"].ToString());
             }
 
             
@@ -64,8 +61,6 @@ namespace JobBoard.Core
             recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
             recruiter.Email = dataTable.Rows[0]["Email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-
-            dataTable = query.getEmployerInfo(userName);
             recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
             recruiter.CompanyId = Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]);
         }

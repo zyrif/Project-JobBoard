@@ -15,7 +15,7 @@ namespace JobBoard.Data
     public class DBReadWrite
     {
         static MySqlConnection connection;
-        static SshClient client;
+        //static SshClient client;
 
         public DBReadWrite()
         {
@@ -45,7 +45,7 @@ namespace JobBoard.Data
         //To create Connection with DataBase
         public void createConnection()
         {
-            using (client = new SshClient("128.199.155.62", "projectjb", "JbOop2Prjct5.12.16"))
+            /*using (client = new SshClient("128.199.155.62", "projectjb", "JbOop2Prjct5.12.16"))
             {
                 client.Connect();
                 if(client.IsConnected)
@@ -56,17 +56,26 @@ namespace JobBoard.Data
                     port.Stop();
                     client.Disconnect();
                 }
-            }
-            
+            }*/
+
             //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
-            connection = new MySqlConnection(@"SERVER=localhost;PORT=3306;DATABASE=dbJobBoard;UID=JBapp;PASSWORD=jason6");
+            string conn = "server=sql8.freemysqlhosting.net;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
+            try
+            {
+                connection = new MySqlConnection();
+                connection.ConnectionString = conn;
+                connection.Open();
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //To close the connection
         void closeConnection()
         {
             connection.Close();
-            
         }
     }
 }
