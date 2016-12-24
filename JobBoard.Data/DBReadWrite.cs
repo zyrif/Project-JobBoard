@@ -15,11 +15,20 @@ namespace JobBoard.Data
     public class DBReadWrite
     {
         static MySqlConnection connection;
+        static DBReadWrite instance;
 
-        public DBReadWrite()
+        DBReadWrite()
         {
             if (connection == null)
                 createConnection();
+        }
+
+        public static DBReadWrite getInstance()
+        {
+            if (instance == null)
+                instance = new DBReadWrite();
+
+            return instance;
         }
 
         public void insertQuery(string query)

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace JobBoard.Core
 {
-    class User
+    public class User
     {
         public static User currentUser = new User();
         public enum UserType: byte

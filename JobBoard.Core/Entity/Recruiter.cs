@@ -9,14 +9,14 @@ namespace JobBoard.Core
     class Recruiter:User
     {
         public string JobPosition { get; set; }
-        public uint CompanyId { get; set; }
+        public string CompanyName { get; set; }
 
         public Recruiter() { }
 
-        public Recruiter(string userName, string userPass, string firstName, string lastName, string email, string phoneNumber, string jobPosition, uint companyId):base(userName, userPass, firstName, lastName, email, phoneNumber)
+        public Recruiter(string userName, string userPass, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName):base(userName, userPass, firstName, lastName, email, phoneNumber)
         {
             this.JobPosition = jobPosition;
-            this.CompanyId = companyId;
+            this.CompanyName = companyName;
         }
     } 
 }

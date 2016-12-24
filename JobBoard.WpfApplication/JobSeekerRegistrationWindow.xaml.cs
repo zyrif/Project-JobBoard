@@ -20,7 +20,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JobSeekerRegistration : Window
     {
-        LoginRegistrationControl loginRegistrationControl = new LoginRegistrationControl();
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public JobSeekerRegistration()
         {
@@ -44,6 +44,14 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
+            string dateTimeString = bddateBox.Text + "/" + bdmonthBox.Text + "/" + bdyearBox.Text;
+            DateTime date = Convert.ToDateTime(dateTimeString);
+
+            List<string> skillList = new List<string>();
+            foreach(string skill in slctskillsPanel.Children)
+                skillList.Add(skill);
+
+            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
