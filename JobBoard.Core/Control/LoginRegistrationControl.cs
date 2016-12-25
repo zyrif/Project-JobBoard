@@ -104,6 +104,8 @@ namespace JobBoard.Core
         public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
         {
             query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
+
+            dataTable = query.getUserInfo(User.currentUser.UserName);
             foreach (string skill in skillList)
             {
                 query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
@@ -120,6 +122,19 @@ namespace JobBoard.Core
         public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
         {
             query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+        }
+
+        public List<string> getAvailableSkills()
+        {
+            dataTable = query.getSkillList();
+            List<string> skillList= new List<string>();
+
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                skillList.Add(dataTable.Rows[i]["skill"].ToString());
+            }
+
+            return skillList;
         }
     }
 }

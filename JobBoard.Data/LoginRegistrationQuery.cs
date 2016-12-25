@@ -73,7 +73,7 @@ namespace JobBoard.Data
         public void writeUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName, byte userType)
         {
             subQuery = "(select company_id from company_info where company_name='" + companyName + "')";
-            query = "INSERT INTO user_info (first_name, last_name, email, phone, job_position, company_id, user_type) VALUES('" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + jobPosition.Trim() + "'," + subQuery + "," + userType + ")";
+            query = "UPDATE user_info SET first_name='" + firstName.Trim() + "',last_name='" + lastName.Trim() + "',email='" + email.Trim() + "',phone='" + phoneNumber.Trim() + "',job_position='" + jobPosition + "',company_id=" + subQuery + ",user_type=" + userType + " WHERE user_name='" + userName.Trim() + "'";
             dbReadWrite.insertQuery(query);
         }
 
@@ -86,7 +86,7 @@ namespace JobBoard.Data
         public void writeSkill(int userId, string skill)
         {
             subQuery = "(select skill_id from skill_list where skill='" + skill.Trim() + "')";
-            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + ",'" + subQuery + "')";
+            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + "," + subQuery + ")";
             dbReadWrite.insertQuery(query);
         }
         
@@ -111,6 +111,14 @@ namespace JobBoard.Data
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable.Rows[0]["company_name"].ToString();
+        }
+
+        public DataTable getSkillList()
+        {
+            query = "select skill from skill_list";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
         }
     }
 }

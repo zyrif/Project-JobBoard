@@ -4,7 +4,6 @@
 	x:Class="JobBoard.WpfApplication.App"
 
 	StartupUri="WelcomeWindow.xaml">
-
 	<Application.Resources>
 		<!-- Resources scoped at the Application level should be defined here. -->
 		<ResourceDictionary>
