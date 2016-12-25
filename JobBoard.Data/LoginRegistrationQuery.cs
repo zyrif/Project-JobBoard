@@ -86,7 +86,7 @@ namespace JobBoard.Data
         public void writeSkill(int userId, string skill)
         {
             subQuery = "(select skill_id from skill_list where skill='" + skill.Trim() + "')";
-            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + ",'" + subQuery + "')";
+            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + "," + subQuery + ")";
             dbReadWrite.insertQuery(query);
         }
         

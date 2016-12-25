@@ -104,6 +104,8 @@ namespace JobBoard.Core
         public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
         {
             query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
+
+            dataTable = query.getUserInfo(User.currentUser.UserName);
             foreach (string skill in skillList)
             {
                 query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);

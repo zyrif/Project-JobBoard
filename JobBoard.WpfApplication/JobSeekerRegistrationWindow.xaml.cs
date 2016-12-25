@@ -20,17 +20,13 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JobSeekerRegistration : Window
     {
-        //LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public JobSeekerRegistration()
         {
             InitializeComponent();
 
-            //List<string> skillList = lrControl.getAvailableSkills();
-            List<string> skillList = new List<string>();
-            skillList.Add("PHP");
-            skillList.Add("JAVA");
-            skillList.Add("HTML");
+            List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
         }
 
@@ -55,38 +51,40 @@ namespace JobBoard.WpfApplication
             DateTime date = Convert.ToDateTime(dateTimeString);
 
             List<string> skillList = new List<string>();
-            foreach(string skill in slctskillsPanel.Children)
-                skillList.Add(skill);
+            foreach (Button skillButton in slctskillsPanel.Children)
+            {
+                skillList.Add(skillButton.Content.ToString());
+            }
 
-            //lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
+            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        //    Button skill = new Button();
-        //    try
-        //    {
-        //        skill.Content = comboBox.SelectedItem.ToString();
-        //    }
-        //    catch (Exception ex)
-        //    { };
-        //    slctskillsPanel.Children.Add(skill);
-        }
-
+        //If skill is selected from combo box
+        bool alreadyAdded = false;
         private void JobSeekerRegWindow_LostFocus(object sender, RoutedEventArgs e)
         {
             Button skill = new Button();
             try
             {
                 skill.Content = comboBox.SelectedItem.ToString();
-                slctskillsPanel.Children.Add(skill);
+                foreach (Button button in slctskillsPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+                        
+                }
+                if(alreadyAdded == false)
+                {
+                    slctskillsPanel.Children.Add(skill);
+                }
+                alreadyAdded = false;
             }
-            catch (Exception ex)
-            { };
-            comboBox.Text = null;
+            catch (Exception ex){ };
         }
     }
 }
