@@ -30,7 +30,7 @@ namespace JobBoard.WpfApplication
         public LoginRegister()
         {
             connectionControl = new DBConnectionControl();
-            loginRegistrationControl = new LoginRegistrationControl();
+            loginRegistrationControl = LoginRegistrationControl.getInstance();
             InitializeComponent();
         }
 

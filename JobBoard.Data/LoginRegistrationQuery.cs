@@ -27,7 +27,7 @@ namespace JobBoard.Data
 
         public bool getUser(string userName, string passWord)
         {
-            query = "select * from user_info where username ='" + userName.Trim() + "' and pass='" + passWord.Trim() + "'";
+            query = "select * from user_info where user_name ='" + userName.Trim() + "' and pass='" + passWord.Trim() + "'";
             dataTable = dbReadWrite.selectQuery(query);
 
             if (dataTable.Rows.Count == 1)
@@ -38,7 +38,7 @@ namespace JobBoard.Data
 
         public bool getUser(string userName)
         {
-            query = "select * from login_info where user_name ='" + userName.Trim()+"'";
+            query = "select * from user_info where user_name ='" + userName.Trim()+"'";
             dataTable = dbReadWrite.selectQuery(query);
 
             if (dataTable.Rows.Count == 1)
@@ -79,11 +79,11 @@ namespace JobBoard.Data
 
         public void writeUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte userType)
         {
-            query = "INSERT INTO user_info (first_name, last_name, email, phone, birth_day, location, user_type) VALUES('" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "'," + birthDay + ",'" + location.Trim() + "'," + userType + ")";
+            query = "UPDATE user_info SET first_name='" + firstName.Trim() + "',last_name='" + lastName.Trim() + "',email='" + email.Trim() + "',phone='" + phoneNumber.Trim() + "',birth_day='" + birthDay.ToString("yyyy-MM-dd") + "',location='" + location.Trim() + "',user_type=" + userType + " WHERE user_name='" + userName.Trim() + "'";
             dbReadWrite.insertQuery(query);
         }
 
-        public void writeSkill(string userId, string skill)
+        public void writeSkill(int userId, string skill)
         {
             subQuery = "(select skill_id from skill_list where skill='" + skill.Trim() + "')";
             query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + ",'" + subQuery + "')";

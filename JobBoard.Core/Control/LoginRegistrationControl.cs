@@ -106,7 +106,7 @@ namespace JobBoard.Core
             query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
             foreach (string skill in skillList)
             {
-                query.writeSkill(User.currentUser.UserName, skill);
+                query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
             }
         }
 

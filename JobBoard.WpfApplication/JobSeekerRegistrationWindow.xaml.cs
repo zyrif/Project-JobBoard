@@ -44,7 +44,7 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            string dateTimeString = bddateBox.Text + "/" + bdmonthBox.Text + "/" + bdyearBox.Text;
+            string dateTimeString = bdyearBox.Text + "-" + bdmonthBox.Text + "-" + bddateBox.Text;
             DateTime date = Convert.ToDateTime(dateTimeString);
 
             List<string> skillList = new List<string>();
