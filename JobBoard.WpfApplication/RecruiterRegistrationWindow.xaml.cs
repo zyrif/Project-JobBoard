@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using JobBoard.Core;
 
 namespace JobBoard.WpfApplication
 {
@@ -19,6 +20,8 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class RecruiterRegistration : Window
     {
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+
         public RecruiterRegistration()
         {
             InitializeComponent();
@@ -41,6 +44,7 @@ namespace JobBoard.WpfApplication
 
         private void RecRegProceed_Click(object sender, RoutedEventArgs e)
         {
+            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, jobposBox.Text, empBox.Text);
             EmployerRegistration er = new EmployerRegistration();
             er.Show();
             this.Hide();

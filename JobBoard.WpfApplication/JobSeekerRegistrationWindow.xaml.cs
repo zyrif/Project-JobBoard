@@ -20,11 +20,18 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JobSeekerRegistration : Window
     {
-        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+        //LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public JobSeekerRegistration()
         {
             InitializeComponent();
+
+            //List<string> skillList = lrControl.getAvailableSkills();
+            List<string> skillList = new List<string>();
+            skillList.Add("PHP");
+            skillList.Add("JAVA");
+            skillList.Add("HTML");
+            comboBox.ItemsSource = skillList;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -51,10 +58,35 @@ namespace JobBoard.WpfApplication
             foreach(string skill in slctskillsPanel.Children)
                 skillList.Add(skill);
 
-            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
+            //lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        //    Button skill = new Button();
+        //    try
+        //    {
+        //        skill.Content = comboBox.SelectedItem.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    { };
+        //    slctskillsPanel.Children.Add(skill);
+        }
+
+        private void JobSeekerRegWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Button skill = new Button();
+            try
+            {
+                skill.Content = comboBox.SelectedItem.ToString();
+                slctskillsPanel.Children.Add(skill);
+            }
+            catch (Exception ex)
+            { };
+            comboBox.Text = null;
         }
     }
 }

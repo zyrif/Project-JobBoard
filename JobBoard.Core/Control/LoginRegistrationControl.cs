@@ -121,5 +121,18 @@ namespace JobBoard.Core
         {
             query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
         }
+
+        public List<string> getAvailableSkills()
+        {
+            dataTable = query.getSkillList();
+            List<string> skillList= new List<string>();
+
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                skillList.Add(dataTable.Rows[i]["skill"].ToString());
+            }
+
+            return skillList;
+        }
     }
 }
