@@ -10,6 +10,8 @@ namespace JobBoard.Core
     {
         public List<string> skillList = new List<string>();
         DateTime birthDay;
+        public string Location { set; get; }
+
         public DateTime BirthDay
         {
             set { this.birthDay = Convert.ToDateTime(value); }

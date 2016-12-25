@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JobBoard.Core;
 using JobBoard.Core.Control;
+using JobBoard.Core.Entity;
 
 namespace JobBoard.WpfApplication
 {
@@ -29,7 +30,7 @@ namespace JobBoard.WpfApplication
         public LoginRegister()
         {
             connectionControl = new DBConnectionControl();
-            loginRegistrationControl = new LoginRegistrationControl();
+            loginRegistrationControl = LoginRegistrationControl.getInstance();
             InitializeComponent();
         }
 
@@ -71,6 +72,7 @@ namespace JobBoard.WpfApplication
                     if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
                     {
                         loginRegistrationControl.register(RUsernameBox.Text, RPassBox.Password.ToString());
+                        User.currentUser.UserName = RUsernameBox.Text.Trim();
                         ChooseProfile cp = new ChooseProfile();
                         cp.Show();
                         this.Hide();
