@@ -54,6 +54,7 @@ namespace JobBoard.WpfApplication
         private void RecRegProceed_Click(object sender, RoutedEventArgs e)
         {
             currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, profilePhoto, jobposBox.Text, empBox.Text);
+            lrControl.register(currentUser);
             EmployerRegistration er = new EmployerRegistration();
             er.Show();
             this.Hide();
