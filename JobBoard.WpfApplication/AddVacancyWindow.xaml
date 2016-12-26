@@ -42,7 +42,7 @@
             <RadioButton x:Name="radioButton_Copy" Content="Per Month" HorizontalAlignment="Right" Margin="0,101.21,62.876,0" VerticalAlignment="Top" Foreground="#FFA2A2A2" Background="White" BorderBrush="{x:Null}"/>
         </Grid>
         <Grid x:Name="btnGrid" Height="44" Margin="39,0,10,10" Grid.Row="1" VerticalAlignment="Bottom">
-            <Button x:Name="SectionAddOkay" Content="Okay" Margin="525.181,0,0,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="74.819"/>
+            <Button x:Name="SectionAddOkay" Content="Okay" Margin="0,0,0,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="75" Height="29" VerticalAlignment="Bottom" Click="SectionAddOkay_Click"/>
             <Button x:Name="SectionAddCancel" Content="Cancel" Margin="0,0,79.819,15" Style="{DynamicResource SimpleButton}" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16"/>
         </Grid>
 

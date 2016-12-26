@@ -29,5 +29,13 @@ namespace JobBoard.Core
         {
             query.AddSectionQuery(userId, exp.ExpType, exp.Title, exp.Entity, exp.StartTime, exp.EndTime, exp.Details);
         }
+
+        public void AddVacancy(int userId, Vacancy vac)
+        {
+            int empid = query.getCompanyId(vac.Company);
+            query.AddVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
+        }
+
+
     }
 }

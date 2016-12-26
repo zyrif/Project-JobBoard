@@ -1,4 +1,5 @@
 ﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,11 @@ namespace JobBoard.WpfApplication
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

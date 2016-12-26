@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Core.Entity
 {
-    class Vacancy
+    public class Vacancy
     {
         public string JobTitle { set; get; }
         public string Company { set; get; }
