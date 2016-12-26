@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobBoard.Core.Control;
 
 namespace JobBoard.WpfApplication
 {
@@ -20,6 +21,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class Welcome : Window
     {
+        DBConnectionControl connectionControl = new DBConnectionControl();
         public Welcome()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace JobBoard.WpfApplication
 
         private void WelcomeEnter_Click(object sender, RoutedEventArgs e)
         {
-            LoginRegister lr = new LoginRegister();
+            LoginRegister lr = new LoginRegister(this);
             lr.Show();
             this.Hide();
         }

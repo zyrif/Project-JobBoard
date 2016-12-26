@@ -13,6 +13,7 @@ namespace JobBoard.Core
     {
         static LoginRegistrationControl instance;
         LoginRegistrationQuery query = LoginRegistrationQuery.getInstance();
+        User currentUser = User.getInstance();
         DataTable dataTable;
 
         private LoginRegistrationControl() { }
@@ -50,7 +51,7 @@ namespace JobBoard.Core
         //After login is verified initialize Job Seeker info
         void initializeJobSeekerInfo(string userName)
         {
-            JobSeeker jobSeeker = new JobSeeker();
+            User jobSeeker = new User();
 
             jobSeeker.FirstName = dataTable.Rows[0]["first_name"].ToString();
             jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
@@ -69,7 +70,7 @@ namespace JobBoard.Core
         //After login is verified initialize Recruiter info
         void initializeRecruiterInfo(string userName)
         {
-            Recruiter recruiter = new Recruiter();
+            User recruiter = new User();
 
             recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
             recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
@@ -94,8 +95,8 @@ namespace JobBoard.Core
         //Registration portion
         public void register(string userName, string passWord)
         {
-            User.currentUser.UserName = userName;
-            User.currentUser.UserPassword = passWord;
+            currentUser.UserName = userName;
+            currentUser.UserPassword = passWord;
 
             query.createUser(userName,passWord);
         }
@@ -103,9 +104,9 @@ namespace JobBoard.Core
         //Register Job Seeker Profile
         public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
         {
-            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
+            query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
 
-            dataTable = query.getUserInfo(User.currentUser.UserName);
+            dataTable = query.getUserInfo(currentUser.UserName);
             foreach (string skill in skillList)
             {
                 query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
@@ -115,7 +116,7 @@ namespace JobBoard.Core
         //Register Recruiter Profile
         public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
         {
-            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
+            query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
         }
 
         //Register Company Information

@@ -23,15 +23,15 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class LoginRegister : Window
     {
-        DBConnectionControl connectionControl;
-        LoginRegistrationControl loginRegistrationControl;
+        LoginRegistrationControl loginRegistrationControl = LoginRegistrationControl.getInstance();
+        User currentUser = User.getInstance();
+        Welcome welcomeWindow;
 
 
-        public LoginRegister()
+        public LoginRegister(Welcome wc)
         {
-            connectionControl = new DBConnectionControl();
-            loginRegistrationControl = LoginRegistrationControl.getInstance();
             InitializeComponent();
+            this.welcomeWindow = wc;
         }
 
 
@@ -71,9 +71,9 @@ namespace JobBoard.WpfApplication
                 {
                     if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
                     {
-                        loginRegistrationControl.register(RUsernameBox.Text, RPassBox.Password.ToString());
-                        User.currentUser.UserName = RUsernameBox.Text.Trim();
-                        ChooseProfile cp = new ChooseProfile();
+                        currentUser.UserName = RUsernameBox.Text.Trim();
+                        currentUser.UserPassword = RPassBox.Password.ToString();
+                        ChooseProfile cp = new ChooseProfile(this);
                         cp.Show();
                         this.Hide();
                     }

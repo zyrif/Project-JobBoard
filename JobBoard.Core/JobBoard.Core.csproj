@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,10 +49,8 @@
     <Compile Include="Entity\Company.cs" />
     <Compile Include="Entity\Education.cs" />
     <Compile Include="Entity\Experience.cs" />
-    <Compile Include="Entity\JobSeeker.cs" />
     <Compile Include="Entity\PostedJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entity\Recruiter.cs" />
     <Compile Include="Entity\User.cs" />
   </ItemGroup>
   <ItemGroup>
