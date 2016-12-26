@@ -28,6 +28,7 @@ namespace JobBoard.WpfApplication
             InitializeComponent();
             this.userRef = usr;
             AddUserOverview();
+            AddSubControl();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -55,7 +56,7 @@ namespace JobBoard.WpfApplication
         private void AddSectionBtn2_Click(object sender, RoutedEventArgs e)
         {
 
-            VacancyBoxUC vb = new VacancyBoxUC();
+            VacancyBoxUC vb = new VacancyBoxUC(userRef);
             this.CVview.Children.Add(vb);
         }
 
@@ -67,7 +68,7 @@ namespace JobBoard.WpfApplication
 
         private void AddSubControl()
         {
-            if(this.userRef == currentUser)
+            if (this.userRef == currentUser)
             {
                 ProfileSubUserControl ps = new ProfileSubUserControl();
                 this.PSubGrid.Children.Add(ps);
