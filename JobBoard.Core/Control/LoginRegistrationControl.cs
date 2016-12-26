@@ -42,7 +42,7 @@ namespace JobBoard.Core
         {
             dataTable = query.getUserInfo(userName);
 
-            if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
+            if (Convert.ToByte(dataTable.Rows[0]["user_type"]) == 0)
                 initializeJobSeekerInfo(userName);
             else
                 initializeRecruiterInfo(userName);
@@ -57,13 +57,13 @@ namespace JobBoard.Core
             jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
             jobSeeker.Email = dataTable.Rows[0]["email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
-            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
+            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"].ToString());
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
            
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
+                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill"].ToString());
             }
         }
 
@@ -72,12 +72,12 @@ namespace JobBoard.Core
         {
             User recruiter = new User();
 
-            recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
-            recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
-            recruiter.Email = dataTable.Rows[0]["Email"].ToString();
-            recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-            recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
-            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]));
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+            recruiter.JobPosition = dataTable.Rows[0]["birth_day"].ToString();
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
         //Check if a user name is already taken or registered
