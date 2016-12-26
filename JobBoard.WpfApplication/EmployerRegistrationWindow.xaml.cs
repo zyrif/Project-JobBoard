@@ -19,6 +19,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EmployerRegistration : Window
     {
+        
         public EmployerRegistration()
         {
             InitializeComponent();
@@ -41,9 +42,9 @@ namespace JobBoard.WpfApplication
 
         private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            Profile jp = new Profile();
-            jp.Show();
-            this.Hide();
+            //Profile jp = new Profile();
+            //jp.Show();
+            //this.Hide();
         }
     }
 }

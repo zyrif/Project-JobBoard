@@ -41,7 +41,8 @@ namespace JobBoard.Core
         {
             dataTable = query.getUserInfo(userName);
 
-            if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
+            if (Convert.ToByte(dataTable.Rows[0]["user_type"]) == 0)
+
                 initializeJobSeekerInfo(userName);
             else
                 initializeRecruiterInfo(userName);
@@ -50,33 +51,43 @@ namespace JobBoard.Core
         //After login is verified initialize Job Seeker info
         void initializeJobSeekerInfo(string userName)
         {
-            JobSeeker jobSeeker = new JobSeeker();
+            User jobSeeker = User.getInstance();
 
+            jobSeeker.UserName = dataTable.Rows[0]["user_name"].ToString();
+            jobSeeker.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            jobSeeker.UserType = Convert.ToByte(dataTable.Rows[0]["User_type"]);
             jobSeeker.FirstName = dataTable.Rows[0]["first_name"].ToString();
             jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
             jobSeeker.Email = dataTable.Rows[0]["email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
-            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
+            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"].ToString());
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
            
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
+                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill"].ToString());
             }
         }
 
         //After login is verified initialize Recruiter info
         void initializeRecruiterInfo(string userName)
         {
-            Recruiter recruiter = new Recruiter();
 
-            recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
-            recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
-            recruiter.Email = dataTable.Rows[0]["Email"].ToString();
-            recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-            recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
-            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]));
+            User recruiter = User.getInstance();
+
+            recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
+            recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+
+            recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
+
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
         //Check if a user name is already taken or registered
@@ -91,37 +102,46 @@ namespace JobBoard.Core
 
         
         
-        //Registration portion
-        public void register(string userName, string passWord)
-        {
-            User.currentUser.UserName = userName;
-            User.currentUser.UserPassword = passWord;
+        ////Registration portion
+        //public void register(string userName, string passWord)
+        //{
+        //    currentUser.UserName = userName;
+        //    currentUser.UserPassword = passWord;
 
-            query.createUser(userName,passWord);
-        }
+        //    query.createUser(userName,passWord);
+        //}
         
-        //Register Job Seeker Profile
-        public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
-        {
-            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
+        ////Register Job Seeker Profile
+        //public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
+        //{
+        //    query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
 
-            dataTable = query.getUserInfo(User.currentUser.UserName);
-            foreach (string skill in skillList)
-            {
-                query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
-            }
-        }
+        //    dataTable = query.getUserInfo(currentUser.UserName);
+        //    foreach (string skill in skillList)
+        //    {
+        //        query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
+        //    }
+        //}
 
-        //Register Recruiter Profile
-        public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
-        {
-            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
-        }
+        ////Register Recruiter Profile
+        //public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
+        //{
+        //    query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
+        //}
 
-        //Register Company Information
-        public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
+        ////Register Company Information
+        //public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
+        //{
+        //    query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+        //}
+
+
+        public void register(User userref)
         {
-            query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+            if (userref.UserType == 0)
+                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, userref.UserType);
+            else if (userref.UserType == 1)
+                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.JobPosition, userref.CompanyName, userref.UserType);
         }
 
         public List<string> getAvailableSkills()

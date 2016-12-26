@@ -67,6 +67,9 @@
     <Compile Include="MailUC.xaml.cs">
       <DependentUpon>MailUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfileSubUserControl.xaml.cs">
+      <DependentUpon>ProfileSubUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WritemailWindow.xaml.cs">
       <DependentUpon>WritemailWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MailUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfileSubUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,6 +322,10 @@
     <ProjectReference Include="..\JobBoard.Core\JobBoard.Core.csproj">
       <Project>{35e754cc-e41e-4ed4-8ee8-a91a4bcc4e3f}</Project>
       <Name>JobBoard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JobBoard.Data\JobBoard.Data.csproj">
+      <Project>{d4cfb2d6-1ab0-4924-9607-f6c7ec298762}</Project>
+      <Name>JobBoard.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
