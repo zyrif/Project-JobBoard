@@ -48,7 +48,7 @@ namespace JobBoard.WpfApplication
         private void RecruiterNext_Click(object sender, RoutedEventArgs e)
         {
             currentUser.UserType = 1;
-            RecruiterRegistration rr = new RecruiterRegistration();
+            RecruiterRegistration rr = new RecruiterRegistration(this);
             rr.Show();
             this.Hide();
         }

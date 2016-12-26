@@ -26,7 +26,7 @@ namespace JobBoard.WpfApplication
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
         User currentUser = User.getInstance();
         ChooseProfile cpWindow;
-        System.Drawing.Image profilePhoto;
+        System.Drawing.Image profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
 
         public JobSeekerRegistration(ChooseProfile cp)
         {
@@ -36,8 +36,7 @@ namespace JobBoard.WpfApplication
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
 
-            profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-
+            SetProfileimage();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -96,7 +95,7 @@ namespace JobBoard.WpfApplication
             catch (Exception ex){ };
         }
 
-        private void profileImage_Initialized(object sender, EventArgs e)
+        private void SetProfileimage()
         {
             using (Bitmap bmp = new Bitmap(profilePhoto))
             {
@@ -104,6 +103,10 @@ namespace JobBoard.WpfApplication
                 bmp.Save(ms, ImageFormat.Png);
                 ms.Position = 0;
                 BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = ms;
+                bi.EndInit();
+
                 profileImage.Source = bi;
             }
         }

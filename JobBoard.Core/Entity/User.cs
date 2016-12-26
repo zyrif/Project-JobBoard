@@ -66,7 +66,7 @@ namespace JobBoard.Core
             this.skillList = skilllist;
         }
 
-        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, string jobposition, int companyid)
+        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, string jobposition, string companyname)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -74,7 +74,7 @@ namespace JobBoard.Core
             this.PhoneNumber = phNumber;
             this.Photo = photo;
             this.JobPosition = jobposition;
-            this.CompanyId = companyid;
+            this.CompanyName = companyname;
             
         }
 
