@@ -16,7 +16,7 @@ namespace JobBoard.Core
 
         public string UserName { get; set; }
         public int UserId { get; set; }
-        public string UserPassword { private get; set; }
+        public string UserPassword { get; set; }
         public byte UserType { get; set; }
         public enum UserTypeName : byte
         {

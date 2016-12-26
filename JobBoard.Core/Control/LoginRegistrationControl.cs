@@ -92,37 +92,46 @@ namespace JobBoard.Core
 
         
         
-        //Registration portion
-        public void register(string userName, string passWord)
-        {
-            currentUser.UserName = userName;
-            currentUser.UserPassword = passWord;
+        ////Registration portion
+        //public void register(string userName, string passWord)
+        //{
+        //    currentUser.UserName = userName;
+        //    currentUser.UserPassword = passWord;
 
-            query.createUser(userName,passWord);
-        }
+        //    query.createUser(userName,passWord);
+        //}
         
-        //Register Job Seeker Profile
-        public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
-        {
-            query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
+        ////Register Job Seeker Profile
+        //public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
+        //{
+        //    query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
 
-            dataTable = query.getUserInfo(currentUser.UserName);
-            foreach (string skill in skillList)
-            {
-                query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
-            }
-        }
+        //    dataTable = query.getUserInfo(currentUser.UserName);
+        //    foreach (string skill in skillList)
+        //    {
+        //        query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
+        //    }
+        //}
 
-        //Register Recruiter Profile
-        public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
-        {
-            query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
-        }
+        ////Register Recruiter Profile
+        //public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
+        //{
+        //    query.writeUserInfo(currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
+        //}
 
-        //Register Company Information
-        public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
+        ////Register Company Information
+        //public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
+        //{
+        //    query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+        //}
+
+
+        public void register(User userref)
         {
-            query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+            if (userref.UserType == 0)
+                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, userref.UserType);
+            else if (userref.UserType == 1)
+                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.JobPosition, userref.CompanyName, userref.UserType);
         }
 
         public List<string> getAvailableSkills()
