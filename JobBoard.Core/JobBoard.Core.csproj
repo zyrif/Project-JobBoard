@@ -45,11 +45,12 @@
   <ItemGroup>
     <Compile Include="Control\DBConnectionControl.cs" />
     <Compile Include="Control\LoginRegistrationControl.cs" />
+    <Compile Include="Control\ProfileInteractionsControl.cs" />
     <Compile Include="Entity\Collections.cs" />
     <Compile Include="Entity\Company.cs" />
     <Compile Include="Entity\Education.cs" />
     <Compile Include="Entity\Experience.cs" />
-    <Compile Include="Entity\PostedJob.cs" />
+    <Compile Include="Entity\Vacancy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\User.cs" />
   </ItemGroup>

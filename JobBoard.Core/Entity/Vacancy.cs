@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Core.Entity
 {
-    class PostedJob
+    class Vacancy
     {
         public string JobTitle { set; get; }
         public string Time { set; get; }
         public string JobSummary { set; get; }
         
-        public PostedJob(string jobTitle,string time,string jobSummary)
+        public Vacancy(string jobTitle,string time,string jobSummary)
         {
             this.JobTitle = jobTitle;
             this.Time = time;
