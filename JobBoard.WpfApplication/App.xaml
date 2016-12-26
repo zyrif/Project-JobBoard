@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	x:Class="JobBoard.WpfApplication.App"
 
-	StartupUri="WelcomeWindow.xaml">
+	StartupUri="JobSeekerRegistrationWindow.xaml">
 	<Application.Resources>
 		<!-- Resources scoped at the Application level should be defined here. -->
 		<ResourceDictionary>

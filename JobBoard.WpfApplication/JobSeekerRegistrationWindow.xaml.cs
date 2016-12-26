@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace JobBoard.WpfApplication
 {
@@ -21,13 +24,20 @@ namespace JobBoard.WpfApplication
     public partial class JobSeekerRegistration : Window
     {
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+        User currentUser = User.getInstance();
+        ChooseProfile cpWindow;
+        System.Drawing.Image profilePhoto;
 
-        public JobSeekerRegistration()
+        public JobSeekerRegistration(ChooseProfile cp)
         {
             InitializeComponent();
+            this.cpWindow = cp;
 
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
+
+            profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -47,16 +57,15 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            string dateTimeString = bdyearBox.Text + "-" + bdmonthBox.Text + "-" + bddateBox.Text;
-            DateTime date = Convert.ToDateTime(dateTimeString);
+            DateTime date = Convert.ToDateTime(bdyearBox.Text + "-" + bdmonthBox.Text + "-" + bddateBox.Text);
 
             List<string> skillList = new List<string>();
             foreach (Button skillButton in slctskillsPanel.Children)
             {
-                skillList.Add(skillButton.Content.ToString());
+                currentUser.setSkill(skillButton.Content.ToString());
             }
 
-            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
+            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, profilePhoto, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
@@ -85,6 +94,18 @@ namespace JobBoard.WpfApplication
                 alreadyAdded = false;
             }
             catch (Exception ex){ };
+        }
+
+        private void profileImage_Initialized(object sender, EventArgs e)
+        {
+            using (Bitmap bmp = new Bitmap(profilePhoto))
+            {
+                MemoryStream ms = new MemoryStream();
+                bmp.Save(ms, ImageFormat.Png);
+                ms.Position = 0;
+                BitmapImage bi = new BitmapImage();
+                profileImage.Source = bi;
+            }
         }
     }
 }
