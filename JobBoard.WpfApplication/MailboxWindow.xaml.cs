@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,12 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class MailboxWindow : Window
     {
+        User currentUser = User.getInstance();
+
         public MailboxWindow()
         {
             InitializeComponent();
-            for(int i=0; i<5; i++)
-            {
-                MailUC muc = new MailUC();
-                this.mailView.Children.Add(muc);
-            }
+
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -37,6 +36,48 @@ namespace JobBoard.WpfApplication
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void InboxBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ShowInboxMessages();
+        }
+
+
+        private void draftBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ShowDraftMessages();
+        }
+
+        private void sentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ShowSentMessages();
+        }
+
+        private void writemailBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WritemailWindow wnm = new WritemailWindow(currentUser);
+            wnm.Show();
+        }
+
+
+        private void ShowInboxMessages()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                MailUC muc = new MailUC();
+                this.mailView.Children.Add(muc);
+            }
+        }
+
+        private void ShowDraftMessages()
+        {
+
+        }
+
+        private void ShowSentMessages()
+        {
+
         }
     }
 }

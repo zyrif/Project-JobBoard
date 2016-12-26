@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class WritemailWindow : Window
     {
-        public WritemailWindow()
+        User userRef;
+
+        public WritemailWindow(User usr)
         {
             InitializeComponent();
+            this.userRef = usr;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
