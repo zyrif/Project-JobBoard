@@ -25,6 +25,9 @@ namespace JobBoard.WpfApplication
         public JobSeekerRegistration()
         {
             InitializeComponent();
+
+            List<string> skillList = lrControl.getAvailableSkills();
+            comboBox.ItemsSource = skillList;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -48,13 +51,40 @@ namespace JobBoard.WpfApplication
             DateTime date = Convert.ToDateTime(dateTimeString);
 
             List<string> skillList = new List<string>();
-            foreach(string skill in slctskillsPanel.Children)
-                skillList.Add(skill);
+            foreach (Button skillButton in slctskillsPanel.Children)
+            {
+                skillList.Add(skillButton.Content.ToString());
+            }
 
             lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
+        }
+
+        //If skill is selected from combo box
+        bool alreadyAdded = false;
+        private void JobSeekerRegWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Button skill = new Button();
+            try
+            {
+                skill.Content = comboBox.SelectedItem.ToString();
+                foreach (Button button in slctskillsPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+                        
+                }
+                if(alreadyAdded == false)
+                {
+                    slctskillsPanel.Children.Add(skill);
+                }
+                alreadyAdded = false;
+            }
+            catch (Exception ex){ };
         }
     }
 }
