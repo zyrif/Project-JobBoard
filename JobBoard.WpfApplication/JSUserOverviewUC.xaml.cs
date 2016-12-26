@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JSUserOverviewUC : UserControl
     {
-        public JSUserOverviewUC()
+        User userRef;
+
+        public JSUserOverviewUC(User usr)
         {
             InitializeComponent();
+            this.userRef = usr;
         }
 
         private void SearchJob_Click(object sender, RoutedEventArgs e)

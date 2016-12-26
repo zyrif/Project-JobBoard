@@ -56,14 +56,22 @@ namespace JobBoard.WpfApplication
         private void AddSectionBtn2_Click(object sender, RoutedEventArgs e)
         {
 
-            VacancyBoxUC vb = new VacancyBoxUC(userRef);
+            VacancyBoxUC vb = new VacancyBoxUC();
             this.CVview.Children.Add(vb);
         }
 
         private void AddUserOverview()
         {
-            JSUserOverviewUC uo = new JSUserOverviewUC();
-            this.UserOverviewGrid.Children.Add(uo);
+            if (userRef.UserType == 0)
+            {
+                JSUserOverviewUC uo = new JSUserOverviewUC(userRef);
+                this.UserOverviewGrid.Children.Add(uo);
+            }
+            else if (userRef.UserType == 1)
+            {
+                RecUserOverviewUC uo = new RecUserOverviewUC(userRef);
+                this.UserOverviewGrid.Children.Add(uo);
+            }
         }
 
         private void AddSubControl()
