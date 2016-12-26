@@ -11,13 +11,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="pinfoLabel" Content="Profile Info:" HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="5,5,0,0" d:LayoutOverrides="HorizontalAlignment" VerticalAlignment="Top"/>
+            <Label x:Name="uwelcomeLabel" Content="Hello, " HorizontalAlignment="Left" FontSize="14" Foreground="White" Margin="10,10,0,0" d:LayoutOverrides="HorizontalAlignment" VerticalAlignment="Top"/>
             <Button x:Name="ProfileInfoEdit" Content="Edit" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="0.508,0.526" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="White" ClickMode="Press" IsDefault="True" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Margin="0,5,5,0" HorizontalAlignment="Right" Width="44.198" Height="26.304" VerticalAlignment="Top"/>
-            <TextBox x:Name="fullnameBox" Margin="10,49.014,10,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="36.01" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" IsEnabled="False"/>
-            <TextBox x:Name="emailBox" Margin="10,85.024,10,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="37.01" VerticalAlignment="Top" IsEnabled="False" d:LayoutOverrides="VerticalAlignment"/>
-            <TextBox x:Name="phoneBox" Margin="10,122.034,10,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="34.009" VerticalAlignment="Top" IsEnabled="False"/>
-            <TextBox x:Name="employerBox" Margin="10,156.043,10,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="33.009" VerticalAlignment="Top" IsEnabled="False"/>
-            <TextBox x:Name="jobpositionBox" Margin="10,189.052,10,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="35.01" VerticalAlignment="Top" IsEnabled="False"/>
+            <Label x:Name="unameLabel" Content="@" HorizontalAlignment="Left" Foreground="White" Margin="25,61.466,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Height="26"/>
+            <Label x:Name="uemailLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,92.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
+            <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,123.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
+            <Label x:Name="ujobpositionLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,0,0,118.616" d:LayoutOverrides="HorizontalAlignment" Height="26" VerticalAlignment="Bottom"/>
+            <Label x:Name="uemployerLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,0,0,87.616" d:LayoutOverrides="HorizontalAlignment" Height="26" VerticalAlignment="Bottom"/>
         </Grid>
         <Grid x:Name="photoGrid" Margin="10,10,10,0" VerticalAlignment="Top" Background="#FF444444" Height="159">
             <Image x:Name="profileImage" Margin="26,10"/>

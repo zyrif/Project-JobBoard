@@ -27,6 +27,18 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.userRef = usr;
+            PopulateUO();
+        }
+
+        public void PopulateUO()
+        {
+            this.uwelcomeLabel.Content += userRef.FirstName;
+            this.unameLabel.Content += userRef.UserName;
+            this.uemailLabel.Content = userRef.Email;
+            this.uphoneLabel.Content = userRef.PhoneNumber;
+            this.ujobpositionLabel.Content = userRef.JobPosition;
+            this.uemployerLabel.Content = userRef.CompanyName;
+
         }
     }
 }
