@@ -19,18 +19,19 @@ namespace JobBoard.Core.Control
         public List<PostedJob> search(string jobTitle, double minimumSalary, double maximumSalary, bool jobType, string companyName, string location, List<string> skills)
         {
             dataTable = query.search(jobTitle, minimumSalary, maximumSalary, jobType, companyName, location, skills);
+
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                postedJob = new PostedJob(dataTable.Rows[0]["job_title"].ToString(),
-                                          query.getCompanyName(Convert.ToInt32(dataTable.Rows[0]["company_id"])).ToString(),
-                                          query.getRecruiterName(Convert.ToInt32(dataTable.Rows[0]["recruiter_id"])).ToString(),
-                                          dataTable.Rows[0]["location"].ToString(),
-                                          Convert.ToDateTime(dataTable.Rows[0]["posted_time"].ToString()),
-                                          Convert.ToDateTime(dataTable.Rows[0]["dead_line"].ToString()),
-                                          Convert.ToDouble(dataTable.Rows[0]["minimum_salary"].ToString()),
-                                          Convert.ToDouble(dataTable.Rows[0]["maximum_salary"].ToString()),
-                                          Convert.ToBoolean(dataTable.Rows[0]["job_type"].ToString()),
-                                          query.getSkillList(Convert.ToInt32(dataTable.Rows[0]["job_id"])));
+                postedJob = new PostedJob(dataTable.Rows[i]["job_title"].ToString(),
+                                          query.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])).ToString(),
+                                          query.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])).ToString(),
+                                          dataTable.Rows[i]["location"].ToString(),
+                                          Convert.ToDateTime(dataTable.Rows[i]["posted_time"].ToString()),
+                                          Convert.ToDateTime(dataTable.Rows[i]["dead_line"].ToString()),
+                                          Convert.ToDouble(dataTable.Rows[i]["minimum_salary"].ToString()),
+                                          Convert.ToDouble(dataTable.Rows[i]["maximum_salary"].ToString()),
+                                          Convert.ToBoolean(dataTable.Rows[i]["job_type"].ToString()),
+                                          query.getSkillList(Convert.ToInt32(dataTable.Rows[i]["job_id"])));
 
                 postedJobList.Add(postedJob);
             }
