@@ -49,8 +49,6 @@ namespace JobBoard.Core
         public string CompanyName { get; set; }
         public int CompanyId { get; set; }
 
-        
-
         public User() { }
 
         public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, DateTime birthday, string location, List<string> skilllist)
