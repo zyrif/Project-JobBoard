@@ -24,7 +24,7 @@ namespace JobBoard.WpfApplication
     public partial class LoginRegister : Window
     {
         LoginRegistrationControl loginRegistrationControl = LoginRegistrationControl.getInstance();
-        User currentUser = User.getInstance();
+        User currentUser;
         Welcome welcomeWindow;
 
 
@@ -56,7 +56,8 @@ namespace JobBoard.WpfApplication
             {
                 if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
                 {
-                    Profile jp = new Profile();
+                    currentUser = User.getInstance();
+                    Profile jp = new Profile(currentUser);
                     jp.Show();
                     this.Hide();
                 }
@@ -71,6 +72,7 @@ namespace JobBoard.WpfApplication
                 {
                     if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
                     {
+                        currentUser = User.getInstance();
                         currentUser.UserName = RUsernameBox.Text.Trim();
                         currentUser.UserPassword = RPassBox.Password.ToString();
                         ChooseProfile cp = new ChooseProfile(this);

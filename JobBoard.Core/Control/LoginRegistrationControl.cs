@@ -13,7 +13,6 @@ namespace JobBoard.Core
     {
         static LoginRegistrationControl instance;
         LoginRegistrationQuery query = LoginRegistrationQuery.getInstance();
-        User currentUser = User.getInstance();
         DataTable dataTable;
 
         private LoginRegistrationControl() { }
@@ -42,7 +41,7 @@ namespace JobBoard.Core
         {
             dataTable = query.getUserInfo(userName);
 
-            if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
+            if (Convert.ToByte(dataTable.Rows[0]["User_type"]) == 0)
                 initializeJobSeekerInfo(userName);
             else
                 initializeRecruiterInfo(userName);
@@ -51,13 +50,16 @@ namespace JobBoard.Core
         //After login is verified initialize Job Seeker info
         void initializeJobSeekerInfo(string userName)
         {
-            User jobSeeker = new User();
+            User jobSeeker = User.getInstance();
 
+            jobSeeker.UserName = dataTable.Rows[0]["user_name"].ToString();
+            jobSeeker.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            jobSeeker.UserType = Convert.ToByte(dataTable.Rows[0]["User_type"]);
             jobSeeker.FirstName = dataTable.Rows[0]["first_name"].ToString();
             jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
             jobSeeker.Email = dataTable.Rows[0]["email"].ToString();
             jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
-            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
+            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"].ToString());
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
            
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
@@ -70,8 +72,11 @@ namespace JobBoard.Core
         //After login is verified initialize Recruiter info
         void initializeRecruiterInfo(string userName)
         {
-            User recruiter = new User();
+            User recruiter = User.getInstance();
 
+            recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
+            recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["UserType"]);
             recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
             recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
             recruiter.Email = dataTable.Rows[0]["Email"].ToString();
