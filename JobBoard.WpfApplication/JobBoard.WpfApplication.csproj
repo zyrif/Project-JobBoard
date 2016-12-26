@@ -67,6 +67,9 @@
     <Compile Include="MailUC.xaml.cs">
       <DependentUpon>MailUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfileSubUserControl.xaml.cs">
+      <DependentUpon>ProfileSubUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WritemailWindow.xaml.cs">
       <DependentUpon>WritemailWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MailUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfileSubUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

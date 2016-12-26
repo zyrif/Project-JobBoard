@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,15 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class Profile : Window
     {
-        public Profile()
+        User userRef;
+        User currentUser = User.getInstance();
+
+        public Profile(User usr)
         {
             InitializeComponent();
-            JSUserOverviewUC uo = new JSUserOverviewUC();
-            this.UserOverviewGrid.Children.Add(uo);
+            this.userRef = usr;
+            AddUserOverview();
+            AddSubControl();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -55,10 +60,27 @@ namespace JobBoard.WpfApplication
             this.CVview.Children.Add(vb);
         }
 
-        private void UserInbox_Click(object sender, RoutedEventArgs e)
+        private void AddUserOverview()
         {
-            MailboxWindow mbw = new MailboxWindow();
-            mbw.Show();
+            if (userRef.UserType == 0)
+            {
+                JSUserOverviewUC uo = new JSUserOverviewUC(userRef);
+                this.UserOverviewGrid.Children.Add(uo);
+            }
+            else if (userRef.UserType == 1)
+            {
+                RecUserOverviewUC uo = new RecUserOverviewUC(userRef);
+                this.UserOverviewGrid.Children.Add(uo);
+            }
+        }
+
+        private void AddSubControl()
+        {
+            if (this.userRef == currentUser)
+            {
+                ProfileSubUserControl ps = new ProfileSubUserControl();
+                this.PSubGrid.Children.Add(ps);
+            }
         }
     }
 }
