@@ -76,13 +76,13 @@ namespace JobBoard.Core
 
             recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
             recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
-            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["UserType"]);
-            recruiter.FirstName = dataTable.Rows[0]["FirstName"].ToString();
-            recruiter.LastName = dataTable.Rows[0]["LastName"].ToString();
-            recruiter.Email = dataTable.Rows[0]["Email"].ToString();
-            recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-            recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
-            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]));
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+            recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
         //Check if a user name is already taken or registered
