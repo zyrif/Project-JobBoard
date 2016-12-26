@@ -8,8 +8,8 @@ namespace JobBoard.Core.Entity
 {
     class Collections
     {
-        public List<Experience> experience=new List<Experience>();
-        public List<Education> education = new List<Education>();
-        public List<PostedJob> postedjob = new List<PostedJob>();
+        public List<User> user = new List<User>();
+        public List<Experience> experience = new List<Experience>();
+        public List<Vacancy> postedjob = new List<Vacancy>();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Core.Entity
 {
-    class PostedJob
+    class Vacancy
     {
         public string JobTitle { set; get; }
         public string Company { set; get; }
@@ -25,7 +25,8 @@ namespace JobBoard.Core.Entity
         public string JobSummary { set; get; }
         public List<string> skillList;
 
-        public PostedJob(string jobTitle, string company, string recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, List<string> skillList)
+        public Vacancy(string jobTitle, string company, string recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, List<string> skillList)
+        
         {
             this.JobTitle = jobTitle;
             this.Company = company;
