@@ -41,7 +41,8 @@ namespace JobBoard.Core
         {
             dataTable = query.getUserInfo(userName);
 
-            if (Convert.ToByte(dataTable.Rows[0]["User_type"]) == 0)
+            if (Convert.ToByte(dataTable.Rows[0]["user_type"]) == 0)
+
                 initializeJobSeekerInfo(userName);
             else
                 initializeRecruiterInfo(userName);
@@ -65,23 +66,27 @@ namespace JobBoard.Core
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
+                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill"].ToString());
             }
         }
 
         //After login is verified initialize Recruiter info
         void initializeRecruiterInfo(string userName)
         {
+
             User recruiter = User.getInstance();
 
             recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
             recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
             recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+
             recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
             recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
             recruiter.Email = dataTable.Rows[0]["email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+
             recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
+
             recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 

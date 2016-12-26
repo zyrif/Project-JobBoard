@@ -10,12 +10,15 @@ namespace JobBoard.Data
 {
     public class LoginRegistrationQuery
     {
-        DBReadWrite dbReadWrite = DBReadWrite.getInstance();
+        DBReadWrite dbReadWrite;
         DataTable dataTable;
         static LoginRegistrationQuery instance;
         string query, subQuery;
 
-        private LoginRegistrationQuery() { }
+        private LoginRegistrationQuery()
+        {
+            dbReadWrite = DBReadWrite.getInstance();
+        }
 
         public static LoginRegistrationQuery getInstance()
         {

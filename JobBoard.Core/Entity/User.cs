@@ -31,8 +31,7 @@ namespace JobBoard.Core
         public bool IsVerified { get; set; }
 
         //Jobseeker only fields
-        public DateTime BirthDay
-        { get; set; }
+        public DateTime BirthDay{ get; set; }
         public string Location { get; set; }
 
         public void setSkill(string skill)
@@ -49,8 +48,6 @@ namespace JobBoard.Core
         public string JobPosition { get; set; }
         public string CompanyName { get; set; }
         public int CompanyId { get; set; }
-
-        
 
         public User() { }
 
