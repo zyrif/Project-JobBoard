@@ -27,12 +27,22 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.userRef = usr;
+            PopulateUO();
         }
 
         private void SearchJob_Click(object sender, RoutedEventArgs e)
         {
             SearchJobWindow sj = new SearchJobWindow();
             sj.Show();
+        }
+
+        private void PopulateUO()
+        {
+            uwelcomeLabel.Content += userRef.FirstName;
+            unameLabel.Content += userRef.UserName;
+            uemailLabel.Content = userRef.Email;
+            ulocationLabel.Content = userRef.Location;
+            uphoneLabel.Content = userRef.PhoneNumber;
         }
     }
 }
