@@ -11,17 +11,17 @@ namespace JobBoard.Core.Control
 {
     class SearchControl
     {
-        PostedJob postedJob;
-        List<PostedJob> postedJobList;
+        Vacancy postedJob;
+        List<Vacancy> postedJobList;
         SearchQuery query;
         DataTable dataTable;
 
-        public List<PostedJob> search(string jobTitle, double minimumSalary, double maximumSalary, bool jobType, string companyName, string location, List<string> skills)
+        public List<Vacancy> search(string jobTitle, double minimumSalary, double maximumSalary, bool jobType, string companyName, string location, List<string> skills)
         {
             dataTable = query.search(jobTitle, minimumSalary, maximumSalary, jobType, companyName, location, skills);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                postedJob = new PostedJob(dataTable.Rows[0]["job_title"].ToString(),
+                postedJob = new Vacancy(dataTable.Rows[0]["job_title"].ToString(),
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[0]["company_id"])).ToString(),
                                           query.getRecruiterName(Convert.ToInt32(dataTable.Rows[0]["recruiter_id"])).ToString(),
                                           dataTable.Rows[0]["location"].ToString(),
