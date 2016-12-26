@@ -20,11 +20,14 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class JobSeekerRegistration : Window
     {
-        LoginRegistrationControl loginRegistrationControl = new LoginRegistrationControl();
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public JobSeekerRegistration()
         {
             InitializeComponent();
+
+            List<string> skillList = lrControl.getAvailableSkills();
+            comboBox.ItemsSource = skillList;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -44,9 +47,44 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
+            string dateTimeString = bdyearBox.Text + "-" + bdmonthBox.Text + "-" + bddateBox.Text;
+            DateTime date = Convert.ToDateTime(dateTimeString);
+
+            List<string> skillList = new List<string>();
+            foreach (Button skillButton in slctskillsPanel.Children)
+            {
+                skillList.Add(skillButton.Content.ToString());
+            }
+
+            lrControl.register(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, date, locationBox.Text, skillList);
             Profile jp = new Profile();
             jp.Show();
             this.Hide();
+        }
+
+        //If skill is selected from combo box
+        bool alreadyAdded = false;
+        private void JobSeekerRegWindow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Button skill = new Button();
+            try
+            {
+                skill.Content = comboBox.SelectedItem.ToString();
+                foreach (Button button in slctskillsPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+                        
+                }
+                if(alreadyAdded == false)
+                {
+                    slctskillsPanel.Children.Add(skill);
+                }
+                alreadyAdded = false;
+            }
+            catch (Exception ex){ };
         }
     }
 }

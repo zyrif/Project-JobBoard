@@ -28,5 +28,15 @@ namespace JobBoard.WpfApplication
                 this.mailView.Children.Add(muc);
             }
         }
+
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

@@ -11,8 +11,19 @@ namespace JobBoard.Core
 {
     public class LoginRegistrationControl
     {
-        LoginRegistrationQuery query = new LoginRegistrationQuery();
+        static LoginRegistrationControl instance;
+        LoginRegistrationQuery query = LoginRegistrationQuery.getInstance();
         DataTable dataTable;
+
+        private LoginRegistrationControl() { }
+
+        public static LoginRegistrationControl getInstance()
+        {
+            if (instance == null)
+                instance = new LoginRegistrationControl();
+
+            return instance;
+        }
 
         //Login portion
         public bool login(string userName, string userPassword)
@@ -25,35 +36,38 @@ namespace JobBoard.Core
             return false;
         }
 
+        //Check user type and initialize all user info
         void initializeUserInfo(string userName)
         {
             dataTable = query.getUserInfo(userName);
+
             if (Convert.ToByte(dataTable.Rows[0]["UserType"]) == 0)
                 initializeJobSeekerInfo(userName);
             else
-                initializeEmployerInfo(userName);
+                initializeRecruiterInfo(userName);
         }
 
+        //After login is verified initialize Job Seeker info
         void initializeJobSeekerInfo(string userName)
         {
             JobSeeker jobSeeker = new JobSeeker();
 
-            jobSeeker.FirstName = dataTable.Rows[0]["FirstName"].ToString();
-            jobSeeker.LastName = dataTable.Rows[0]["LastName"].ToString();
-            jobSeeker.Email = dataTable.Rows[0]["Email"].ToString();
-            jobSeeker.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
+            jobSeeker.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
+            jobSeeker.Email = dataTable.Rows[0]["email"].ToString();
+            jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["BirthDay"].ToString());
+            jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
            
-            dataTable = query.getSkill(userName);
+            dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["Skill"].ToString());
             }
-
-            
         }
 
-        void initializeEmployerInfo(string userName)
+        //After login is verified initialize Recruiter info
+        void initializeRecruiterInfo(string userName)
         {
             Recruiter recruiter = new Recruiter();
 
@@ -62,9 +76,10 @@ namespace JobBoard.Core
             recruiter.Email = dataTable.Rows[0]["Email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
             recruiter.JobPosition = dataTable.Rows[0]["BirthDay"].ToString();
-            recruiter.CompanyId = Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]);
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["CompanyId"]));
         }
 
+        //Check if a user name is already taken or registered
         public bool checkUser(string userName)
         {
             if (query.getUser(userName))
@@ -74,6 +89,8 @@ namespace JobBoard.Core
             return false;
         }
 
+        
+        
         //Registration portion
         public void register(string userName, string passWord)
         {
@@ -82,29 +99,42 @@ namespace JobBoard.Core
 
             query.createUser(userName,passWord);
         }
-
-
-        void registerCommonProfileInfo(string firstName,string lastName,string email,string phoneNumber,byte userType)
+        
+        //Register Job Seeker Profile
+        public void register(string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, List<string> skillList)
         {
-            //Writes information into Datatbase
-            query.writeCommonUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, userType);
-        }
+            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, birthDay, location, 0);
 
-
-        public void register(string firstName, string lastName, string email, string phoneNumber, string birthDay, string location, List<string> skillList)
-        {
-            registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 0);
-            query.writeBirthDay(User.currentUser.UserName, Convert.ToDateTime(birthDay));
-            foreach(string skill in skillList)
+            dataTable = query.getUserInfo(User.currentUser.UserName);
+            foreach (string skill in skillList)
             {
-                query.writeSkill(User.currentUser.UserName, skill);
+                query.writeSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]), skill);
             }
         }
 
-        public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, int companyId)
+        //Register Recruiter Profile
+        public void register(string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName)
         {
-            registerCommonProfileInfo(firstName, lastName, email, phoneNumber, 1);
-            query.writeAdditionalEmployerInfo(User.currentUser.UserName, jobPosition, companyId);
+            query.writeUserInfo(User.currentUser.UserName, firstName, lastName, email, phoneNumber, jobPosition, companyName, 1);
+        }
+
+        //Register Company Information
+        public void registerCompany(string companyName, string address, string country, string phoneNumber, string email, string website, byte businessType)
+        {
+            query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
+        }
+
+        public List<string> getAvailableSkills()
+        {
+            dataTable = query.getSkillList();
+            List<string> skillList= new List<string>();
+
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                skillList.Add(dataTable.Rows[i]["skill"].ToString());
+            }
+
+            return skillList;
         }
     }
 }
