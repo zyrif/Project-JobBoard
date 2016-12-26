@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobBoard.Core;
 
 namespace JobBoard.WpfApplication
 {
@@ -20,9 +21,13 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class ChooseProfile : Window
     {
-        public ChooseProfile()
+        LoginRegister lrWindow;
+        User currentUser = User.getInstance();
+
+        public ChooseProfile(LoginRegister lr)
         {
             InitializeComponent();
+            lrWindow = lr;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -42,14 +47,16 @@ namespace JobBoard.WpfApplication
 
         private void RecruiterNext_Click(object sender, RoutedEventArgs e)
         {
-            RecruiterRegistration rr = new RecruiterRegistration();
+            currentUser.UserType = 1;
+            RecruiterRegistration rr = new RecruiterRegistration(this);
             rr.Show();
             this.Hide();
         }
 
         private void JobHunterNext_Click(object sender, RoutedEventArgs e)
         {
-            JobSeekerRegistration jr = new JobSeekerRegistration();
+            currentUser.UserType = 0;
+            JobSeekerRegistration jr = new JobSeekerRegistration(this);
             jr.Show();
             this.Hide();
         }

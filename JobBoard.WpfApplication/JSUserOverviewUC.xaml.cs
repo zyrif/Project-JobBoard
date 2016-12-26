@@ -24,5 +24,11 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
         }
+
+        private void SearchJob_Click(object sender, RoutedEventArgs e)
+        {
+            SearchJobWindow sj = new SearchJobWindow();
+            sj.Show();
+        }
     }
 }

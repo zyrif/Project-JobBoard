@@ -30,7 +30,7 @@
             <Image x:Name="profileImage" Margin="26,10"/>
         </Grid>
         <Grid Height="47.01" Margin="10,10,10,0" VerticalAlignment="Top">
-            <Button x:Name="SearchJob" Content="Search for Available Jobs" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="0.508,0.526" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="White" ClickMode="Press" IsDefault="True" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14"/>
+            <Button x:Name="SearchJob" Content="Search for Available Jobs" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="0.508,0.526" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="White" ClickMode="Press" IsDefault="True" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Click="SearchJob_Click"/>
         </Grid>
     </Grid>
 </UserControl>

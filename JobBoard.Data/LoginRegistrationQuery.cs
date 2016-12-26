@@ -64,29 +64,41 @@ namespace JobBoard.Data
         }
         
         //User Registration Portion
-        public void createUser(string userName, string passWord)
+        //public void createUser(string userName, string passWord)
+        //{
+        //    query = "INSERT INTO user_info (user_name, pass) VALUES ('" + userName + "', '"+ passWord + "')";
+        //    dbReadWrite.insertQuery(query);
+        //}
+
+        //public void writeUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName, byte userType)
+        //{
+        //    subQuery = "(select company_id from company_info where company_name='" + companyName + "')";
+        //    query = "UPDATE user_info SET first_name='" + firstName.Trim() + "',last_name='" + lastName.Trim() + "',email='" + email.Trim() + "',phone='" + phoneNumber.Trim() + "',job_position='" + jobPosition + "',company_id=" + subQuery + ",user_type=" + userType + " WHERE user_name='" + userName.Trim() + "'";
+        //    dbReadWrite.insertQuery(query);
+        //}
+
+        //public void writeUserInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte userType)
+        //{
+        //    query = "UPDATE user_info SET first_name='" + firstName.Trim() + "',last_name='" + lastName.Trim() + "',email='" + email.Trim() + "',phone='" + phoneNumber.Trim() + "',birth_day='" + birthDay.ToString("yyyy-MM-dd") + "',location='" + location.Trim() + "',user_type=" + userType + " WHERE user_name='" + userName.Trim() + "'";
+        //    dbReadWrite.insertQuery(query);
+        //}
+
+        public void writeJobSeekerInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte userType)
         {
-            query = "INSERT INTO user_info (user_name, pass) VALUES ('" + userName + "', '"+ passWord + "')";
+            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, birth_day, location, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + birthDay.ToString("yyyy-MM-dd") + "','" + location.Trim() + "'," + userType + ")";
             dbReadWrite.insertQuery(query);
         }
 
-        public void writeUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName, byte userType)
+        public void writeRecruiterInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName, byte userType)
         {
-            subQuery = "(select company_id from company_info where company_name='" + companyName + "')";
-            query = "INSERT INTO user_info (first_name, last_name, email, phone, job_position, company_id, user_type) VALUES('" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + jobPosition.Trim() + "'," + subQuery + "," + userType + ")";
-            dbReadWrite.insertQuery(query);
-        }
-
-        public void writeUserInfo(string userName, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte userType)
-        {
-            query = "UPDATE user_info SET first_name='" + firstName.Trim() + "',last_name='" + lastName.Trim() + "',email='" + email.Trim() + "',phone='" + phoneNumber.Trim() + "',birth_day='" + birthDay.ToString("yyyy-MM-dd") + "',location='" + location.Trim() + "',user_type=" + userType + " WHERE user_name='" + userName.Trim() + "'";
+            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, job_position, company_id, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + jobPosition.Trim() + "','" + getCompanyId(companyName) + "'," + userType + ")";
             dbReadWrite.insertQuery(query);
         }
 
         public void writeSkill(int userId, string skill)
         {
             subQuery = "(select skill_id from skill_list where skill='" + skill.Trim() + "')";
-            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + ",'" + subQuery + "')";
+            query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + "," + subQuery + ")";
             dbReadWrite.insertQuery(query);
         }
         
@@ -111,6 +123,14 @@ namespace JobBoard.Data
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable.Rows[0]["company_name"].ToString();
+        }
+
+        public DataTable getSkillList()
+        {
+            query = "select skill from skill_list";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
         }
     }
 }
