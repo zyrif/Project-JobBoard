@@ -6,18 +6,18 @@
         Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671">
     <Grid>
 
-        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31" Margin="0,10,10,0"/>
-        <Button x:Name="WindowMinimize" Content="___" Margin="0,10,53,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Click="WindowMinimize_Click" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31"/>
+        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31" Margin="0,10,17,0"/>
+        <Button x:Name="WindowMinimize" Content="___" Margin="0,10,53,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Click="WindowMinimize_Click" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" RenderTransformOrigin="0.806,0.639"/>
 
         <Grid Margin="0,116,0,10" HorizontalAlignment="Left" Width="245">
-            <Button x:Name="InboxBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" FontSize="32" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" d:LayoutOverrides="VerticalAlignment" BorderThickness="1">ter>
-            </Button>
-            <Button x:Name="draftBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="32" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" d:LayoutOverrides="VerticalAlignment" Margin="0,38.334,0,0"/>
-            <Button x:Name="sentBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="32" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" Margin="0,75.658,0,0" d:LayoutOverrides="VerticalAlignment"/>
+            <Button x:Name="InboxBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="28" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" d:LayoutOverrides="VerticalAlignment" BorderThickness="1" Content="Inbox"/>
+            <Button x:Name="draftBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="28" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" d:LayoutOverrides="VerticalAlignment" Margin="0,39.712,0,0" Content="Draft"/>
+            <Button x:Name="sentBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="28" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" Margin="0,79.792,0,0" d:LayoutOverrides="VerticalAlignment" Content="Sent"/>
         </Grid>
-        <ScrollViewer x:Name="ContentScrollBox" Margin="250,116,0,24.667" MinHeight="405" MinWidth="631">
+        <ScrollViewer x:Name="ContentScrollBox" Margin="250,116,53,82.536" MinHeight="405" MinWidth="631">
             <StackPanel x:Name="mailView" VerticalAlignment="Top" Margin="0"/>
         </ScrollViewer>
+        <Button x:Name="writemailBtn" Content="New Mail" Margin="0,70.977,53,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="102.556" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16"/>
 
     </Grid>
 </Window>

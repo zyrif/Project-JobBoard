@@ -23,5 +23,16 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
         }
+
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            //save message to draft.
+            this.Close();
+        }
+
+        private void WindowMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }
