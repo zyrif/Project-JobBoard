@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,12 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddVacancyWindow : Window
     {
-        public AddVacancyWindow()
+        User userRef;
+
+        public AddVacancyWindow(User usr)
         {
             InitializeComponent();
+            this.userRef = usr;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -37,6 +42,11 @@ namespace JobBoard.WpfApplication
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

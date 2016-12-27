@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Core.Entity
 {
-    class Collections
+    public class Collections
     {
-        public List<Experience> experience=new List<Experience>();
-        public List<Education> education = new List<Education>();
-        public List<PostedJob> postedjob = new List<PostedJob>();
+        static Collections instance;
+
+        private Collections()
+        {
+
+        }
+
+        public static Collections getInstance()
+        {
+            if (instance == null)
+                instance = new Collections();
+            return instance;
+        }
+
+        public List<User> user = new List<User>();
+        public List<Experience> experience = new List<Experience>();
+        public List<Vacancy> postedjob = new List<Vacancy>();
+        public List<Mail> mail = new List<Mail>();
     }
 }

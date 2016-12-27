@@ -8,19 +8,30 @@ namespace JobBoard.Core.Entity
 {
     public class Experience
     {
-        public string Position { get; set; }
-        public string StartTime { set; get; }
-        public string EndTime { set; get; }
-        public string CompanyName { get; set; }
-        public string WorkType { get; set; }
-
-        public Experience(string position, string startTime, string endTime, string companyName, string workType)
+        public byte ExpType { get; set; }
+        public enum ExtTypeName : byte
         {
-            this.Position = position;
-            this.StartTime = startTime;
-            this.EndTime = endTime;
-            this.CompanyName = companyName;
-            this.WorkType = workType;
+            Job,
+            Education,
+            Award
         }
+        public string Title { get; set; }
+        public string Entity { get; set; }
+        public DateTime StartTime { set; get; }
+        public DateTime EndTime { set; get; }
+        public string Details { get; set; }
+
+
+
+        public Experience(byte exptype, string title, string entity, DateTime sttime, DateTime edtime, string details)
+        {
+            this.ExpType = exptype;
+            this.Title = title;
+            this.Entity = entity;
+            this.StartTime = sttime;
+            this.EndTime = edtime;
+            this.Details = details;
+        }
+
     }
 }

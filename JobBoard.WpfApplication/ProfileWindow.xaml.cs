@@ -48,16 +48,16 @@ namespace JobBoard.WpfApplication
 
         private void AddSectionBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(userRef.UserType == 0)
+            {
+                AddSection();
+            }
 
-            CVBoxUC uc = new CVBoxUC();
-            this.CVview.Children.Add(uc);
-        }
+            else if (userRef.UserType == 1)
+            {
+                AddVacancy();  
+            }
 
-        private void AddSectionBtn2_Click(object sender, RoutedEventArgs e)
-        {
-
-            VacancyBoxUC vb = new VacancyBoxUC();
-            this.CVview.Children.Add(vb);
         }
 
         private void AddUserOverview()
@@ -81,6 +81,18 @@ namespace JobBoard.WpfApplication
                 ProfileSubUserControl ps = new ProfileSubUserControl();
                 this.PSubGrid.Children.Add(ps);
             }
+        }
+
+        private void AddSection()
+        {
+            AddSectionWindow sec = new AddSectionWindow(userRef);
+            sec.Show();
+        }
+
+        private void AddVacancy()
+        {
+            AddVacancyWindow vac = new AddVacancyWindow(userRef);
+            vac.Show();
         }
     }
 }
