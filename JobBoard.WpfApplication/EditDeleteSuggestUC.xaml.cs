@@ -20,9 +20,17 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EditDeleteSuggestUC : UserControl
     {
-        public EditDeleteSuggestUC()
+        VacancyBoxUC vbUC;
+        public EditDeleteSuggestUC(VacancyBoxUC vbUC)
         {
             InitializeComponent();
+            this.vbUC = vbUC;
+        }
+
+        private void suggestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewCandidatesWindow vcWindow = new ViewCandidatesWindow(vbUC);
+            vcWindow.Show();
         }
     }
 }
