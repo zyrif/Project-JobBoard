@@ -1,4 +1,5 @@
-﻿using JobBoard.Core.Entity;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,14 @@ namespace JobBoard.WpfApplication
             PopulateUCBox();
         }
 
+        public CVBoxUC(User user, Experience exp)
+        {
+            InitializeComponent();
+            this.exp = exp;
+
+            PopulateUCBox2();
+        }
+
         private void CVBox_MouseEnter(object sender, MouseEventArgs e)
         {
             this.Height = Double.NaN;
@@ -47,7 +56,16 @@ namespace JobBoard.WpfApplication
             companyLabel.Content = exp.Entity;
             timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
             descTextblock.Text = exp.Details;
+        }
 
+        private void PopulateUCBox2()
+        {
+            jobnameLabel.Content = exp.Title;
+            companyLabel.Content = exp.Entity;
+            timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
+            descTextblock.Text = exp.Details;
+
+            CVBSubGrid.Children.Add(new EditDeleteUC());
         }
     }
 }

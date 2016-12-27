@@ -1,4 +1,5 @@
-﻿using JobBoard.Core.Entity;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,14 @@ namespace JobBoard.WpfApplication
             PopulateVB();
         }
 
+        public VacancyBoxUC(User user, Vacancy vacancy)
+        {
+            InitializeComponent();
+            this.vacancy = vacancy;
+
+            PopulateVB2();
+        }
+
         private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
         {
             this.Height = 110;
@@ -38,7 +47,7 @@ namespace JobBoard.WpfApplication
 
         private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = 270;
+            this.Height = Double.NaN;
         }
 
         private void PopulateVB()
@@ -58,6 +67,27 @@ namespace JobBoard.WpfApplication
             }
 
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
+        }
+
+        private void PopulateVB2()
+        {
+
+            jobtitleLabel.Content += " " + vacancy.JobTitle;
+            employerLabel.Content += " " + vacancy.Company;
+            locationLabel.Content += " " + vacancy.Location;
+            jobtypeLabel.Content += " " + vacancy.JobType;
+            salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+            deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+            foreach (string skill in vacancy.skillList)
+            {
+                Button btn = new Button();
+                btn.Content = skill;
+                skillPanel.Children.Add(btn);
+            }
+
+            dtlsRTxtBox.AppendText(vacancy.JobSummary);
+
+            VCBSubGrid.Children.Add(new EditDeleteSuggestUC());
         }
     }
 }
