@@ -46,6 +46,20 @@ namespace JobBoard.Data
             return Convert.ToInt32(dataTable.Rows[0]["company_id"]);
         }
 
+        public DataTable getUserExperience(int userId)
+        {
+            query = "select * from user_experience where user_id="+userId +" order by exp_type";
+            dataTable = dbReadWrite.selectQuery(query);
 
+            return dataTable;
+        }
+
+        public DataTable getVacancy(int userId)
+        {
+            query = "select * from job_info where recruiter_id=" + userId + " and dead_line >=" + DateTime.Today + " order by dead_line";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
     }
 }
