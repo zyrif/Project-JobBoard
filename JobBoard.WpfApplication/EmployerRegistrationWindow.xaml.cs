@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EmployerRegistration : Window
     {
-        
-        public EmployerRegistration()
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+        User currentUser;
+        public EmployerRegistration(User currentUser)
         {
+            this.currentUser = currentUser;
             InitializeComponent();
         }
 
@@ -42,9 +45,12 @@ namespace JobBoard.WpfApplication
 
         private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            //Profile jp = new Profile();
-            //jp.Show();
-            //this.Hide();
+            Company company = new Company(nameBox.Text,addressbox.Text,countryBox.Text,phoneBox.Text,emailBox.Text,websiteBox.Text, Convert.ToByte(btypeSlider.Value));
+            lrControl.register(company);
+            currentUser.CompanyId = lrControl.getCompanyId(company.Name);
+            Profile jp = new Profile(currentUser);
+            jp.Show();
+            this.Hide();
         }
     }
 }

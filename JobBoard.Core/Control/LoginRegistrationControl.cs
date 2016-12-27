@@ -221,7 +221,10 @@ namespace JobBoard.Core
         //{
         //    query.writeCompanyInfo(companyName, address, country, phoneNumber, email, website, businessType);
         //}
-
+        public void register(Company compRef)
+        {
+            query.writeCompanyInfo(compRef.Name,compRef.Address,compRef.Country,compRef.Phone,compRef.Email,compRef.Website,compRef.BusinessType);
+        }
 
         public void register(User userref)
         {
@@ -274,5 +277,22 @@ namespace JobBoard.Core
             //return bytes;
         }
 
+        public List<string> getAllRegisteredCompany()
+        {
+            List<string> companyList = new List<string>();
+            dataTable = query.getAllRegisteredCompany();
+
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                companyList.Add(dataTable.Rows[i]["company_name"].ToString());
+            }
+
+            return companyList;
+        }
+
+        public int getCompanyId(string companyName)
+        {
+            return query.getCompanyId(companyName);
+        }
     }
 }

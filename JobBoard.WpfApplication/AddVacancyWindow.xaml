@@ -31,17 +31,15 @@
                 </FlowDocument>
             </RichTextBox>
             <Label x:Name="TitleLabel_Copy2" Content="Skills:" HorizontalAlignment="Right" Margin="0,126.97,228.456,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" RenderTransformOrigin="0.482,-0.292" d:LayoutOverrides="VerticalAlignment"/>
-            <WrapPanel x:Name="selectWrapPanel" HorizontalAlignment="Right" Margin="0,0,14.786,43.83" Width="246" Background="#FF272727" Height="121.567" VerticalAlignment="Bottom"/>
+            <WrapPanel x:Name="selectWrapPanel" HorizontalAlignment="Right" Margin="0,0,15,25.767" Width="246" Background="#FF272727" Height="122" VerticalAlignment="Bottom"/>
             <TextBox x:Name="jobtitleBox" Margin="102.973,10,386.177,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="29.2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" Uid="0"/>
             <TextBox x:Name="expdate" Margin="103,78,537,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top"/>
             <TextBox x:Name="joblocationBox" Margin="102.973,44.2,386.177,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="29.2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
             <ComboBox x:Name="empTypeComboBox" HorizontalAlignment="Right" Margin="0,16.84,14.786,0" VerticalAlignment="Top" Width="120" Background="#FF3A3A3A" BorderBrush="{x:Null}"/>
             <ComboBox x:Name="salBrcktComboBox" HorizontalAlignment="Right" Margin="0,51.44,14.786,0" VerticalAlignment="Top" Width="120" Background="#FF3A3A3A" BorderBrush="{x:Null}"/>
-            <RadioButton x:Name="radioButton" Content="Per Hour" HorizontalAlignment="Right" Margin="0,80.25,71.816,0" VerticalAlignment="Top" RenderTransformOrigin="1.195,0.609" Foreground="#FFA2A2A2" BorderBrush="{x:Null}"/>
-            <RadioButton x:Name="radioButton_Copy" Content="Per Month" HorizontalAlignment="Right" Margin="0,101.21,62.876,0" VerticalAlignment="Top" Foreground="#FFA2A2A2" Background="White" BorderBrush="{x:Null}"/>
             <TextBox x:Name="expMonth" Margin="157,78,483,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top"/>
             <TextBox x:Name="expYear" Margin="211,78,386,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top"/>
-            <ComboBox x:Name="skillComboBox" HorizontalAlignment="Left" Margin="554,127,0,0" VerticalAlignment="Top" Width="120" Height="27" IsEditable="True" LostFocus="skillComboBox_LostFocus"/>
+            <ComboBox x:Name="skillComboBox" HorizontalAlignment="Left" Margin="554,148,0,0" VerticalAlignment="Top" Width="120" Height="27" IsEditable="True" LostFocus="skillComboBox_LostFocus"/>
         </Grid>
         <Grid x:Name="btnGrid" Height="44" Margin="39,0,10,10" Grid.Row="1" VerticalAlignment="Bottom">
             <Button x:Name="SectionAddOkay" Content="Okay" Margin="0,0,0,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="75" Height="29" VerticalAlignment="Bottom" Click="SectionAddOkay_Click"/>

@@ -108,7 +108,7 @@ namespace JobBoard.Data
         //Company Registration Portion
         public void writeCompanyInfo(string companyName, string address, string country, string phone, string email, string website, byte businessType)
         {
-            query = "INSERT INTO Company VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + country + "','"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + ")";
+            query = "INSERT INTO company_info(company_name,HQ_location,country,phone,email,website,business_type) VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + country + "','"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + businessType+")";
             dbReadWrite.insertQuery(query);
         }
         
@@ -126,6 +126,14 @@ namespace JobBoard.Data
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable.Rows[0]["company_name"].ToString();
+        }
+
+        public DataTable getAllRegisteredCompany()
+        {
+            query = "select distinct company_name from company_info";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
         }
 
         public DataTable getSkillList()
