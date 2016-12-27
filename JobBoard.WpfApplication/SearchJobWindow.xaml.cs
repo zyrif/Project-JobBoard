@@ -108,20 +108,7 @@ namespace JobBoard.WpfApplication
             jobPanel.Children.Clear();
             foreach (Vacancy pj in postedJobList)
             {
-                VacancyBoxUC vBox = new VacancyBoxUC();
-                vBox.jobtitleLabel.Content += " " + pj.JobTitle;
-                vBox.employerLabel.Content += " " + pj.Company;
-                vBox.locationLabel.Content += " " + pj.Location;
-                vBox.jobtypeLabel.Content += " " + pj.JobType;
-                vBox.salbrcktLabel.Content += " " + pj.MinimumSalary + "-" + pj.MaximumSalary;
-                vBox.deadlineLabel.Content += " " + pj.DeadLine.ToShortDateString();
-                foreach (string skill in pj.skillList)
-                {
-                    Button btn = new Button();
-                    btn.Content = skill;
-                    vBox.skillPanel.Children.Add(btn);
-                }
-                vBox.dtlsRTxtBox.AppendText(pj.JobSummary);
+                VacancyBoxUC vBox = new VacancyBoxUC(pj);
                 this.jobPanel.Children.Add(vBox);
             }
 
