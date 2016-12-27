@@ -46,7 +46,7 @@ namespace JobBoard.WpfApplication
         {
             string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
             Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 0);
-            mbc.NewMail(userRef, newmail);
+            mbc.NewMail(newmail);
             this.Close();
         }
 
@@ -54,7 +54,7 @@ namespace JobBoard.WpfApplication
         {
             string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
             Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 1);
-            mbc.NewMail(userRef, newmail);
+            mbc.NewMail(newmail);
             this.Close();
         }
     }

@@ -1,4 +1,6 @@
 ﻿using JobBoard.Core;
+using JobBoard.Core.Control;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace JobBoard.WpfApplication
     public partial class MailboxWindow : Window
     {
         User currentUser = User.getInstance();
+        Collections collections = Collections.getInstance();
 
         public MailboxWindow()
         {
@@ -63,21 +66,48 @@ namespace JobBoard.WpfApplication
 
         private void ShowInboxMessages()
         {
-            for (int i = 0; i < 5; i++)
+            /*MailboxControl mbc = */
+            new MailboxControl().InboxMail(currentUser);
+
+            foreach(Mail m in collections.mail)
             {
-                MailUC muc = new MailUC();
+                MailUC muc = new MailUC(m);
                 this.mailView.Children.Add(muc);
             }
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    MailUC muc = new MailUC();
+            //    this.mailView.Children.Add(muc);
+            //}
         }
 
         private void ShowDraftMessages()
         {
+            new MailboxControl().InboxMail(currentUser);
 
+            foreach (Mail m in collections.mail)
+            {
+                if (m.IsDraft == 1)
+                {
+                    MailUC muc = new MailUC(m);
+                    this.mailView.Children.Add(muc);
+                }
+            }
         }
 
         private void ShowSentMessages()
         {
+            new MailboxControl().InboxMail(currentUser);
 
+            foreach (Mail m in collections.mail)
+            {
+                if (m.IsDraft != 1)
+                {
+                    MailUC muc = new MailUC(m);
+                    this.mailView.Children.Add(muc);
+                }
+            }
         }
     }
 }

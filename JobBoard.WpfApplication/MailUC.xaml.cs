@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,15 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class MailUC : UserControl
     {
-        public MailUC()
+        User currentUser = User.getInstance();
+        Mail mail;
+
+        public MailUC(Mail m)
         {
             InitializeComponent();
+            this.mail = m;
+
+            PopulateUC();
         }
 
         private void amail_MouseEnter(object sender, MouseEventArgs e)
@@ -33,6 +41,23 @@ namespace JobBoard.WpfApplication
         private void amail_MouseLeave(object sender, MouseEventArgs e)
         {
             this.Height = 50;
+        }
+
+        private void PopulateUC()
+        {
+            senderLabel.Content += mail.SenderUserName;
+            msgBox.Text = mail.MailSubject;
+            msgbodyRTBox.Document.Blocks.Clear();
+            msgbodyRTBox.Document.Blocks.Add(new Paragraph(new Run(mail.MailBody)));
+            timeLabel.Content += mail.Time.ToString();
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentUser.UserName == mail.SenderUserName)
+                mail.SenderDeleted = 1;
+            else if (currentUser.UserName == mail.ReceiverUserName)
+                mail.ReceiverDeleted = 1;
         }
     }
 }
