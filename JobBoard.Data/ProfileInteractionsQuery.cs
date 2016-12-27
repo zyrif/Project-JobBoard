@@ -38,6 +38,12 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
+        public void UpdateVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, string jobtype, string details)
+        {
+            query = "Update job_info set job_title='" + title + "', company_id=" + empid + ", recruiter_id=" + userid + ", location='" + location + "', posted_time='" + posttime.ToString("yyyy-MM-dd") + "', dead_line='" + deadline.ToString("yyyy-MM-dd") + "', minimum_salary=" + minsalary + ", maximum_salary=" + maxsalary + ", job_type='" + jobtype + "', details='" + details + "'";
+            dbReadWrite.insertQuery(query);
+        }
+
         public int getCompanyId(string companyName)
         {
             query = "select company_id from company_info where company_name ='" + companyName.Trim() + "'";

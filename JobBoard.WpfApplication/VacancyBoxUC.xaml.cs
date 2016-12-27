@@ -88,7 +88,7 @@ namespace JobBoard.WpfApplication
 
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
 
-            VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile));
+            VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile, this));
 
         }
     }

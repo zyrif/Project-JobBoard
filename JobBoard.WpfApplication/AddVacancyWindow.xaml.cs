@@ -26,6 +26,8 @@ namespace JobBoard.WpfApplication
         User userRef = User.getInstance();
         ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
 
+        bool updateVacancy = false;
+
         public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
@@ -36,8 +38,9 @@ namespace JobBoard.WpfApplication
         public AddVacancyWindow(Vacancy vacancy)
         {
             InitializeComponent();
-            init();
             this.vacancy = vacancy;
+            updateVacancy = true;
+            UpdateVacancy();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -58,20 +61,29 @@ namespace JobBoard.WpfApplication
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
             DateTime postedTime = DateTime.Now;
-            DateTime deadLine = Convert.ToDateTime(expdate.Text+"/"+expMonth.Text+"/"+expYear.Text);
+            DateTime deadLine = Convert.ToDateTime(expdate.Text + "/" + expMonth.Text + "/" + expYear.Text);
             string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
             double minimumSalary = Convert.ToDouble(salary[0]);
             double maximumSalary = Convert.ToDouble(salary[1]);
             string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
             List<string> skills = new List<string>();
-            foreach(Button b in selectWrapPanel.Children)
+            foreach (Button b in selectWrapPanel.Children)
             {
                 skills.Add(b.Content.ToString());
             }
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
-            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
-            piControl.AddVacancy(userRef.UserId, newVacancy);
+            if(updateVacancy)
+            {
+                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+                piControl.UpdateVacancy(userRef.UserId, newVacancy);
+            }
+
+            else
+            {
+                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+                piControl.AddVacancy(userRef.UserId, newVacancy);
+            }
 
             Profile newprofile = new Profile(userRef);
             newprofile.Show();
@@ -125,6 +137,24 @@ namespace JobBoard.WpfApplication
             empTypeComboBox.ItemsSource = jobTypeList;
             salBrcktComboBox.ItemsSource = salaryRangeList;
             skillComboBox.ItemsSource = skillList;
+        }
+
+        private void UpdateVacancy()
+        {
+            init();
+
+            jobtitleBox.Text = vacancy.JobTitle;
+            joblocationBox.Text = vacancy.Location;
+            expdate.Text = vacancy.DeadLine.Date.ToString();
+            expdate.Text = vacancy.DeadLine.Month.ToString();
+            expdate.Text = vacancy.DeadLine.Year.ToString();
+
+            jobDetailBox.Document.Blocks.Clear();
+            jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
+
+
+
+
         }
     }
 }
