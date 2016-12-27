@@ -126,5 +126,30 @@ namespace JobBoard.WpfApplication
                 this.CVview.Children.Add(cvBox);
             }
         }
+
+        private void AddPostedVacancies()
+        {
+            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef.UserId);
+            VacancyBoxUC vBoxUC;
+
+            foreach (Vacancy vacancy in vacancyList)
+            {
+                vBoxUC = new VacancyBoxUC();
+                vBoxUC.jobtitleLabel.Content += " " + vacancy.JobTitle;
+                vBoxUC.employerLabel.Content += " " + vacancy.Company;
+                vBoxUC.locationLabel.Content += " " + vacancy.Location;
+                vBoxUC.jobtypeLabel.Content += " " + vacancy.JobType;
+                vBoxUC.salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+                vBoxUC.deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+                foreach (string skill in vacancy.skillList)
+                {
+                    Button btn = new Button();
+                    btn.Content = skill;
+                    vBoxUC.skillPanel.Children.Add(btn);
+                }
+                vBoxUC.dtlsRTxtBox.AppendText(vacancy.JobSummary);
+                this.CVview.Children.Add(vBoxUC);
+            }
+        }
     }
 }
