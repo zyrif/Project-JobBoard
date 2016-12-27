@@ -56,7 +56,7 @@ namespace JobBoard.Data
 
         public DataTable getVacancy(int userId)
         {
-            query = "select * from job_info where recruiter_id=" + userId + " and dead_line >=" + DateTime.Today + " order by dead_line";
+            query = "select * from job_info where recruiter_id=" + userId + " and dead_line >='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by dead_line";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;

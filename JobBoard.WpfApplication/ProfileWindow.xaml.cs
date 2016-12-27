@@ -106,7 +106,7 @@ namespace JobBoard.WpfApplication
             }
             else if (userRef.UserType == 1)
             {
-                //AddVacancy();
+                AddPostedVacancies();
             }
         }
 
