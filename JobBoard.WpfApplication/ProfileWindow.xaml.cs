@@ -113,16 +113,11 @@ namespace JobBoard.WpfApplication
         private void AddCvBox()
         {
             List<Experience> experienceList = control.getExperienceList(userRef.UserId);
-            CVBoxUC cvBox;
+           
 
             foreach(Experience exp in experienceList)
             {
-                cvBox = new CVBoxUC();
-                cvBox.jobnameLabel.Content = exp.Title;
-                cvBox.companyLabel.Content = exp.Entity;
-                cvBox.timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
-                cvBox.descTextblock.Text = exp.Details;
-
+                CVBoxUC cvBox = new CVBoxUC(exp);
                 this.CVview.Children.Add(cvBox);
             }
         }
@@ -130,24 +125,10 @@ namespace JobBoard.WpfApplication
         private void AddPostedVacancies()
         {
             List<Vacancy> vacancyList = control.getVacanciesPosted(userRef.UserId);
-            VacancyBoxUC vBoxUC;
 
             foreach (Vacancy vacancy in vacancyList)
             {
-                vBoxUC = new VacancyBoxUC();
-                vBoxUC.jobtitleLabel.Content += " " + vacancy.JobTitle;
-                vBoxUC.employerLabel.Content += " " + vacancy.Company;
-                vBoxUC.locationLabel.Content += " " + vacancy.Location;
-                vBoxUC.jobtypeLabel.Content += " " + vacancy.JobType;
-                vBoxUC.salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
-                vBoxUC.deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
-                foreach (string skill in vacancy.skillList)
-                {
-                    Button btn = new Button();
-                    btn.Content = skill;
-                    vBoxUC.skillPanel.Children.Add(btn);
-                }
-                vBoxUC.dtlsRTxtBox.AppendText(vacancy.JobSummary);
+                VacancyBoxUC vBoxUC = new VacancyBoxUC(vacancy);
                 this.CVview.Children.Add(vBoxUC);
             }
         }

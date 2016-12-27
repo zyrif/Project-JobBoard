@@ -18,8 +18,8 @@
         <Button x:Name="expdateBtn" Content="Button" HorizontalAlignment="Right" Margin="0,147,42,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="72" Height="25" ToolTip="Sort by expiration date" Background="#FF3A3A3A" Click="expdateBtn_Click"/>
         <ComboBox x:Name="salaryBrctComboBox" HorizontalAlignment="Left" Margin="528,115,0,0" VerticalAlignment="Top" Width="168" Height="26" RenderTransformOrigin="0.486,-0.423" SelectionChanged="salaryBrctComboBox_SelectionChanged"/>
         <ComboBox x:Name="empTypeComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="448,147,0,0" VerticalAlignment="Top" Width="171" Height="25" SelectionChanged="empTypeComboBox_SelectionChanged"/>
-        <ScrollViewer x:Name="JobListScroller" Margin="26,177,0,0">
-            <StackPanel x:Name="jobPanel" Height="290" Width="654"/>
+        <ScrollViewer x:Name="JobListScroller" Margin="26,177,42,35">
+            <StackPanel x:Name="jobPanel"/>
         </ScrollViewer>
         <ComboBox x:Name="titleComboBox" HorizontalAlignment="Left" Margin="26,115,0,0" VerticalAlignment="Top" Width="497" Height="26" SelectionChanged="titleComboBox_SelectionChanged" IsEditable="True"/>
     </Grid>
