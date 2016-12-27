@@ -47,7 +47,5 @@ namespace JobBoard.Core.Entity
 
             this.skillList = skillList;
         }
-
-
     }
 }
