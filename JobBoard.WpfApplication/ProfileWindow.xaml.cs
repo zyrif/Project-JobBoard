@@ -88,13 +88,13 @@ namespace JobBoard.WpfApplication
 
         private void AddSection()
         {
-            AddSectionWindow sec = new AddSectionWindow(userRef);
+            AddSectionWindow sec = new AddSectionWindow(this);
             sec.Show();
         }
 
         private void AddVacancy()
         {
-            AddVacancyWindow vac = new AddVacancyWindow(userRef);
+            AddVacancyWindow vac = new AddVacancyWindow(this);
             vac.Show();
         }
 
@@ -117,7 +117,7 @@ namespace JobBoard.WpfApplication
 
             foreach(Experience exp in experienceList)
             {
-                CVBoxUC cvBox = new CVBoxUC(userRef, exp);
+                CVBoxUC cvBox = new CVBoxUC(userRef, exp, this);
                 this.CVview.Children.Add(cvBox);
             }
         }
@@ -128,7 +128,7 @@ namespace JobBoard.WpfApplication
 
             foreach (Vacancy vacancy in vacancyList)
             {
-                VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy);
+                VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy, this);
                 this.CVview.Children.Add(vBoxUC);
             }
         }

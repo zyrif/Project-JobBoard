@@ -41,6 +41,12 @@ namespace JobBoard.Core
             query.AddVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
         }
 
+        public void UpdateVacancy(int userId, Vacancy vac)
+        {
+            int empid = query.getCompanyId(vac.Company);
+            query.UpdateVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
+        }
+
         public List<Experience> getExperienceList(int userId)
         {
             experienceList = new List<Experience>();
@@ -88,6 +94,16 @@ namespace JobBoard.Core
             }
 
             return vacancyList;
+        }
+
+        public void DeleteExperience(User user, Experience exp)
+        {
+            query.DelExp(user.UserId, exp.Title);
+        }
+
+        public void DeleteVacancy(User user, Vacancy vacancy)
+        {
+            query.DelVac(user.UserId, vacancy.JobTitle, vacancy.Location);
         }
     }
 }

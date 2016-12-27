@@ -44,6 +44,7 @@ namespace JobBoard.WpfApplication
             uemailLabel.Content = userRef.Email;
             ulocationLabel.Content = userRef.Location;
             uphoneLabel.Content = userRef.PhoneNumber;
+            profileImage.Source = userRef.Photo;
         }
     }
 }

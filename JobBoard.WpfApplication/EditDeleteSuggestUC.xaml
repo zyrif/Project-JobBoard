@@ -7,8 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="320" Height="45">
     <Grid Width="320">
-        <Button x:Name="delBtn" Content="DELETE" Margin="10,0,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Left" Width="62"/>
-        <Button x:Name="editBtn" Content="EDIT" Margin="0,0,180,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="62"/>
+
+        <Button x:Name="delBtn" Content="DELETE" Margin="10,0,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Left" Width="62" Click="delBtn_Click"/>
+        <Button x:Name="editBtn" Content="EDIT" Margin="0,0,180,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="62" Click="editBtn_Click"/>
+
         <Button x:Name="suggestBtn" Content="SUGGEST CANDIDATE" Margin="0,0,5,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="161" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16" Click="suggestBtn_Click"/>
 
     </Grid>

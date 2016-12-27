@@ -21,18 +21,28 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddSectionWindow : Window
     {
-        User userRef;
+        Experience exp;
+        Profile profile;
+        User userRef = User.getInstance();
         ProfileInteractionsControl picontrol = ProfileInteractionsControl.getInstance();
 
-        public AddSectionWindow(User usr)
+        public AddSectionWindow(Profile profile)
         {
             InitializeComponent();
-            this.userRef = usr;
+            this.profile = profile;
         }
+
+        public AddSectionWindow(Experience exp)
+        {
+            InitializeComponent();
+            this.exp = exp;
+        }
+
+
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -60,6 +70,11 @@ namespace JobBoard.WpfApplication
 
                 Experience exp = new Experience((byte)exptype, TitleBox.Text, CompanyBox.Text, stdate, eddate, details);
                 picontrol.AddSection(userRef.UserId, exp);
+
+                Profile newprofile = new Profile(userRef);
+                newprofile.Show();
+                profile.Close();
+
                 this.Close();
             }
 
@@ -75,6 +90,12 @@ namespace JobBoard.WpfApplication
 
                 Experience exp = new Experience((byte)exptype, DegreeBox.Text, InstituteBox.Text, stdate, eddate, details);
                 picontrol.AddSection(userRef.UserId, exp);
+
+
+                Profile newprofile = new Profile(userRef);
+                newprofile.Show();
+                profile.Close();
+
                 this.Close();
             }
 
@@ -87,6 +108,12 @@ namespace JobBoard.WpfApplication
 
                 Experience exp = new Experience((byte)exptype, AwardNameBox.Text, AwardIssuerBox.Text, stdate, eddate, details);
                 picontrol.AddSection(userRef.UserId, exp);
+
+
+                Profile newprofile = new Profile(userRef);
+                newprofile.Show();
+                profile.Close();
+
                 this.Close();
             }
         }

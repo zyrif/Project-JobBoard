@@ -49,18 +49,7 @@ namespace JobBoard.WpfApplication
             this.DragMove();
         }
 
-        private void AddSectionBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if(userRef.UserType == 0)
-            {
-                AddSection();
-            }
 
-            else if (userRef.UserType == 1)
-            {
-                AddVacancy();  
-            }
-        }
 
         private void AddUserOverview()
         {
@@ -76,17 +65,7 @@ namespace JobBoard.WpfApplication
             }
         }
 
-        private void AddSection()
-        {
-            AddSectionWindow sec = new AddSectionWindow(userRef);
-            sec.Show();
-        }
 
-        private void AddVacancy()
-        {
-            AddVacancyWindow vac = new AddVacancyWindow(userRef);
-            vac.Show();
-        }
 
         private void AddUserHistory()
         {

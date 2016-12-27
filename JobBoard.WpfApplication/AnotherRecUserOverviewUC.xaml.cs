@@ -39,6 +39,7 @@ namespace JobBoard.WpfApplication
             this.uphoneLabel.Content = userRef.PhoneNumber;
             this.ujobpositionLabel.Content = userRef.JobPosition;
             this.uemployerLabel.Content = userRef.CompanyName;
+            this.profileImage.Source = userRef.Photo;
 
         }
     }

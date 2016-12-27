@@ -22,7 +22,9 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class CVBoxUC : UserControl
     {
+        Profile profile;
         Experience exp;
+        User user;
 
         public CVBoxUC(Experience exp)
         {
@@ -32,10 +34,12 @@ namespace JobBoard.WpfApplication
             PopulateUCBox();
         }
 
-        public CVBoxUC(User user, Experience exp)
+        public CVBoxUC(User user, Experience exp, Profile profile)
         {
             InitializeComponent();
             this.exp = exp;
+            this.user = user;
+            this.profile = profile;
 
             PopulateUCBox2();
         }
@@ -65,7 +69,7 @@ namespace JobBoard.WpfApplication
             timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
             descTextblock.Text = exp.Details;
 
-            CVBSubGrid.Children.Add(new EditDeleteUC());
+            CVBSubGrid.Children.Add(new EditDeleteUC(user, exp, profile));
         }
     }
 }
