@@ -12,14 +12,14 @@ namespace JobBoard.Core.Control
     public class SearchControl
     {
         Vacancy postedJob;
-        List<Vacancy> postedJobList;
+        List<Vacancy> postedJobList = new List<Vacancy>();
         SearchQuery query = SearchQuery.getInstance();
         DataTable dataTable;
 
         public List<Vacancy> search(string jobTitle, string companyName, string location, string salaryBracket, string jobType)
         {
             double minimumSalary = 0, maximumSalary = 0;
-            postedJobList = new List<Vacancy>();
+            //postedJobList = new List<Vacancy>();
             if (salaryBracket != "")
             {
                 string[] salary = salaryBracket.Split('-');

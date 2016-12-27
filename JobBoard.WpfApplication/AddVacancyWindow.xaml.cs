@@ -22,10 +22,12 @@ namespace JobBoard.WpfApplication
     public partial class AddVacancyWindow : Window
     {
         User userRef;
+        ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
 
         public AddVacancyWindow(User usr)
         {
             InitializeComponent();
+            init();
             this.userRef = usr;
         }
 
@@ -46,7 +48,68 @@ namespace JobBoard.WpfApplication
 
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
-            
+            DateTime postedTime = DateTime.Now;
+            DateTime deadLine = Convert.ToDateTime(expdate.Text+"/"+expMonth.Text+"/"+expYear.Text);
+            string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
+            double minimumSalary = Convert.ToDouble(salary[0]);
+            double maximumSalary = Convert.ToDouble(salary[1]);
+            string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
+            List<string> skills = new List<string>();
+            foreach(Button b in selectWrapPanel.Children)
+            {
+                skills.Add(b.Content.ToString());
+            }
+            bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
+            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+
+            piControl.AddVacancy(userRef.UserId, newVacancy);
+        }
+
+        private void skillComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            bool alreadyAdded = false;
+            Button skill = new Button();
+            try
+            {
+                skill.Content = skillComboBox.SelectedItem.ToString();
+                foreach (Button button in selectWrapPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+                }
+                if (alreadyAdded == false)
+                {
+                    selectWrapPanel.Children.Add(skill);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+            }
+        }
+
+        private void init()
+        {
+            List<string> salaryRangeList = new List<string>();
+            List<string> jobTypeList = new List<string>();
+            List<string> skillList = LoginRegistrationControl.getInstance().getAvailableSkills();
+
+            salaryRangeList.Add("5000-10000");
+            salaryRangeList.Add("10000-20000");
+            salaryRangeList.Add("20000-40000");
+            salaryRangeList.Add("40000-80000");
+            salaryRangeList.Add("80000-120000");
+            salaryRangeList.Add("120000-150000");
+            salaryRangeList.Add("150000-200000");
+
+            jobTypeList.Add("Temporary");
+            jobTypeList.Add("Permanent");
+
+            empTypeComboBox.ItemsSource = jobTypeList;
+            salBrcktComboBox.ItemsSource = salaryRangeList;
+            skillComboBox.ItemsSource = skillList;
         }
     }
 }
