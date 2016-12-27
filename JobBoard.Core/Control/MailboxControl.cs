@@ -42,9 +42,9 @@ namespace JobBoard.Core.Control
                 mail.SenderUserName = row["sender_id"].ToString();
                 mail.ReceiverUserName = row["receiver_id"].ToString();
                 mail.Time = Convert.ToDateTime(row["time"].ToString());
-                mail.IsDraft = Convert.ToByte(dataTable.Rows[i]["isdraft"]);
-                mail.SenderDeleted = Convert.ToByte(dataTable.Rows[i]["sender_isdeleted"]);
-                mail.ReceiverDeleted = Convert.ToByte(dataTable.Rows[i]["receiver_isdeleted"]);
+                mail.IsDraft = Convert.ToByte(row["isdraft"]);
+                mail.SenderDeleted = Convert.ToByte(row["sender_isdeleted"]);
+                mail.ReceiverDeleted = Convert.ToByte(row["receiver_isdeleted"]);
 
                 collections.mail.Add(mail);
 

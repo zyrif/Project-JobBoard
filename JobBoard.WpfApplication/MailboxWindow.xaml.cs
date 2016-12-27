@@ -28,7 +28,7 @@ namespace JobBoard.WpfApplication
         public MailboxWindow()
         {
             InitializeComponent();
-
+            ShowInboxMessages();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -69,10 +69,16 @@ namespace JobBoard.WpfApplication
             /*MailboxControl mbc = */
             new MailboxControl().InboxMail(currentUser);
 
+            if (this.mailView.Children != null)
+                this.mailView.Children.Clear();
+
             foreach(Mail m in collections.mail)
             {
-                MailUC muc = new MailUC(m);
-                this.mailView.Children.Add(muc);
+                if (m.ReceiverUserName == currentUser.UserName)
+                {
+                    MailUC muc = new MailUC(m);
+                    this.mailView.Children.Add(muc);
+                }
             }
 
             //for (int i = 0; i < 5; i++)
@@ -84,11 +90,15 @@ namespace JobBoard.WpfApplication
 
         private void ShowDraftMessages()
         {
-            new MailboxControl().InboxMail(currentUser);
+            new MailboxControl().SenderMail(currentUser);
+
+            if (this.mailView.Children != null)
+                this.mailView.Children.Clear();
+
 
             foreach (Mail m in collections.mail)
             {
-                if (m.IsDraft == 1)
+                if (m.SenderUserName == currentUser.UserName && m.IsDraft == 1)
                 {
                     MailUC muc = new MailUC(m);
                     this.mailView.Children.Add(muc);
@@ -98,11 +108,15 @@ namespace JobBoard.WpfApplication
 
         private void ShowSentMessages()
         {
-            new MailboxControl().InboxMail(currentUser);
+            new MailboxControl().SenderMail(currentUser);
+
+            if (this.mailView.Children != null)
+                this.mailView.Children.Clear();
+
 
             foreach (Mail m in collections.mail)
             {
-                if (m.IsDraft != 1)
+                if (m.SenderUserName == currentUser.UserName && m.IsDraft != 1)
                 {
                     MailUC muc = new MailUC(m);
                     this.mailView.Children.Add(muc);
