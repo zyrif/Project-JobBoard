@@ -67,6 +67,12 @@
     <Compile Include="CandidateBoxUC.xaml.cs">
       <DependentUpon>CandidateBoxUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditDeleteSuggestUC.xaml.cs">
+      <DependentUpon>EditDeleteSuggestUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditDeleteUC.xaml.cs">
+      <DependentUpon>EditDeleteUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MailboxWindow.xaml.cs">
       <DependentUpon>MailboxWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CVBoxUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditDeleteSuggestUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditDeleteUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
