@@ -15,6 +15,7 @@ namespace JobBoard.Core.Control
         List<Vacancy> postedJobList;
         SearchQuery query = SearchQuery.getInstance();
         DataTable dataTable;
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public List<Vacancy> search(string jobTitle, string companyName, string location, string salaryBracket, string jobType)
         {
@@ -87,6 +88,47 @@ namespace JobBoard.Core.Control
             }
 
             return list;
+        }
+
+        public List<User> candidateSearch(List<string> jobSkills, string location)
+        {
+            List<int> jSkillIdList = new List<int>();                                                   
+            List<int> userList = new List<int>();
+            List<int> candidateIdList = new List<int>();
+            List<int> userSkills;
+            int count = 0;
+            dataTable = query.getCandidateByLocation(location);
+            System.Windows.Forms.MessageBox.Show(dataTable.Rows.Count.ToString());
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
+            }
+            foreach(int user in userList)
+            {
+                userSkills = query.getSkillListOfCandidates(user);
+
+                foreach(int uSkill in userSkills)
+                {
+                    foreach(int jSkill in jSkillIdList)
+                    {
+                        if(uSkill == jSkill)
+                        {
+                            count++;
+                        }
+                    }
+                }
+                if (count >= jobSkills.Count-2)
+                    candidateIdList.Add(user);
+                count = 0;
+            }
+
+            List<User> candidateList = new List<User>();
+            foreach(int candidate in candidateIdList)
+            {
+                candidateList.Add(lrControl.GetJobSeekerInfo(query.getCandidateName(candidate)));
+            }
+
+            return candidateList;
         }
     }
 }
