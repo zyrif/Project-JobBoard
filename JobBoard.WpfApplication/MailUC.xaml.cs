@@ -49,7 +49,7 @@ namespace JobBoard.WpfApplication
             msgBox.Text = mail.MailSubject;
             msgbodyRTBox.Document.Blocks.Clear();
             msgbodyRTBox.Document.Blocks.Add(new Paragraph(new Run(mail.MailBody)));
-            timeLabel.Content += mail.Time.ToString();
+            timeLabel.Content = mail.Time.ToString();
         }
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
@@ -58,6 +58,16 @@ namespace JobBoard.WpfApplication
                 mail.SenderDeleted = 1;
             else if (currentUser.UserName == mail.ReceiverUserName)
                 mail.ReceiverDeleted = 1;
+        }
+
+        private void senderLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginRegistrationControl lrc = LoginRegistrationControl.getInstance();
+            AnotherProfile senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
+            senderprofile.Show();
+            senderprofile.Activate();
+            senderprofile.Topmost = true;  // important
+            senderprofile.Focus();
         }
     }
 }

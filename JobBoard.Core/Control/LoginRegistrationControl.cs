@@ -90,6 +90,33 @@ namespace JobBoard.Core
             recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
+
+        public User GetJobSeekerInfo(string userName)
+        {
+            User jobSeeker = new User();
+
+            dataTable = query.getUserInfo(userName);
+
+            jobSeeker.UserName = dataTable.Rows[0]["user_name"].ToString();
+            jobSeeker.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            jobSeeker.UserType = Convert.ToByte(dataTable.Rows[0]["User_type"]);
+            jobSeeker.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            jobSeeker.LastName = dataTable.Rows[0]["last_name"].ToString();
+            jobSeeker.Email = dataTable.Rows[0]["email"].ToString();
+            jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+            jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"]);
+            jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
+
+            dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill_id"].ToString());
+            }
+
+            return jobSeeker;
+        }
+
+
         //Check if a user name is already taken or registered
         public bool checkUser(string userName)
         {

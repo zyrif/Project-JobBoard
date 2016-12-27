@@ -20,24 +20,23 @@ namespace JobBoard.WpfApplication
     /// <summary>
     /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class Profile : Window
+    public partial class AnotherProfile : Window
     {
         ProfileInteractionsControl control = ProfileInteractionsControl.getInstance();
         User userRef;
         User currentUser = User.getInstance();
 
-        public Profile(User usr)
+        public AnotherProfile(User usr)
         {
             InitializeComponent();
             this.userRef = usr;
             AddUserOverview();
-            AddSubControl();
             AddUserHistory();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -67,22 +66,13 @@ namespace JobBoard.WpfApplication
         {
             if (userRef.UserType == 0)
             {
-                JSUserOverviewUC uo = new JSUserOverviewUC(userRef);
-                this.UserOverviewGrid.Children.Add(uo);
+                AnotherJSUserOverviewUC auo = new AnotherJSUserOverviewUC(userRef);
+                this.UserOverviewGrid.Children.Add(auo);
             }
             else if (userRef.UserType == 1)
             {
-                RecUserOverviewUC uo = new RecUserOverviewUC(userRef);
+                AnotherRecUserOverviewUC uo = new AnotherRecUserOverviewUC(userRef);
                 this.UserOverviewGrid.Children.Add(uo);
-            }
-        }
-
-        private void AddSubControl()
-        {
-            if (this.userRef == currentUser)
-            {
-                ProfileSubUserControl ps = new ProfileSubUserControl();
-                this.PSubGrid.Children.Add(ps);
             }
         }
 
@@ -113,9 +103,9 @@ namespace JobBoard.WpfApplication
         private void AddCvBox()
         {
             List<Experience> experienceList = control.getExperienceList(userRef.UserId);
-           
 
-            foreach(Experience exp in experienceList)
+
+            foreach (Experience exp in experienceList)
             {
                 CVBoxUC cvBox = new CVBoxUC(exp);
                 this.CVview.Children.Add(cvBox);
