@@ -11,14 +11,14 @@ namespace JobBoard.Core.Control
 {
     public class SearchControl
     {
-        PostedJob postedJob;
+        Vacancy vacancy;
         SearchQuery query = SearchQuery.getInstance();
         DataTable dataTable;
 
-        public List<PostedJob> search(string jobTitle, string companyName, string location, string salaryBracket, string jobType)
+        public List<Vacancy> search(string jobTitle, string companyName, string location, string salaryBracket, string jobType)
         {
             double minimumSalary=0, maximumSalary=0;
-            List<PostedJob> postedJobList = new List<PostedJob>();
+            List<Vacancy> vacancyList = new List<Vacancy>();
             if (salaryBracket != "")
             {
                 string[] salary = salaryBracket.Split('-');
@@ -34,7 +34,7 @@ namespace JobBoard.Core.Control
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                postedJob = new PostedJob(dataTable.Rows[i]["job_title"].ToString(),
+                vacancy = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])),
                                           query.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[i]["location"].ToString(),
@@ -46,10 +46,11 @@ namespace JobBoard.Core.Control
                                           dataTable.Rows[i]["details"].ToString(),
                                           query.getSkillList(Convert.ToInt32(dataTable.Rows[i]["job_id"])));
 
-                postedJobList.Add(postedJob);
+                vacancyList.Add(vacancy);
             }
 
-            return postedJobList;
+            return vacancyList;
+
         }
 
         public List<string> getJobTitleList()

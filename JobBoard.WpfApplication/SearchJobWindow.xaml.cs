@@ -104,9 +104,9 @@ namespace JobBoard.WpfApplication
             if (empTypeComboBox.SelectedItem == null) { selection[4] = ""; } else { selection[4] = empTypeComboBox.SelectedItem.ToString(); }
 
 
-            List<PostedJob> postedJobList = control.search(selection[0], selection[1], selection[2], selection[3], selection[4]);
+            List<Vacancy> vacancyList = control.search(selection[0], selection[1], selection[2], selection[3], selection[4]);
             jobPanel.Children.Clear();
-            foreach(PostedJob pj in postedJobList)
+            foreach(Vacancy pj in vacancyList)
             {
                 VacancyBoxUC vBox = new VacancyBoxUC();
                 vBox.jobtitleLabel.Content += " " + pj.JobTitle;
