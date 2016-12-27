@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data;
 using JobBoard.Data;
 using System.Windows.Forms;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace JobBoard.Core
 {
@@ -85,6 +87,18 @@ namespace JobBoard.Core
             recruiter.Email = dataTable.Rows[0]["email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
 
+            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            {
+                var photo = new BitmapImage();
+                photo.BeginInit();
+                photo.CacheOption = BitmapCacheOption.OnLoad;
+                photo.StreamSource = ms;
+                photo.EndInit();
+
+                recruiter.Photo = photo;
+
+            }
+
             recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
 
             recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
@@ -107,7 +121,19 @@ namespace JobBoard.Core
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"]);
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
 
-            dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
+            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            {
+                var photo = new BitmapImage();
+                photo.BeginInit();
+                photo.CacheOption = BitmapCacheOption.OnLoad;
+                photo.StreamSource = ms;
+                photo.EndInit();
+
+                jobSeeker.Photo = photo;
+
+            }
+
+                dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill_id"].ToString());
@@ -166,9 +192,13 @@ namespace JobBoard.Core
         public void register(User userref)
         {
             if (userref.UserType == 0)
-                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, userref.UserType);
+            {
+                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, ConvertImage(userref) ,userref.UserType);
+            }
             else if (userref.UserType == 1)
-                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.JobPosition, userref.CompanyName, userref.UserType);
+            {
+                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, ConvertImage(userref), userref.JobPosition, userref.CompanyName, userref.UserType);
+            }
         }
 
         public List<string> getAvailableSkills()
@@ -182,6 +212,21 @@ namespace JobBoard.Core
             }
 
             return skillList;
+        }
+
+        public Byte[] ConvertImage(User userref)
+        {
+            Stream stream = userref.Photo.StreamSource;
+            Byte[] bytes = null;
+            if(stream != null && stream.Length > 0)
+            {
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    bytes = br.ReadBytes((Int32)stream.Length);
+                }
+            }
+
+            return bytes;
         }
     }
 }
