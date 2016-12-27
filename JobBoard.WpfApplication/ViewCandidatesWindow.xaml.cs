@@ -31,7 +31,7 @@ namespace JobBoard.WpfApplication
         private void addSuggestions(WrapPanel wp, string location)
         {
             string[] s = location.Split(' ');
-            CandidateBoxUC vcUC;
+            CandidateBoxUC cbUC;
             List<User> userList;
             List<string> skillList = new List<string>();
             foreach(Button b in wp.Children)
@@ -41,8 +41,8 @@ namespace JobBoard.WpfApplication
             userList = sc.candidateSearch(skillList, s[2]);
             foreach (User user in userList)
             {
-                vcUC = new CandidateBoxUC(user);
-                candidatePanel.Children.Add(vcUC);
+                cbUC = new CandidateBoxUC(user);
+                candidatePanel.Children.Add(cbUC);
             }
         }
     }
