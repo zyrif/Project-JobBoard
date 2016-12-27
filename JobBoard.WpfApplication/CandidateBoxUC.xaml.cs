@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class CandidateBoxUC : UserControl
     {
-        public CandidateBoxUC()
+        public CandidateBoxUC(User user)
         {
             InitializeComponent();
+            nameLabel.Content = user.FirstName + " " + user.LastName;
+            locationLabel.Content = user.Location;
+            emailLabel.Content = user.Email;
+            phoneLabel.Content = user.PhoneNumber;
+            foreach(string skill in user.skillList)
+            {
+                Button button = new Button();
+                button.Content = skill;
+                skillsPanel.Children.Add(button);
+            }
         }
     }
 }

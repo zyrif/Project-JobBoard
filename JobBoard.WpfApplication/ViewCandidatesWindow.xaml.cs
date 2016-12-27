@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,29 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class ViewCandidatesWindow : Window
     {
-        public ViewCandidatesWindow()
+        SearchControl sc = new SearchControl();
+        public ViewCandidatesWindow(VacancyBoxUC vbUC)
         {
             InitializeComponent();
+            addSuggestions(vbUC.skillPanel,vbUC.locationLabel.Content.ToString());
+        }
+
+        private void addSuggestions(WrapPanel wp, string location)
+        {
+            string[] s = location.Split(' ');
+            CandidateBoxUC cbUC;
+            List<User> userList;
+            List<string> skillList = new List<string>();
+            foreach(Button b in wp.Children)
+            {
+                skillList.Add(b.Content.ToString());
+            }
+            userList = sc.candidateSearch(skillList, s[2]);
+            foreach (User user in userList)
+            {
+                cbUC = new CandidateBoxUC(user);
+                cView.Children.Add(cbUC);
+            }
         }
     }
 }

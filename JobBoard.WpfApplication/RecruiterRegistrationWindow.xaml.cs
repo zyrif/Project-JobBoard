@@ -34,6 +34,7 @@ namespace JobBoard.WpfApplication
         public RecruiterRegistration(ChooseProfile cp)
         {
             InitializeComponent();
+            init();
             this.cpWindow = cp;
 
             try
@@ -42,6 +43,11 @@ namespace JobBoard.WpfApplication
                 SetProfileimage();
             }
             catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+        }
+
+        private void init()
+        {
+            CompanyListComboBox.ItemsSource = lrControl.getAllRegisteredCompany();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -61,11 +67,20 @@ namespace JobBoard.WpfApplication
 
         private void RecRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, empBox.Text);
-            lrControl.register(currentUser);
-            EmployerRegistration er = new EmployerRegistration();
-            er.Show();
-            this.Hide();
+            if (checkEmployerPresent.IsChecked == false)
+            {
+                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
+                lrControl.register(currentUser);
+                Profile p = new Profile(currentUser);
+                p.Show();this.Hide();
+            }
+            else
+            {
+                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text);
+                EmployerRegistration er = new EmployerRegistration(currentUser);
+                er.Show();
+                this.Hide();
+            }
         }
 
         private void SetProfileimage()

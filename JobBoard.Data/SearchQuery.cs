@@ -43,6 +43,14 @@ namespace JobBoard.Data
             return dataTable.Rows[0]["user_name"].ToString();
         }
 
+        public string getCandidateName(int candidateId)
+        {
+            query = "select user_name from user_info where user_id=" + candidateId;
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable.Rows[0]["user_name"].ToString();
+        }
+
         public List<string> getSkillList(int jobId)
         {
             List<string> skillList = new List<string>();
@@ -53,6 +61,21 @@ namespace JobBoard.Data
             for(byte i=0; i<dataTable.Rows.Count; i++)
             {
                 skillList.Add(dataTable.Rows[i]["skill"].ToString());
+            }
+
+            return skillList;
+        }
+
+        public List<int> getSkillListOfCandidates(int candidateId)
+        {
+            List<int> skillList = new List<int>();
+
+            query = "select skill_id from user_skill where user_id=" + candidateId;
+            dataTable = dbReadWrite.selectQuery(query);
+
+            for (byte i = 0; i < dataTable.Rows.Count; i++)
+            {
+                skillList.Add(Convert.ToInt32(dataTable.Rows[i]["skill_id"]));
             }
 
             return skillList;
@@ -101,6 +124,14 @@ namespace JobBoard.Data
         public DataTable getLocations()
         {
             query = "select distinct location from job_info";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
+
+        public DataTable getCandidateByLocation(string location)
+        {
+            query = "select user_id from user_info where location = '"+location+"'";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
