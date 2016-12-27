@@ -66,7 +66,7 @@ namespace JobBoard.Core
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill"].ToString());
+                jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill_id"].ToString());
             }
         }
 
