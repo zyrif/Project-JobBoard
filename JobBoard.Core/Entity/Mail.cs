@@ -10,19 +10,22 @@ namespace JobBoard.Core.Entity
     {
         public string MailSubject { get; set; }
         public string MailBody { get; set; }
-        public int SenderId { get; set; }
+        public string SenderUserName { get; set; }
         public int ReceiverId { get; set; }
+        public string ReceiverUserName { get; set; }
         public DateTime Time { get; set; }
-        public string MailType { get; set; }
+        public byte IsDraft { get; set; }
+        public byte SenderDeleted { get; set; }
+        public byte ReceiverDeleted { get; set; }
 
-        public Mail(string mailsub, string mailbody, int senderid, int receiverid, DateTime time, string mailtype)
+        public Mail(string mailsub, string mailbody, string sendusr, string recusr, DateTime time, byte isdraft)
         {
             this.MailSubject = mailsub;
             this.MailBody = mailbody;
-            this.SenderId = senderid;
-            this.ReceiverId = receiverid;
+            this.SenderUserName = sendusr;
+            this.ReceiverUserName = recusr;
             this.Time = time;
-            this.MailType = mailtype;
+            this.IsDraft = isdraft;
         }
 
     }

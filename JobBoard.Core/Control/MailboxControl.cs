@@ -20,6 +20,7 @@ namespace JobBoard.Core.Control
         public void NewMail(User user, Mail mail)
         {
             DateTime time = DateTime.Now;
+            //query.NewMailQuery();
 
         }
 

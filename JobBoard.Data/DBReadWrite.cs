@@ -51,6 +51,14 @@ namespace JobBoard.Data
 
         }
 
+        public void updateQuery(string query)
+        {
+            MySqlCommand sqlCommand = new MySqlCommand(query, connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+        }
+
         //To create Connection with DataBase
         public void createConnection()
         {
