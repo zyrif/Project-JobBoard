@@ -30,6 +30,7 @@ namespace JobBoard.WpfApplication
         ChooseProfile cpWindow;
 
         System.Drawing.Image profilePhoto;
+        BitmapImage photo = new BitmapImage();
 
         public JobSeekerRegistration(ChooseProfile cp)
         {
@@ -73,7 +74,7 @@ namespace JobBoard.WpfApplication
                 currentUser.setSkill(skillButton.Content.ToString());
             }
 
-            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, profilePhoto, date, locationBox.Text, skillList);
+            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
             lrControl.register(currentUser);
             Profile jp = new Profile(currentUser);
             jp.Show();
@@ -120,6 +121,7 @@ namespace JobBoard.WpfApplication
                 bi.StreamSource = ms;
                 bi.EndInit();
 
+                photo = bi;
                 profileImage.Source = bi;
             }
         }
@@ -134,7 +136,18 @@ namespace JobBoard.WpfApplication
             if(dialog.ShowDialog() == true)
             {
                 profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
-                SetProfileimage();
+                using (Bitmap bmp = new Bitmap(profilePhoto))
+                {
+                    MemoryStream ms = new MemoryStream();
+                    bmp.Save(ms, ImageFormat.Png);
+                    ms.Position = 0;
+                    photo = new BitmapImage();
+                    photo.BeginInit();
+                    photo.StreamSource = ms;
+                    photo.EndInit();
+
+                    profileImage.Source = photo;
+                }
             }
         }
     }

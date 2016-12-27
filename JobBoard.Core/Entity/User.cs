@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace JobBoard.Core
 {
@@ -27,7 +28,7 @@ namespace JobBoard.Core
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public Image Photo { get; set; }
+        public BitmapImage Photo { get; set; }
         public bool IsVerified { get; set; }
 
         //Jobseeker only fields
@@ -51,7 +52,7 @@ namespace JobBoard.Core
 
         public User() { }
 
-        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, DateTime birthday, string location, List<string> skilllist)
+        public void addUser(string firstName, string lastName, string email, string phNumber, BitmapImage photo, DateTime birthday, string location, List<string> skilllist)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -63,7 +64,7 @@ namespace JobBoard.Core
             this.skillList = skilllist;
         }
 
-        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, string jobposition, string companyname)
+        public void addUser(string firstName, string lastName, string email, string phNumber, BitmapImage photo, string jobposition, string companyname)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -75,7 +76,7 @@ namespace JobBoard.Core
             
         }
 
-        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, string jobposition)
+        public void addUser(string firstName, string lastName, string email, string phNumber, BitmapImage photo, string jobposition)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
