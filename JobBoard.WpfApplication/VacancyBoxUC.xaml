@@ -24,7 +24,7 @@
         <Label x:Name="jobtypeLabel" Content="Job Type: " HorizontalAlignment="Left" Margin="34.576,134.151,0,95.889" Foreground="#FFA2A2A2" d:LayoutOverrides="Height"/>
         <Label x:Name="salbrcktLabel" Content="Salary Bracket: " Margin="34.576,201.443,0,0" Foreground="#FFA2A2A2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="suggestBtn" Content="Suggest Candidate" Margin="0,229.413,19,0" HorizontalAlignment="Right" Width="123" Background="Gray" BorderBrush="{x:Null}" VerticalAlignment="Top"/>
-        <WrapPanel x:Name="skillPanel"  HorizontalAlignment="Right" Margin="0,11.97,19,0" Width="197.289" Background="#FF343434" Height="75" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <WrapPanel HorizontalAlignment="Right" Margin="0,11.97,19,0" Width="197.289" Background="#FF343434" Height="75" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
 
     </Grid>
 </UserControl>

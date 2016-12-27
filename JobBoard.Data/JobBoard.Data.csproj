@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBReadWrite.cs" />
+    <Compile Include="MailboxQuery.cs" />
+    <Compile Include="ProfileInteractionsQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginRegistrationQuery.cs" />
     <Compile Include="SearchQuery.cs" />

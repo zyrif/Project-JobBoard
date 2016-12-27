@@ -17,7 +17,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="delBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="34.814" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" BorderThickness="1" Margin="0,292.157,20,10" Content="Delete" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right" Width="94.744"/>
+        <Button x:Name="delBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="34.814" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" BorderThickness="1" Margin="0,292.157,20,10" Content="Delete" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right" Width="94.744" Click="delBtn_Click"/>
 
     </Grid>
 </UserControl>
