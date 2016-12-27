@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class VacancyBoxUC : UserControl
     {
-        public VacancyBoxUC()
+        Vacancy vacancy;
+
+        public VacancyBoxUC(Vacancy vacancy)
         {
             InitializeComponent();
+            this.vacancy = vacancy;
+
+            PopulateVB();
         }
 
         private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
@@ -33,6 +39,25 @@ namespace JobBoard.WpfApplication
         private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
         {
             this.Height = 270;
+        }
+
+        private void PopulateVB()
+        {
+
+            jobtitleLabel.Content += " " + vacancy.JobTitle;
+            employerLabel.Content += " " + vacancy.Company;
+            locationLabel.Content += " " + vacancy.Location;
+            jobtypeLabel.Content += " " + vacancy.JobType;
+            salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+            deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+            foreach (string skill in vacancy.skillList)
+            {
+                Button btn = new Button();
+                btn.Content = skill;
+                skillPanel.Children.Add(btn);
+            }
+
+            dtlsRTxtBox.AppendText(vacancy.JobSummary);
         }
     }
 }

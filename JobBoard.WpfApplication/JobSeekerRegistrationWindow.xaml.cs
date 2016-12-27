@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace JobBoard.WpfApplication
 {
@@ -27,7 +28,8 @@ namespace JobBoard.WpfApplication
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
         User currentUser = User.getInstance();
         ChooseProfile cpWindow;
-        System.Drawing.Image profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+
+        System.Drawing.Image profilePhoto;
 
         public JobSeekerRegistration(ChooseProfile cp)
         {
@@ -37,7 +39,13 @@ namespace JobBoard.WpfApplication
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
 
-            SetProfileimage();
+            try
+            {
+                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+                SetProfileimage();
+            }
+            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+   
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -113,6 +121,20 @@ namespace JobBoard.WpfApplication
                 bi.EndInit();
 
                 profileImage.Source = bi;
+            }
+        }
+
+        private void addphotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.jpg, *.jpeg, *.png) |*.jpg; *.jpeg; *.png";
+            dialog.InitialDirectory = @"%userprofile%\Pictures";
+            dialog.Title = "Choose Profile Picture";
+
+            if(dialog.ShowDialog() == true)
+            {
+                profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
+                SetProfileimage();
             }
         }
     }
