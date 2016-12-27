@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Core.Entity
 {
-    class Experience
+    public class Experience
     {
         public string Position { get; set; }
         public string StartTime { set; get; }
