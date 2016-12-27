@@ -129,7 +129,7 @@ namespace JobBoard.WpfApplication
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image files (*.jpg, *.jpeg, *.png) |*.jpg; *.jpeg; *.png";
             dialog.InitialDirectory = @"%userprofile%\Pictures";
-            dialog.Title = "Please select an image file to encrypt.";
+            dialog.Title = "Choose Profile Picture";
 
             if(dialog.ShowDialog() == true)
             {
