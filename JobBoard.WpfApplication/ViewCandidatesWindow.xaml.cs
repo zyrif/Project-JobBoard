@@ -42,7 +42,7 @@ namespace JobBoard.WpfApplication
             foreach (User user in userList)
             {
                 cbUC = new CandidateBoxUC(user);
-                candidatePanel.Children.Add(cbUC);
+                cView.Children.Add(cbUC);
             }
         }
     }
