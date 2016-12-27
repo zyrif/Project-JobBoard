@@ -68,7 +68,7 @@ namespace JobBoard.WpfApplication
                 DateTime stdate = Convert.ToDateTime(EduTimeYear1Box.Text + "-" + EduTimeMonth1Box.Text + "-" + "01");
                 DateTime eddate;
                 string details = new TextRange(EduDetailsRichBox.Document.ContentStart, EduDetailsRichBox.Document.ContentEnd).Text;
-                if (ExpcheckBox.IsChecked == true)
+                if (EduCheckBox.IsChecked == true)
                     eddate = DateTime.Now;
                 else
                     eddate = Convert.ToDateTime(EduTimeYear2Box.Text + "-" + EduTimeMonth2Box.Text + "-" + "01");
