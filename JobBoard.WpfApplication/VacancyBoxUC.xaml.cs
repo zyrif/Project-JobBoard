@@ -73,7 +73,6 @@ namespace JobBoard.WpfApplication
 
         private void PopulateVB2()
         {
-
             jobtitleLabel.Content += " " + vacancy.JobTitle;
             employerLabel.Content += " " + vacancy.Company;
             locationLabel.Content += " " + vacancy.Location;
@@ -90,6 +89,7 @@ namespace JobBoard.WpfApplication
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
 
             VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile));
+
         }
     }
 }

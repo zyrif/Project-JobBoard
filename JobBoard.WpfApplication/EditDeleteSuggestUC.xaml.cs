@@ -22,6 +22,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EditDeleteSuggestUC : UserControl
     {
+<<<<<<< HEAD
         Vacancy vacancy;
         Profile profile;
         User currentUser = User.getInstance();
@@ -44,11 +45,13 @@ namespace JobBoard.WpfApplication
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
 
         private void suggestBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewCandidatesWindow vcWindow = new ViewCandidatesWindow(vbUC);
+            vcWindow.Show();
         }
     }
 }
