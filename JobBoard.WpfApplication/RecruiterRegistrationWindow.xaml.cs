@@ -15,6 +15,7 @@ using JobBoard.Core;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using Microsoft.Win32;
 
 namespace JobBoard.WpfApplication
 {
@@ -26,14 +27,21 @@ namespace JobBoard.WpfApplication
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
         User currentUser = User.getInstance();
         ChooseProfile cpWindow;
-        System.Drawing.Image profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+
+        System.Drawing.Image profilePhoto;
+        BitmapImage photo = new BitmapImage();
 
         public RecruiterRegistration(ChooseProfile cp)
         {
             InitializeComponent();
             this.cpWindow = cp;
 
-            SetProfileimage();
+            try
+            {
+                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+                SetProfileimage();
+            }
+            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -53,7 +61,7 @@ namespace JobBoard.WpfApplication
 
         private void RecRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, profilePhoto, jobposBox.Text, empBox.Text);
+            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, empBox.Text);
             lrControl.register(currentUser);
             EmployerRegistration er = new EmployerRegistration();
             er.Show();
@@ -72,7 +80,33 @@ namespace JobBoard.WpfApplication
                 bi.StreamSource = ms;
                 bi.EndInit();
 
+                photo = bi;
                 profileImage.Source = bi;
+            }
+        }
+
+        private void addphotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.jpg, *.jpeg, *.png) |*.jpg; *.jpeg; *.png";
+            dialog.InitialDirectory = @"%userprofile%\Pictures";
+            dialog.Title = "Choose Profile Picture";
+
+            if (dialog.ShowDialog() == true)
+            {
+                profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
+                using (Bitmap bmp = new Bitmap(profilePhoto))
+                {
+                    MemoryStream ms = new MemoryStream();
+                    bmp.Save(ms, ImageFormat.Png);
+                    ms.Position = 0;
+                    photo = new BitmapImage();
+                    photo.BeginInit();
+                    photo.StreamSource = ms;
+                    photo.EndInit();
+
+                    profileImage.Source = photo;
+                }
             }
         }
     }
