@@ -19,7 +19,7 @@
         <ComboBox x:Name="salaryBrctComboBox" HorizontalAlignment="Left" Margin="528,115,0,0" VerticalAlignment="Top" Width="168" Height="26" RenderTransformOrigin="0.486,-0.423" SelectionChanged="salaryBrctComboBox_SelectionChanged"/>
         <ComboBox x:Name="empTypeComboBox" SelectedIndex="0" HorizontalAlignment="Left" Margin="448,147,0,0" VerticalAlignment="Top" Width="171" Height="25" SelectionChanged="empTypeComboBox_SelectionChanged"/>
         <ScrollViewer x:Name="JobListScroller" Margin="26,177,42,39">
-            <StackPanel x:Name="jobPanel" Height="290" Width="654"/>
+            <StackPanel x:Name="jobPanel" />
         </ScrollViewer>
         <ComboBox x:Name="titleComboBox" HorizontalAlignment="Left" Margin="26,115,0,0" VerticalAlignment="Top" Width="497" Height="26" SelectionChanged="titleComboBox_SelectionChanged" IsEditable="True"/>
     </Grid>
