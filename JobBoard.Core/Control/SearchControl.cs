@@ -11,9 +11,9 @@ namespace JobBoard.Core.Control
 {
     class SearchControl
     {
-        Vacancy postedJob;
-        List<Vacancy> postedJobList;
-        SearchQuery query;
+        Vacancy vacancy;
+        List<Vacancy> vacancyList;
+        SearchQuery query = SearchQuery.getInstance();
         DataTable dataTable;
 
         public List<Vacancy> search(string jobTitle, double minimumSalary, double maximumSalary, bool jobType, string companyName, string location, List<string> skills)
@@ -21,7 +21,7 @@ namespace JobBoard.Core.Control
             dataTable = query.search(jobTitle, minimumSalary, maximumSalary, jobType, companyName, location, skills);
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                postedJob = new Vacancy(dataTable.Rows[0]["job_title"].ToString(),
+                vacancy = new Vacancy(dataTable.Rows[0]["job_title"].ToString(),
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[0]["company_id"])).ToString(),
                                           query.getRecruiterName(Convert.ToInt32(dataTable.Rows[0]["recruiter_id"])).ToString(),
                                           dataTable.Rows[0]["location"].ToString(),
@@ -32,10 +32,10 @@ namespace JobBoard.Core.Control
                                           Convert.ToBoolean(dataTable.Rows[0]["job_type"].ToString()),
                                           query.getSkillList(Convert.ToInt32(dataTable.Rows[0]["job_id"])));
 
-                postedJobList.Add(postedJob);
+                vacancyList.Add(vacancy);
             }
 
-            return postedJobList;
+            return vacancyList;
         }
     }
 }
