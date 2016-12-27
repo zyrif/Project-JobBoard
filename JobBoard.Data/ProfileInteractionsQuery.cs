@@ -12,7 +12,7 @@ namespace JobBoard.Data
         DBReadWrite dbReadWrite = DBReadWrite.getInstance();
         DataTable dataTable;
         static ProfileInteractionsQuery instance;
-        string query, subQuery;
+        string query;
 
         private ProfileInteractionsQuery()
         {
