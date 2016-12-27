@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,33 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EditDeleteSuggestUC : UserControl
     {
-        public EditDeleteSuggestUC()
+        Vacancy vacancy;
+        Profile profile;
+        User currentUser = User.getInstance();
+        public EditDeleteSuggestUC(Vacancy vacancy, Profile profile)
         {
             InitializeComponent();
+            this.vacancy = vacancy;
+            this.profile = profile;
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileInteractionsControl pic = ProfileInteractionsControl.getInstance();
+            pic.DeleteVacancy(currentUser, vacancy);
+            Profile newprofile = new Profile(currentUser);
+            newprofile.Show();
+            profile.Close();
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void suggestBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

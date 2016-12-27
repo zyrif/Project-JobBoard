@@ -23,6 +23,7 @@ namespace JobBoard.WpfApplication
     public partial class VacancyBoxUC : UserControl
     {
         Vacancy vacancy;
+        Profile profile;
 
         public VacancyBoxUC(Vacancy vacancy)
         {
@@ -32,10 +33,11 @@ namespace JobBoard.WpfApplication
             PopulateVB();
         }
 
-        public VacancyBoxUC(User user, Vacancy vacancy)
+        public VacancyBoxUC(User user, Vacancy vacancy, Profile profile)
         {
             InitializeComponent();
             this.vacancy = vacancy;
+            this.profile = profile;
 
             PopulateVB2();
         }
@@ -87,7 +89,7 @@ namespace JobBoard.WpfApplication
 
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
 
-            VCBSubGrid.Children.Add(new EditDeleteSuggestUC());
+            VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile));
         }
     }
 }

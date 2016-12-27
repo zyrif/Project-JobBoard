@@ -21,19 +21,28 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddVacancyWindow : Window
     {
-        User userRef;
+        Vacancy vacancy;
+        Profile profile;
+        User userRef = User.getInstance();
         ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
 
-        public AddVacancyWindow(User usr)
+        public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
             init();
-            this.userRef = usr;
+            this.profile = profile;
+        }
+
+        public AddVacancyWindow(Vacancy vacancy)
+        {
+            InitializeComponent();
+            init();
+            this.vacancy = vacancy;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -63,6 +72,12 @@ namespace JobBoard.WpfApplication
             Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
             piControl.AddVacancy(userRef.UserId, newVacancy);
+
+            Profile newprofile = new Profile(userRef);
+            newprofile.Show();
+            profile.Close();
+
+            this.Close();
         }
 
         private void skillComboBox_LostFocus(object sender, RoutedEventArgs e)

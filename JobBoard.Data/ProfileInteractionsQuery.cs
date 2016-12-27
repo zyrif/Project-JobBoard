@@ -61,5 +61,17 @@ namespace JobBoard.Data
 
             return dataTable;
         }
+
+        public void DelExp(int id, string title)
+        {
+            query = "Delete from user_experience where user_id=" + id + " and title='" + title + "' ";
+            dbReadWrite.updateQuery(query);
+        }
+
+        public void DelVac(int id, string title, string location)
+        {
+            query = "Delete from job_info where recruiter_id=" + id + " and job_title='" + title + "' and location='" + location + "' ";
+            dbReadWrite.updateQuery(query);
+        }
     }
 }

@@ -89,5 +89,15 @@ namespace JobBoard.Core
 
             return vacancyList;
         }
+
+        public void DeleteExperience(User user, Experience exp)
+        {
+            query.DelExp(user.UserId, exp.Title);
+        }
+
+        public void DeleteVacancy(User user, Vacancy vacancy)
+        {
+            query.DelVac(user.UserId, vacancy.JobTitle, vacancy.Location);
+        }
     }
 }

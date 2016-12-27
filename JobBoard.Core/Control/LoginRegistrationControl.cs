@@ -86,18 +86,18 @@ namespace JobBoard.Core
             //jobSeeker.Photo = photo;
 
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                BitmapImage photo = new BitmapImage();
-                ms.Position = 0;
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    BitmapImage photo = new BitmapImage();
+            //    ms.Position = 0;
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                jobSeeker.Photo = photo;
+            //    jobSeeker.Photo = photo;
 
-            }
+            //}
 
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -121,17 +121,17 @@ namespace JobBoard.Core
             recruiter.Email = dataTable.Rows[0]["email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                var photo = new BitmapImage();
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    var photo = new BitmapImage();
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                recruiter.Photo = photo;
+            //    recruiter.Photo = photo;
 
-            }
+            //}
 
             recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
 
@@ -155,17 +155,17 @@ namespace JobBoard.Core
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"]);
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                var photo = new BitmapImage();
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    var photo = new BitmapImage();
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                jobSeeker.Photo = photo;
+            //    jobSeeker.Photo = photo;
 
-            }
+            //}
 
                 dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
