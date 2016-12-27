@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using JobBoard.Core.Entity;
+using JobBoard.Core.Control;
 
 namespace JobBoard.WpfApplication
 {
@@ -20,6 +22,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class Profile : Window
     {
+        ProfileInteractionsControl control = ProfileInteractionsControl.getInstance();
         User userRef;
         User currentUser = User.getInstance();
 
@@ -29,6 +32,7 @@ namespace JobBoard.WpfApplication
             this.userRef = usr;
             AddUserOverview();
             AddSubControl();
+            AddUserHistory();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -57,7 +61,6 @@ namespace JobBoard.WpfApplication
             {
                 AddVacancy();  
             }
-
         }
 
         private void AddUserOverview()
@@ -93,6 +96,60 @@ namespace JobBoard.WpfApplication
         {
             AddVacancyWindow vac = new AddVacancyWindow(userRef);
             vac.Show();
+        }
+
+        private void AddUserHistory()
+        {
+            if (userRef.UserType == 0)
+            {
+                AddCvBox();
+            }
+            else if (userRef.UserType == 1)
+            {
+                //AddVacancy();
+            }
+        }
+
+        private void AddCvBox()
+        {
+            List<Experience> experienceList = control.getExperienceList(userRef.UserId);
+            CVBoxUC cvBox;
+
+            foreach(Experience exp in experienceList)
+            {
+                cvBox = new CVBoxUC();
+                cvBox.jobnameLabel.Content = exp.Title;
+                cvBox.companyLabel.Content = exp.Entity;
+                cvBox.timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
+                cvBox.descTextblock.Text = exp.Details;
+
+                this.CVview.Children.Add(cvBox);
+            }
+        }
+
+        private void AddPostedVacancies()
+        {
+            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef.UserId);
+            VacancyBoxUC vBoxUC;
+
+            foreach (Vacancy vacancy in vacancyList)
+            {
+                vBoxUC = new VacancyBoxUC();
+                vBoxUC.jobtitleLabel.Content += " " + vacancy.JobTitle;
+                vBoxUC.employerLabel.Content += " " + vacancy.Company;
+                vBoxUC.locationLabel.Content += " " + vacancy.Location;
+                vBoxUC.jobtypeLabel.Content += " " + vacancy.JobType;
+                vBoxUC.salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+                vBoxUC.deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+                foreach (string skill in vacancy.skillList)
+                {
+                    Button btn = new Button();
+                    btn.Content = skill;
+                    vBoxUC.skillPanel.Children.Add(btn);
+                }
+                vBoxUC.dtlsRTxtBox.AppendText(vacancy.JobSummary);
+                this.CVview.Children.Add(vBoxUC);
+            }
         }
     }
 }

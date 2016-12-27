@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 
 namespace JobBoard.WpfApplication
 {
@@ -93,7 +94,10 @@ namespace JobBoard.WpfApplication
                 }
                 alreadyAdded = false;
             }
-            catch (Exception ex){ };
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+            }
         }
 
         private void SetProfileimage()
