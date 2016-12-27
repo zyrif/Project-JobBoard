@@ -74,7 +74,7 @@ namespace JobBoard.WpfApplication
 
             foreach(Mail m in collections.mail)
             {
-                if (m.ReceiverUserName == currentUser.UserName)
+                if (m.ReceiverUserName == currentUser.UserName && m.ReceiverDeleted!=1)
                 {
                     MailUC muc = new MailUC(m);
                     this.mailView.Children.Add(muc);
@@ -98,7 +98,7 @@ namespace JobBoard.WpfApplication
 
             foreach (Mail m in collections.mail)
             {
-                if (m.SenderUserName == currentUser.UserName && m.IsDraft == 1)
+                if (m.SenderUserName == currentUser.UserName && m.IsDraft == 1 && m.SenderDeleted != 1)
                 {
                     MailUC muc = new MailUC(m);
                     this.mailView.Children.Add(muc);
@@ -116,7 +116,7 @@ namespace JobBoard.WpfApplication
 
             foreach (Mail m in collections.mail)
             {
-                if (m.SenderUserName == currentUser.UserName && m.IsDraft != 1)
+                if (m.SenderUserName == currentUser.UserName && m.IsDraft != 1 && m.SenderDeleted != 1)
                 {
                     MailUC muc = new MailUC(m);
                     this.mailView.Children.Add(muc);

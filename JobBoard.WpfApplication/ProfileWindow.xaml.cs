@@ -117,7 +117,7 @@ namespace JobBoard.WpfApplication
 
             foreach(Experience exp in experienceList)
             {
-                CVBoxUC cvBox = new CVBoxUC(exp);
+                CVBoxUC cvBox = new CVBoxUC(userRef, exp);
                 this.CVview.Children.Add(cvBox);
             }
         }
@@ -128,7 +128,7 @@ namespace JobBoard.WpfApplication
 
             foreach (Vacancy vacancy in vacancyList)
             {
-                VacancyBoxUC vBoxUC = new VacancyBoxUC(vacancy);
+                VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy);
                 this.CVview.Children.Add(vBoxUC);
             }
         }

@@ -35,7 +35,7 @@ namespace JobBoard.Core.Entity
             this.DeadLine = deadLine;
             this.MinimumSalary = minimumSalary;
             this.MaximumSalary = maximumSalary;
-            if((byte)EJobType.Permanent == Convert.ToByte(jobType))
+            if((byte)EJobType.Temporary == Convert.ToByte(jobType))
             {
                 this.JobType = EJobType.Temporary.ToString();
             }
@@ -47,7 +47,5 @@ namespace JobBoard.Core.Entity
 
             this.skillList = skillList;
         }
-
-
     }
 }

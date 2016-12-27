@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" MinHeight="123" MouseEnter="CVBox_MouseEnter" MouseLeave="CVBox_MouseLeave" Background="#FF3A3A3A" Margin="0,0,0,10" Height="123">
-    <Grid x:Name="CVBMainGrid" Margin="0,5,10,10">
+    <Grid x:Name="CVBMainGrid" Margin="0,5,10,0">
         <Label x:Name="jobnameLabel" Content="Job Name" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <Label x:Name="companyLabel" Content="Company" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="timeperiodLabel" Content="Time - Period" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock x:Name="descTextblock" HorizontalAlignment="Left" Margin="161.457,18,0,0" MaxWidth="1000" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White"><Run Text="TextBlock "/><Run Text="OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"/></TextBlock>
+        <Grid x:Name="CVBSubGrid" Margin="0,132,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="232"/>
 
     </Grid>
 </UserControl>

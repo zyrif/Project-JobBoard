@@ -75,6 +75,16 @@ namespace JobBoard.Core
             
         }
 
+        public void addUser(string firstName, string lastName, string email, string phNumber, Image photo, string jobposition)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Email = email;
+            this.PhoneNumber = phNumber;
+            this.Photo = photo;
+            this.JobPosition = jobposition;
+        }
+
         public static User getInstance()
         {
             if (instance == null)
