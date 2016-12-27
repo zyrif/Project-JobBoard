@@ -64,6 +64,9 @@
     <Compile Include="AnotherJSUserOverviewUC.xaml.cs">
       <DependentUpon>AnotherJSUserOverviewUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CandidateBoxUC.xaml.cs">
+      <DependentUpon>CandidateBoxUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MailboxWindow.xaml.cs">
       <DependentUpon>MailboxWindow.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddVacancyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CandidateBoxUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
