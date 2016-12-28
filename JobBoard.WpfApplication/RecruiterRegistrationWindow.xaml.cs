@@ -78,6 +78,7 @@ namespace JobBoard.WpfApplication
             {
                 currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text);
                 EmployerRegistration er = new EmployerRegistration(currentUser);
+
                 er.Show();
                 this.Hide();
             }

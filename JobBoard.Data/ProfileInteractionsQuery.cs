@@ -32,6 +32,12 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
+        public void UpdateSectionQuery(string title, string entity, DateTime sttime, DateTime edtime, string details,int expId)
+        {
+            query = "UPDATE user_experience set title='" + title + "', entity='" + entity + "',start_time='" + sttime.ToString("yyyy-MM-dd") + "',end_time='" + edtime.ToString("yyyy-MM-dd") + "',details='" + details + "' where experience_id=" + expId;
+            dbReadWrite.insertQuery(query);
+        }
+
         public void AddVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, string jobtype, string details)
         {
             query = "INSERT INTO job_info (job_title, company_id, recruiter_id, location, posted_time, dead_line, minimum_salary, maximum_salary, job_type, details) VALUES ('" + title + "', " + empid + ", " + userid + ", '" + location + "', '" + posttime.ToString("yyyy-MM-dd") + "', '" + deadline.ToString("yyyy-MM-dd") + "', " + minsalary + ", " + maxsalary + ", '" + jobtype + "', '" + details + "')";

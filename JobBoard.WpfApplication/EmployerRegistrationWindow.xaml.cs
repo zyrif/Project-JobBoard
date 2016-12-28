@@ -48,6 +48,8 @@ namespace JobBoard.WpfApplication
             Company company = new Company(nameBox.Text,addressbox.Text,countryBox.Text,phoneBox.Text,emailBox.Text,websiteBox.Text, Convert.ToByte(btypeSlider.Value));
             lrControl.register(company);
             currentUser.CompanyId = lrControl.getCompanyId(company.Name);
+            currentUser.CompanyName = company.Name;
+            lrControl.register(currentUser);
             Profile jp = new Profile(currentUser);
             jp.Show();
             this.Hide();

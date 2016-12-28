@@ -35,6 +35,11 @@ namespace JobBoard.Core
             query.AddSectionQuery(userId, exp.ExpType, exp.Title, exp.Entity, exp.StartTime, exp.EndTime, exp.Details);
         }
 
+        public void UpdateSection(Experience exp)
+        {
+            query.UpdateSectionQuery(exp.Title,exp.Entity,exp.StartTime,exp.EndTime,exp.Details,exp.ExperienceId);
+        }
+
         public void AddVacancy(int userId, Vacancy vac)
         {
             int empid = query.getCompanyId(vac.Company);
@@ -55,6 +60,7 @@ namespace JobBoard.Core
             for(byte i=0; i<dataTable.Rows.Count; i++)
             {
                 experience = new Experience(Convert.ToByte(dataTable.Rows[i]["exp_type"]),
+                                            Convert.ToInt32(dataTable.Rows[i]["experience_id"]),
                                             dataTable.Rows[i]["title"].ToString(),
                                             dataTable.Rows[i]["entity"].ToString(),
                                             Convert.ToDateTime(dataTable.Rows[i]["start_time"].ToString()),
