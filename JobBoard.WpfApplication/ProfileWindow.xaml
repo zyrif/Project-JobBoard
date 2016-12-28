@@ -24,7 +24,7 @@
         </ScrollViewer>
         <Grid x:Name="UserOverviewGrid" Grid.Column="2" Margin="10,44,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Button x:Name="AddSectionBtn" Content="Add" Margin="0,69,10,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" Grid.Column="1" Grid.Row="1" FontSize="16" Click="AddSectionBtn_Click"/>
-        <Grid x:Name="PSubGrid" Grid.Column="2" HorizontalAlignment="Left" Height="40" Margin="10,0,0,0" VerticalAlignment="Top" Width="215" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Grid x:Name="PSubGrid" Grid.Column="2" Height="40" Margin="10,0,9,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
 
     </Grid>
 </Window>

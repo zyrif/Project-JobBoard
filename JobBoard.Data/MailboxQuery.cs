@@ -43,15 +43,15 @@ namespace JobBoard.Data
             dbReadWrite.updateQuery(query);
         }
 
-        public void SenderDeleteMail(string id)
+        public void SenderDeleteMail(string userid, int mailid)
         {
-            query = "UPDATE mail_box set sender_isdeleted=1 where sender_id='" + id.Trim() + "'";
+            query = "UPDATE mail_box set sender_isdeleted=1 where sender_id='" + userid.Trim() + "' and mail_id=" + mailid + "";
             dbReadWrite.updateQuery(query);
         }
 
-        public void ReceiverDeleteMail(string id)
+        public void ReceiverDeleteMail(string userid, int mailid)
         {
-            query = "UPDATE mail_box set receiver_isdeleted=1 where receiver_id='" + id.Trim() + "'";
+            query = "UPDATE mail_box set receiver_isdeleted=1 where receiver_id='" + userid.Trim() + "' and mail_id=" + mailid + "";
             dbReadWrite.updateQuery(query);
         }
 

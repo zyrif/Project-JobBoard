@@ -74,5 +74,17 @@ namespace JobBoard.Core.Control
             }
         }
 
+        public void DeleteSenderMail(User user, Mail mail)
+        {
+            query.SenderDeleteMail(user.UserName, mail.MailId);
+        }
+
+        public void DeleteReceiverMail(User user, Mail mail)
+        {
+            query.ReceiverDeleteMail(user.UserName, mail.MailId);
+        }
+
+
+
     }
 }

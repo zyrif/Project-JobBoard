@@ -87,18 +87,18 @@ namespace JobBoard.Core
             //jobSeeker.Photo = photo;
 
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                BitmapImage photo = new BitmapImage();
-                ms.Position = 0;
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    BitmapImage photo = new BitmapImage();
+            //    ms.Position = 0;
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                jobSeeker.Photo = photo;
+            //    jobSeeker.Photo = photo;
 
-            }
+            //}
 
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
