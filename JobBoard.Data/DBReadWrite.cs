@@ -88,5 +88,10 @@ namespace JobBoard.Data
         {
             connection.Close();
         }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
     }
 }

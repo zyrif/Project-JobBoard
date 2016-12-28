@@ -302,5 +302,10 @@ namespace JobBoard.Core
         {
             return query.getCompanyId(companyName);
         }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
     }
 }
