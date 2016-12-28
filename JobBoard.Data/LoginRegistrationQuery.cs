@@ -143,5 +143,17 @@ namespace JobBoard.Data
 
             return dataTable;
         }
+
+        public void UpdateJSInfo(string fname, string lname, string email, string phone, DateTime birthday, string location, int userid)
+        {
+            query = "update user_info set first_name='" + fname.Trim() + "', last_name='"+lname.Trim()+"',email='"+email.Trim()+"',phone='"+phone.Trim()+"', birth_day='"+birthday.ToString("yyyy-MM-dd")+"', location='"+location.Trim()+"' where user_id = "+userid;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void DeleteJSSkill(int id)
+        {
+            query = "Delete from user_skill where user_id=" + id;
+            dbReadWrite.insertQuery(query);
+        }
     }
 }

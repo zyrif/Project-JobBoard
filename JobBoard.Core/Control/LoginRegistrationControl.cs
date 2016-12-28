@@ -294,5 +294,20 @@ namespace JobBoard.Core
         {
             return query.getCompanyId(companyName);
         }
+
+        public void UpdateJS(User user)
+        {
+            query.UpdateJSInfo(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.BirthDay, user.Location, user.UserId);
+            UpdateJSSkills(user);
+        }
+
+        public void UpdateJSSkills(User user)
+        {
+            query.DeleteJSSkill(user.UserId);
+            foreach (string skill in user.skillList)
+            {
+                query.writeSkill(user.UserId, skill);
+            }
+        }
     }
 }
