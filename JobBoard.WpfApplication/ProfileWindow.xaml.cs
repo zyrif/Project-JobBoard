@@ -81,7 +81,7 @@ namespace JobBoard.WpfApplication
         {
             if (this.userRef == currentUser)
             {
-                ProfileSubUserControl ps = new ProfileSubUserControl();
+                ProfileSubUserControl ps = new ProfileSubUserControl(this);
                 this.PSubGrid.Children.Add(ps);
             }
         }
