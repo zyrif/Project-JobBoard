@@ -14,7 +14,7 @@
             <Button x:Name="draftBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="28" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" d:LayoutOverrides="VerticalAlignment" Margin="0,39.712,0,0" Content="Draft" Click="draftBtn_Click"/>
             <Button x:Name="sentBtn" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="241" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" FontSize="28" ClickMode="Press" IsDefault="True" Height="41" HorizontalAlignment="Left" FontFamily="Calibri bold" BorderThickness="1" Margin="0,79.792,0,0" d:LayoutOverrides="VerticalAlignment" Content="Sent" Click="sentBtn_Click"/>
         </Grid>
-        <ScrollViewer x:Name="ContentScrollBox" Margin="250,116,0,83" MinHeight="405" MinWidth="631">
+        <ScrollViewer x:Name="ContentScrollBox" Margin="250,116,0,83" MinHeight="405" MinWidth="631" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="mailView" VerticalAlignment="Top" Margin="0"/>
         </ScrollViewer>
         <Button x:Name="writemailBtn" Content="New Mail" Margin="0,70.977,53,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="102.556" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16" Click="writemailBtn_Click"/>
