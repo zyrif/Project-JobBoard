@@ -130,5 +130,16 @@ namespace JobBoard.Core.Control
 
             return candidateList;
         }
+
+        public List<string> getSkillListByUserId(int userId)
+        {
+            List<int> skillList = query.getSkillListOfCandidates(userId);
+            List<string> skillNameList = new List<string>();
+            foreach (int skillId in skillList)
+            {
+                skillNameList.Add(query.getSkillById(skillId));
+            }
+            return skillNameList;
+        }
     }
 }

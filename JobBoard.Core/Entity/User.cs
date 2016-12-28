@@ -45,6 +45,11 @@ namespace JobBoard.Core
             return skillList;
         }
 
+        private void initSkills()
+        {
+
+        }
+
         //Recruiter only fields
         public string JobPosition { get; set; }
         public string CompanyName { get; set; }

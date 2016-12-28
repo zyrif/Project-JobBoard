@@ -1,4 +1,6 @@
 ﻿using JobBoard.Core;
+using JobBoard.Core.Control;
+using JobBoard.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,7 @@ namespace JobBoard.WpfApplication
             InitializeComponent();
             this.userRef = usr;
             PopulateUO();
+            initSkills();
         }
 
         private void SearchJob_Click(object sender, RoutedEventArgs e)
@@ -44,6 +47,19 @@ namespace JobBoard.WpfApplication
             ulocationLabel.Content = userRef.Location;
             uphoneLabel.Content = userRef.PhoneNumber;
             profileImage.Source = userRef.Photo;
+        }
+
+        private void initSkills()
+        {
+            Button button;
+            SearchControl sqControl = new SearchControl();
+            userRef.skillList = sqControl.getSkillListByUserId(userRef.UserId);
+            foreach (string skill in userRef.skillList)
+            {
+                button = new Button();
+                button.Content = skill;
+                this.skillsPanel.Children.Add(button);
+            }
         }
     }
 }
