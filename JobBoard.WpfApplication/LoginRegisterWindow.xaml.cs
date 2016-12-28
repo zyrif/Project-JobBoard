@@ -28,12 +28,15 @@ namespace JobBoard.WpfApplication
         Welcome welcomeWindow;
 
 
-        public LoginRegister(Welcome wc)
+        public LoginRegister()
         {
             InitializeComponent();
-            this.welcomeWindow = wc;
         }
 
+        public LoginRegister(Welcome wc):this()
+        {
+            this.welcomeWindow = wc;
+        }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
