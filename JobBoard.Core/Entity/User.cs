@@ -97,5 +97,10 @@ namespace JobBoard.Core
                 instance = new User();
             return instance;
         }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
     }
 }
