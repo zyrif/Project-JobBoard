@@ -98,7 +98,6 @@ namespace JobBoard.Core.Control
             List<int> userSkills;
             int count = 0;
             dataTable = query.getCandidateByLocation(location);
-            System.Windows.Forms.MessageBox.Show(dataTable.Rows.Count.ToString());
             for(int i=0; i<dataTable.Rows.Count; i++)
             {
                 userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
