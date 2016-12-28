@@ -81,6 +81,12 @@ namespace JobBoard.Data
             return skillList;
         }
 
+        public string getSkillById(int skillId)
+        {
+            query = "select skill from skill_list where skill_id=" + skillId;
+            return dbReadWrite.selectQuery(query).Rows[0]["skill"].ToString();
+        }
+
         public DataTable search(string jobTitle, string companyName, string location, double minimumSalary, double maximumSalary, bool jobType)
         {
             query = "select * from job_info where ";
