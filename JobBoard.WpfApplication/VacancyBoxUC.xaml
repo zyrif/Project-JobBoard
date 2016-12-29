@@ -14,7 +14,7 @@
         <Label x:Name="locationLabel" Content="Location: " HorizontalAlignment="Left" Margin="32,61.01,0,0" Foreground="#FFA2A2A2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
         <Label x:Name="skillsLabel" Content="Skills: " Margin="0,11.97,221.289,0" Foreground="#FFA2A2A2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" HorizontalAlignment="Right"/>
         <Label x:Name="deadlineLabel" Content="Deadline:" Margin="34.576,170.483,0,0" Foreground="#FFA2A2A2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <RichTextBox x:Name="dtlsRTxtBox" Margin="271.674,114.413,20,0" Background="#FF343434" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" MinWidth="325" MinHeight="100" Height="101.99" VerticalAlignment="Top">
+        <RichTextBox x:Name="dtlsRTxtBox" Margin="271.674,114.413,20,0" Background="#FF343434" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" MinWidth="325" MinHeight="100" Height="101.99" VerticalAlignment="Top" IsEnabled="False">
             <FlowDocument IsEnabled="False">
                 <Paragraph>
                     <Run Text="Details....."/>

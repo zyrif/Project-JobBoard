@@ -90,6 +90,16 @@ namespace JobBoard.Core.Control
             return list;
         }
 
+        /*public List<User> candidateSearch(string location)
+        {
+            List<int> userList = new List<int>();
+            dataTable = query.getCandidateByLocation(location);
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
+            }
+        }*/
+
         public List<User> candidateSearch(List<string> jobSkills, string location)
         {
             List<int> jSkillIdList = new List<int>();                                                   
@@ -98,7 +108,6 @@ namespace JobBoard.Core.Control
             List<int> userSkills;
             int count = 0;
             dataTable = query.getCandidateByLocation(location);
-            System.Windows.Forms.MessageBox.Show(dataTable.Rows.Count.ToString());
             for(int i=0; i<dataTable.Rows.Count; i++)
             {
                 userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
@@ -129,6 +138,17 @@ namespace JobBoard.Core.Control
             }
 
             return candidateList;
+        }
+
+        public List<string> getSkillListByUserId(int userId)
+        {
+            List<int> skillList = query.getSkillListOfCandidates(userId);
+            List<string> skillNameList = new List<string>();
+            foreach (int skillId in skillList)
+            {
+                skillNameList.Add(query.getSkillById(skillId));
+            }
+            return skillNameList;
         }
     }
 }

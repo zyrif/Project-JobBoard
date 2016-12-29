@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="232" Height="45">
     <Grid>
-        <Button x:Name="delBtn" Content="DELETE" Margin="147,0,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Left" Width="75"/>
-        <Button x:Name="editBtn" Content="EDIT" Margin="0,0,90,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="delBtn" Content="DELETE" Margin="147,0,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Left" Width="75" Click="delBtn_Click"/>
+        <Button x:Name="editBtn" Content="EDIT" Margin="0,0,90,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="75" Click="editBtn_Click"/>
 
     </Grid>
 </UserControl>

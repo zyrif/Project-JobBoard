@@ -35,10 +35,21 @@ namespace JobBoard.Core
             query.AddSectionQuery(userId, exp.ExpType, exp.Title, exp.Entity, exp.StartTime, exp.EndTime, exp.Details);
         }
 
+        public void UpdateSection(Experience exp)
+        {
+            query.UpdateSectionQuery(exp.Title,exp.Entity,exp.StartTime,exp.EndTime,exp.Details,exp.ExperienceId);
+        }
+
         public void AddVacancy(int userId, Vacancy vac)
         {
             int empid = query.getCompanyId(vac.Company);
             query.AddVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
+        }
+
+        public void UpdateVacancy(int userId, Vacancy vac)
+        {
+            int empid = query.getCompanyId(vac.Company);
+            query.UpdateVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
         }
 
         public List<Experience> getExperienceList(int userId)
@@ -49,6 +60,7 @@ namespace JobBoard.Core
             for(byte i=0; i<dataTable.Rows.Count; i++)
             {
                 experience = new Experience(Convert.ToByte(dataTable.Rows[i]["exp_type"]),
+                                            Convert.ToInt32(dataTable.Rows[i]["experience_id"]),
                                             dataTable.Rows[i]["title"].ToString(),
                                             dataTable.Rows[i]["entity"].ToString(),
                                             Convert.ToDateTime(dataTable.Rows[i]["start_time"].ToString()),
@@ -88,6 +100,22 @@ namespace JobBoard.Core
             }
 
             return vacancyList;
+        }
+
+        public void DeleteExperience(User user, Experience exp)
+        {
+            query.DelExp(user.UserId, exp.Title);
+        }
+
+        public void DeleteVacancy(User user, Vacancy vacancy)
+        {
+            query.DelVac(user.UserId, vacancy.JobTitle, vacancy.Location);
+        }
+
+        public void LogOut()
+        {
+            Collections.clearInstance();
+            User.clearInstance();
         }
     }
 }

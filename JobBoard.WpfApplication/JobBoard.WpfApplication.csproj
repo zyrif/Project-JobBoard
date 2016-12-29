@@ -61,6 +61,9 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="UpdateSectionWindow.xaml.cs">
+      <DependentUpon>UpdateSectionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AnotherJSUserOverviewUC.xaml.cs">
       <DependentUpon>AnotherJSUserOverviewUC.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
     <Compile Include="WritemailWindow.xaml.cs">
       <DependentUpon>WritemailWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="UpdateSectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AddSectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

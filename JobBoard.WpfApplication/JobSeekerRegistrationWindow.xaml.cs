@@ -48,6 +48,24 @@ namespace JobBoard.WpfApplication
             catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
    
         }
+        bool fromEdit=false;
+        public JobSeekerRegistration()
+        {
+            InitializeComponent();
+
+            List<string> skillList = lrControl.getAvailableSkills();
+            comboBox.ItemsSource = skillList;
+
+            try
+            {
+                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+                SetProfileimage();
+            }
+            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+
+            SetFields();
+            fromEdit = true;
+        }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
@@ -73,9 +91,13 @@ namespace JobBoard.WpfApplication
             {
                 currentUser.setSkill(skillButton.Content.ToString());
             }
-
-            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
-            lrControl.register(currentUser);
+            if (fromEdit == true)
+                updateFields();
+            else
+            {
+                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
+                lrControl.register(currentUser);
+            }
             Profile jp = new Profile(currentUser);
             jp.Show();
             this.Hide();
@@ -149,6 +171,39 @@ namespace JobBoard.WpfApplication
                     profileImage.Source = photo;
                 }
             }
+        }
+
+        private void SetFields()
+        {
+            firstnameBox.Text = currentUser.FirstName;
+            lastnameBox.Text = currentUser.LastName;
+            emailBox.Text = currentUser.Email;
+            phoneBox.Text = currentUser.PhoneNumber;
+            bddateBox.Text = currentUser.BirthDay.Day.ToString();
+            bdmonthBox.Text = currentUser.BirthDay.Month.ToString();
+            bdyearBox.Text = currentUser.BirthDay.Year.ToString();
+            locationBox.Text = currentUser.Location;
+
+            
+        }
+
+        private void updateFields()
+        {
+            User user = new User();
+            user = currentUser;
+            user.FirstName = firstnameBox.Text;
+            user.LastName = lastnameBox.Text;
+            user.Email = emailBox.Text;
+            user.PhoneNumber = phoneBox.Text;
+            user.BirthDay = Convert.ToDateTime(bddateBox.Text + "/" + bdmonthBox.Text + "/" + bdyearBox.Text);
+            user.Location = locationBox.Text;
+
+            foreach (Button btn in slctskillsPanel.Children)
+            {
+                user.skillList.Add(btn.Content.ToString());
+            }
+            currentUser = user;
+            lrControl.UpdateJS(user);
         }
     }
 }

@@ -21,19 +21,31 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddVacancyWindow : Window
     {
-        User userRef;
+        Vacancy vacancy;
+        Profile profile;
+        User userRef = User.getInstance();
         ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
 
-        public AddVacancyWindow(User usr)
+        bool updateVacancy = false;
+
+        public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
             init();
-            this.userRef = usr;
+            this.profile = profile;
+        }
+
+        public AddVacancyWindow(Vacancy vacancy)
+        {
+            InitializeComponent();
+            this.vacancy = vacancy;
+            updateVacancy = true;
+            UpdateVacancy();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -49,20 +61,27 @@ namespace JobBoard.WpfApplication
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
             DateTime postedTime = DateTime.Now;
-            DateTime deadLine = Convert.ToDateTime(expdate.Text+"/"+expMonth.Text+"/"+expYear.Text);
+            DateTime deadLine = Convert.ToDateTime(expdate.Text + "/" + expMonth.Text + "/" + expYear.Text);
             string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
             double minimumSalary = Convert.ToDouble(salary[0]);
             double maximumSalary = Convert.ToDouble(salary[1]);
             string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
             List<string> skills = new List<string>();
-            foreach(Button b in selectWrapPanel.Children)
+            foreach (Button b in selectWrapPanel.Children)
             {
                 skills.Add(b.Content.ToString());
             }
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
-            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
+            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
             piControl.AddVacancy(userRef.UserId, newVacancy);
+
+
+            Profile newprofile = new Profile(userRef);
+            newprofile.Show();
+            profile.Close();
+
+            this.Close();
         }
 
         private void skillComboBox_LostFocus(object sender, RoutedEventArgs e)
@@ -110,6 +129,24 @@ namespace JobBoard.WpfApplication
             empTypeComboBox.ItemsSource = jobTypeList;
             salBrcktComboBox.ItemsSource = salaryRangeList;
             skillComboBox.ItemsSource = skillList;
+        }
+
+        private void UpdateVacancy()
+        {
+            init();
+
+            jobtitleBox.Text = vacancy.JobTitle;
+            joblocationBox.Text = vacancy.Location;
+            expdate.Text = vacancy.DeadLine.Day.ToString();
+            expMonth.Text = vacancy.DeadLine.Month.ToString();
+            expYear.Text = vacancy.DeadLine.Year.ToString();
+
+            jobDetailBox.Document.Blocks.Clear();
+            jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
+
+
+
+
         }
     }
 }

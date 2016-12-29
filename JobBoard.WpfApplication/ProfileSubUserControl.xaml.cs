@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using JobBoard.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +23,28 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class ProfileSubUserControl : UserControl
     {
-        public ProfileSubUserControl()
+        Profile p;
+        public ProfileSubUserControl(Profile p)
         {
             InitializeComponent();
+            this.p = p;
         }
 
         private void UserInbox_Click(object sender, RoutedEventArgs e)
         {
             MailboxWindow mbw = new MailboxWindow();
             mbw.Show();
+        }
+
+        private void UserLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Collections.clearInstance();
+            User.clearInstance();
+            LoginRegistrationControl.clearInstance();
+            DBReadWrite.clearInstance();
+            LoginRegister lr = new LoginRegister();
+            lr.Show();
+            p.Close();
         }
     }
 }

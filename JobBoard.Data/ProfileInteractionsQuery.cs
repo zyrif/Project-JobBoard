@@ -32,9 +32,21 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
+        public void UpdateSectionQuery(string title, string entity, DateTime sttime, DateTime edtime, string details,int expId)
+        {
+            query = "UPDATE user_experience set title='" + title + "', entity='" + entity + "',start_time='" + sttime.ToString("yyyy-MM-dd") + "',end_time='" + edtime.ToString("yyyy-MM-dd") + "',details='" + details + "' where experience_id=" + expId;
+            dbReadWrite.insertQuery(query);
+        }
+
         public void AddVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, string jobtype, string details)
         {
             query = "INSERT INTO job_info (job_title, company_id, recruiter_id, location, posted_time, dead_line, minimum_salary, maximum_salary, job_type, details) VALUES ('" + title + "', " + empid + ", " + userid + ", '" + location + "', '" + posttime.ToString("yyyy-MM-dd") + "', '" + deadline.ToString("yyyy-MM-dd") + "', " + minsalary + ", " + maxsalary + ", '" + jobtype + "', '" + details + "')";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void UpdateVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, string jobtype, string details)
+        {
+            query = "Update job_info set job_title='" + title + "', company_id=" + empid + ", recruiter_id=" + userid + ", location='" + location + "', posted_time='" + posttime.ToString("yyyy-MM-dd") + "', dead_line='" + deadline.ToString("yyyy-MM-dd") + "', minimum_salary=" + minsalary + ", maximum_salary=" + maxsalary + ", job_type='" + jobtype + "', details='" + details + "'";
             dbReadWrite.insertQuery(query);
         }
 
@@ -60,6 +72,18 @@ namespace JobBoard.Data
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
+        }
+
+        public void DelExp(int id, string title)
+        {
+            query = "Delete from user_experience where user_id=" + id + " and title='" + title + "' ";
+            dbReadWrite.updateQuery(query);
+        }
+
+        public void DelVac(int id, string title, string location)
+        {
+            query = "Delete from job_info where recruiter_id=" + id + " and job_title='" + title + "' and location='" + location + "' ";
+            dbReadWrite.updateQuery(query);
         }
     }
 }

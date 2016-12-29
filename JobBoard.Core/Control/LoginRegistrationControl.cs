@@ -8,6 +8,10 @@ using JobBoard.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Drawing;
+using System.Drawing.Imaging;
+using MySql.Data.MySqlClient;
 
 namespace JobBoard.Core
 {
@@ -64,7 +68,38 @@ namespace JobBoard.Core
             jobSeeker.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"].ToString());
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
-           
+
+
+            //Bitmap bmp;
+            //using (MemoryStream memorystream = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    bmp = new Bitmap(memorystream);
+            //}
+
+            //MemoryStream ms = new MemoryStream();
+            //bmp.Save(ms, ImageFormat.Bmp);
+            //ms.Position = 0;
+            //BitmapImage photo = new BitmapImage();
+            //photo.BeginInit();
+            //photo.StreamSource = ms;
+            //photo.EndInit();
+
+            //jobSeeker.Photo = photo;
+
+
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    BitmapImage photo = new BitmapImage();
+            //    ms.Position = 0;
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
+
+            //    jobSeeker.Photo = photo;
+
+            //}
+
             dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -87,17 +122,17 @@ namespace JobBoard.Core
             recruiter.Email = dataTable.Rows[0]["email"].ToString();
             recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                var photo = new BitmapImage();
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    var photo = new BitmapImage();
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                recruiter.Photo = photo;
+            //    recruiter.Photo = photo;
 
-            }
+            //}
 
             recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
 
@@ -121,19 +156,19 @@ namespace JobBoard.Core
             jobSeeker.BirthDay = Convert.ToDateTime(dataTable.Rows[0]["birth_day"]);
             jobSeeker.Location = dataTable.Rows[0]["location"].ToString();
 
-            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
-            {
-                var photo = new BitmapImage();
-                photo.BeginInit();
-                photo.CacheOption = BitmapCacheOption.OnLoad;
-                photo.StreamSource = ms;
-                photo.EndInit();
+            //using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            //{
+            //    var photo = new BitmapImage();
+            //    photo.BeginInit();
+            //    photo.CacheOption = BitmapCacheOption.OnLoad;
+            //    photo.StreamSource = ms;
+            //    photo.EndInit();
 
-                jobSeeker.Photo = photo;
+            //    jobSeeker.Photo = photo;
 
-            }
+            //}
 
-                dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
+            dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill_id"].ToString());
@@ -196,12 +231,19 @@ namespace JobBoard.Core
         {
             if (userref.UserType == 0)
             {
-                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, ConvertImage(userref) ,userref.UserType);
+                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location ,userref.UserType);
+                AddPhoto(userref);
             }
             else if (userref.UserType == 1)
             {
-                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, ConvertImage(userref), userref.JobPosition, userref.CompanyName, userref.UserType);
+                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.JobPosition, userref.CompanyName, userref.UserType);
+                AddPhoto(userref);
             }
+        }
+
+        public void AddPhoto(User userref)
+        {
+            query.addimage(userref.UserId, ConvertImage(userref));
         }
 
         public List<string> getAvailableSkills()
@@ -219,14 +261,25 @@ namespace JobBoard.Core
 
         public Byte[] ConvertImage(User userref)
         {
-            Stream stream = userref.Photo.StreamSource;
-            Byte[] bytes = null;
-            if(stream != null && stream.Length > 0)
+            //Stream stream = userref.Photo.StreamSource;
+            //Byte[] bytes = null;
+            //if (stream != null && stream.Length > 0)
+            //{
+            //    using (BinaryReader br = new BinaryReader(stream))
+            //    {
+            //        bytes = br.ReadBytes((Int32)stream.Length);
+            //    }
+            //}
+
+            //return bytes;
+
+            byte[] bytes;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(userref.Photo));
+            using (MemoryStream ms = new MemoryStream())
             {
-                using (BinaryReader br = new BinaryReader(stream))
-                {
-                    bytes = br.ReadBytes((Int32)stream.Length);
-                }
+                encoder.Save(ms);
+                bytes = ms.ToArray();
             }
 
             return bytes;
@@ -248,6 +301,24 @@ namespace JobBoard.Core
         public int getCompanyId(string companyName)
         {
             return query.getCompanyId(companyName);
+        }
+
+        public void UpdateJS(User user)
+        {
+            query.UpdateJSInfo(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.BirthDay, user.Location, user.UserId);
+            UpdateJSSkills(user);
+        }
+
+        public void UpdateJSSkills(User user)
+        {
+            query.DeleteJSSkill(user.UserId);
+            foreach (string skill in user.skillList)
+            {
+                query.writeSkill(user.UserId, skill);
+            }
+        public static void clearInstance()
+        {
+            instance = null;
         }
     }
 }
