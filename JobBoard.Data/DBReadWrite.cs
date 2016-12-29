@@ -14,7 +14,7 @@ namespace JobBoard.Data
 {
     public class DBReadWrite
     {
-        static MySqlConnection connection;
+        public MySqlConnection connection;
         static DBReadWrite instance;
 
         DBReadWrite()
@@ -59,6 +59,13 @@ namespace JobBoard.Data
             dataAdapter.Fill(dataTable);
         }
 
+        public void insertimageQuery(MySqlCommand sqlCommand)
+        {
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+        }
+
         //To create Connection with DataBase
         public void createConnection()
         {
@@ -80,6 +87,11 @@ namespace JobBoard.Data
         void closeConnection()
         {
             connection.Close();
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
         }
     }
 }

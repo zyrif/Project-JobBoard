@@ -73,17 +73,9 @@ namespace JobBoard.WpfApplication
             }
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
 
-            if(updateVacancy)
-            {
-                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
-                piControl.UpdateVacancy(userRef.UserId, newVacancy);
-            }
+            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+            piControl.AddVacancy(userRef.UserId, newVacancy);
 
-            else
-            {
-                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
-                piControl.AddVacancy(userRef.UserId, newVacancy);
-            }
 
             Profile newprofile = new Profile(userRef);
             newprofile.Show();

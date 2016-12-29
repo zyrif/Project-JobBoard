@@ -89,7 +89,7 @@ namespace JobBoard.WpfApplication
             }
             catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
         }
-
+        
         private void ProfileInfoEdit_Click(object sender, RoutedEventArgs e)
         {
             JobSeekerRegistration jsr = new JobSeekerRegistration();

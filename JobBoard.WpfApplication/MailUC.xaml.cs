@@ -1,4 +1,5 @@
 ﻿using JobBoard.Core;
+using JobBoard.Core.Control;
 using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
@@ -54,10 +55,16 @@ namespace JobBoard.WpfApplication
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (currentUser.UserName == mail.SenderUserName)
-                mail.SenderDeleted = 1;
-            else if (currentUser.UserName == mail.ReceiverUserName)
-                mail.ReceiverDeleted = 1;
+            if (mail.SenderUserName == currentUser.UserName)
+            {
+                MailboxControl mbc = new MailboxControl();
+                mbc.DeleteSenderMail(currentUser, mail);
+            }
+            else if (mail.ReceiverUserName == currentUser.UserName)
+            {
+                MailboxControl mbc = new MailboxControl();
+                mbc.DeleteReceiverMail(currentUser, mail);
+            }
         }
 
         private void senderLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

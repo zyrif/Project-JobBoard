@@ -111,5 +111,11 @@ namespace JobBoard.Core
         {
             query.DelVac(user.UserId, vacancy.JobTitle, vacancy.Location);
         }
+
+        public void LogOut()
+        {
+            Collections.clearInstance();
+            User.clearInstance();
+        }
     }
 }

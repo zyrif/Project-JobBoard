@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Drawing;
 using System.Drawing.Imaging;
+using MySql.Data.MySqlClient;
 
 namespace JobBoard.Core
 {
@@ -167,7 +168,7 @@ namespace JobBoard.Core
 
             //}
 
-                dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
+            dataTable = query.getSkill(Convert.ToInt32(dataTable.Rows[0]["user_id"]));
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 jobSeeker.getSkillList().Add(dataTable.Rows[i]["skill_id"].ToString());
@@ -230,12 +231,19 @@ namespace JobBoard.Core
         {
             if (userref.UserType == 0)
             {
-                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location, ConvertImage(userref) ,userref.UserType);
+                query.writeJobSeekerInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.BirthDay, userref.Location ,userref.UserType);
+                AddPhoto(userref);
             }
             else if (userref.UserType == 1)
             {
-                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, ConvertImage(userref), userref.JobPosition, userref.CompanyName, userref.UserType);
+                query.writeRecruiterInfo(userref.UserName, userref.UserPassword, userref.FirstName, userref.LastName, userref.Email, userref.PhoneNumber, userref.JobPosition, userref.CompanyName, userref.UserType);
+                AddPhoto(userref);
             }
+        }
+
+        public void AddPhoto(User userref)
+        {
+            query.addimage(userref.UserId, ConvertImage(userref));
         }
 
         public List<string> getAvailableSkills()
@@ -253,28 +261,28 @@ namespace JobBoard.Core
 
         public Byte[] ConvertImage(User userref)
         {
-            Stream stream = userref.Photo.StreamSource;
-            Byte[] bytes = null;
-            if (stream != null && stream.Length > 0)
-            {
-                using (BinaryReader br = new BinaryReader(stream))
-                {
-                    bytes = br.ReadBytes((Int32)stream.Length);
-                }
-            }
-
-            return bytes;
-
-            //byte[] bytes;
-            //JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            //encoder.Frames.Add(BitmapFrame.Create(userref.Photo));
-            //using (MemoryStream ms = new MemoryStream())
+            //Stream stream = userref.Photo.StreamSource;
+            //Byte[] bytes = null;
+            //if (stream != null && stream.Length > 0)
             //{
-            //    encoder.Save(ms);
-            //    bytes = ms.ToArray();
+            //    using (BinaryReader br = new BinaryReader(stream))
+            //    {
+            //        bytes = br.ReadBytes((Int32)stream.Length);
+            //    }
             //}
 
             //return bytes;
+
+            byte[] bytes;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(userref.Photo));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                bytes = ms.ToArray();
+            }
+
+            return bytes;
         }
 
         public List<string> getAllRegisteredCompany()
@@ -308,6 +316,9 @@ namespace JobBoard.Core
             {
                 query.writeSkill(user.UserId, skill);
             }
+        public static void clearInstance()
+        {
+            instance = null;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JobBoard.Data
 {
@@ -86,15 +88,15 @@ namespace JobBoard.Data
         //    dbReadWrite.insertQuery(query);
         //}
 
-        public void writeJobSeekerInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte[] photo, byte userType)
+        public void writeJobSeekerInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, string location, byte userType)
         {
-            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, birth_day, location, photo, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + birthDay.ToString("yyyy-MM-dd") + "','" + location.Trim() + "', '" + photo + "'," + userType + ")";
+            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, birth_day, location, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + birthDay.ToString("yyyy-MM-dd") + "','" + location.Trim() + "'," + userType + ")";
             dbReadWrite.insertQuery(query);
         }
 
-        public void writeRecruiterInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, byte[] photo, string jobPosition, string companyName, byte userType)
+        public void writeRecruiterInfo(string userName, string passWord, string firstName, string lastName, string email, string phoneNumber, string jobPosition, string companyName, byte userType)
         {
-            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, photo, job_position, company_id, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + photo + "','" + jobPosition.Trim() + "','" + getCompanyId(companyName) + "'," + userType + ")";
+            query = "INSERT INTO user_info (user_name, pass, first_name, last_name, email, phone, job_position, company_id, user_type) VALUES ('" + userName.Trim() + "','" + passWord + "','" + firstName.Trim() + "','" + lastName.Trim() + "','" + email.Trim() + "','" + phoneNumber.Trim() + "','" + jobPosition.Trim() + "','" + getCompanyId(companyName) + "'," + userType + ")";
             dbReadWrite.insertQuery(query);
         }
 
@@ -103,6 +105,24 @@ namespace JobBoard.Data
             subQuery = "(select skill_id from skill_list where skill='" + skill.Trim() + "')";
             query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + "," + subQuery + ")";
             dbReadWrite.insertQuery(query);
+        }
+
+        public void addimage(int userId, byte[] image)
+        {
+            DBReadWrite dbrw = DBReadWrite.getInstance();
+
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                command.Connection = dbrw.connection;
+                command.CommandText = "update user_info set photo=?image where user_id=" + userId + "";
+                MySqlParameter imageParameter = new MySqlParameter("?image", MySqlDbType.Blob, image.Length);
+
+                imageParameter.Value = image;
+
+                command.Parameters.Add(imageParameter);
+
+                command.ExecuteNonQuery();
+            }
         }
         
         //Company Registration Portion

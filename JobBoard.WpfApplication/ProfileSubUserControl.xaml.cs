@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using JobBoard.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +38,10 @@ namespace JobBoard.WpfApplication
 
         private void UserLogout_Click(object sender, RoutedEventArgs e)
         {
+            Collections.clearInstance();
+            User.clearInstance();
+            LoginRegistrationControl.clearInstance();
+            DBReadWrite.clearInstance();
             LoginRegister lr = new LoginRegister();
             lr.Show();
             p.Close();

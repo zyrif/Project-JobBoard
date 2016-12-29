@@ -9,9 +9,10 @@
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
     <Grid Margin="0,0,0,10">
         <Label x:Name="viewcandidatesTitle" Content="Suitable Candidates for this job: " Margin="25.631,51.233,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="28" VerticalAlignment="Top" HorizontalAlignment="Left" Height="51"/>
-        <StackPanel x:Name="cView" HorizontalAlignment="Left" Height="345" Margin="26,107,0,0" VerticalAlignment="Top" Width="641">
-            <ScrollViewer Height="344"/>
-        </StackPanel>
+        <StackPanel x:Name="cView" HorizontalAlignment="Left" Height="345" Margin="26,107,0,0" VerticalAlignment="Top" Width="641"/>
+        <ScrollViewer x:Name="ContentScrollBox" Margin="26,107,10,10"  VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="CVview" VerticalAlignment="Top" Margin="0"/>
+        </ScrollViewer>
 
     </Grid>
 </Window>
