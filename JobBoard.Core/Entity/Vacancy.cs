@@ -16,7 +16,7 @@ namespace JobBoard.Core.Entity
         public DateTime DeadLine { set; get; }
         public double MinimumSalary { set; get; }
         public double MaximumSalary { set; get; }
-        public string JobType { set; get; }
+        public bool JobType { set; get; }
         public enum EJobType:byte
         {
             Temporary,
@@ -37,11 +37,11 @@ namespace JobBoard.Core.Entity
             this.MaximumSalary = maximumSalary;
             if((byte)EJobType.Temporary == Convert.ToByte(jobType))
             {
-                this.JobType = EJobType.Temporary.ToString();
+                this.JobType = Convert.ToBoolean(EJobType.Temporary);
             }
             else
             {
-                this.JobType = EJobType.Permanent.ToString();
+                this.JobType = Convert.ToBoolean(EJobType.Permanent);
             }
             this.JobSummary = jobSummary;
 
