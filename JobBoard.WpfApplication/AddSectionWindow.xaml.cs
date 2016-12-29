@@ -44,7 +44,8 @@ namespace JobBoard.WpfApplication
 
         public AddSectionWindow(Experience exp, User user, Profile profile):this()
         {
-            SectionTypeTabControl.TabIndex = exp.ExpType;
+
+            SectionTypeTabControl.SelectedIndex = exp.ExpType;
             this.TitleBox.Text = exp.Title.ToString();
             this.ExpTimeMonth1Box.Text = exp.StartTime.Month.ToString();
             this.ExpTimeYear1Box.Text = exp.StartTime.Year.ToString();

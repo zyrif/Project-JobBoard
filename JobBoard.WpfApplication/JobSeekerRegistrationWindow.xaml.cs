@@ -17,6 +17,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Diagnostics;
 using Microsoft.Win32;
+using JobBoard.Core.Control;
 
 namespace JobBoard.WpfApplication
 {
@@ -27,6 +28,7 @@ namespace JobBoard.WpfApplication
     {
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
         User currentUser = User.getInstance();
+        IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
 
         System.Drawing.Image profilePhoto;
@@ -48,6 +50,7 @@ namespace JobBoard.WpfApplication
             catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
    
         }
+
         bool fromEdit=false;
         public JobSeekerRegistration()
         {
@@ -84,23 +87,38 @@ namespace JobBoard.WpfApplication
 
         private void JSRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            DateTime date = Convert.ToDateTime(bdyearBox.Text + "-" + bdmonthBox.Text + "-" + bddateBox.Text);
+            if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text))
+            {
+                DateTime date = Convert.ToDateTime(birthdayPicker.SelectedDate);
 
-            List<string> skillList = new List<string>();
-            foreach (Button skillButton in slctskillsPanel.Children)
-            {
-                currentUser.setSkill(skillButton.Content.ToString());
+                List<string> skillList = new List<string>();
+                foreach (Button skillButton in slctskillsPanel.Children)
+                {
+                    currentUser.setSkill(skillButton.Content.ToString());
+                }
+                if (fromEdit == true)
+                    updateFields();
+                else
+                {
+                    currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
+                    lrControl.register(currentUser);
+                }
+                Profile jp = new Profile(currentUser);
+                jp.Show();
+                this.Hide();
             }
-            if (fromEdit == true)
-                updateFields();
-            else
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
             {
-                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
-                lrControl.register(currentUser);
+                MessageBox.Show("Provide valid Email & Phone Number!");
             }
-            Profile jp = new Profile(currentUser);
-            jp.Show();
-            this.Hide();
+            else if (!iehp.isValidEmail(emailBox.Text))
+            {
+                MessageBox.Show("Provide a valid Email address!");
+            }
+            else if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide a valid Phone Number!");
+            }
         }
 
         //If skill is selected from combo box
@@ -179,9 +197,7 @@ namespace JobBoard.WpfApplication
             lastnameBox.Text = currentUser.LastName;
             emailBox.Text = currentUser.Email;
             phoneBox.Text = currentUser.PhoneNumber;
-            bddateBox.Text = currentUser.BirthDay.Day.ToString();
-            bdmonthBox.Text = currentUser.BirthDay.Month.ToString();
-            bdyearBox.Text = currentUser.BirthDay.Year.ToString();
+            birthdayPicker.Text = currentUser.BirthDay.Date.ToString();
             locationBox.Text = currentUser.Location;
 
             
@@ -195,7 +211,7 @@ namespace JobBoard.WpfApplication
             user.LastName = lastnameBox.Text;
             user.Email = emailBox.Text;
             user.PhoneNumber = phoneBox.Text;
-            user.BirthDay = Convert.ToDateTime(bddateBox.Text + "/" + bdmonthBox.Text + "/" + bdyearBox.Text);
+            user.BirthDay = Convert.ToDateTime(birthdayPicker.SelectedDate.ToString());
             user.Location = locationBox.Text;
 
             foreach (Button btn in slctskillsPanel.Children)
@@ -204,6 +220,54 @@ namespace JobBoard.WpfApplication
             }
             currentUser = user;
             lrControl.UpdateJS(user);
+        }
+
+        private void emailBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void emailBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if(iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void phoneBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void phoneBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
         }
     }
 }

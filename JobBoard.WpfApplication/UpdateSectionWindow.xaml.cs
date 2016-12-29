@@ -30,12 +30,8 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.exp = exp;
-
-
         }
-
-
-
+        
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -71,8 +67,6 @@ namespace JobBoard.WpfApplication
             {
                 AddAward(2);
             }
-
-
         }
 
         private void AddJobExperience(int exptype)

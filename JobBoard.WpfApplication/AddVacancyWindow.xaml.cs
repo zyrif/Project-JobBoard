@@ -31,7 +31,7 @@ namespace JobBoard.WpfApplication
         public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
-            init();
+            UpdateVacancy();
             this.profile = profile;
         }
 
@@ -74,7 +74,11 @@ namespace JobBoard.WpfApplication
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
 
             Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
-            piControl.AddVacancy(userRef.UserId, newVacancy);
+
+            if (updateVacancy)
+                piControl.UpdateVacancy(userRef.UserId, newVacancy);
+            else
+                piControl.AddVacancy(userRef.UserId, newVacancy);
 
 
             Profile newprofile = new Profile(userRef);
@@ -135,6 +139,8 @@ namespace JobBoard.WpfApplication
         {
             init();
 
+            updateVacancy = true;
+
             jobtitleBox.Text = vacancy.JobTitle;
             joblocationBox.Text = vacancy.Location;
             expdate.Text = vacancy.DeadLine.Day.ToString();
@@ -143,10 +149,6 @@ namespace JobBoard.WpfApplication
 
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
-
-
-
-
         }
     }
 }
