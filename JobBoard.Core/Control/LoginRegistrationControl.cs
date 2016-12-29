@@ -316,6 +316,7 @@ namespace JobBoard.Core
             {
                 query.writeSkill(user.UserId, skill);
             }
+        }
         public static void clearInstance()
         {
             instance = null;
