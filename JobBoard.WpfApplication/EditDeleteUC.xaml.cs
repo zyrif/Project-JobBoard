@@ -26,6 +26,7 @@ namespace JobBoard.WpfApplication
         User user;
         User currentUser = User.getInstance();
         Profile profile;
+        ProfileInteractionsControl pic = ProfileInteractionsControl.getInstance();
 
         public EditDeleteUC(User user, Experience exp, Profile profile)
         {
@@ -37,12 +38,12 @@ namespace JobBoard.WpfApplication
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            AddSectionWindow addSection = new AddSectionWindow(exp,user,profile);
+            addSection.Show();
         }
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
-            ProfileInteractionsControl pic = ProfileInteractionsControl.getInstance();
             pic.DeleteExperience(user, exp);
             Profile newprofile = new Profile(currentUser);
             newprofile.Show();

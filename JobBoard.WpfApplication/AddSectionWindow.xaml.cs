@@ -21,24 +21,43 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddSectionWindow : Window
     {
-        Experience exp;
+        Experience experience;
         Profile profile;
         User userRef = User.getInstance();
         ProfileInteractionsControl picontrol = ProfileInteractionsControl.getInstance();
+        bool forUpdate = false;
 
-        public AddSectionWindow(Profile profile)
+        public AddSectionWindow()
         {
             InitializeComponent();
+        }
+
+        public AddSectionWindow(Profile profile):this()
+        {
             this.profile = profile;
         }
 
-        public AddSectionWindow(Experience exp)
+        public AddSectionWindow(Experience exp):this()
         {
-            InitializeComponent();
-            this.exp = exp;
+            this.experience = exp;
         }
 
+        public AddSectionWindow(Experience exp, User user, Profile profile):this()
+        {
+            SectionTypeTabControl.TabIndex = exp.ExpType;
+            this.TitleBox.Text = exp.Title.ToString();
+            this.ExpTimeMonth1Box.Text = exp.StartTime.Month.ToString();
+            this.ExpTimeYear1Box.Text = exp.StartTime.Year.ToString();
+            this.ExpTimeMonth2Box.Text = exp.EndTime.Month.ToString();
+            this.ExpTimeYear2Box.Text = exp.EndTime.Year.ToString();
+            this.CompanyBox.Text = exp.Entity;
+            this.ExpDetailsRichBox.Document.Blocks.Clear();
+            this.ExpDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
 
+            this.forUpdate = true;
+            this.profile = profile;
+            this.experience = exp;
+        }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
@@ -69,7 +88,13 @@ namespace JobBoard.WpfApplication
                     eddate = Convert.ToDateTime(ExpTimeYear2Box.Text + "-" + ExpTimeMonth2Box.Text + "-" + "01");
 
                 Experience exp = new Experience((byte)exptype, TitleBox.Text, CompanyBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
+                if (forUpdate)
+                {
+                    exp.ExperienceId = experience.ExperienceId;
+                    picontrol.UpdateSection(exp);
+                }
+                else
+                    picontrol.AddSection(userRef.UserId, exp);
 
                 Profile newprofile = new Profile(userRef);
                 newprofile.Show();
@@ -89,7 +114,13 @@ namespace JobBoard.WpfApplication
                     eddate = Convert.ToDateTime(EduTimeYear2Box.Text + "-" + EduTimeMonth2Box.Text + "-" + "01");
 
                 Experience exp = new Experience((byte)exptype, DegreeBox.Text, InstituteBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
+                if (forUpdate)
+                {
+                    exp.ExperienceId = experience.ExperienceId;
+                    picontrol.UpdateSection(exp);
+                }
+                else
+                    picontrol.AddSection(userRef.UserId, exp);
 
 
                 Profile newprofile = new Profile(userRef);
@@ -107,7 +138,13 @@ namespace JobBoard.WpfApplication
                 eddate = DateTime.Now;
 
                 Experience exp = new Experience((byte)exptype, AwardNameBox.Text, AwardIssuerBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
+                if(forUpdate)
+                {
+                    exp.ExperienceId = experience.ExperienceId;
+                    picontrol.UpdateSection(exp);
+                }
+                else
+                    picontrol.AddSection(userRef.UserId, exp);
 
 
                 Profile newprofile = new Profile(userRef);

@@ -137,9 +137,9 @@ namespace JobBoard.WpfApplication
 
             jobtitleBox.Text = vacancy.JobTitle;
             joblocationBox.Text = vacancy.Location;
-            expdate.Text = vacancy.DeadLine.Date.ToString();
-            expdate.Text = vacancy.DeadLine.Month.ToString();
-            expdate.Text = vacancy.DeadLine.Year.ToString();
+            expdate.Text = vacancy.DeadLine.Day.ToString();
+            expMonth.Text = vacancy.DeadLine.Month.ToString();
+            expYear.Text = vacancy.DeadLine.Year.ToString();
 
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));

@@ -89,7 +89,7 @@
         </TabControl>
         <Grid Height="44" Margin="10,0,10,10" Grid.Row="1" VerticalAlignment="Bottom">
             <Button x:Name="SectionAddOkay" KeyboardNavigation.TabIndex="7" Content="Okay" Margin="525.181,0,0,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Left" Width="74.819" Click="SectionAddOkay_Click"/>
-            <Button x:Name="SectionAddCancel" Content="Cancel" Margin="0,0,89.819,15" Style="{DynamicResource SimpleButton}" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16"/>
+            <Button x:Name="SectionAddCancel" Content="Cancel" Margin="0,0,90,15" Style="{DynamicResource SimpleButton}" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" HorizontalAlignment="Right" FontFamily="Calibri bold" FontSize="16" Height="29" VerticalAlignment="Bottom" Click="SectionAddCancel_Click"/>
         </Grid>
         <Label x:Name="SectionAddTitle" Content="Add Section" Margin="18.631,20.868,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="32" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="51"/>
 
