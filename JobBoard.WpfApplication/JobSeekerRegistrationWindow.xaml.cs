@@ -213,6 +213,7 @@ namespace JobBoard.WpfApplication
             user.PhoneNumber = phoneBox.Text;
             user.BirthDay = Convert.ToDateTime(birthdayPicker.SelectedDate.ToString());
             user.Location = locationBox.Text;
+            user.Photo = photo;
 
             foreach (Button btn in slctskillsPanel.Children)
             {
