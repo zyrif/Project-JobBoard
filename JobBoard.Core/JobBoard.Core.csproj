@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\DBConnectionControl.cs" />
+    <Compile Include="Control\IEHPatterns.cs" />
     <Compile Include="Control\LoginRegistrationControl.cs" />
     <Compile Include="Control\MailboxControl.cs" />
     <Compile Include="Control\SearchControl.cs" />

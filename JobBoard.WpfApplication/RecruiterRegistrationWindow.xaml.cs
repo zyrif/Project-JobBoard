@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using Microsoft.Win32;
+using JobBoard.Core.Control;
 
 namespace JobBoard.WpfApplication
 {
@@ -26,6 +27,7 @@ namespace JobBoard.WpfApplication
     {
         LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
         User currentUser = User.getInstance();
+        IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
 
         System.Drawing.Image profilePhoto;
@@ -67,20 +69,35 @@ namespace JobBoard.WpfApplication
 
         private void RecRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            if (checkEmployerPresent.IsChecked == false)
+            if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text))
             {
-                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
-                lrControl.register(currentUser);
-                Profile p = new Profile(currentUser);
-                p.Show();this.Hide();
-            }
-            else
-            {
-                currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text);
-                EmployerRegistration er = new EmployerRegistration(currentUser);
+                if (checkEmployerPresent.IsChecked == false)
+                {
+                    currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
+                    lrControl.register(currentUser);
+                    Profile p = new Profile(currentUser);
+                    p.Show(); this.Hide();
+                }
+                else
+                {
+                    currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text);
+                    EmployerRegistration er = new EmployerRegistration(currentUser);
 
-                er.Show();
-                this.Hide();
+                    er.Show();
+                    this.Hide();
+                }
+            }
+            else if(!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide valid Email & Phone Number!");
+            }
+            else if (!iehp.isValidEmail(emailBox.Text))
+            {
+                MessageBox.Show("Provide a valid Email address!");
+            }
+            else if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide a valid Phone Number!");
             }
         }
 
@@ -123,6 +140,55 @@ namespace JobBoard.WpfApplication
 
                     profileImage.Source = photo;
                 }
+            }
+        }
+
+        private void emailBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void emailBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void phoneBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
+                
+            }
+        }
+
+        private void phoneBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
             }
         }
     }

@@ -71,6 +71,7 @@ namespace JobBoard.Data
         {
             //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
             string conn = "server=127.0.0.1;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
+
             try
             {
                 connection = new MySqlConnection();
