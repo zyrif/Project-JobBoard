@@ -50,8 +50,8 @@ namespace JobBoard.WpfApplication
             currentUser.CompanyId = lrControl.getCompanyId(company.Name);
             currentUser.CompanyName = company.Name;
             lrControl.register(currentUser);
-            Profile jp = new Profile(currentUser);
-            jp.Show();
+            LoginRegister lr = new LoginRegister();
+            lr.Show();
             this.Hide();
         }
     }

@@ -43,7 +43,14 @@ namespace JobBoard.Core
         public void AddVacancy(int userId, Vacancy vac)
         {
             int empid = query.getCompanyId(vac.Company);
-            query.AddVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
+            query.AddVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, Convert.ToBoolean(vac.JobType), vac.JobSummary);
+
+            int jobId = searchQuery.getjobId(vac.JobTitle, userId);
+
+            foreach(string skill in vac.skillList)
+            {
+                query.addSkillListForJob(jobId, searchQuery.getSkillIdByName(skill));
+            }
         }
 
         public void UpdateVacancy(int userId, Vacancy vac)
@@ -72,19 +79,18 @@ namespace JobBoard.Core
             return experienceList;
         }
 
-        public List<Vacancy> getVacanciesPosted(int jobId)
+        public List<Vacancy> getVacanciesPosted(int userId)
         {
-            dataTable = query.getVacancy(jobId);
+            dataTable = query.getVacancy(userId);
             vacancyList = new List<Vacancy>();
             Vacancy vacancy;
-
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 bool jType;
                 jType = Convert.ToBoolean(dataTable.Rows[i]["job_type"]);
 
-                vacancy = new Vacancy(dataTable.Rows[0]["job_title"].ToString(),
+                vacancy = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
                                           searchQuery.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])).ToString(),
                                           searchQuery.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])).ToString(),
                                           dataTable.Rows[i]["location"].ToString(),
@@ -98,7 +104,7 @@ namespace JobBoard.Core
 
                 vacancyList.Add(vacancy);
             }
-
+            
             return vacancyList;
         }
 

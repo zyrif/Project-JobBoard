@@ -75,8 +75,9 @@ namespace JobBoard.WpfApplication
                 {
                     currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
                     lrControl.register(currentUser);
-                    Profile p = new Profile(currentUser);
-                    p.Show(); this.Hide();
+                    LoginRegister lr = new LoginRegister();
+                    //Profile p = new Profile(currentUser);
+                    lr.Show(); this.Hide();
                 }
                 else
                 {
