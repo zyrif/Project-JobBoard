@@ -302,7 +302,6 @@ namespace JobBoard.Core
         public void UpdateJSSkills(User user)
         {
             query.DeleteJSSkill(user.UserId);
-            MessageBox.Show(user.skillList.Count.ToString());
             foreach (string skill in user.skillList)
             {
                 query.writeSkill(user.UserId, skill);

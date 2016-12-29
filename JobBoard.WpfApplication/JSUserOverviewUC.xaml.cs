@@ -27,11 +27,13 @@ namespace JobBoard.WpfApplication
     public partial class JSUserOverviewUC : UserControl
     {
         User userRef;
+        Profile profile;
 
-        public JSUserOverviewUC(User usr)
+        public JSUserOverviewUC(User usr, Profile profile)
         {
             InitializeComponent();
             this.userRef = usr;
+            this.profile = profile;
             PopulateUO();
             initSkills();
             setpic();
@@ -92,7 +94,7 @@ namespace JobBoard.WpfApplication
         
         private void ProfileInfoEdit_Click(object sender, RoutedEventArgs e)
         {
-            JobSeekerRegistration jsr = new JobSeekerRegistration();
+            JobSeekerRegistration jsr = new JobSeekerRegistration(profile);
         }
     }
 }

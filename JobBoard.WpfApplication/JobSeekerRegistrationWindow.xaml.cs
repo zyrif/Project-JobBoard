@@ -30,6 +30,7 @@ namespace JobBoard.WpfApplication
         User currentUser = User.getInstance();
         IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
+        Profile profile;
 
         System.Drawing.Image profilePhoto;
         BitmapImage photo = new BitmapImage();
@@ -52,9 +53,10 @@ namespace JobBoard.WpfApplication
         }
 
         bool fromEdit=false;
-        public JobSeekerRegistration()
+        public JobSeekerRegistration(Profile profile)
         {
             InitializeComponent();
+            this.profile = profile;
 
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
@@ -104,8 +106,9 @@ namespace JobBoard.WpfApplication
                     lrControl.register(currentUser);
                 }
                 Profile jp = new Profile(currentUser);
+                profile.Close();
                 jp.Show();
-                this.Hide();
+                this.Close();
             }
             else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
             {
@@ -200,27 +203,32 @@ namespace JobBoard.WpfApplication
             birthdayPicker.Text = currentUser.BirthDay.Date.ToString();
             locationBox.Text = currentUser.Location;
 
+            foreach(string skill in currentUser.skillList)
+            {
+                Button btn = new Button();
+                btn.Content = skill;
+                this.slctskillsPanel.Children.Add(btn);
+            }
+
             
         }
 
         private void updateFields()
         {
-            User user = new User();
-            user = currentUser;
-            user.FirstName = firstnameBox.Text;
-            user.LastName = lastnameBox.Text;
-            user.Email = emailBox.Text;
-            user.PhoneNumber = phoneBox.Text;
-            user.BirthDay = Convert.ToDateTime(birthdayPicker.SelectedDate.ToString());
-            user.Location = locationBox.Text;
-            user.Photo = photo;
+            currentUser.FirstName = firstnameBox.Text;
+            currentUser.LastName = lastnameBox.Text;
+            currentUser.Email = emailBox.Text;
+            currentUser.PhoneNumber = phoneBox.Text;
+            currentUser.BirthDay = Convert.ToDateTime(birthdayPicker.SelectedDate.ToString());
+            currentUser.Location = locationBox.Text;
+            currentUser.Photo = photo;
 
+            currentUser.skillList.Clear();
             foreach (Button btn in slctskillsPanel.Children)
             {
-                user.skillList.Add(btn.Content.ToString());
+                currentUser.skillList.Add(btn.Content.ToString());
             }
-            currentUser = user;
-            lrControl.UpdateJS(user);
+            lrControl.UpdateJS(currentUser);
         }
 
         private void emailBox_LostFocus(object sender, RoutedEventArgs e)
