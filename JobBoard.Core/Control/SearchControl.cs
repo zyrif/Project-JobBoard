@@ -90,6 +90,16 @@ namespace JobBoard.Core.Control
             return list;
         }
 
+        /*public List<User> candidateSearch(string location)
+        {
+            List<int> userList = new List<int>();
+            dataTable = query.getCandidateByLocation(location);
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
+            }
+        }*/
+
         public List<User> candidateSearch(List<string> jobSkills, string location)
         {
             List<int> jSkillIdList = new List<int>();                                                   
