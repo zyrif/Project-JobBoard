@@ -295,12 +295,14 @@ namespace JobBoard.Core
         public void UpdateJS(User user)
         {
             query.UpdateJSInfo(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.BirthDay, user.Location, user.UserId);
+            query.addimage(user.UserName, ConvertImage(user));
             UpdateJSSkills(user);
         }
 
         public void UpdateJSSkills(User user)
         {
             query.DeleteJSSkill(user.UserId);
+            MessageBox.Show(user.skillList.Count.ToString());
             foreach (string skill in user.skillList)
             {
                 query.writeSkill(user.UserId, skill);
