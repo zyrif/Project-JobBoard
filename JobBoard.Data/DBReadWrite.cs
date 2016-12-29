@@ -70,8 +70,8 @@ namespace JobBoard.Data
         public void createConnection()
         {
             //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\SBS\Documents\JobBoard.mdf;Integrated Security=True;Connect Timeout=30");
-            string conn = "server=sql8.freemysqlhosting.net;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
-            //string conn = "server=localhost;PORT=3306;userid=root;password=nopass;database=project_jb";
+            string conn = "server=127.0.0.1;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
+
             try
             {
                 connection = new MySqlConnection();
