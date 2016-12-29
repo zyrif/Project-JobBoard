@@ -321,5 +321,6 @@ namespace JobBoard.Core
         {
             instance = null;
         }
+
     }
 }
