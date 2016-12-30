@@ -24,11 +24,23 @@ namespace JobBoard.WpfApplication
     {
         User userRef;
         MailboxControl mbc = new MailboxControl();
+        bool isReply = false;
+        string sendername;
 
         public WritemailWindow(User usr)
         {
             InitializeComponent();
             this.userRef = usr;
+        }
+
+        public WritemailWindow(User usr, string sendername)
+        {
+            InitializeComponent();
+            this.userRef = usr;
+            this.sendername = sendername;
+            recipientBox.Text = sendername;
+            isReply = true;
+
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -44,18 +56,45 @@ namespace JobBoard.WpfApplication
 
         private void sendBtn_Click(object sender, RoutedEventArgs e)
         {
-            string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
-            Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 0);
-            mbc.NewMail(newmail);
-            this.Close();
+            if (isReply)
+            {
+                string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
+                Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, this.sendername, DateTime.Now, 0);
+                mbc.NewMail(newmail);
+                this.Close();
+            }
+
+            else
+            {
+                string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
+                Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 0);
+                mbc.NewMail(newmail);
+                this.Close();
+            }
         }
 
         private void draftBtn_Click(object sender, RoutedEventArgs e)
         {
-            string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
-            Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 1);
-            mbc.NewMail(newmail);
-            this.Close();
+            if (isReply)
+            {
+                string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
+                Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, this.sendername, DateTime.Now, 1);
+                mbc.NewMail(newmail);
+                this.Close();
+            }
+
+            else
+            {
+                string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
+                Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 1);
+                mbc.NewMail(newmail);
+                this.Close();
+            }
+        }
+
+        private void Write_Mail_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
