@@ -32,6 +32,9 @@ namespace JobBoard.Core
             this.Website = website;
             this.BusinessType = businessType;
         }
-
+        public Company(int userId)
+        {
+            
+        }
     }
 }
