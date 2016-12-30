@@ -76,8 +76,8 @@ namespace JobBoard.Data
         //To create Connection with DataBase
         public void createConnection()
         {
-            //string conn = "server=127.0.0.1;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
-            string conn = "server=127.0.0.1;PORT=3306;userid=root;password=nopass;database=project_jb";
+            string conn = "server=127.0.0.1;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
+            //string conn = "server=127.0.0.1;PORT=3306;userid=root;password=nopass;database=project_jb";
 
             try
             {
