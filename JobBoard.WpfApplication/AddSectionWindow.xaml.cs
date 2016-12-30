@@ -47,10 +47,8 @@ namespace JobBoard.WpfApplication
 
             SectionTypeTabControl.SelectedIndex = exp.ExpType;
             this.TitleBox.Text = exp.Title.ToString();
-            this.ExpTimeMonth1Box.Text = exp.StartTime.Month.ToString();
-            this.ExpTimeYear1Box.Text = exp.StartTime.Year.ToString();
-            this.ExpTimeMonth2Box.Text = exp.EndTime.Month.ToString();
-            this.ExpTimeYear2Box.Text = exp.EndTime.Year.ToString();
+            this.expFromDate.DataContext = exp.StartTime.Date.ToString();
+            this.expToDate.DataContext = exp.EndTime.Date.ToString();
             this.CompanyBox.Text = exp.Entity;
             this.ExpDetailsRichBox.Document.Blocks.Clear();
             this.ExpDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
@@ -80,13 +78,13 @@ namespace JobBoard.WpfApplication
             int exptype = SectionTypeTabControl.SelectedIndex;
             if (exptype == 0)
             {
-                DateTime stdate = Convert.ToDateTime(ExpTimeYear1Box.Text + "-" + ExpTimeMonth1Box.Text + "-" + "01");
+                DateTime stdate = Convert.ToDateTime(expFromDate.SelectedDate);
                 DateTime eddate;
                 string details = new TextRange(ExpDetailsRichBox.Document.ContentStart, ExpDetailsRichBox.Document.ContentEnd).Text;
                 if (ExpcheckBox.IsChecked == true)
                     eddate = DateTime.Now;
                 else
-                    eddate = Convert.ToDateTime(ExpTimeYear2Box.Text + "-" + ExpTimeMonth2Box.Text + "-" + "01");
+                    eddate = Convert.ToDateTime(expToDate.SelectedDate);
 
                 Experience exp = new Experience((byte)exptype, TitleBox.Text, CompanyBox.Text, stdate, eddate, details);
                 if (forUpdate)
@@ -106,13 +104,13 @@ namespace JobBoard.WpfApplication
 
             else if (exptype == 1)
             {
-                DateTime stdate = Convert.ToDateTime(EduTimeYear1Box.Text + "-" + EduTimeMonth1Box.Text + "-" + "01");
+                DateTime stdate = Convert.ToDateTime(eduFromDate.SelectedDate);
                 DateTime eddate;
                 string details = new TextRange(EduDetailsRichBox.Document.ContentStart, EduDetailsRichBox.Document.ContentEnd).Text;
                 if (EduCheckBox.IsChecked == true)
                     eddate = DateTime.Now;
                 else
-                    eddate = Convert.ToDateTime(EduTimeYear2Box.Text + "-" + EduTimeMonth2Box.Text + "-" + "01");
+                    eddate = Convert.ToDateTime(eduToDate.SelectedDate);
 
                 Experience exp = new Experience((byte)exptype, DegreeBox.Text, InstituteBox.Text, stdate, eddate, details);
                 if (forUpdate)
@@ -133,7 +131,7 @@ namespace JobBoard.WpfApplication
 
             else if (exptype == 2)
             {
-                DateTime stdate = Convert.ToDateTime(AwardTimeYearBox.Text + "-" + AwardTimeMonthBox.Text + "-" + AwardTimeDateBox.Text);
+                DateTime stdate = Convert.ToDateTime(awardDate.SelectedDate);
                 DateTime eddate;
                 string details = new TextRange(AwardDetailsRichBox.Document.ContentStart, AwardDetailsRichBox.Document.ContentEnd).Text;
                 eddate = DateTime.Now;
