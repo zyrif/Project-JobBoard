@@ -27,6 +27,14 @@ namespace JobBoard.Data
             return instance;
         }
 
+        public int getjobId(string jobTitle, int userId)
+        {
+            query = "select job_id from job_info where job_title='" + jobTitle + "' and recruiter_id=" + userId;
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return Convert.ToInt32(dataTable.Rows[0]["job_id"]);
+        }
+
         public string getCompanyName(int companyId)
         {
             query = "select company_name from company_info where company_id="+companyId;
@@ -54,7 +62,6 @@ namespace JobBoard.Data
         public List<string> getSkillList(int jobId)
         {
             List<string> skillList = new List<string>();
-
             query = "select skill from skill_list where skill_id in(select skill_id from user_skill where job_id=" + jobId + ")";
             dataTable = dbReadWrite.selectQuery(query);
 
@@ -64,6 +71,14 @@ namespace JobBoard.Data
             }
 
             return skillList;
+        }
+
+        public int getSkillIdByName(string skill)
+        {
+            query = "select skill_id from skill_list where skill='"+skill+"'";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return Convert.ToInt32(dataTable.Rows[0]["skill_id"]);
         }
 
         public List<int> getSkillListOfCandidates(int candidateId)

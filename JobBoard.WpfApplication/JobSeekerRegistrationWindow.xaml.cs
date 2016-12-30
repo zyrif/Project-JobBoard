@@ -99,16 +99,20 @@ namespace JobBoard.WpfApplication
                     currentUser.setSkill(skillButton.Content.ToString());
                 }
                 if (fromEdit == true)
+                {
                     updateFields();
+                    Profile jp = new Profile(currentUser);
+                    jp.Show();
+                }
                 else
                 {
                     currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, date, locationBox.Text, skillList);
                     lrControl.register(currentUser);
+                    LoginRegister lr = new LoginRegister();
+                    lr.Show();
                 }
-                Profile jp = new Profile(currentUser);
-                profile.Close();
-                jp.Show();
-                this.Close();
+                
+                this.Hide();
             }
             else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
             {

@@ -31,7 +31,7 @@ namespace JobBoard.WpfApplication
         public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
-            UpdateVacancy();
+            init();
             this.profile = profile;
         }
 
