@@ -119,6 +119,14 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
         
+        public int getUserId(string userName)
+        {
+            query = "select user_id from user_info where user_name ='" + userName.Trim() + "'";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+        }
+
         public int getCompanyId(string companyName)
         {
             query = "select company_id from company_info where company_name ='" + companyName.Trim() + "'";

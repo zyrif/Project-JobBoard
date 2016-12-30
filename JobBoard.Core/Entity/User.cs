@@ -13,7 +13,7 @@ namespace JobBoard.Core
     {
         static User instance;
 
-        public List<string> skillList = new List<string>();
+        public List<string> SkillList = new List<string>();
 
         public string UserName { get; set; }
         public int UserId { get; set; }
@@ -37,12 +37,12 @@ namespace JobBoard.Core
 
         public void setSkill(string skill)
         {
-            skillList.Add(skill);
+            SkillList.Add(skill);
         }
 
         public List<string> getSkillList()
         {
-            return skillList;
+            return SkillList;
         }
 
         private void initSkills()
@@ -66,7 +66,7 @@ namespace JobBoard.Core
             this.Photo = photo;
             this.BirthDay = birthday;
             this.Location = location;
-            this.skillList = skilllist;
+            this.SkillList = skilllist;
         }
 
         public void addUser(string firstName, string lastName, string email, string phNumber, BitmapImage photo, string jobposition, string companyname)

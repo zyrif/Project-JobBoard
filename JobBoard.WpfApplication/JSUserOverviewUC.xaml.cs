@@ -59,8 +59,8 @@ namespace JobBoard.WpfApplication
         {
             Button button;
             SearchControl sqControl = new SearchControl();
-            userRef.skillList = sqControl.getSkillListByUserId(userRef.UserId);
-            foreach (string skill in userRef.skillList)
+            userRef.SkillList = sqControl.getSkillListByUserId(userRef.UserId);
+            foreach (string skill in userRef.SkillList)
             {
                 button = new Button();
                 button.Content = skill;
