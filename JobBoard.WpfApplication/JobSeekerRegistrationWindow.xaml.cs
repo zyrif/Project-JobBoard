@@ -94,9 +94,10 @@ namespace JobBoard.WpfApplication
                 DateTime date = Convert.ToDateTime(birthdayPicker.SelectedDate);
 
                 List<string> skillList = new List<string>();
+
                 foreach (Button skillButton in slctskillsPanel.Children)
                 {
-                    currentUser.setSkill(skillButton.Content.ToString());
+                    skillList.Add(skillButton.Content.ToString());
                 }
                 if (fromEdit == true)
                 {
@@ -208,7 +209,7 @@ namespace JobBoard.WpfApplication
             birthdayPicker.Text = currentUser.BirthDay.Date.ToString();
             locationBox.Text = currentUser.Location;
 
-            foreach(string skill in currentUser.skillList)
+            foreach(string skill in currentUser.SkillList)
             {
                 Button btn = new Button();
                 btn.Content = skill;
@@ -228,10 +229,10 @@ namespace JobBoard.WpfApplication
             currentUser.Location = locationBox.Text;
             currentUser.Photo = photo;
 
-            currentUser.skillList.Clear();
+            currentUser.SkillList.Clear();
             foreach (Button btn in slctskillsPanel.Children)
             {
-                currentUser.skillList.Add(btn.Content.ToString());
+                currentUser.SkillList.Add(btn.Content.ToString());
             }
             lrControl.UpdateJS(currentUser);
         }
