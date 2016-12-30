@@ -25,11 +25,13 @@ namespace JobBoard.WpfApplication
     {
         User currentUser = User.getInstance();
         Mail mail;
+        MailboxWindow mw;
 
-        public MailUC(Mail m)
+        public MailUC(Mail m, MailboxWindow mw)
         {
             InitializeComponent();
             this.mail = m;
+            this.mw = mw;
 
             PopulateUC();
         }
@@ -57,13 +59,31 @@ namespace JobBoard.WpfApplication
         {
             if (mail.SenderUserName == currentUser.UserName)
             {
-                MailboxControl mbc = new MailboxControl();
-                mbc.DeleteSenderMail(currentUser, mail);
+                if(mail.IsDraft == 0)
+                {
+                    new MailboxControl().DeleteSenderMail(currentUser, mail);
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mw.Close();
+                    newmw.ShowSentMessages();
+                }
+
+                else if (mail.IsDraft == 1)
+                {
+                    new MailboxControl().DeleteSenderMail(currentUser, mail);
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mw.Close();
+                    newmw.ShowDraftMessages();
+                }
+
             }
             else if (mail.ReceiverUserName == currentUser.UserName)
             {
-                MailboxControl mbc = new MailboxControl();
-                mbc.DeleteReceiverMail(currentUser, mail);
+                new MailboxControl().DeleteReceiverMail(currentUser, mail);
+                MailboxWindow newmw = new MailboxWindow();
+                newmw.Show();
+                mw.Close();
             }
         }
 
@@ -75,6 +95,12 @@ namespace JobBoard.WpfApplication
             senderprofile.Activate();
             senderprofile.Topmost = true;  // important
             senderprofile.Focus();
+        }
+
+        private void replyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WritemailWindow reply = new WritemailWindow(currentUser, mail.SenderUserName);
+            reply.Show();
         }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         x:Name="Mailbox" mc:Ignorable="d" x:Class="JobBoard.WpfApplication.MailboxWindow" Title="View your mailbox" Height="671" Width="967" Background="#FF1D1D1D" 
-        Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671">
+        Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="Mailbox_MouseLeftButtonDown">
     <Grid>
 
         <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31" Margin="0,10,17,0"/>

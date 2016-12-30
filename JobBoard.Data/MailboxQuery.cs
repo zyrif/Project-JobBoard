@@ -27,13 +27,13 @@ namespace JobBoard.Data
 
         public DataTable RetriveInboxMailQuery(string id)
         {
-            query = "SELECT * from mail_box where receiver_id='" + id.Trim() + "'";
+            query = "SELECT * from mail_box where receiver_id='" + id.Trim() + "' and receiver_isdeleted=0";
             return dbReadWrite.selectQuery(query);
         }
 
         public DataTable RetriveSenderMailQuery(string id)
         {
-            query = "SELECT * from mail_box where sender_id='" + id.Trim() + "'";
+            query = "SELECT * from mail_box where sender_id='" + id.Trim() + "' and sender_isdeleted=0";
             return dbReadWrite.selectQuery(query);
         }
 
