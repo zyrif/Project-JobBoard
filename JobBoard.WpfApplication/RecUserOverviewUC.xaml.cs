@@ -31,7 +31,7 @@ namespace JobBoard.WpfApplication
             InitializeComponent();
             this.userRef = usr;
             PopulateUO();
-            setpic();
+            //setpic();
         }
 
         public void PopulateUO()
@@ -46,28 +46,28 @@ namespace JobBoard.WpfApplication
 
         }
 
-        private void setpic()
-        {
-            System.Drawing.Image profilePhoto;
-            BitmapImage photo = new BitmapImage();
-            try
-            {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                using (Bitmap bmp = new Bitmap(profilePhoto))
-                {
-                    MemoryStream ms = new MemoryStream();
-                    bmp.Save(ms, ImageFormat.Png);
-                    ms.Position = 0;
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = ms;
-                    bi.EndInit();
+        //private void setpic()
+        //{
+        //    System.Drawing.Image profilePhoto;
+        //    BitmapImage photo = new BitmapImage();
+        //    try
+        //    {
+        //        profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
+        //        using (Bitmap bmp = new Bitmap(profilePhoto))
+        //        {
+        //            MemoryStream ms = new MemoryStream();
+        //            bmp.Save(ms, ImageFormat.Png);
+        //            ms.Position = 0;
+        //            BitmapImage bi = new BitmapImage();
+        //            bi.BeginInit();
+        //            bi.StreamSource = ms;
+        //            bi.EndInit();
 
-                    photo = bi;
-                    profileImage.Source = bi;
-                }
-            }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
-        }
+        //            photo = bi;
+        //            profileImage.Source = bi;
+        //        }
+        //    }
+        //    catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+        //}
     }
 }
