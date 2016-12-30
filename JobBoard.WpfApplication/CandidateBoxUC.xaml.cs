@@ -28,7 +28,7 @@ namespace JobBoard.WpfApplication
             locationLabel.Content = user.Location;
             emailLabel.Content = user.Email;
             phoneLabel.Content = user.PhoneNumber;
-            foreach(string skill in user.skillList)
+            foreach(string skill in user.SkillList)
             {
                 Button button = new Button();
                 button.Content = skill;

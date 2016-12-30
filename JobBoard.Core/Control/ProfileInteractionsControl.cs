@@ -53,10 +53,10 @@ namespace JobBoard.Core
             }
         }
 
-        public void UpdateVacancy(int userId, Vacancy vac)
+        public void UpdateVacancy(Vacancy vac)
         {
             int empid = query.getCompanyId(vac.Company);
-            query.UpdateVacancyQuery(vac.JobTitle, empid, userId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary);
+            query.UpdateVacancyQuery(vac.JobTitle, empid, vac.Recruiter.UserId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary, vac.getJobId());
         }
 
         public List<Experience> getExperienceList(int userId)
@@ -75,13 +75,12 @@ namespace JobBoard.Core
                                             dataTable.Rows[i]["details"].ToString());
                 experienceList.Add(experience);
             }
-
             return experienceList;
         }
 
-        public List<Vacancy> getVacanciesPosted(int userId)
+        public List<Vacancy> getVacanciesPosted(User recruiter)
         {
-            dataTable = query.getVacancy(userId);
+            dataTable = query.getVacancy(recruiter.UserId);
             vacancyList = new List<Vacancy>();
             Vacancy vacancy;
 
@@ -92,7 +91,7 @@ namespace JobBoard.Core
 
                 vacancy = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
                                           searchQuery.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])).ToString(),
-                                          searchQuery.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])).ToString(),
+                                          User.getInstanceById(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[i]["location"].ToString(),
                                           Convert.ToDateTime(dataTable.Rows[i]["posted_time"].ToString()),
                                           Convert.ToDateTime(dataTable.Rows[i]["dead_line"].ToString()),

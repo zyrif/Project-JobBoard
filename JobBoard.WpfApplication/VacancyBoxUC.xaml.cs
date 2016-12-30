@@ -76,7 +76,10 @@ namespace JobBoard.WpfApplication
             jobtitleLabel.Content += " " + vacancy.JobTitle;
             employerLabel.Content += " " + vacancy.Company;
             locationLabel.Content += " " + vacancy.Location;
-            jobtypeLabel.Content += " " + vacancy.JobType;
+            if (vacancy.JobType == true)
+                jobtypeLabel.Content += " Permanent";
+            else
+                jobtypeLabel.Content += " Temporary";
             salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
             deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
             foreach (string skill in vacancy.skillList)

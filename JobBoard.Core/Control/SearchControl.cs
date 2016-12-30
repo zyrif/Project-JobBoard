@@ -38,7 +38,7 @@ namespace JobBoard.Core.Control
             {
                 postedJob = new Vacancy(dataTable.Rows[0]["job_title"].ToString(),
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])),
-                                          query.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
+                                          User.getInstanceById(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[0]["location"].ToString(),
                                           Convert.ToDateTime(dataTable.Rows[0]["posted_time"].ToString()),
                                           Convert.ToDateTime(dataTable.Rows[0]["dead_line"].ToString()),

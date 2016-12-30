@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobBoard.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,9 @@ namespace JobBoard.Core.Entity
     public class Vacancy
     {
         public string JobTitle { set; get; }
+        public int JobId { get; set; }
         public string Company { set; get; }
-        public string Recruiter { set; get; }
+        public User Recruiter { set; get; }
         public string Location { set; get; }
         public DateTime PostedTime { set; get; }
         public DateTime DeadLine { set; get; }
@@ -25,7 +27,7 @@ namespace JobBoard.Core.Entity
         public string JobSummary { set; get; }
         public List<string> skillList;
 
-        public Vacancy(string jobTitle, string company, string recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, string jobSummary, List<string> skillList)
+        public Vacancy(string jobTitle, string company, User recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, string jobSummary, List<string> skillList)
         {
             this.JobTitle = jobTitle;
             this.Company = company;
@@ -46,6 +48,15 @@ namespace JobBoard.Core.Entity
             this.JobSummary = jobSummary;
 
             this.skillList = skillList;
+        }
+
+        public int getJobId()
+        {
+            if(JobId != 0)
+            {
+                JobId = SearchQuery.getInstance().getjobId(this.JobTitle, this.Recruiter.UserId);
+            }
+            return JobId;
         }
     }
 }

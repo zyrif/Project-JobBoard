@@ -18,6 +18,7 @@ using System.Drawing.Imaging;
 using System.Diagnostics;
 using Microsoft.Win32;
 using JobBoard.Core.Control;
+using System.Windows.Resources;
 
 namespace JobBoard.WpfApplication
 {
@@ -32,7 +33,7 @@ namespace JobBoard.WpfApplication
         ChooseProfile cpWindow;
         Profile profile;
 
-        System.Drawing.Image profilePhoto;
+        System.Drawing.Image defaultPhoto;
         BitmapImage photo = new BitmapImage();
 
         public JobSeekerRegistration(ChooseProfile cp)
@@ -43,13 +44,11 @@ namespace JobBoard.WpfApplication
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
 
-            try
-            {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                SetProfileimage();
-            }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
-   
+            Uri uri = new Uri("pack://application:,,,/JobBoard.WpfApplication;Component/Resources/profileimage.png", UriKind.Absolute);
+            StreamResourceInfo sri = Application.GetResourceStream(uri);
+            defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
+            SetDefaultProfileimage();
+
         }
 
         bool fromEdit=false;
@@ -61,12 +60,7 @@ namespace JobBoard.WpfApplication
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
 
-            try
-            {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                SetProfileimage();
-            }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+            photo = currentUser.Photo;
 
             SetFields();
             fromEdit = true;
@@ -94,9 +88,10 @@ namespace JobBoard.WpfApplication
                 DateTime date = Convert.ToDateTime(birthdayPicker.SelectedDate);
 
                 List<string> skillList = new List<string>();
+
                 foreach (Button skillButton in slctskillsPanel.Children)
                 {
-                    currentUser.setSkill(skillButton.Content.ToString());
+                    skillList.Add(skillButton.Content.ToString());
                 }
                 if (fromEdit == true)
                 {
@@ -157,9 +152,9 @@ namespace JobBoard.WpfApplication
             }
         }
 
-        private void SetProfileimage()
+        private void SetDefaultProfileimage()
         {
-            using (Bitmap bmp = new Bitmap(profilePhoto))
+            using (Bitmap bmp = new Bitmap(defaultPhoto))
             {
                 MemoryStream ms = new MemoryStream();
                 bmp.Save(ms, ImageFormat.Png);
@@ -183,8 +178,8 @@ namespace JobBoard.WpfApplication
 
             if(dialog.ShowDialog() == true)
             {
-                profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
-                using (Bitmap bmp = new Bitmap(profilePhoto))
+                defaultPhoto = System.Drawing.Image.FromFile(dialog.FileName);
+                using (Bitmap bmp = new Bitmap(defaultPhoto))
                 {
                     MemoryStream ms = new MemoryStream();
                     bmp.Save(ms, ImageFormat.Png);
@@ -207,8 +202,10 @@ namespace JobBoard.WpfApplication
             phoneBox.Text = currentUser.PhoneNumber;
             birthdayPicker.Text = currentUser.BirthDay.Date.ToString();
             locationBox.Text = currentUser.Location;
+            profileImage.Source = currentUser.Photo;
+            
 
-            foreach(string skill in currentUser.skillList)
+            foreach(string skill in currentUser.SkillList)
             {
                 Button btn = new Button();
                 btn.Content = skill;
@@ -228,10 +225,10 @@ namespace JobBoard.WpfApplication
             currentUser.Location = locationBox.Text;
             currentUser.Photo = photo;
 
-            currentUser.skillList.Clear();
+            currentUser.SkillList.Clear();
             foreach (Button btn in slctskillsPanel.Children)
             {
-                currentUser.skillList.Add(btn.Content.ToString());
+                currentUser.SkillList.Add(btn.Content.ToString());
             }
             lrControl.UpdateJS(currentUser);
         }

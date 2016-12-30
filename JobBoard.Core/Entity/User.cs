@@ -13,7 +13,7 @@ namespace JobBoard.Core
     {
         static User instance;
 
-        public List<string> skillList = new List<string>();
+        public List<string> SkillList = new List<string>();
 
         public string UserName { get; set; }
         public int UserId { get; set; }
@@ -37,12 +37,12 @@ namespace JobBoard.Core
 
         public void setSkill(string skill)
         {
-            skillList.Add(skill);
+            SkillList.Add(skill);
         }
 
         public List<string> getSkillList()
         {
-            return skillList;
+            return SkillList;
         }
 
         private void initSkills()
@@ -66,7 +66,7 @@ namespace JobBoard.Core
             this.Photo = photo;
             this.BirthDay = birthday;
             this.Location = location;
-            this.skillList = skilllist;
+            this.SkillList = skilllist;
         }
 
         public void addUser(string firstName, string lastName, string email, string phNumber, BitmapImage photo, string jobposition, string companyname)
@@ -96,6 +96,23 @@ namespace JobBoard.Core
             if (instance == null)
                 instance = new User();
             return instance;
+        }
+
+        public static User getInstanceById(int userId)
+        {
+            User recruiter = new User();
+            System.Data.DataTable dataTable = Data.SearchQuery.getInstance().getUserInstance(userId);
+
+            recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
+            recruiter.UserId = userId;
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+            recruiter.Location = dataTable.Rows[0]["location"].ToString();
+
+            return recruiter;
         }
 
         public static void clearInstance()

@@ -55,7 +55,7 @@ namespace JobBoard.WpfApplication
         {
             if (userRef.UserType == 0)
             {
-                AnotherJSUserOverviewUC auo = new AnotherJSUserOverviewUC(userRef);
+                AnotherJSUserOverviewUC auo = new AnotherJSUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(auo);
             }
             else if (userRef.UserType == 1)
@@ -93,7 +93,7 @@ namespace JobBoard.WpfApplication
 
         private void AddPostedVacancies()
         {
-            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef.UserId);
+            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef);
 
             foreach (Vacancy vacancy in vacancyList)
             {
