@@ -48,7 +48,10 @@ namespace JobBoard.WpfApplication
 
         private void PopulateUC()
         {
-            senderLabel.Content += mail.SenderUserName;
+            if (mail.SenderUserName == currentUser.UserName)
+                senderLabel.Content = "Receipent: " + mail.ReceiverUserName;
+            else if (mail.ReceiverUserName == currentUser.UserName)
+                senderLabel.Content += mail.SenderUserName;
             msgBox.Text = mail.MailSubject;
             msgbodyRTBox.Document.Blocks.Clear();
             msgbodyRTBox.Document.Blocks.Add(new Paragraph(new Run(mail.MailBody)));

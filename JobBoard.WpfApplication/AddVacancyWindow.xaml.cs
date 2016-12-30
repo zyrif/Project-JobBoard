@@ -72,6 +72,7 @@ namespace JobBoard.WpfApplication
             foreach (Button b in selectWrapPanel.Children)
             {
                 bool newSkill = true;
+
                 if (updateVacancy)
                 {
                     foreach (string s in vacancy.skillList)
@@ -89,7 +90,7 @@ namespace JobBoard.WpfApplication
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
 
             Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
-            
+
             if (updateVacancy)
             {
                 newVacancy.JobId = vacancy.JobId;
