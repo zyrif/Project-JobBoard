@@ -107,22 +107,9 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        public void addimage(int userId, byte[] image)
+        public void addimage(string username, byte[] image)
         {
-            DBReadWrite dbrw = DBReadWrite.getInstance();
-
-            using (MySqlCommand command = new MySqlCommand())
-            {
-                command.Connection = dbrw.connection;
-                command.CommandText = "update user_info set photo=?image where user_id=" + userId + "";
-                MySqlParameter imageParameter = new MySqlParameter("?image", MySqlDbType.Blob, image.Length);
-
-                imageParameter.Value = image;
-
-                command.Parameters.Add(imageParameter);
-
-                command.ExecuteNonQuery();
-            }
+            DBReadWrite.getInstance().insertimageQuery(username, image);
         }
         
         //Company Registration Portion
