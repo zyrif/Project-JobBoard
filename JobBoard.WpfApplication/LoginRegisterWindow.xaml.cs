@@ -57,39 +57,53 @@ namespace JobBoard.WpfApplication
         {
             if (LRTabControl.SelectedIndex == 0)
             {
-                if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
+                if (LUsernameBox.Text != "")
                 {
-                    currentUser = User.getInstance();
-                    Profile jp = new Profile(currentUser);
-                    jp.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Username Password Mismatch");
-                }
-            }
-            else if(LRTabControl.SelectedIndex == 1)
-            {
-                if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
-                {
-                    if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
+                    if (loginRegistrationControl.login(LUsernameBox.Text, LPasswordBox.Password.ToString()))
                     {
                         currentUser = User.getInstance();
-                        currentUser.UserName = RUsernameBox.Text.Trim();
-                        currentUser.UserPassword = RPassBox.Password.ToString();
-                        ChooseProfile cp = new ChooseProfile(this);
-                        cp.Show();
+                        Profile jp = new Profile(currentUser);
+                        jp.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Passwords don't match");
+                        MessageBox.Show("Username Password Mismatch");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("An Account is already created with this Username");
+                    MessageBox.Show("Enter User Name to Login Your Account");
+                }
+            }
+            else if(LRTabControl.SelectedIndex == 1)
+            {
+                if (LUsernameBox.Text != "")
+                {
+                    if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
+                    {
+                        if (RPassBox.Password.ToString() == RPassConfirmBox.Password.ToString())
+                        {
+                            currentUser = User.getInstance();
+                            currentUser.UserName = RUsernameBox.Text.Trim();
+                            currentUser.UserPassword = RPassBox.Password.ToString();
+                            ChooseProfile cp = new ChooseProfile(this);
+                            cp.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Passwords don't match");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("An Account is already created with this Username");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Enter User Name & Password to Create a new Account");
                 }
             }
         }

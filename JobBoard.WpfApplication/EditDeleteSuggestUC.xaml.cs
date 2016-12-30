@@ -45,7 +45,7 @@ namespace JobBoard.WpfApplication
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddVacancyWindow advc = new AddVacancyWindow(vacancy);
+            AddVacancyWindow advc = new AddVacancyWindow(vacancy,profile);
             advc.Show();
         }
 
