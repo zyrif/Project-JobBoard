@@ -101,6 +101,7 @@ namespace JobBoard.WpfApplication
                 if (fromEdit == true)
                 {
                     updateFields();
+                    profile.Close();
                     Profile jp = new Profile(currentUser);
                     jp.Show();
                 }
@@ -112,7 +113,7 @@ namespace JobBoard.WpfApplication
                     lr.Show();
                 }
                 
-                this.Hide();
+                this.Close();
             }
             else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
             {
