@@ -1,4 +1,6 @@
 ﻿using JobBoard.Core;
+using JobBoard.Core.Control;
+using JobBoard.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace JobBoard.WpfApplication
@@ -25,13 +28,16 @@ namespace JobBoard.WpfApplication
     public partial class AnotherJSUserOverviewUC : UserControl
     {
         User userRef;
+        AnotherProfile profile;
 
-        public AnotherJSUserOverviewUC(User usr)
+        public AnotherJSUserOverviewUC(User usr, AnotherProfile profile)
         {
             InitializeComponent();
             this.userRef = usr;
+            this.profile = profile;
             PopulateUO();
-            setpic();
+            initSkills();
+            //setpic();
         }
 
         private void SearchJob_Click(object sender, RoutedEventArgs e)
@@ -42,8 +48,7 @@ namespace JobBoard.WpfApplication
 
         private void PopulateUO()
         {
-            uwelcomeLabel.Content = userRef.FirstName;
-            uwelcomeLabel.Content += " " + userRef.LastName;
+            uwelcomeLabel.Content += userRef.FirstName;
             unameLabel.Content += userRef.UserName;
             uemailLabel.Content = userRef.Email;
             ulocationLabel.Content = userRef.Location;
@@ -51,28 +56,44 @@ namespace JobBoard.WpfApplication
             profileImage.Source = userRef.Photo;
         }
 
-        private void setpic()
+        private void initSkills()
         {
-            System.Drawing.Image profilePhoto;
-            BitmapImage photo = new BitmapImage();
-            try
+            Button button;
+            SearchControl sqControl = new SearchControl();
+            userRef.SkillList = sqControl.getSkillListByUserId(userRef.UserId);
+            foreach (string skill in userRef.SkillList)
             {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                using (Bitmap bmp = new Bitmap(profilePhoto))
-                {
-                    MemoryStream ms = new MemoryStream();
-                    bmp.Save(ms, ImageFormat.Png);
-                    ms.Position = 0;
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = ms;
-                    bi.EndInit();
-
-                    photo = bi;
-                    profileImage.Source = bi;
-                }
+                button = new Button();
+                button.Content = skill;
+                this.skillsPanel.Children.Add(button);
             }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
         }
+
+        //private void setpic()
+        //{
+        //    System.Drawing.Image defaultPhoto;
+        //    BitmapImage photo = new BitmapImage();
+        //    try
+        //    {
+        //        Uri uri = new Uri("pack://application:,,,/JobBoard.WpfApplication;Component/Resources/profileimage.png", UriKind.Absolute);
+        //        StreamResourceInfo sri = Application.GetResourceStream(uri);
+        //        defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
+        //        using (Bitmap bmp = new Bitmap(defaultPhoto))
+        //        {
+        //            MemoryStream ms = new MemoryStream();
+        //            bmp.Save(ms, ImageFormat.Png);
+        //            ms.Position = 0;
+        //            BitmapImage bi = new BitmapImage();
+        //            bi.BeginInit();
+        //            bi.StreamSource = ms;
+        //            bi.EndInit();
+
+        //            photo = bi;
+        //            profileImage.Source = bi;
+        //        }
+        //    }
+        //    catch (Exception ex) { MessageBox.Show("Default profile Image not in resources folder." + ex.ToString()); }
+        //}
+
     }
 }

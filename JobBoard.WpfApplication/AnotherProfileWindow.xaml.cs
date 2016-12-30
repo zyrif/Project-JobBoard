@@ -55,7 +55,7 @@ namespace JobBoard.WpfApplication
         {
             if (userRef.UserType == 0)
             {
-                AnotherJSUserOverviewUC auo = new AnotherJSUserOverviewUC(userRef);
+                AnotherJSUserOverviewUC auo = new AnotherJSUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(auo);
             }
             else if (userRef.UserType == 1)
