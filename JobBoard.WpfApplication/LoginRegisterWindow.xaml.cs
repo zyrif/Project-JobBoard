@@ -78,7 +78,7 @@ namespace JobBoard.WpfApplication
             }
             else if(LRTabControl.SelectedIndex == 1)
             {
-                if (LUsernameBox.Text != "")
+                if (RUsernameBox.Text != "")
                 {
                     if (!loginRegistrationControl.checkUser(RUsernameBox.Text))
                     {
