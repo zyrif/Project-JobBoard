@@ -124,7 +124,7 @@ namespace JobBoard.WpfApplication
 
         private void AddPostedVacancies()
         {
-            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef.UserId);
+            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef);
             foreach (Vacancy vacancy in vacancyList)
             {
                 VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy, this);

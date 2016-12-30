@@ -35,6 +35,7 @@ namespace JobBoard.WpfApplication
             this.profile = profile;
         }
 
+
         public AddVacancyWindow(Vacancy vacancy)
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace JobBoard.WpfApplication
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
             DateTime postedTime = DateTime.Now;
-            DateTime deadLine = Convert.ToDateTime(expdate.Text + "/" + expMonth.Text + "/" + expYear.Text);
+            DateTime deadLine = Convert.ToDateTime(expDate.SelectedDate.ToString());
             string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
             double minimumSalary = Convert.ToDouble(salary[0]);
             double maximumSalary = Convert.ToDouble(salary[1]);
@@ -73,10 +74,10 @@ namespace JobBoard.WpfApplication
             }
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
 
-            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef.UserName, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
             if (updateVacancy)
-                piControl.UpdateVacancy(userRef.UserId, newVacancy);
+                piControl.UpdateVacancy(newVacancy);
             else
                 piControl.AddVacancy(userRef.UserId, newVacancy);
 
@@ -131,7 +132,30 @@ namespace JobBoard.WpfApplication
             jobTypeList.Add("Permanent");
 
             empTypeComboBox.ItemsSource = jobTypeList;
+            if (updateVacancy)
+            {
+                empTypeComboBox.SelectedIndex = Convert.ToByte(vacancy.JobType);
+            }
+            else
+            {
+                empTypeComboBox.SelectedIndex = 0;
+            }
+
             salBrcktComboBox.ItemsSource = salaryRangeList;
+            if (updateVacancy)
+            {
+                foreach(string sr in salaryRangeList)
+                {
+                    if (sr == vacancy.MinimumSalary + "-" + vacancy.MaximumSalary)
+                    {
+                        salBrcktComboBox.SelectedValue = sr;
+                    }
+                }
+            }
+            else
+            {
+                salBrcktComboBox.SelectedIndex = 0;
+            }
             skillComboBox.ItemsSource = skillList;
         }
 
@@ -143,9 +167,7 @@ namespace JobBoard.WpfApplication
 
             jobtitleBox.Text = vacancy.JobTitle;
             joblocationBox.Text = vacancy.Location;
-            expdate.Text = vacancy.DeadLine.Day.ToString();
-            expMonth.Text = vacancy.DeadLine.Month.ToString();
-            expYear.Text = vacancy.DeadLine.Year.ToString();
+            expDate.SelectedDate = vacancy.DeadLine;
 
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));

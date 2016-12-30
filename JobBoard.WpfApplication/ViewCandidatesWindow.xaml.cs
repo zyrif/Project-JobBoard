@@ -39,7 +39,6 @@ namespace JobBoard.WpfApplication
                 skillList.Add(b.Content.ToString());
             }
             userList = sc.candidateSearch(skillList, s[2]);
-            MessageBox.Show(userList.Count.ToString());
             foreach (User user in userList)
             {
                 cbUC = new CandidateBoxUC(user);
