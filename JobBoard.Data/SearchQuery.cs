@@ -27,6 +27,14 @@ namespace JobBoard.Data
             return instance;
         }
 
+        public DataTable getUserInstance(int id)
+        {
+            query = "select * from user_info where user_id=" +id;
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
+
         public int getjobId(string jobTitle, int userId)
         {
             query = "select job_id from job_info where job_title='" + jobTitle + "' and recruiter_id=" + userId;

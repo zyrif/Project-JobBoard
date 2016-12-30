@@ -44,15 +44,15 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        public void addSkillListForJob(int jobId, int skillId)
+        public void UpdateVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, bool jobtype, string details, int jobId)
         {
-            query = "INSERT INTO user_skill (job_id, skill_id) values("+jobId+","+skillId+")";
+            query = "Update job_info set job_title='" + title + "', company_id=" + empid + ", recruiter_id=" + userid + ", location='" + location + "', posted_time='" + posttime.ToString("yyyy-MM-dd") + "', dead_line='" + deadline.ToString("yyyy-MM-dd") + "', minimum_salary=" + minsalary + ", maximum_salary=" + maxsalary + ", job_type='" + jobtype + ", details='" + details + "' where job_id="+jobId;
             dbReadWrite.insertQuery(query);
         }
 
-        public void UpdateVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, bool jobtype, string details)
+        public void addSkillListForJob(int jobId, int skillId)
         {
-            query = "Update job_info set job_title='" + title + "', company_id=" + empid + ", recruiter_id=" + userid + ", location='" + location + "', posted_time='" + posttime.ToString("yyyy-MM-dd") + "', dead_line='" + deadline.ToString("yyyy-MM-dd") + "', minimum_salary=" + minsalary + ", maximum_salary=" + maxsalary + ", job_type='" + jobtype + ", details='" + details + "'";
+            query = "INSERT INTO user_skill (job_id, skill_id) values("+jobId+","+skillId+")";
             dbReadWrite.insertQuery(query);
         }
 
