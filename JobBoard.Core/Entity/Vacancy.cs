@@ -50,6 +50,30 @@ namespace JobBoard.Core.Entity
             this.skillList = skillList;
         }
 
+        public Vacancy(string jobTitle, int jobId, string company, User recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, string jobSummary, List<string> skillList)
+        {
+            this.JobTitle = jobTitle;
+            this.JobId = jobId;
+            this.Company = company;
+            this.Recruiter = recruiter;
+            this.Location = location;
+            this.PostedTime = postedTime;
+            this.DeadLine = deadLine;
+            this.MinimumSalary = minimumSalary;
+            this.MaximumSalary = maximumSalary;
+            if ((byte)EJobType.Temporary == Convert.ToByte(jobType))
+            {
+                this.JobType = Convert.ToBoolean(EJobType.Temporary);
+            }
+            else
+            {
+                this.JobType = Convert.ToBoolean(EJobType.Permanent);
+            }
+            this.JobSummary = jobSummary;
+
+            this.skillList = skillList;
+        }
+
         public int getJobId()
         {
             if(JobId != 0)

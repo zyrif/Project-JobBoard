@@ -77,7 +77,6 @@ namespace JobBoard.Data
             {
                 skillList.Add(dataTable.Rows[i]["skill"].ToString());
             }
-
             return skillList;
         }
 
