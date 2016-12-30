@@ -17,6 +17,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using Microsoft.Win32;
 using JobBoard.Core.Control;
+using System.Windows.Resources;
 
 namespace JobBoard.WpfApplication
 {
@@ -30,7 +31,7 @@ namespace JobBoard.WpfApplication
         IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
 
-        System.Drawing.Image profilePhoto;
+        System.Drawing.Image defaultPhoto;
         BitmapImage photo = new BitmapImage();
 
         public RecruiterRegistration(ChooseProfile cp)
@@ -39,12 +40,10 @@ namespace JobBoard.WpfApplication
             init();
             this.cpWindow = cp;
 
-            try
-            {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                SetProfileimage();
-            }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+            Uri uri = new Uri("pack://application:,,,/JobBoard.WpfApplication;Component/Resources/profileimage.png", UriKind.Absolute);
+            StreamResourceInfo sri = Application.GetResourceStream(uri);
+            defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
+            SetDefaultProfileimage();
         }
 
         private void init()
@@ -102,9 +101,9 @@ namespace JobBoard.WpfApplication
             }
         }
 
-        private void SetProfileimage()
+        private void SetDefaultProfileimage()
         {
-            using (Bitmap bmp = new Bitmap(profilePhoto))
+            using (Bitmap bmp = new Bitmap(defaultPhoto))
             {
                 MemoryStream ms = new MemoryStream();
                 bmp.Save(ms, ImageFormat.Png);
@@ -128,8 +127,8 @@ namespace JobBoard.WpfApplication
 
             if (dialog.ShowDialog() == true)
             {
-                profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
-                using (Bitmap bmp = new Bitmap(profilePhoto))
+                defaultPhoto = System.Drawing.Image.FromFile(dialog.FileName);
+                using (Bitmap bmp = new Bitmap(defaultPhoto))
                 {
                     MemoryStream ms = new MemoryStream();
                     bmp.Save(ms, ImageFormat.Png);
