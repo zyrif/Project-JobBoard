@@ -55,6 +55,7 @@ namespace JobBoard.Core.Control
         {
             dataTable = query.RetriveSenderMailQuery(user.UserName);
 
+            collections.mail.Clear();
             foreach (DataRow row in dataTable.Rows)
             {
                 Mail mail = new Mail();

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JobBoard.WpfApplication"
         mc:Ignorable="d"
         Title="Compose mail" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
-        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
+        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left" MouseLeftButtonDown="Write_Mail_MouseLeftButtonDown">
     <Grid x:Name="wmmainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
