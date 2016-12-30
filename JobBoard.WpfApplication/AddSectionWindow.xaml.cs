@@ -44,14 +44,33 @@ namespace JobBoard.WpfApplication
 
         public AddSectionWindow(Experience exp, User user, Profile profile):this()
         {
-
             SectionTypeTabControl.SelectedIndex = exp.ExpType;
-            this.TitleBox.Text = exp.Title.ToString();
-            this.expFromDate.DataContext = exp.StartTime.Date.ToString();
-            this.expToDate.DataContext = exp.EndTime.Date.ToString();
-            this.CompanyBox.Text = exp.Entity;
-            this.ExpDetailsRichBox.Document.Blocks.Clear();
-            this.ExpDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            if (exp.ExpType == 0)
+            {
+                this.TitleBox.Text = exp.Title.ToString();
+                this.expFromDate.SelectedDate = exp.StartTime.Date;
+                this.expToDate.SelectedDate = exp.EndTime.Date;
+                this.CompanyBox.Text = exp.Entity;
+                this.ExpDetailsRichBox.Document.Blocks.Clear();
+                this.ExpDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
+            else if(exp.ExpType == 1)
+            {
+                this.DegreeBox.Text = exp.Title.ToString();
+                this.eduFromDate.SelectedDate = exp.StartTime.Date;
+                this.eduToDate.SelectedDate = exp.EndTime.Date;
+                this.InstituteBox.Text = exp.Entity;
+                this.EduDetailsRichBox.Document.Blocks.Clear();
+                this.EduDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
+            else if (exp.ExpType == 2)
+            {
+                this.AwardNameBox.Text = exp.Title.ToString();
+                this.awardDate.SelectedDate = exp.StartTime.Date;
+                this.AwardIssuerBox.Text = exp.Entity;
+                this.AwardDetailsRichBox.Document.Blocks.Clear();
+                this.AwardDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
 
             this.forUpdate = true;
             this.profile = profile;
