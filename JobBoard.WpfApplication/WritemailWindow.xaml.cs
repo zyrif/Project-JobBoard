@@ -33,12 +33,13 @@ namespace JobBoard.WpfApplication
             this.userRef = usr;
         }
 
-        public WritemailWindow(User usr, string sendername)
+        public WritemailWindow(User usr, string sendername, string mailSubject)
         {
             InitializeComponent();
             this.userRef = usr;
             this.sendername = sendername;
             recipientBox.Text = sendername;
+            subjBox.Text = "Re: " + mailSubject;
             isReply = true;
 
         }
