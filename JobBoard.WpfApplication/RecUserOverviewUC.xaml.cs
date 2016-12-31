@@ -25,11 +25,13 @@ namespace JobBoard.WpfApplication
     public partial class RecUserOverviewUC : UserControl
     {
         User userRef;
+        Profile profile;
 
-        public RecUserOverviewUC(User usr)
+        public RecUserOverviewUC(User usr, Profile profile)
         {
             InitializeComponent();
             this.userRef = usr;
+            this.profile = profile;
             PopulateUO();
             //setpic();
         }
@@ -44,6 +46,11 @@ namespace JobBoard.WpfApplication
             this.uemployerLabel.Content = userRef.CompanyName;
             this.profileImage.Source = userRef.Photo;
 
+        }
+
+        private void ProfileInfoEdit_Click(object sender, RoutedEventArgs e)
+        {
+            RecruiterRegistration rcr = new RecruiterRegistration(profile);
         }
 
         //private void setpic()

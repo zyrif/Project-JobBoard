@@ -12,7 +12,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="uwelcomeLabel" Content="Hello, " HorizontalAlignment="Left" FontSize="14" Foreground="White" Margin="10,10,0,0" d:LayoutOverrides="HorizontalAlignment" VerticalAlignment="Top"/>
-            <Button x:Name="ProfileInfoEdit" Content="Edit" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="0.508,0.526" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="White" ClickMode="Press" IsDefault="True" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Margin="0,5,5,0" HorizontalAlignment="Right" Width="44.198" Height="26.304" VerticalAlignment="Top"/>
+            <Button x:Name="ProfileInfoEdit" Content="Edit" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="0.508,0.526" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="White" ClickMode="Press" IsDefault="True" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Margin="0,5,5,0" HorizontalAlignment="Right" Width="45" Height="25" VerticalAlignment="Top" Click="ProfileInfoEdit_Click"/>
             <Label x:Name="unameLabel" Content="@" HorizontalAlignment="Left" Foreground="White" Margin="25,61.466,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Height="26"/>
             <Label x:Name="uemailLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,92.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
             <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,123.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
