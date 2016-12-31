@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid x:Name="InfoGrid" Margin="10,229.088,10,0" Background="#FF444444" RenderTransformOrigin="0.67,0.477">
+        <Grid x:Name="InfoGrid" Margin="10,177,10,10" Background="#FF444444" RenderTransformOrigin="0.67,0.477">
             <Grid.RowDefinitions>
                 <RowDefinition Height="57*"/>
                 <RowDefinition Height="29*"/>
@@ -26,7 +26,7 @@
             <Label x:Name="ulocationLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,0.905,0,1.457" Grid.Row="3" Height="26" d:LayoutOverrides="VerticalAlignment"/>
             <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,3.816,0,139.72" Grid.Row="4" Height="26"/>
         </Grid>
-        <Grid x:Name="photoGrid" Margin="10,62.01,10,0" Background="#FF444444" Height="162.078" VerticalAlignment="Top">
+        <Grid x:Name="photoGrid" Margin="10,10,10,0" Background="#FF444444" Height="162" VerticalAlignment="Top">
             <Image x:Name="profileImage" Margin="26,10"/>
         </Grid>
         <Grid Height="47.01" Margin="10,10,10,0" VerticalAlignment="Top"/>

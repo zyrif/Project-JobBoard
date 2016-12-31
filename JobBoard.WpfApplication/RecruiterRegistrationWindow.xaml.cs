@@ -17,6 +17,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using Microsoft.Win32;
 using JobBoard.Core.Control;
+using System.Windows.Resources;
 
 namespace JobBoard.WpfApplication
 {
@@ -29,8 +30,9 @@ namespace JobBoard.WpfApplication
         User currentUser = User.getInstance();
         IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
+        Profile profile;
 
-        System.Drawing.Image profilePhoto;
+        System.Drawing.Image defaultPhoto;
         BitmapImage photo = new BitmapImage();
 
         public RecruiterRegistration(ChooseProfile cp)
@@ -39,12 +41,25 @@ namespace JobBoard.WpfApplication
             init();
             this.cpWindow = cp;
 
-            try
-            {
-                profilePhoto = System.Drawing.Image.FromFile("profileimage.png");
-                SetProfileimage();
-            }
-            catch (Exception) { MessageBox.Show("Default profile Image not in bin/Debug folder."); }
+            Uri uri = new Uri("pack://application:,,,/JobBoard.WpfApplication;Component/Resources/profileimage.png", UriKind.Absolute);
+            StreamResourceInfo sri = Application.GetResourceStream(uri);
+            defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
+            SetDefaultProfileimage();
+        }
+
+        bool fromEdit = false;
+        public RecruiterRegistration(Profile profile)
+        {
+            InitializeComponent();
+            this.profile = profile;
+
+            photo = currentUser.Photo;
+
+            SetFields();
+            fromEdit = true;
+
+            DisableEmployer();
+
         }
 
         private void init()
@@ -54,7 +69,10 @@ namespace JobBoard.WpfApplication
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (fromEdit)
+                this.Close();
+            else
+                Application.Current.Shutdown();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -73,11 +91,24 @@ namespace JobBoard.WpfApplication
             {
                 if (checkEmployerPresent.IsChecked == false)
                 {
-                    currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
-                    lrControl.register(currentUser);
-                    LoginRegister lr = new LoginRegister();
-                    //Profile p = new Profile(currentUser);
-                    lr.Show(); this.Hide();
+
+                    if(fromEdit)
+                    {
+                        UpdateFields();
+                        profile.Close();
+                        Profile rp = new Profile(currentUser);
+                        rp.Show();
+                    }
+
+                    else
+                    {
+                        currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
+                        lrControl.register(currentUser);
+                        LoginRegister lr = new LoginRegister();
+                        //Profile p = new Profile(currentUser);
+                        lr.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
@@ -102,9 +133,9 @@ namespace JobBoard.WpfApplication
             }
         }
 
-        private void SetProfileimage()
+        private void SetDefaultProfileimage()
         {
-            using (Bitmap bmp = new Bitmap(profilePhoto))
+            using (Bitmap bmp = new Bitmap(defaultPhoto))
             {
                 MemoryStream ms = new MemoryStream();
                 bmp.Save(ms, ImageFormat.Png);
@@ -128,8 +159,8 @@ namespace JobBoard.WpfApplication
 
             if (dialog.ShowDialog() == true)
             {
-                profilePhoto = System.Drawing.Image.FromFile(dialog.FileName);
-                using (Bitmap bmp = new Bitmap(profilePhoto))
+                defaultPhoto = System.Drawing.Image.FromFile(dialog.FileName);
+                using (Bitmap bmp = new Bitmap(defaultPhoto))
                 {
                     MemoryStream ms = new MemoryStream();
                     bmp.Save(ms, ImageFormat.Png);
@@ -143,6 +174,41 @@ namespace JobBoard.WpfApplication
                 }
             }
         }
+
+        private void SetFields()
+        {
+            firstnameBox.Text = currentUser.FirstName;
+            lastnameBox.Text = currentUser.LastName;
+            emailBox.Text = currentUser.Email;
+            phoneBox.Text = currentUser.PhoneNumber;
+            jobposBox.Text = currentUser.JobPosition;
+            profileImage.Source = currentUser.Photo;
+
+            //add companyListComboBox code here. Delete the comment after adding the code.
+
+        }
+
+        private void UpdateFields()
+        {
+            currentUser.FirstName = firstnameBox.Text;
+            currentUser.LastName = lastnameBox.Text;
+            currentUser.Email = emailBox.Text;
+            currentUser.PhoneNumber = phoneBox.Text;
+            currentUser.JobPosition = jobposBox.Text;
+            currentUser.Photo = photo;
+
+            // add companyListComboBox code here. Delete the comment after adding the code.
+
+        }
+
+
+        private void DisableEmployer()
+        {
+            this.employerLabel.Visibility = Visibility.Hidden;
+            this.CompanyListComboBox.Visibility = Visibility.Hidden;
+            this.checkEmployerPresent.Visibility = Visibility.Hidden;
+        }
+
 
         private void emailBox_LostFocus(object sender, RoutedEventArgs e)
         {

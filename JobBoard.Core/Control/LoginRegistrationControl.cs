@@ -86,7 +86,6 @@ namespace JobBoard.Core
 
             //jobSeeker.Photo = photo;
 
-
             using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
             {
                 BitmapImage photo = new BitmapImage();
@@ -139,13 +138,23 @@ namespace JobBoard.Core
             recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
+        public User GetUserInfo(string userName)
+        {
+            dataTable = query.getUserInfo(userName);
+
+            if (Convert.ToByte(dataTable.Rows[0]["user_type"]) == 0)
+
+                return GetJobSeekerInfo(userName);
+            else
+                return GetRecruiterInfo(userName);
+        }
+
 
         public User GetJobSeekerInfo(string userName)
         {
             User jobSeeker = new User();
 
             dataTable = query.getUserInfo(userName);
-
             jobSeeker.UserName = dataTable.Rows[0]["user_name"].ToString();
             jobSeeker.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
             jobSeeker.UserType = Convert.ToByte(dataTable.Rows[0]["User_type"]);
@@ -178,6 +187,40 @@ namespace JobBoard.Core
         }
 
 
+        public User GetRecruiterInfo(string userName)
+        {
+
+            User recruiter = new Core.User();
+
+            recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
+            recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+
+            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            {
+                var photo = new BitmapImage();
+                photo.BeginInit();
+                photo.CacheOption = BitmapCacheOption.OnLoad;
+                photo.StreamSource = ms;
+                photo.EndInit();
+
+                recruiter.Photo = photo;
+
+            }
+
+            recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
+
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
+
+            return recruiter;
+        }
+
+
         //Check if a user name is already taken or registered
         public bool checkUser(string userName)
         {
@@ -201,7 +244,6 @@ namespace JobBoard.Core
 
                 foreach (string skill in userref.SkillList)
                 {
-                    MessageBox.Show(query.getUserId(userref.UserName)+" "+ skill);
                     query.writeSkill(query.getUserId(userref.UserName),skill);
                 }
                     
@@ -280,6 +322,13 @@ namespace JobBoard.Core
                 query.writeSkill(user.UserId, skill);
             }
         }
+
+        public void UpdateRec(User user)
+        {
+            query.UpdateRecInfo(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.JobPosition);
+            query.addimage(user.UserName, ConvertImage(user));
+        }
+
         public static void clearInstance()
         {
             instance = null;

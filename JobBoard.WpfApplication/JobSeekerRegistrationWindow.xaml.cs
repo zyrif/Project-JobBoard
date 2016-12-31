@@ -32,6 +32,7 @@ namespace JobBoard.WpfApplication
         IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
         Profile profile;
+        List<string> skillList = new List<string>();
 
         System.Drawing.Image defaultPhoto;
         BitmapImage photo = new BitmapImage();
@@ -48,7 +49,6 @@ namespace JobBoard.WpfApplication
             StreamResourceInfo sri = Application.GetResourceStream(uri);
             defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
             SetDefaultProfileimage();
-
         }
 
         bool fromEdit=false;
@@ -68,7 +68,10 @@ namespace JobBoard.WpfApplication
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (fromEdit)
+                this.Close();
+            else
+                Application.Current.Shutdown();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -86,8 +89,6 @@ namespace JobBoard.WpfApplication
             if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text))
             {
                 DateTime date = Convert.ToDateTime(birthdayPicker.SelectedDate);
-
-                List<string> skillList = new List<string>();
 
                 foreach (Button skillButton in slctskillsPanel.Children)
                 {
@@ -126,32 +127,7 @@ namespace JobBoard.WpfApplication
 
         //If skill is selected from combo box
         bool alreadyAdded = false;
-        private void JobSeekerRegWindow_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Button skill = new Button();
-            try
-            {
-                skill.Content = comboBox.SelectedItem.ToString();
-                foreach (Button button in slctskillsPanel.Children)
-                {
-                    if (button.Content.ToString() == skill.Content.ToString())
-                    {
-                        alreadyAdded = true;
-                    }
-                        
-                }
-                if(alreadyAdded == false)
-                {
-                    slctskillsPanel.Children.Add(skill);
-                }
-                alreadyAdded = false;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.StackTrace);
-            }
-        }
-
+        
         private void SetDefaultProfileimage()
         {
             using (Bitmap bmp = new Bitmap(defaultPhoto))
@@ -207,12 +183,14 @@ namespace JobBoard.WpfApplication
 
             foreach(string skill in currentUser.SkillList)
             {
-                Button btn = new Button();
-                btn.Content = skill;
-                this.slctskillsPanel.Children.Add(btn);
+                Button skillButton = new Button();
+                skillButton.Content = skill;
+                this.slctskillsPanel.Children.Add(skillButton);
+                skillList.Add(skill);
+                skillButton.Click += (s, ev) => { slctskillsPanel.Children.Remove(skillButton); skillList.Remove(skillButton.Content.ToString()); };
             }
 
-            
+
         }
 
         private void updateFields()
@@ -278,6 +256,34 @@ namespace JobBoard.WpfApplication
             else if (iehp.isPhoneNumber(phoneBox.Text))
             {
                 phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void comboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Button skill = new Button();
+            try
+            {
+                skill.Content = comboBox.SelectedItem.ToString();
+                foreach (Button button in slctskillsPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+
+                }
+                if (alreadyAdded == false)
+                {
+                    slctskillsPanel.Children.Add(skill);
+                    comboBox.Text = "";
+                    skill.Click += (s, ev) => { slctskillsPanel.Children.Remove(skill); };
+                }
+                alreadyAdded = false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
             }
         }
     }

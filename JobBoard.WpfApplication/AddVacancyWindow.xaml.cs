@@ -25,6 +25,7 @@ namespace JobBoard.WpfApplication
         Profile profile;
         User userRef = User.getInstance();
         ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
+        List<string> skills = new List<string>();
 
         bool updateVacancy = false;
 
@@ -36,10 +37,11 @@ namespace JobBoard.WpfApplication
         }
 
 
-        public AddVacancyWindow(Vacancy vacancy)
+        public AddVacancyWindow(Vacancy vacancy, Profile profile)
         {
             InitializeComponent();
             this.vacancy = vacancy;
+            this.profile = profile;
             updateVacancy = true;
             UpdateVacancy();
         }
@@ -67,17 +69,33 @@ namespace JobBoard.WpfApplication
             double minimumSalary = Convert.ToDouble(salary[0]);
             double maximumSalary = Convert.ToDouble(salary[1]);
             string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
-            List<string> skills = new List<string>();
             foreach (Button b in selectWrapPanel.Children)
             {
-                skills.Add(b.Content.ToString());
+                bool newSkill = true;
+
+                if (updateVacancy)
+                {
+                    foreach (string s in vacancy.skillList)
+                    {
+                        if (s == b.Content.ToString())
+                            newSkill = false;
+                    }
+                }
+                if(newSkill)
+                {
+                    skills.Add(b.Content.ToString());
+                }
             }
+            
             bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
 
             Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
             if (updateVacancy)
+            {
+                newVacancy.JobId = vacancy.JobId;
                 piControl.UpdateVacancy(newVacancy);
+            }
             else
                 piControl.AddVacancy(userRef.UserId, newVacancy);
 
@@ -106,6 +124,8 @@ namespace JobBoard.WpfApplication
                 if (alreadyAdded == false)
                 {
                     selectWrapPanel.Children.Add(skill);
+                    skillComboBox.Text = "";
+                    skill.Click += (s, ev) => { selectWrapPanel.Children.Remove(skill); };
                 }
             }
             catch (Exception ex)
@@ -165,10 +185,17 @@ namespace JobBoard.WpfApplication
 
             updateVacancy = true;
 
+            foreach(string skill in vacancy.skillList)
+            {
+                Button skillButton = new Button();
+                skillButton.Content = skill;
+                selectWrapPanel.Children.Add(skillButton);
+                skills.Add(skill);
+                skillButton.Click += (s, ev) => { selectWrapPanel.Children.Remove(skillButton); skills.Remove(skillButton.Content.ToString()); };
+            }
             jobtitleBox.Text = vacancy.JobTitle;
             joblocationBox.Text = vacancy.Location;
             expDate.SelectedDate = vacancy.DeadLine;
-
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
         }

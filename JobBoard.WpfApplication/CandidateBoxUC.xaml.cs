@@ -21,9 +21,13 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class CandidateBoxUC : UserControl
     {
+        User user;
+
         public CandidateBoxUC(User user)
         {
+
             InitializeComponent();
+            this.user = user;
             nameLabel.Content = user.FirstName + " " + user.LastName;
             locationLabel.Content = user.Location;
             emailLabel.Content = user.Email;
@@ -34,6 +38,13 @@ namespace JobBoard.WpfApplication
                 button.Content = skill;
                 skillsPanel.Children.Add(button);
             }
+        }
+
+        private void conBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WritemailWindow newmail = new WritemailWindow();
+            newmail.recipientBox.Text = user.UserName;
+            newmail.Show();
         }
     }
 }

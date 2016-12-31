@@ -23,6 +23,7 @@ namespace JobBoard.WpfApplication
     public partial class AnotherProfile : Window
     {
         ProfileInteractionsControl control = ProfileInteractionsControl.getInstance();
+        LoginRegistrationControl lrcontrol = LoginRegistrationControl.getInstance();
         User userRef;
         User currentUser = User.getInstance();
 
@@ -30,6 +31,14 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.userRef = usr;
+            AddUserOverview();
+            AddUserHistory();
+        }
+
+        public AnotherProfile(String newuser)
+        {
+            InitializeComponent();
+            this.userRef = lrcontrol.GetUserInfo(newuser);
             AddUserOverview();
             AddUserHistory();
         }

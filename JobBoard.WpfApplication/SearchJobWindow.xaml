@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JobBoard.WpfApplication"
         mc:Ignorable="d"
         Title="JobSearch" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
-        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
+        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left" MouseLeftButtonDown="Search_Job_MouseLeftButtonDown">
     <Grid x:Name="mainGrid">
         <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31" Margin="0,7,6,0"/>
         <Button x:Name="WindowMinimize" Content="___" Margin="0,7,42,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Click="WindowMinimize_Click" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31"/>

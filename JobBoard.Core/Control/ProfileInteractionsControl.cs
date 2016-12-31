@@ -57,6 +57,12 @@ namespace JobBoard.Core
         {
             int empid = query.getCompanyId(vac.Company);
             query.UpdateVacancyQuery(vac.JobTitle, empid, vac.Recruiter.UserId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary, vac.getJobId());
+
+            //Delete previous skills
+            query.deleteSkillForJob(vac.JobId);
+            //Add New skills
+            foreach (string s in vac.skillList)
+                query.addSkillListForJob(vac.JobId, searchQuery.getSkillIdByName(s));
         }
 
         public List<Experience> getExperienceList(int userId)
@@ -90,6 +96,7 @@ namespace JobBoard.Core
                 jType = Convert.ToBoolean(dataTable.Rows[i]["job_type"]);
 
                 vacancy = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
+                                          Convert.ToInt32(dataTable.Rows[i]["job_id"]),
                                           searchQuery.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])).ToString(),
                                           User.getInstanceById(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[i]["location"].ToString(),

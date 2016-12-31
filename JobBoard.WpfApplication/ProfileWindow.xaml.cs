@@ -72,7 +72,7 @@ namespace JobBoard.WpfApplication
             }
             else if (userRef.UserType == 1)
             {
-                RecUserOverviewUC uo = new RecUserOverviewUC(userRef);
+                RecUserOverviewUC uo = new RecUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(uo);
             }
         }

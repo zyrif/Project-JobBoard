@@ -34,6 +34,8 @@ namespace JobBoard.WpfApplication
             this.mw = mw;
 
             PopulateUC();
+            ShowReply();
+
         }
 
         private void amail_MouseEnter(object sender, MouseEventArgs e)
@@ -48,12 +50,22 @@ namespace JobBoard.WpfApplication
 
         private void PopulateUC()
         {
-            senderLabel.Content += mail.SenderUserName;
+            if (mail.SenderUserName == currentUser.UserName)
+                senderLabel.Content = "Receipent: " + mail.ReceiverUserName;
+            else if (mail.ReceiverUserName == currentUser.UserName)
+                senderLabel.Content += mail.SenderUserName;
             msgBox.Text = mail.MailSubject;
             msgbodyRTBox.Document.Blocks.Clear();
             msgbodyRTBox.Document.Blocks.Add(new Paragraph(new Run(mail.MailBody)));
             timeLabel.Content = mail.Time.ToString();
         }
+
+        private void ShowReply()
+        {
+            if (mail.SenderUserName == currentUser.UserName)
+                this.replyBtn.Visibility = Visibility.Hidden;
+        }
+
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -90,16 +102,37 @@ namespace JobBoard.WpfApplication
         private void senderLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LoginRegistrationControl lrc = LoginRegistrationControl.getInstance();
-            AnotherProfile senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
-            senderprofile.Show();
-            senderprofile.Activate();
-            senderprofile.Topmost = true;  // important
-            senderprofile.Focus();
+
+            AnotherProfile newprofile;
+            if (mail.SenderUserName == currentUser.UserName)
+            {
+                newprofile = new AnotherProfile(mail.ReceiverUserName);
+                newprofile.Show();
+                newprofile.Activate();
+                newprofile.Topmost = true;  // important
+                newprofile.Focus();
+            }
+            else if (mail.ReceiverUserName == currentUser.UserName)
+            {
+                newprofile = new AnotherProfile(mail.SenderUserName);
+                newprofile.Show();
+                newprofile.Activate();
+                newprofile.Topmost = true;  // important
+                newprofile.Focus();
+            }
+
         }
 
         private void replyBtn_Click(object sender, RoutedEventArgs e)
         {
-            WritemailWindow reply = new WritemailWindow(currentUser, mail.SenderUserName);
+            WritemailWindow reply;
+
+            if (currentUser.UserName == mail.SenderUserName)
+                reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject);
+
+            else
+                reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject);
+
             reply.Show();
         }
     }
