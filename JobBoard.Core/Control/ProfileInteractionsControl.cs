@@ -57,7 +57,10 @@ namespace JobBoard.Core
         {
             int empid = query.getCompanyId(vac.Company);
             query.UpdateVacancyQuery(vac.JobTitle, empid, vac.Recruiter.UserId, vac.Location, vac.PostedTime, vac.DeadLine, vac.MinimumSalary, vac.MaximumSalary, vac.JobType, vac.JobSummary, vac.getJobId());
-            
+
+            //Delete previous skills
+            query.deleteSkillForJob(vac.JobId);
+            //Add New skills
             foreach (string s in vac.skillList)
                 query.addSkillListForJob(vac.JobId, searchQuery.getSkillIdByName(s));
         }

@@ -50,6 +50,12 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
+        public void deleteSkillForJob(int jobId)
+        {
+            query = "DELETE FROM user_skill where job_id="+jobId;
+            dbReadWrite.insertQuery(query);
+        }
+
         public void addSkillListForJob(int jobId, int skillId)
         {
             query = "INSERT INTO user_skill (job_id, skill_id) values("+jobId+","+skillId+")";

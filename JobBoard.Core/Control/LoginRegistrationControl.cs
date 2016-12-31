@@ -86,7 +86,6 @@ namespace JobBoard.Core
 
             //jobSeeker.Photo = photo;
 
-
             using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
             {
                 BitmapImage photo = new BitmapImage();
@@ -200,7 +199,6 @@ namespace JobBoard.Core
 
                 foreach (string skill in userref.SkillList)
                 {
-                    MessageBox.Show(query.getUserId(userref.UserName)+" "+ skill);
                     query.writeSkill(query.getUserId(userref.UserName),skill);
                 }
                     
