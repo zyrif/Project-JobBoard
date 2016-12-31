@@ -103,15 +103,24 @@ namespace JobBoard.WpfApplication
         {
             LoginRegistrationControl lrc = LoginRegistrationControl.getInstance();
 
-            AnotherProfile senderprofile;
-            if ("Receipent: " + mail.ReceiverUserName == senderLabel.Content.ToString())
-                senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
-            else
-                senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.ReceiverUserName));
-            senderprofile.Show();
-            senderprofile.Activate();
-            senderprofile.Topmost = true;  // important
-            senderprofile.Focus();
+            AnotherProfile newprofile;
+            if (mail.SenderUserName == currentUser.UserName)
+            {
+                newprofile = new AnotherProfile(mail.ReceiverUserName);
+                newprofile.Show();
+                newprofile.Activate();
+                newprofile.Topmost = true;  // important
+                newprofile.Focus();
+            }
+            else if (mail.ReceiverUserName == currentUser.UserName)
+            {
+                newprofile = new AnotherProfile(mail.SenderUserName);
+                newprofile.Show();
+                newprofile.Activate();
+                newprofile.Topmost = true;  // important
+                newprofile.Focus();
+            }
+
         }
 
         private void replyBtn_Click(object sender, RoutedEventArgs e)
