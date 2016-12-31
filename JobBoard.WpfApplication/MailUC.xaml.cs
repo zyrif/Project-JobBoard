@@ -34,6 +34,8 @@ namespace JobBoard.WpfApplication
             this.mw = mw;
 
             PopulateUC();
+            ShowReply();
+
         }
 
         private void amail_MouseEnter(object sender, MouseEventArgs e)
@@ -57,6 +59,13 @@ namespace JobBoard.WpfApplication
             msgbodyRTBox.Document.Blocks.Add(new Paragraph(new Run(mail.MailBody)));
             timeLabel.Content = mail.Time.ToString();
         }
+
+        private void ShowReply()
+        {
+            if (mail.SenderUserName == currentUser.UserName)
+                this.replyBtn.Visibility = Visibility.Hidden;
+        }
+
 
         private void delBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -108,8 +117,12 @@ namespace JobBoard.WpfApplication
         private void replyBtn_Click(object sender, RoutedEventArgs e)
         {
             WritemailWindow reply;
-            if (currentUser.UserName == mail.SenderUserName) { reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject); }
-            else { reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject); }
+
+            if (currentUser.UserName == mail.SenderUserName)
+                reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject);
+
+            else
+                reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject);
 
             reply.Show();
         }
