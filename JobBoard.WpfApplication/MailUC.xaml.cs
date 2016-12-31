@@ -95,7 +95,7 @@ namespace JobBoard.WpfApplication
             LoginRegistrationControl lrc = LoginRegistrationControl.getInstance();
 
             AnotherProfile senderprofile;
-            if ("Receipent: " + mail.ReceiverUserName == senderLabel.Content)
+            if (mail.ReceiverUserName == senderLabel.Content.ToString())
                 senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
             else
                 senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.ReceiverUserName));

@@ -279,6 +279,13 @@ namespace JobBoard.Core
                 query.writeSkill(user.UserId, skill);
             }
         }
+
+        public void UpdateRec(User user)
+        {
+            //query.UpdateRecInfo();
+            query.addimage(user.UserName, ConvertImage(user));
+        }
+
         public static void clearInstance()
         {
             instance = null;

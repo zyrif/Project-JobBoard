@@ -108,10 +108,14 @@ namespace JobBoard.WpfApplication
             jobPanel.Children.Clear();
             foreach (Vacancy pj in postedJobList)
             {
-                VacancyBoxUC vBox = new VacancyBoxUC(pj);
-                this.jobPanel.Children.Add(vBox);
+                this.jobPanel.Children.Add(new JobsBoxUC(pj));
             }
 
+        }
+
+        private void Search_Job_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
