@@ -49,6 +49,7 @@ namespace JobBoard.WpfApplication
             defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
             SetDefaultProfileimage();
 
+
         }
 
         bool fromEdit=false;
@@ -68,7 +69,10 @@ namespace JobBoard.WpfApplication
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (fromEdit)
+                this.Close();
+            else
+                Application.Current.Shutdown();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
