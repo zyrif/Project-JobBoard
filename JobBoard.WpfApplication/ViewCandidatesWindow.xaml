@@ -6,12 +6,15 @@
         xmlns:local="clr-namespace:JobBoard.WpfApplication"
         mc:Ignorable="d"
         Title="View Suitable Candidates for this vacancy posting" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" 
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
-    <Grid Margin="0,0,0,10">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left" MouseLeftButtonDown="View_Candidates_MouseLeftButtonDown">
+    <Grid x:Name="MainGrid" Margin="0,0,0,10">
         <Label x:Name="viewcandidatesTitle" Content="Suitable Candidates for this job: " Margin="25.631,51.233,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" Background="#00000000" Foreground="White" FontSize="28" VerticalAlignment="Top" HorizontalAlignment="Left" Height="51"/>
+        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" VerticalAlignment="Top" Foreground="#FFD6D6D6" Height="21" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Grid.Column="3" Click="WindowClose_Click" HorizontalAlignment="Right" Width="31.142" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="WindowMinimize" Content="___" Margin="0,0,36.142,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Grid.Column="3" Click="WindowMinimize_Click" Height="21" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30.85"/>
+        
         <StackPanel x:Name="cView" HorizontalAlignment="Left" Height="345" Margin="26,107,0,0" VerticalAlignment="Top" Width="641"/>
         <ScrollViewer x:Name="ContentScrollBox" Margin="26,107,10,10"  VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="CVview" VerticalAlignment="Top" Margin="0"/>
+            <StackPanel x:Name="VCView" VerticalAlignment="Top" Margin="0"/>
         </ScrollViewer>
 
     </Grid>

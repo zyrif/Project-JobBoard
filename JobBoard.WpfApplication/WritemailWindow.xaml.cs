@@ -27,6 +27,12 @@ namespace JobBoard.WpfApplication
         bool isReply = false;
         string sendername;
 
+        public WritemailWindow()
+        {
+            InitializeComponent();
+            this.userRef = User.getInstance();
+        }
+
         public WritemailWindow(User usr)
         {
             InitializeComponent();
