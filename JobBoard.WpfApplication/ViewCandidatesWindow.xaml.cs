@@ -42,8 +42,23 @@ namespace JobBoard.WpfApplication
             foreach (User user in userList)
             {
                 cbUC = new CandidateBoxUC(user);
-                cView.Children.Add(cbUC);
+                VCView.Children.Add(cbUC);
             }
+        }
+
+        private void WindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void View_Candidates_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

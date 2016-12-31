@@ -49,8 +49,6 @@ namespace JobBoard.WpfApplication
             StreamResourceInfo sri = Application.GetResourceStream(uri);
             defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
             SetDefaultProfileimage();
-
-
         }
 
         bool fromEdit=false;

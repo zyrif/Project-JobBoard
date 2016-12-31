@@ -138,6 +138,17 @@ namespace JobBoard.Core
             recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
         }
 
+        public User GetUserInfo(string userName)
+        {
+            dataTable = query.getUserInfo(userName);
+
+            if (Convert.ToByte(dataTable.Rows[0]["user_type"]) == 0)
+
+                return GetJobSeekerInfo(userName);
+            else
+                return GetRecruiterInfo(userName);
+        }
+
 
         public User GetJobSeekerInfo(string userName)
         {
@@ -173,6 +184,40 @@ namespace JobBoard.Core
             }
 
             return jobSeeker;
+        }
+
+
+        public User GetRecruiterInfo(string userName)
+        {
+
+            User recruiter = new Core.User();
+
+            recruiter.UserName = dataTable.Rows[0]["user_name"].ToString();
+            recruiter.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+            recruiter.UserType = Convert.ToByte(dataTable.Rows[0]["user_type"]);
+
+            recruiter.FirstName = dataTable.Rows[0]["first_name"].ToString();
+            recruiter.LastName = dataTable.Rows[0]["last_name"].ToString();
+            recruiter.Email = dataTable.Rows[0]["email"].ToString();
+            recruiter.PhoneNumber = dataTable.Rows[0]["phone"].ToString();
+
+            using (MemoryStream ms = new MemoryStream((byte[])dataTable.Rows[0]["photo"]))
+            {
+                var photo = new BitmapImage();
+                photo.BeginInit();
+                photo.CacheOption = BitmapCacheOption.OnLoad;
+                photo.StreamSource = ms;
+                photo.EndInit();
+
+                recruiter.Photo = photo;
+
+            }
+
+            recruiter.JobPosition = dataTable.Rows[0]["job_position"].ToString();
+
+            recruiter.CompanyName = query.getCompanyName(Convert.ToUInt32(dataTable.Rows[0]["company_id"]));
+
+            return recruiter;
         }
 
 
@@ -277,6 +322,13 @@ namespace JobBoard.Core
                 query.writeSkill(user.UserId, skill);
             }
         }
+
+        public void UpdateRec(User user)
+        {
+            //query.UpdateRecInfo();
+            query.addimage(user.UserName, ConvertImage(user));
+        }
+
         public static void clearInstance()
         {
             instance = null;

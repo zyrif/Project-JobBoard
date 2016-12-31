@@ -30,6 +30,7 @@ namespace JobBoard.WpfApplication
         User currentUser = User.getInstance();
         IEHPatterns iehp = IEHPatterns.getInstance();
         ChooseProfile cpWindow;
+        Profile profile;
 
         System.Drawing.Image defaultPhoto;
         BitmapImage photo = new BitmapImage();
@@ -44,6 +45,19 @@ namespace JobBoard.WpfApplication
             StreamResourceInfo sri = Application.GetResourceStream(uri);
             defaultPhoto = System.Drawing.Image.FromStream(sri.Stream);
             SetDefaultProfileimage();
+        }
+
+        bool fromEdit = false;
+        public RecruiterRegistration(Profile profile)
+        {
+            InitializeComponent();
+            this.profile = profile;
+
+            photo = currentUser.Photo;
+
+            SetFields();
+            fromEdit = true;
+
         }
 
         private void init()
@@ -72,11 +86,24 @@ namespace JobBoard.WpfApplication
             {
                 if (checkEmployerPresent.IsChecked == false)
                 {
-                    currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
-                    lrControl.register(currentUser);
-                    LoginRegister lr = new LoginRegister();
-                    //Profile p = new Profile(currentUser);
-                    lr.Show(); this.Hide();
+
+                    if(fromEdit)
+                    {
+                        UpdateFields();
+                        profile.Close();
+                        Profile rp = new Profile(currentUser);
+                        rp.Show();
+                    }
+
+                    else
+                    {
+                        currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
+                        lrControl.register(currentUser);
+                        LoginRegister lr = new LoginRegister();
+                        //Profile p = new Profile(currentUser);
+                        lr.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
@@ -142,6 +169,33 @@ namespace JobBoard.WpfApplication
                 }
             }
         }
+
+        private void SetFields()
+        {
+            firstnameBox.Text = currentUser.FirstName;
+            lastnameBox.Text = currentUser.LastName;
+            emailBox.Text = currentUser.Email;
+            phoneBox.Text = currentUser.PhoneNumber;
+            jobposBox.Text = currentUser.JobPosition;
+            profileImage.Source = currentUser.Photo;
+
+            //add companyListComboBox code here. Delete the comment after adding the code.
+
+        }
+
+        private void UpdateFields()
+        {
+            currentUser.FirstName = firstnameBox.Text;
+            currentUser.LastName = lastnameBox.Text;
+            currentUser.Email = emailBox.Text;
+            currentUser.PhoneNumber = phoneBox.Text;
+            currentUser.JobPosition = jobposBox.Text;
+            currentUser.Photo = photo;
+
+            // add companyListComboBox code here. Delete the comment after adding the code.
+
+        }
+
 
         private void emailBox_LostFocus(object sender, RoutedEventArgs e)
         {
