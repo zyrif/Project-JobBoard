@@ -25,6 +25,7 @@ namespace JobBoard.WpfApplication
         Profile profile;
         User userRef = User.getInstance();
         ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
+        List<string> skills = new List<string>();
 
         bool updateVacancy = false;
 
@@ -68,7 +69,6 @@ namespace JobBoard.WpfApplication
             double minimumSalary = Convert.ToDouble(salary[0]);
             double maximumSalary = Convert.ToDouble(salary[1]);
             string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
-            List<string> skills = new List<string>();
             foreach (Button b in selectWrapPanel.Children)
             {
                 bool newSkill = true;
@@ -124,6 +124,8 @@ namespace JobBoard.WpfApplication
                 if (alreadyAdded == false)
                 {
                     selectWrapPanel.Children.Add(skill);
+                    skillComboBox.Text = "";
+                    skill.Click += (s, ev) => { selectWrapPanel.Children.Remove(skill); };
                 }
             }
             catch (Exception ex)
@@ -185,14 +187,15 @@ namespace JobBoard.WpfApplication
 
             foreach(string skill in vacancy.skillList)
             {
-                Button b = new Button();
-                b.Content = skill;
-                selectWrapPanel.Children.Add(b);
+                Button skillButton = new Button();
+                skillButton.Content = skill;
+                selectWrapPanel.Children.Add(skillButton);
+                skills.Add(skill);
+                skillButton.Click += (s, ev) => { selectWrapPanel.Children.Remove(skillButton); skills.Remove(skillButton.Content.ToString()); };
             }
             jobtitleBox.Text = vacancy.JobTitle;
             joblocationBox.Text = vacancy.Location;
             expDate.SelectedDate = vacancy.DeadLine;
-
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
         }
