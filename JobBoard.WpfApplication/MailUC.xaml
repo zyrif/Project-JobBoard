@@ -9,7 +9,7 @@
         <Label x:Name="senderLabel" Content="Sender:" HorizontalAlignment="Left" Margin="10,10,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" MouseLeftButtonDown="senderLabel_MouseLeftButtonDown"/>
         <Label x:Name="subjLabel" Content="Subject:" HorizontalAlignment="Left" Margin="197,11.38,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
         <TextBox x:Name="msgBox" Margin="260.547,14.157,10,0" TextWrapping="Wrap" Text="TextBox" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" Background="#FF303030" Height="25.843" VerticalAlignment="Top" IsEnabled="False"/>
-        <Label x:Name="timeLabel" Content="Time:" HorizontalAlignment="Left" Margin="10,62,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="10" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
+        <Label x:Name="timeLabel" Content="Time:" HorizontalAlignment="Left" Margin="10,44,0,-17" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="10" Foreground="#FFA2A2A2"/>
         <RichTextBox x:Name="msgbodyRTBox" Margin="197,66.157,20,0" Background="#FF3A3A3A" BorderBrush="{x:Null}" Height="221" VerticalAlignment="Top" MinHeight="100" IsEnabled="False" FontSize="14">
             <FlowDocument>
                 <Paragraph>

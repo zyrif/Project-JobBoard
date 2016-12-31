@@ -93,7 +93,12 @@ namespace JobBoard.WpfApplication
         private void senderLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LoginRegistrationControl lrc = LoginRegistrationControl.getInstance();
-            AnotherProfile senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
+
+            AnotherProfile senderprofile;
+            if ("Receipent: " + mail.ReceiverUserName == senderLabel.Content)
+                senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.SenderUserName));
+            else
+                senderprofile = new AnotherProfile(lrc.GetJobSeekerInfo(mail.ReceiverUserName));
             senderprofile.Show();
             senderprofile.Activate();
             senderprofile.Topmost = true;  // important
@@ -102,7 +107,10 @@ namespace JobBoard.WpfApplication
 
         private void replyBtn_Click(object sender, RoutedEventArgs e)
         {
-            WritemailWindow reply = new WritemailWindow(currentUser, mail.SenderUserName);
+            WritemailWindow reply;
+            if (currentUser.UserName == mail.SenderUserName) { reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject); }
+            else { reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject); }
+
             reply.Show();
         }
     }

@@ -145,7 +145,6 @@ namespace JobBoard.Core
             User jobSeeker = new User();
 
             dataTable = query.getUserInfo(userName);
-
             jobSeeker.UserName = dataTable.Rows[0]["user_name"].ToString();
             jobSeeker.UserId = Convert.ToInt32(dataTable.Rows[0]["user_id"]);
             jobSeeker.UserType = Convert.ToByte(dataTable.Rows[0]["User_type"]);
