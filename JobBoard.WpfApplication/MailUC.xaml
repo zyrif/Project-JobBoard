@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:JobBoard.WpfApplication"
              mc:Ignorable="d" Width="715" Height="50" Background="#FF343434" MouseEnter="amail_MouseEnter" MouseLeave="amail_MouseLeave" Margin="2,0,10,10" BorderThickness="0">
     <Grid x:Name="ammainGrid" Margin="0,0,20,0">
-        <Label x:Name="senderLabel" Content="Sender:" HorizontalAlignment="Left" Margin="10,10,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" MouseLeftButtonDown="senderLabel_MouseLeftButtonDown"/>
+        <Label x:Name="senderLabel" Content="Sender: " HorizontalAlignment="Left" Margin="10,10,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" MouseLeftButtonDown="senderLabel_MouseLeftButtonDown"/>
         <Label x:Name="subjLabel" Content="Subject:" HorizontalAlignment="Left" Margin="197,11.38,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
         <TextBox x:Name="msgBox" Margin="260.547,14.157,10,0" TextWrapping="Wrap" Text="TextBox" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" Background="#FF303030" Height="25.843" VerticalAlignment="Top" IsEnabled="False"/>
         <Label x:Name="timeLabel" Content="Time:" HorizontalAlignment="Left" Margin="10,44,0,-17" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="10" Foreground="#FFA2A2A2"/>

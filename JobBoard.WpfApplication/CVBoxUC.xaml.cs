@@ -60,6 +60,8 @@ namespace JobBoard.WpfApplication
             companyLabel.Content = exp.Entity;
             timeperiodLabel.Content = exp.StartTime.Month.ToString() + "/" + exp.StartTime.Year.ToString() + " - " + exp.EndTime.Month.ToString() + "/" + exp.EndTime.Year.ToString();
             descTextblock.Text = exp.Details;
+
+            SetColor();
         }
 
         private void PopulateUCBox2()
@@ -70,6 +72,29 @@ namespace JobBoard.WpfApplication
             descTextblock.Text = exp.Details;
 
             CVBSubGrid.Children.Add(new EditDeleteUC(user, exp, profile));
+
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            if(exp.ExpType == 0)
+            {
+                CVBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#3498DB"));
+                CVBox.Background.Opacity = 0.3;
+            }
+
+            else if (exp.ExpType == 1)
+            {
+                CVBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#27AE60"));
+                CVBox.Background.Opacity = 0.5;
+            }
+
+            else if (exp.ExpType == 2)
+            {
+                CVBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ff5c33"));
+                CVBox.Background.Opacity = 0.5;
+            }
         }
     }
 }
