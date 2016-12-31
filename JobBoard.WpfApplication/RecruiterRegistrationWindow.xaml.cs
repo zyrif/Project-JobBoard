@@ -58,6 +58,8 @@ namespace JobBoard.WpfApplication
             SetFields();
             fromEdit = true;
 
+            DisableEmployer();
+
         }
 
         private void init()
@@ -67,7 +69,10 @@ namespace JobBoard.WpfApplication
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (fromEdit)
+                this.Close();
+            else
+                Application.Current.Shutdown();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -194,6 +199,14 @@ namespace JobBoard.WpfApplication
 
             // add companyListComboBox code here. Delete the comment after adding the code.
 
+        }
+
+
+        private void DisableEmployer()
+        {
+            this.employerLabel.Visibility = Visibility.Hidden;
+            this.CompanyListComboBox.Visibility = Visibility.Hidden;
+            this.checkEmployerPresent.Visibility = Visibility.Hidden;
         }
 
 
