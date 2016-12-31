@@ -1,7 +1,7 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="EmployerRegWindow" mc:Ignorable="d" x:Class="JobBoard.WpfApplication.EmployerRegistration"
-        Title="EmployerRegister" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="RecruiterRegWindow_MouseLeftButtonDown">
+        Title="EmployerRegister" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="RecruiterRegWindow_MouseLeftButtonDown" MouseDoubleClick="EmployerRegWindow_MouseDoubleClick">
     <Grid x:Name="ERMainGrid" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="62*"/>

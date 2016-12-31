@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         x:Name="ProfileWindow" mc:Ignorable="d" x:Class="JobBoard.WpfApplication.Profile"
         Title="Profile" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" 
-        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="ProfileWindow_MouseLeftButtonDown">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="ProfileWindow_MouseLeftButtonDown" MouseDoubleClick="ProfileWindow_MouseDoubleClick">
 
     <Grid x:Name="PMainGrid" Margin="10">
         <Grid.ColumnDefinitions>
