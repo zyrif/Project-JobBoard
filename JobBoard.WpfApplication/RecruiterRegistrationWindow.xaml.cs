@@ -52,6 +52,7 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.profile = profile;
+            backBtn.Visibility = Visibility.Hidden;
 
             photo = currentUser.Photo;
 
@@ -119,7 +120,7 @@ namespace JobBoard.WpfApplication
                 else
                 {
                     currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text);
-                    EmployerRegistration er = new EmployerRegistration(currentUser);
+                    EmployerRegistration er = new EmployerRegistration(currentUser, this);
 
                     er.Show();
                     this.Hide();
@@ -269,6 +270,13 @@ namespace JobBoard.WpfApplication
         {
             if (this.WindowState == WindowState.Maximized)
                 this.WindowState = WindowState.Normal;
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            User.clearInstance();
+            cpWindow.Show();
+            this.Hide();
         }
     }
 }

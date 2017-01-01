@@ -199,5 +199,10 @@ namespace JobBoard.WpfApplication
             jobDetailBox.Document.Blocks.Clear();
             jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
         }
+
+        private void SectionAddCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

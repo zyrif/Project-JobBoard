@@ -50,6 +50,7 @@
             <Label x:Name="bt1Lbl" Grid.Column="1" HorizontalAlignment="Left" Margin="84,42,0,0" Grid.Row="7" VerticalAlignment="Top" Height="27" Foreground="#FFA7D479" Content="Medium" FontSize="10"/>
             <Label x:Name="bt2Lbl" Grid.Column="1" HorizontalAlignment="Left" Margin="161,42,0,0" Grid.Row="7" VerticalAlignment="Top" Height="27" Foreground="#FFA7D479" Content="Large" FontSize="10"/>
             <Label x:Name="bt3Lbl" Grid.Column="1" HorizontalAlignment="Left" Margin="231,42,0,0" Grid.Row="7" VerticalAlignment="Top" Height="27" Foreground="#FFA7D479" Content="International" FontSize="10"/>
+            <Button x:Name="backBtn" Content="Back" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FF3A3A3A" Foreground="#FF898989" ClickMode="Press" IsDefault="True" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Calibri" FontSize="28" Grid.Row="7" Margin="0,72,171,0" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Right" Width="130" Click="backBtn_Click"/>
 
         </Grid>
 

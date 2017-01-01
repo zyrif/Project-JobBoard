@@ -56,6 +56,7 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             this.profile = profile;
+            backBtn.Visibility = Visibility.Hidden;
 
             List<string> skillList = lrControl.getAvailableSkills();
             comboBox.ItemsSource = skillList;
@@ -291,6 +292,13 @@ namespace JobBoard.WpfApplication
         {
             if (this.WindowState == WindowState.Maximized)
                 this.WindowState = WindowState.Normal;
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            User.clearInstance();
+            cpWindow.Show();
+            this.Hide();
         }
     }
 }
