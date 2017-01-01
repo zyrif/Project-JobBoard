@@ -8,8 +8,8 @@
         <Label x:Name="jobnameLabel" Content="Job Name" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <Label x:Name="companyLabel" Content="Company" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="timeperiodLabel" Content="Time - Period" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock x:Name="descTextblock" HorizontalAlignment="Left" Margin="161,39,0,0" MaxWidth="1000" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Text="TextBlock "/>
-        <Grid x:Name="CVBSubGrid" Margin="0,132,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="232"/>
+        <TextBlock x:Name="descTextblock" HorizontalAlignment="Left" Margin="161,39,0,40" MaxWidth="1000" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Text="TextBlock "/>
+        <Grid x:Name="CVBSubGrid" Margin="0,132,15,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="232"/>
 
     </Grid>
 </UserControl>
