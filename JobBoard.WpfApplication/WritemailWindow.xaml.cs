@@ -23,8 +23,10 @@ namespace JobBoard.WpfApplication
     public partial class WritemailWindow : Window
     {
         User userRef;
+        MailboxWindow mailbox;
         MailboxControl mbc = new MailboxControl();
         bool isReply = false;
+        bool fromMailbox = false;
         string sendername;
 
         public WritemailWindow()
@@ -39,14 +41,24 @@ namespace JobBoard.WpfApplication
             this.userRef = usr;
         }
 
-        public WritemailWindow(User usr, string sendername, string mailSubject)
+        public WritemailWindow(User usr, MailboxWindow mailbox)
         {
             InitializeComponent();
             this.userRef = usr;
+            this.mailbox = mailbox;
+            fromMailbox = true;
+        }
+
+        public WritemailWindow(User usr, string sendername, string mailSubject, MailboxWindow mailbox)
+        {
+            InitializeComponent();
+            this.userRef = usr;
+            this.mailbox = mailbox;
             this.sendername = sendername;
             recipientBox.Text = sendername;
             subjBox.Text = "Re: " + mailSubject;
             isReply = true;
+            fromMailbox = true;
 
         }
 
@@ -68,6 +80,13 @@ namespace JobBoard.WpfApplication
                 string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
                 Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, this.sendername, DateTime.Now, 0);
                 mbc.NewMail(newmail);
+                if(fromMailbox)
+                {
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mailbox.Close();
+                    newmw.ShowSentMessages();
+                }
                 this.Close();
             }
 
@@ -76,6 +95,13 @@ namespace JobBoard.WpfApplication
                 string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
                 Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 0);
                 mbc.NewMail(newmail);
+                if (fromMailbox)
+                {
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mailbox.Close();
+                    newmw.ShowSentMessages();
+                }
                 this.Close();
             }
         }
@@ -87,6 +113,13 @@ namespace JobBoard.WpfApplication
                 string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
                 Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, this.sendername, DateTime.Now, 1);
                 mbc.NewMail(newmail);
+                if (fromMailbox)
+                {
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mailbox.Close();
+                    newmw.ShowDraftMessages();
+                }
                 this.Close();
             }
 
@@ -95,6 +128,13 @@ namespace JobBoard.WpfApplication
                 string body = new TextRange(msgbodyRTBox.Document.ContentStart, msgbodyRTBox.Document.ContentEnd).Text;
                 Mail newmail = new Mail(subjBox.Text, body, userRef.UserName, recipientBox.Text, DateTime.Now, 1);
                 mbc.NewMail(newmail);
+                if (fromMailbox)
+                {
+                    MailboxWindow newmw = new MailboxWindow();
+                    newmw.Show();
+                    mailbox.Close();
+                    newmw.ShowDraftMessages();
+                }
                 this.Close();
             }
         }

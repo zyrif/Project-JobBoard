@@ -128,10 +128,10 @@ namespace JobBoard.WpfApplication
             WritemailWindow reply;
 
             if (currentUser.UserName == mail.SenderUserName)
-                reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject);
+                reply = new WritemailWindow(currentUser, mail.ReceiverUserName, mail.MailSubject, mw);
 
             else
-                reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject);
+                reply = new WritemailWindow(currentUser, mail.SenderUserName, mail.MailSubject, mw);
 
             reply.Show();
         }

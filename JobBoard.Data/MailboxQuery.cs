@@ -21,7 +21,7 @@ namespace JobBoard.Data
 
         public void NewMailQuery(string subject, string body, string senderid, string receiverid, DateTime time, byte isdraft)
         {
-            query = "INSERT INTO mail_box (mail_subject, mail_body, sender_id, receiver_id, time, isdraft) VALUES ('" + subject.Trim() + "', '" + body.Trim() + "', '" + senderid.Trim() + "', '" + receiverid.Trim() + "', '" + time.ToString("yyyy-MM-dd") + "', " + isdraft + ")";
+            query = "INSERT INTO mail_box (mail_subject, mail_body, sender_id, receiver_id, time, isdraft) VALUES ('" + subject.Trim() + "', '" + body.Trim() + "', '" + senderid.Trim() + "', '" + receiverid.Trim() + "', '" + time.ToString("yyyy-MM-dd HH:MM") + "', " + isdraft + ")";
             dbReadWrite.insertQuery(query);
         }
 

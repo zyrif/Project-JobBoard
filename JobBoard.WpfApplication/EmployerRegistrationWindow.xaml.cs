@@ -156,6 +156,7 @@ namespace JobBoard.WpfApplication
         {
             recruiter.Show();
             this.Close();
+        }
 
         private void websiteBox_LostFocus(object sender, RoutedEventArgs e)
         {

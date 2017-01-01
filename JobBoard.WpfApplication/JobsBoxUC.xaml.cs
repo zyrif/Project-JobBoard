@@ -79,7 +79,7 @@ namespace JobBoard.WpfApplication
 
         private void viewProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-            AnotherProfile recprofile = new AnotherProfile(vacancy.Recruiter);
+            AnotherProfile recprofile = new AnotherProfile(vacancy.Recruiter.UserName);
             recprofile.Show();
             recprofile.Activate();
             recprofile.Topmost = true;
@@ -95,10 +95,10 @@ namespace JobBoard.WpfApplication
 
         private void JobsBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(this.Height == 105)
+            if(this.Height == 110)
                 this.Height = Double.NaN;
             else
-                this.Height = 105;
+                this.Height = 110;
         }
     }
 }

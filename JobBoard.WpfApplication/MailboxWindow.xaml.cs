@@ -59,7 +59,7 @@ namespace JobBoard.WpfApplication
 
         private void writemailBtn_Click(object sender, RoutedEventArgs e)
         {
-            WritemailWindow wnm = new WritemailWindow(currentUser);
+            WritemailWindow wnm = new WritemailWindow(currentUser, this);
             wnm.Show();
         }
 
