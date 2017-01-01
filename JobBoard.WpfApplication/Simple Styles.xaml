@@ -27,11 +27,11 @@
 
 	<!-- Disabled Brushes are used for the Disabled look of each control -->
 	<SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF424242"/>
-	<SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE"/>
-	<SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FF343434"/>
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FF343434"/>
 
 	<!-- Used for background of ScrollViewer, TreeView, ListBox, Expander, TextBox, Tab Control -->
-	<SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF"/>
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF1D1D1D"/>
 	
 	<!-- DefaultedBorderBrush is used to show KeyBoardFocus -->
 	<SolidColorBrush x:Key="DefaultedBorderBrush" Color="#FF575757"/>

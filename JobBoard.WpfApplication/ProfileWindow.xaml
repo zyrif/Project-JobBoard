@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         x:Name="ProfileWindow" mc:Ignorable="d" x:Class="JobBoard.WpfApplication.Profile"
         Title="Profile" Height="671" Width="967" Background="#FF1D1D1D" Visibility="Visible" WindowStyle="None" AllowsTransparency="True" 
-        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="ProfileWindow_MouseLeftButtonDown">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="967" MinHeight="671" MouseLeftButtonDown="ProfileWindow_MouseLeftButtonDown" MouseDoubleClick="ProfileWindow_MouseDoubleClick">
 
     <Grid x:Name="PMainGrid" Margin="10">
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
             <StackPanel x:Name="CVview" VerticalAlignment="Top" Margin="0"/>
         </ScrollViewer>
         <Grid x:Name="UserOverviewGrid" Grid.Column="2" Margin="10,44,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <Button x:Name="AddSectionBtn" Content="Add" Margin="0,69,10,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" Grid.Column="1" Grid.Row="1" FontSize="16" Click="AddSectionBtn_Click"/>
+        <Button x:Name="AddSectionBtn" Content="Add" Margin="0,69,10,0" Style="{DynamicResource AddSectionButton}" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="29" HorizontalAlignment="Right" FontFamily="Calibri bold" Grid.Column="1" Grid.Row="1" FontSize="16" Click="AddSectionBtn_Click"/>
         <Grid x:Name="PSubGrid" Grid.Column="2" Height="40" Margin="10,0,9,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
 
     </Grid>

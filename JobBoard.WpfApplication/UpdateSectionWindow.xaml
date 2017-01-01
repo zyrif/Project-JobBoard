@@ -13,8 +13,8 @@
             <RowDefinition Height="367*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="32.142" d:LayoutOverrides="HorizontalAlignment, LeftMargin, RightMargin" Margin="0,5,10,0" VerticalAlignment="Top" Height="25"/>
-        <Button x:Name="WindowMinimize" Content="___" Margin="0,5,47.142,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Click="WindowMinimize_Click" HorizontalAlignment="Right" Width="30.85" d:LayoutOverrides="LeftMargin, RightMargin" VerticalAlignment="Top" Height="25"/>
+        <Button x:Name="WindowClose" Content="X" Style="{DynamicResource CloseButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Click="WindowClose_Click" HorizontalAlignment="Right" Width="32" Margin="0,10,10,0" VerticalAlignment="Top" Height="25"/>
+        <Button x:Name="WindowMinimize" Content="___" Margin="0,10,47,0" Style="{DynamicResource MinimizeButton}" Foreground="#FFD6D6D6" BorderBrush="#FF575757" FontWeight="Bold" FontSize="13.333" FontFamily="/WpfApplication;component/Fonts/#Leelawadee" Background="#FF1D1D1D" Click="WindowMinimize_Click" HorizontalAlignment="Right" Width="31" VerticalAlignment="Top" Height="25"/>
         <TabControl x:Name="SectionTypeTabControl" Margin="10,76.868,10,59" Background="#FF1D1D1D" BorderBrush="{x:Null}" Grid.Row="1" d:LayoutOverrides="LeftMargin, RightMargin">
             <TabItem x:Name="Experience" Header="Experience" BorderBrush="{x:Null}" Style="{DynamicResource LRCustomTabStyle}" Margin="10,0,-17,0" FontFamily="Calibri Bold" Height="30" VerticalAlignment="Top" FontSize="16" Background="#FF666666">
                 <Grid x:Name="ExpGrid" Background="#FF1D1D1D" Margin="0,0.4,0,-1.4">
