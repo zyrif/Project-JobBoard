@@ -165,11 +165,11 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        //public void UpdateRecInfo()
-        //{
-        //    query = "update user_info set first_name='" + fname.Trim() + "', last_name='" + lname.Trim() + "',email='" + email.Trim() + "',phone='" + phone.Trim() + "' ";
-        //    dbReadWrite.insertQuery(query);            
-        //}
+        public void UpdateRecInfo(string fname, string lname, string email, string phone, string jobposition)
+        {
+            query = "update user_info set first_name='" + fname.Trim() + "', last_name='" + lname.Trim() + "',email='" + email.Trim() + "',phone='" + phone.Trim() + "', job_position='" + jobposition.Trim() + "' ";
+            dbReadWrite.insertQuery(query);
+        }
 
         public void DeleteJSSkill(int id)
         {
