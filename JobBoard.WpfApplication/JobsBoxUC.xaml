@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="110" MinHeight="110" MinWidth="625" MouseEnter="JobsBox_MouseEnter" MouseLeave="JobsBox_MouseLeave" Margin="0,0,0,10" Background="#FF3A3A3A">
 
-
     <Grid x:Name="JBMainGrid" Margin="0,5,10,0">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -25,9 +24,9 @@
         <Label x:Name="jobtypeLabel" Content="Job Type: " HorizontalAlignment="Left" Margin="35,142,0,0" Foreground="#FFA2A2A2" VerticalAlignment="Top" Height="26"/>
         <Label x:Name="salbrcktLabel" Content="Salary Bracket: " Margin="35,208,0,0" Foreground="#FFA2A2A2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26"/>
         <WrapPanel x:Name="skillPanel" HorizontalAlignment="Right" Margin="0,15,51,0" Width="165" Background="#FF3A3939" Height="62" VerticalAlignment="Top"/>
-        <Button x:Name="applyBtn" Content="Apply" Margin="0,242,19,0" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="14" HorizontalAlignment="Right" Width="70" Height="23" VerticalAlignment="Bottom" BorderThickness="0" Click="applyBtn_Click"/>
-        <Button x:Name="viewProfileBtn" Content="View Recruiter Profile" Margin="0,241,175,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Bottom" Width="117" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="25" HorizontalAlignment="Right" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="10" FontWeight="Bold" Click="viewProfileBtn_Click"/>
-        <Button x:Name="contactBtn" Content="Contact" Margin="0,242,94,0" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="14" HorizontalAlignment="Right" Width="70" Height="23" VerticalAlignment="Bottom" BorderThickness="0" Click="contactBtn_Click"/>
+        <Button x:Name="applyBtn" Content="Apply" Margin="0,242,19,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="14" HorizontalAlignment="Right" Width="70" Height="23" VerticalAlignment="Bottom" BorderThickness="0" Click="applyBtn_Click"/>
+        <Button x:Name="viewProfileBtn" Content="View Recruiter Profile" Margin="0,241,175,15" Style="{DynamicResource SimpleButton}" VerticalAlignment="Bottom" Width="117" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="Gray" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" Height="25" HorizontalAlignment="Right" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="10" FontWeight="Bold" Click="viewProfileBtn_Click"/>
+        <Button x:Name="contactBtn" Content="Contact" Margin="0,242,94,15" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="14" HorizontalAlignment="Right" Width="70" Height="23" VerticalAlignment="Bottom" BorderThickness="0" Click="contactBtn_Click"/>
 
     </Grid>
 </UserControl>
