@@ -60,5 +60,10 @@ namespace JobBoard.WpfApplication
             if (this.WindowState == WindowState.Maximized)
                 this.WindowState = WindowState.Normal;
         }
+
+        private void btypeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
