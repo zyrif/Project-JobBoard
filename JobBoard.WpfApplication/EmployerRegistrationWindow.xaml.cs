@@ -48,7 +48,7 @@ namespace JobBoard.WpfApplication
 
         private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text))
+            if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text) && iehp.isUrl(websiteBox.Text))
             {
                 Company company = new Company(nameBox.Text, addressbox.Text, countryBox.Text, phoneBox.Text, emailBox.Text, websiteBox.Text, Convert.ToByte(btypeSlider.Value));
                 lrControl.register(company);
@@ -58,6 +58,18 @@ namespace JobBoard.WpfApplication
                 LoginRegister lr = new LoginRegister();
                 lr.Show();
                 this.Hide();
+            }
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text) && !iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide valid Information!");
+            }
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide valid Email & Web Address!");
+            }
+            else if (!iehp.isUrl(websiteBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide valid Web Address & Phone Number!");
             }
             else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
             {
@@ -70,6 +82,10 @@ namespace JobBoard.WpfApplication
             else if (!iehp.isPhoneNumber(phoneBox.Text))
             {
                 MessageBox.Show("Provide a valid Phone Number!");
+            }
+            else if (!iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide a valid Web Address!");
             }
         }
 
@@ -130,6 +146,30 @@ namespace JobBoard.WpfApplication
             else if (iehp.isValidEmail(emailBox.Text))
             {
                 emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void websiteBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void websiteBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Green);
             }
         }
     }
