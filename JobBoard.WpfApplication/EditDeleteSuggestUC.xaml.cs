@@ -51,6 +51,12 @@ namespace JobBoard.WpfApplication
 
         private void suggestBtn_Click(object sender, RoutedEventArgs e)
         {
+            ViewCandidatesWindow vcWindow = new ViewCandidatesWindow(vbuc);
+            vcWindow.Show();
+        }
+
+        private void appliedButton_Click(object sender, RoutedEventArgs e)
+        {
             ViewCandidatesWindow vcWindow = new ViewCandidatesWindow(vacancy);
             vcWindow.Show();
         }

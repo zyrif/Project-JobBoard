@@ -33,6 +33,7 @@ namespace JobBoard.WpfApplication
         public ViewCandidatesWindow(Vacancy vacancy)
         {
             InitializeComponent();
+            viewcandidatesTitle.Content = "Applied Candidates for this Job";
             List<User> userList = sc.candidateSearch(vacancy.JobId);
             CandidateBoxUC cbUC;
             foreach (User user in userList)
