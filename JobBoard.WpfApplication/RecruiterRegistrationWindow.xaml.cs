@@ -98,16 +98,22 @@ namespace JobBoard.WpfApplication
                         profile.Close();
                         Profile rp = new Profile(currentUser);
                         rp.Show();
+                        this.Close();
                     }
 
                     else
                     {
-                        currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
-                        lrControl.register(currentUser);
-                        LoginRegister lr = new LoginRegister();
-                        //Profile p = new Profile(currentUser);
-                        lr.Show();
-                        this.Hide();
+                        if (CompanyListComboBox.SelectedItem == null)
+                            MessageBox.Show("Select a company or Add a new one");
+                        else
+                        {
+                            currentUser.addUser(firstnameBox.Text, lastnameBox.Text, emailBox.Text, phoneBox.Text, photo, jobposBox.Text, CompanyListComboBox.SelectedItem.ToString());
+                            lrControl.register(currentUser);
+                            LoginRegister lr = new LoginRegister();
+                            //Profile p = new Profile(currentUser);
+                            lr.Show();
+                            this.Hide();
+                        }
                     }
                 }
                 else

@@ -1,4 +1,5 @@
-﻿using JobBoard.Core.Entity;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,17 @@ namespace JobBoard.WpfApplication
     public partial class JobsBoxUC : UserControl
     {
         Vacancy vacancy;
-        
-        public JobsBoxUC(Vacancy vacancy)
+        User userRef;
+
+        public JobsBoxUC(Vacancy vacancy,User userRef)
         {
             InitializeComponent();
             this.vacancy = vacancy;
+            this.userRef = userRef;
 
             PopulateJB();
+            if (ProfileInteractionsControl.getInstance().alreadyAddedApplication(vacancy, userRef))
+                applyBtn.Click -= applyBtn_Click;
         }
 
         private void JobsBox_MouseEnter(object sender, MouseEventArgs e)
@@ -76,6 +81,12 @@ namespace JobBoard.WpfApplication
             recprofile.Activate();
             recprofile.Topmost = true;
             recprofile.Focus();
+        }
+
+        private void applyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileInteractionsControl.getInstance().addApplication(vacancy,userRef);
+            applyBtn.Click -= applyBtn_Click;
         }
     }
 }

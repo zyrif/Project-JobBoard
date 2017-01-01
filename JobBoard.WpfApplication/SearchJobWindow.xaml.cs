@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JobBoard.Core.Control;
 using JobBoard.Core.Entity;
+using JobBoard.Core;
 
 namespace JobBoard.WpfApplication
 {
@@ -22,9 +23,11 @@ namespace JobBoard.WpfApplication
     public partial class SearchJobWindow : Window
     {
         SearchControl control = new SearchControl();
-        public SearchJobWindow()
+        User userRef;
+        public SearchJobWindow(User userRef)
         {
             InitializeComponent();
+            this.userRef = userRef;
             init();
         }
 
@@ -108,7 +111,7 @@ namespace JobBoard.WpfApplication
             jobPanel.Children.Clear();
             foreach (Vacancy pj in postedJobList)
             {
-                this.jobPanel.Children.Add(new JobsBoxUC(pj));
+                this.jobPanel.Children.Add(new JobsBoxUC(pj, this.userRef));
             }
 
         }
