@@ -131,5 +131,11 @@ namespace JobBoard.WpfApplication
         {
             this.DragMove();
         }
+
+        private void Mailbox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+        }
     }
 }

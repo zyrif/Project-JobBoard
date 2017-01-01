@@ -286,5 +286,11 @@ namespace JobBoard.WpfApplication
                 Debug.WriteLine(ex.StackTrace);
             }
         }
+
+        private void JobSeekerRegWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+        }
     }
 }

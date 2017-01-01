@@ -258,5 +258,11 @@ namespace JobBoard.WpfApplication
                 phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
             }
         }
+
+        private void RecruiterRegWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+        }
     }
 }
