@@ -165,9 +165,9 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        public void UpdateRecInfo(string fname, string lname, string email, string phone, string jobposition)
+        public void UpdateRecInfo(string fname, string lname, string email, string phone, string jobposition, int userid)
         {
-            query = "update user_info set first_name='" + fname.Trim() + "', last_name='" + lname.Trim() + "',email='" + email.Trim() + "',phone='" + phone.Trim() + "', job_position='" + jobposition.Trim() + "' ";
+            query = "update user_info set first_name='" + fname.Trim() + "', last_name='" + lname.Trim() + "',email='" + email.Trim() + "',phone='" + phone.Trim() + "', job_position='" + jobposition.Trim() + "' where user_id =  "+userid;
             dbReadWrite.insertQuery(query);
         }
 

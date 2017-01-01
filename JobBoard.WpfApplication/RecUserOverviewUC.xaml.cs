@@ -43,9 +43,16 @@ namespace JobBoard.WpfApplication
             this.uemailLabel.Content = userRef.Email;
             this.uphoneLabel.Content = userRef.PhoneNumber;
             this.ujobpositionLabel.Content = userRef.JobPosition;
-            this.uemployerLabel.Content = userRef.CompanyName;
             this.profileImage.Source = userRef.Photo;
 
+            Company emp = new Company();
+            emp = ProfileInteractionsControl.getInstance().CompanyInfo(userRef.CompanyName);
+
+            this.empnameLbl.Content += emp.Name;
+            this.empaddLbl.Content = emp.Address + " ," + emp.Country;
+            this.empmailLbl.Content = emp.Email;
+            this.empsiteLbl.Content = emp.Website;
+            this.empphoneLbl.Content = emp.Phone;
         }
 
         private void ProfileInfoEdit_Click(object sender, RoutedEventArgs e)

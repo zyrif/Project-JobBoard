@@ -151,8 +151,24 @@ namespace JobBoard.Core
             {
                 return false;
             }
+        }
 
+        public Company CompanyInfo(string companyname)
+        {
+            dataTable = query.getcompanyinfo(companyname);
 
+            Company emp = new Company();
+
+            emp.Name = dataTable.Rows[0]["company_name"].ToString();
+            emp.Id = Convert.ToInt32(dataTable.Rows[0]["company_id"]);
+            emp.Address = dataTable.Rows[0]["HQ_location"].ToString();
+            emp.Country = dataTable.Rows[0]["country"].ToString();
+            emp.Phone = dataTable.Rows[0]["phone"].ToString();
+            emp.Email = dataTable.Rows[0]["email"].ToString();
+            emp.Website = dataTable.Rows[0]["website"].ToString();
+            emp.BusinessType = Convert.ToByte(dataTable.Rows[0]["business_type"]);
+
+            return emp;
         }
     }
 }
