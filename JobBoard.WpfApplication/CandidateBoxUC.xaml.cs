@@ -46,5 +46,29 @@ namespace JobBoard.WpfApplication
             newmail.recipientBox.Text = user.UserName;
             newmail.Show();
         }
+
+        private void MainGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void CandidateBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CandidateBox.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ff353536");
+        }
+
+        private void CandidateBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            CandidateBox.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ff252526");
+        }
+
+        private void CandidateBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            AnotherProfile newprofile = new AnotherProfile(user);
+            newprofile.Show();
+            newprofile.Activate();
+            newprofile.Topmost = true;  // important
+            newprofile.Focus();
+        }
     }
 }

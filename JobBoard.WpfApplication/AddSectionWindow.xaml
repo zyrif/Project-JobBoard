@@ -19,28 +19,23 @@
             <TabItem x:Name="Experience" Header="Experience" BorderBrush="{x:Null}" Style="{DynamicResource LRCustomTabStyle}" Margin="10,0,-17,0" FontFamily="Calibri Bold" Height="30" VerticalAlignment="Top" FontSize="16" Background="#FF666666">
                 <Grid x:Name="ExpGrid" Background="#FF1D1D1D" Margin="0,0.4,0,-1.4">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="163*"/>
-                        <ColumnDefinition Width="442*"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label x:Name="TitleLabel" Content="Title: " HorizontalAlignment="Left" Margin="10,12,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
-                    <Label x:Name="CompanyLabel" Content="Company: " HorizontalAlignment="Right" Margin="0,12,216,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox x:Name="TitleBox" KeyboardNavigation.TabIndex="0" Margin="103,10,297,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="CompanyBox" KeyboardNavigation.TabIndex="1" Margin="0,11,9,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="207" Grid.Column="1"/>
+                    <Label x:Name="CompanyLabel" Content="Company: " HorizontalAlignment="Right" Margin="0,12,216,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TitleBox" KeyboardNavigation.TabIndex="0" Margin="103,10,297,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top"/>
+                    <TextBox x:Name="CompanyBox" KeyboardNavigation.TabIndex="1" Margin="0,11,9,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="207"/>
                     <Label x:Name="ExpTimeLabel" Content="Time Period:" Margin="10,52,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" Height="27" HorizontalAlignment="Left" Width="88"/>
-                    <CheckBox x:Name="ExpcheckBox" KeyboardNavigation.TabIndex="6" Content="  Present" Margin="0,59,135,0" Style="{DynamicResource SimpleCheckBox}" VerticalAlignment="Top" Foreground="#FFA2A2A2" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="12" Height="19" Background="#FF3A3A3A" HorizontalAlignment="Right" Grid.Column="1"/>
+                    <CheckBox x:Name="ExpcheckBox" KeyboardNavigation.TabIndex="6" Content="  Present" Margin="0,59,135,0" Style="{DynamicResource SimpleCheckBox}" VerticalAlignment="Top" Foreground="#FFA2A2A2" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="12" Height="19" Background="#FF3A3A3A" HorizontalAlignment="Right"/>
                     <Label x:Name="ExpDetailsLabel" Content="Details: " HorizontalAlignment="Left" Margin="10,89,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
-                    <RichTextBox x:Name="ExpDetailsRichBox" KeyboardNavigation.TabIndex="7" Margin="103,97,9,10" Background="#FF3A3A3A" Foreground="#FFA2A2A2" BorderBrush="{x:Null}" Grid.ColumnSpan="2">
-                        <FlowDocument>
-                            <Paragraph>
-                                <Run Text="RichTextBox"/>
-                            </Paragraph>
-                        </FlowDocument>
+                    <RichTextBox x:Name="ExpDetailsRichBox" KeyboardNavigation.TabIndex="7" Margin="103,97,9,10" Background="#FF3A3A3A" Foreground="#FFA2A2A2" BorderBrush="{x:Null}" TextChanged="ExpDetailsRichBox_TextChanged">
+                        <FlowDocument/>
                     </RichTextBox>
-                    <DatePicker x:Name="expFromDate" HorizontalAlignment="Left" Margin="103,52,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <DatePicker x:Name="expToDate" HorizontalAlignment="Left" Margin="81.5,52,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <DatePicker x:Name="expFromDate" HorizontalAlignment="Left" Margin="103,52,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="expToDate" HorizontalAlignment="Left" Margin="244,52,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Education" Header="Education" Background="#FF666666" BorderBrush="{x:Null}" Style="{DynamicResource LRCustomTabStyle}" Margin="20.04,0,-28.68,0" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" FontFamily="Calibri Bold" FontSize="16" Height="30">
@@ -56,11 +51,7 @@
                     <CheckBox x:Name="EduCheckBox" Content="  Present" Margin="0,59,130,0" Style="{DynamicResource SimpleCheckBox}" VerticalAlignment="Top" Foreground="#FFA2A2A2" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="12" Height="19" Background="#FF3A3A3A" HorizontalAlignment="Right"/>
                     <Label x:Name="EduDetailsLabel" Content="Details: " HorizontalAlignment="Left" Margin="10,89,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
                     <RichTextBox x:Name="EduDetailsRichBox" KeyboardNavigation.TabIndex="5" Margin="103,97,9,9" Background="#FF3A3A3A" Foreground="#FFA2A2A2" BorderBrush="{x:Null}">
-                        <FlowDocument>
-                            <Paragraph>
-                                <Run Text="RichTextBox"/>
-                            </Paragraph>
-                        </FlowDocument>
+                        <FlowDocument/>
                     </RichTextBox>
                     <DatePicker x:Name="eduFromDate" HorizontalAlignment="Left" Margin="103,52,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="eduToDate" HorizontalAlignment="Left" Margin="244,52,0,0" VerticalAlignment="Top"/>
@@ -73,11 +64,7 @@
                     <Label x:Name="AwardTimeLabel" Content="Date:" Margin="10,53.4,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" Height="26.8" HorizontalAlignment="Left" Width="87.973" d:LayoutOverrides="VerticalAlignment"/>
                     <Label x:Name="AwardDetailsLabel" Content="Details: " HorizontalAlignment="Left" Margin="10,88.55,0,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
                     <RichTextBox x:Name="AwardDetailsRichBox"  KeyboardNavigation.TabIndex="4" Margin="102.973,97.15,10,9" Background="#FF3A3A3A" Foreground="#FFA2A2A2" BorderBrush="{x:Null}">
-                        <FlowDocument>
-                            <Paragraph>
-                                <Run Text="RichTextBox"/>
-                            </Paragraph>
-                        </FlowDocument>
+                        <FlowDocument/>
                     </RichTextBox>
                     <Label x:Name="AwardIssuerLabel" Content="Issuer:" Margin="290.15,14.8,261.096,0" FontFamily="/WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment, Width"/>
                     <TextBox x:Name="AwardIssuerBox" KeyboardNavigation.TabIndex="5" Margin="343.904,12.4,73.919,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="29.2" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>

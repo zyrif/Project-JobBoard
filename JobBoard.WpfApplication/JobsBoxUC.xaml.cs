@@ -33,7 +33,10 @@ namespace JobBoard.WpfApplication
 
             PopulateJB();
             if (ProfileInteractionsControl.getInstance().alreadyAddedApplication(vacancy, userRef))
-                applyBtn.Click -= applyBtn_Click;
+            {
+                applyBtn.Content = "Applied";
+                applyBtn.IsEnabled = false;
+            }
         }
 
         private void JobsBox_MouseEnter(object sender, MouseEventArgs e)
@@ -86,7 +89,8 @@ namespace JobBoard.WpfApplication
         private void applyBtn_Click(object sender, RoutedEventArgs e)
         {
             ProfileInteractionsControl.getInstance().addApplication(vacancy,userRef);
-            applyBtn.Click -= applyBtn_Click;
+            applyBtn.Content = "Applied";
+            applyBtn.IsEnabled = false;
         }
     }
 }
