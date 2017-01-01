@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JobBoard.Core.Entity;
 using JobBoard.Data;
 using System.Data;
+using System.Windows.Forms;
 
 namespace JobBoard.Core
 {
@@ -138,10 +139,20 @@ namespace JobBoard.Core
         public bool alreadyAddedApplication(Vacancy vacancy, User user)
         {
             dataTable = query.alreadyApplied(vacancy.JobId,user.UserId);
-            if (dataTable != null)
-                return true;
-            else
+            try
+            {
+                if (dataTable.Rows[0] != null)
+                    return true;
+                else
+                    return false;
+            }
+
+            catch (IndexOutOfRangeException)
+            {
                 return false;
+            }
+
+
         }
     }
 }
