@@ -109,5 +109,11 @@ namespace JobBoard.Data
             query = "select * from job_applicants where job_id=" + jobId + " and user_id=" + userId;
             return dbReadWrite.selectQuery(query);
         }
+
+        public DataTable getcompanyinfo(string companyname)
+        {
+            query = "select * from company_info where company_name = '" + companyname + "'";
+            return dbReadWrite.selectQuery(query);
+        }
     }
 }

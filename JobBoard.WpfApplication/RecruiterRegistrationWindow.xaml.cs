@@ -206,6 +206,8 @@ namespace JobBoard.WpfApplication
 
             // add companyListComboBox code here. Delete the comment after adding the code.
 
+            lrControl.UpdateRec(currentUser);
+
         }
 
 

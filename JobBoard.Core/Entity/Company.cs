@@ -8,7 +8,10 @@ namespace JobBoard.Core
 {
     public class Company
     {
+        static Company instance;
+
         public string Name { get; set; }
+        public int Id { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
         public string Phone { get; set; }
@@ -32,9 +35,30 @@ namespace JobBoard.Core
             this.Website = website;
             this.BusinessType = businessType;
         }
+
         public Company(int userId)
         {
             
         }
+
+        public Company()
+        {
+
+        }
+
+        public static Company getInstance()
+        {
+            if (instance == null)
+                instance = new Company();
+
+            return instance;
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
+
+
     }
 }

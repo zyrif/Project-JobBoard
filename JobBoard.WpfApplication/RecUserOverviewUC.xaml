@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JobBoard.WpfApplication"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" MinHeight="490" MinWidth="214">
+             d:DesignHeight="300" d:DesignWidth="300" MinHeight="490" MinWidth="214" Height="550">
     <Grid x:Name="ROVMainGrid" MinHeight="480" MinWidth="214" Margin="6.036,0,3.964,6.918">
         <Grid x:Name="InfoGrid" Margin="10,174,10,10" Background="#FF444444" RenderTransformOrigin="0.67,0.477">
             <Grid.RowDefinitions>
@@ -16,8 +16,14 @@
             <Label x:Name="unameLabel" Content="@" HorizontalAlignment="Left" Foreground="White" Margin="25,61.466,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Height="26"/>
             <Label x:Name="uemailLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,92.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
             <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,123.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
-            <Label x:Name="ujobpositionLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,0,0,118.616" d:LayoutOverrides="HorizontalAlignment" Height="26" VerticalAlignment="Bottom"/>
-            <Label x:Name="uemployerLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,0,0,87.616" d:LayoutOverrides="HorizontalAlignment" Height="26" VerticalAlignment="Bottom"/>
+            <Label x:Name="ujobpositionLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,154.466,0,178.616" d:LayoutOverrides="HorizontalAlignment"/>
+            <Grid x:Name="EmployerInfo" Height="150" Margin="10,0,10,10" VerticalAlignment="Bottom" Background="#FF3E3E3E">
+                <Label x:Name="empnameLbl" Content="Employer: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,9,0,0" Foreground="White"/>
+                <Label x:Name="empaddLbl" Content="Address: " HorizontalAlignment="Left" Margin="10,35,0,0" Foreground="White" Height="24" VerticalAlignment="Top"/>
+                <Label x:Name="empphoneLbl" Content="Phone: " HorizontalAlignment="Left" Margin="10,0,0,39" Foreground="White" VerticalAlignment="Bottom"/>
+                <Label x:Name="empmailLbl" Content="Email: " Margin="10,59,0,65" Foreground="White" HorizontalAlignment="Left"/>
+                <Label x:Name="empsiteLbl" Content="Website:" HorizontalAlignment="Left" Margin="10,0,0,13" Foreground="White" VerticalAlignment="Bottom"/>
+            </Grid>
         </Grid>
         <Grid x:Name="photoGrid" Margin="10,10,10,0" VerticalAlignment="Top" Background="#FF444444" Height="159">
             <Image x:Name="profileImage" Margin="26,10"/>
