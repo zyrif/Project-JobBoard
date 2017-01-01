@@ -138,7 +138,7 @@ namespace JobBoard.Core
         public bool alreadyAddedApplication(Vacancy vacancy, User user)
         {
             dataTable = query.alreadyApplied(vacancy.JobId,user.UserId);
-            if (dataTable.Rows[0] != null)
+            if (dataTable != null)
                 return true;
             else
                 return false;
