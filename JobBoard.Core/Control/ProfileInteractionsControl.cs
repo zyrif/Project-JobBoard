@@ -141,7 +141,7 @@ namespace JobBoard.Core
             dataTable = query.alreadyApplied(vacancy.JobId,user.UserId);
             try
             {
-                if (dataTable.Rows[0] != null)
+                if (dataTable.Rows.Count != 0)
                     return true;
                 else
                     return false;

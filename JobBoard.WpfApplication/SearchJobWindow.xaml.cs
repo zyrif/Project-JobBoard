@@ -69,6 +69,11 @@ namespace JobBoard.WpfApplication
 
         private void expdateBtn_Click(object sender, RoutedEventArgs e)
         {
+            titleComboBox.Text = "";
+            employerComboBox.Text = "";
+            locationComboBox.Text = "";
+            salaryBrctComboBox.SelectedIndex = -1;
+            empTypeComboBox.SelectedIndex = 0;
             this.search();
         }
 
