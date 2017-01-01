@@ -44,12 +44,12 @@ namespace JobBoard.WpfApplication
 
         private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 110;
+
         }
 
         private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = Double.NaN;
+
         }
 
         private void PopulateVB()
@@ -95,6 +95,15 @@ namespace JobBoard.WpfApplication
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
 
             VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile, this));
+
+        }
+
+        private void VacancyBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (this.Height == 110)
+                this.Height = Double.NaN;
+            else
+                this.Height = 110;
 
         }
     }

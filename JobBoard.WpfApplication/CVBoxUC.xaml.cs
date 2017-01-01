@@ -46,12 +46,12 @@ namespace JobBoard.WpfApplication
 
         private void CVBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = Double.NaN;
+
         }
 
         private void CVBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 123;
+
         }
 
         private void PopulateUCBox()
@@ -95,6 +95,15 @@ namespace JobBoard.WpfApplication
                 CVBox.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ff5c33"));
                 CVBox.Background.Opacity = 0.5;
             }
+        }
+
+        private void CVBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (this.Height == 123)
+                this.Height = Double.NaN;
+            else
+                this.Height = 123;
+
         }
     }
 }

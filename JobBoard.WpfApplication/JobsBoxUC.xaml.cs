@@ -41,12 +41,12 @@ namespace JobBoard.WpfApplication
 
         private void JobsBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = double.NaN;
+            
         }
 
         private void JobsBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 105;
+
         }
 
         private void PopulateJB()
@@ -91,6 +91,14 @@ namespace JobBoard.WpfApplication
             ProfileInteractionsControl.getInstance().addApplication(vacancy,userRef);
             applyBtn.Content = "Applied";
             applyBtn.IsEnabled = false;
+        }
+
+        private void JobsBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(this.Height == 105)
+                this.Height = Double.NaN;
+            else
+                this.Height = 105;
         }
     }
 }

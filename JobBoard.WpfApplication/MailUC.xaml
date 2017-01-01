@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JobBoard.WpfApplication"
-             mc:Ignorable="d" Width="715" Height="50" Background="#FF343434" MouseEnter="amail_MouseEnter" MouseLeave="amail_MouseLeave" Margin="2,0,10,10" BorderThickness="0">
+             mc:Ignorable="d" Width="715" Height="50" Background="#FF343434" MouseEnter="amail_MouseEnter" MouseLeave="amail_MouseLeave" Margin="2,0,10,10" BorderThickness="0" MouseLeftButtonDown="amail_MouseLeftButtonDown">
     <Grid x:Name="ammainGrid" Margin="0,0,20,0">
         <Label x:Name="senderLabel" Content="Sender: " HorizontalAlignment="Left" Margin="10,10,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top" MouseLeftButtonDown="senderLabel_MouseLeftButtonDown"/>
         <Label x:Name="subjLabel" Content="Subject:" HorizontalAlignment="Left" Margin="197,11.38,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
