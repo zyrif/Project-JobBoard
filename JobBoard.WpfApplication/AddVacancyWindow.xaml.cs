@@ -63,48 +63,53 @@ namespace JobBoard.WpfApplication
 
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
-            DateTime postedTime = DateTime.Now;
-            DateTime deadLine = Convert.ToDateTime(expDate.SelectedDate.ToString());
-            string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
-            double minimumSalary = Convert.ToDouble(salary[0]);
-            double maximumSalary = Convert.ToDouble(salary[1]);
-            string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
-            foreach (Button b in selectWrapPanel.Children)
+            if (jobtitleBox.Text == "" || joblocationBox.Text == "" || expDate.Text == "")
+                MessageBox.Show("Provide proper Job Information");
+            else
             {
-                bool newSkill = true;
+                DateTime postedTime = DateTime.Now;
+                DateTime deadLine = Convert.ToDateTime(expDate.SelectedDate.ToString());
+                string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
+                double minimumSalary = Convert.ToDouble(salary[0]);
+                double maximumSalary = Convert.ToDouble(salary[1]);
+                string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
+                foreach (Button b in selectWrapPanel.Children)
+                {
+                    bool newSkill = true;
+
+                    if (updateVacancy)
+                    {
+                        foreach (string s in vacancy.skillList)
+                        {
+                            if (s == b.Content.ToString())
+                                newSkill = false;
+                        }
+                    }
+                    if (newSkill)
+                    {
+                        skills.Add(b.Content.ToString());
+                    }
+                }
+
+                bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
+
+                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
 
                 if (updateVacancy)
                 {
-                    foreach (string s in vacancy.skillList)
-                    {
-                        if (s == b.Content.ToString())
-                            newSkill = false;
-                    }
+                    newVacancy.JobId = vacancy.JobId;
+                    piControl.UpdateVacancy(newVacancy);
                 }
-                if(newSkill)
-                {
-                    skills.Add(b.Content.ToString());
-                }
+                else
+                    piControl.AddVacancy(userRef.UserId, newVacancy);
+
+
+                Profile newprofile = new Profile(userRef);
+                newprofile.Show();
+                profile.Close();
+
+                this.Close();
             }
-            
-            bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
-
-            Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
-
-            if (updateVacancy)
-            {
-                newVacancy.JobId = vacancy.JobId;
-                piControl.UpdateVacancy(newVacancy);
-            }
-            else
-                piControl.AddVacancy(userRef.UserId, newVacancy);
-
-
-            Profile newprofile = new Profile(userRef);
-            newprofile.Show();
-            profile.Close();
-
-            this.Close();
         }
 
         private void skillComboBox_LostFocus(object sender, RoutedEventArgs e)
