@@ -37,6 +37,7 @@ namespace JobBoard.Core.Control
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 postedJob = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
+                                          Convert.ToInt32(dataTable.Rows[i]["job_id"]),
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])),
                                           User.getInstanceById(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[i]["location"].ToString(),
@@ -90,6 +91,16 @@ namespace JobBoard.Core.Control
             return list;
         }
 
+        public List<User> candidateSearch(int jobId)
+        {
+            dataTable = query.getCandidateAppliedInJob(jobId);
+            List<User> candidateList = new List<User>();
+            for (int i=0; i<dataTable.Rows.Count; i++)
+                candidateList.Add(lrControl.GetJobSeekerInfo(query.getCandidateName(Convert.ToInt32(dataTable.Rows[i]["user_id"]))));
+
+            return candidateList;
+        }
+
         public List<User> candidateSearch(List<string> jobSkills, string location)
         {
             List<int> jSkillIdList = new List<int>();                                                   
@@ -126,7 +137,8 @@ namespace JobBoard.Core.Control
                         }
                     }
                 }
-                candidateIdList.Add(new KeyValuePair<int, int>(user,skillMatch));
+                if(skillMatch>0)
+                    candidateIdList.Add(new KeyValuePair<int, int>(user,skillMatch));
             }
             
             //sort candidates matching with skills

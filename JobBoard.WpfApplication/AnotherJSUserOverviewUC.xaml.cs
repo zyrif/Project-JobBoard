@@ -42,7 +42,7 @@ namespace JobBoard.WpfApplication
 
         private void SearchJob_Click(object sender, RoutedEventArgs e)
         {
-            SearchJobWindow sj = new SearchJobWindow();
+            SearchJobWindow sj = new SearchJobWindow(userRef);
             sj.Show();
         }
 

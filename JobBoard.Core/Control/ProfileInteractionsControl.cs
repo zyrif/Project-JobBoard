@@ -129,5 +129,19 @@ namespace JobBoard.Core
             Collections.clearInstance();
             User.clearInstance();
         }
+
+        public void addApplication(Vacancy vacancy, User user)
+        {
+            query.writeApplication(vacancy.JobId, user.UserId);
+        }
+
+        public bool alreadyAddedApplication(Vacancy vacancy, User user)
+        {
+            dataTable = query.alreadyApplied(vacancy.JobId,user.UserId);
+            if (dataTable.Rows[0] != null)
+                return true;
+            else
+                return false;
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using JobBoard.Core;
 using JobBoard.Core.Control;
+using JobBoard.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,18 @@ namespace JobBoard.WpfApplication
         {
             InitializeComponent();
             addSuggestions(vbUC.skillPanel,vbUC.locationLabel.Content.ToString());
+        }
+
+        public ViewCandidatesWindow(Vacancy vacancy)
+        {
+            InitializeComponent();
+            List<User> userList = sc.candidateSearch(vacancy.JobId);
+            CandidateBoxUC cbUC;
+            foreach (User user in userList)
+            {
+                cbUC = new CandidateBoxUC(user);
+                VCView.Children.Add(cbUC);
+            }
         }
 
         private void addSuggestions(WrapPanel wp, string location)

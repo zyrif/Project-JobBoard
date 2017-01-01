@@ -97,5 +97,17 @@ namespace JobBoard.Data
             query = "Delete from job_info where recruiter_id=" + id + " and job_title='" + title + "' and location='" + location + "' ";
             dbReadWrite.updateQuery(query);
         }
+
+        public void writeApplication(int jobId, int userId)
+        {
+            query = "INSERT into job_applicants values("+jobId+","+userId+")";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public DataTable alreadyApplied(int jobId, int userId)
+        {
+            query = "select * from job_applicants where job_id=" + jobId + " and user_id=" + userId;
+            return dbReadWrite.selectQuery(query);
+        }
     }
 }

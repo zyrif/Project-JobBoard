@@ -164,5 +164,13 @@ namespace JobBoard.Data
 
             return dataTable;
         }
+
+        public DataTable getCandidateAppliedInJob(int jobId)
+        {
+            query = "SELECT user_id from job_applicants where job_id="+jobId;
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
     }
 }
