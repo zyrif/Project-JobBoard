@@ -58,6 +58,8 @@ namespace JobBoard.WpfApplication
             SetFields();
             fromEdit = true;
 
+            DisableEmployer();
+
         }
 
         private void init()
@@ -67,7 +69,10 @@ namespace JobBoard.WpfApplication
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (fromEdit)
+                this.Close();
+            else
+                Application.Current.Shutdown();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -197,6 +202,14 @@ namespace JobBoard.WpfApplication
         }
 
 
+        private void DisableEmployer()
+        {
+            this.employerLabel.Visibility = Visibility.Hidden;
+            this.CompanyListComboBox.Visibility = Visibility.Hidden;
+            this.checkEmployerPresent.Visibility = Visibility.Hidden;
+        }
+
+
         private void emailBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (!iehp.isValidEmail(emailBox.Text))
@@ -244,6 +257,12 @@ namespace JobBoard.WpfApplication
             {
                 phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
             }
+        }
+
+        private void RecruiterRegWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
         }
     }
 }

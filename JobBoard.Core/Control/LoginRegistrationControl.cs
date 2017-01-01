@@ -325,7 +325,7 @@ namespace JobBoard.Core
 
         public void UpdateRec(User user)
         {
-            //query.UpdateRecInfo();
+            query.UpdateRecInfo(user.FirstName, user.LastName, user.Email, user.PhoneNumber, user.JobPosition);
             query.addimage(user.UserName, ConvertImage(user));
         }
 
