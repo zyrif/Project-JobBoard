@@ -24,7 +24,7 @@ namespace JobBoard.Core.Entity
 
         public List<User> user = new List<User>();
         public List<Experience> experience = new List<Experience>();
-        public List<Vacancy> postedjob = new List<Vacancy>();
+        public List<Vacancy> vacancy = new List<Vacancy>();
         public List<Mail> mail = new List<Mail>();
 
         public static void clearInstance()

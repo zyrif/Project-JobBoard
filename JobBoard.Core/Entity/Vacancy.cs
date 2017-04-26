@@ -28,6 +28,7 @@ namespace JobBoard.Core.Entity
         public List<string> skillList;
 
         public Vacancy(string jobTitle, string company, User recruiter, string location, DateTime postedTime, DateTime deadLine, double minimumSalary, double maximumSalary, bool jobType, string jobSummary, List<string> skillList)
+
         {
             this.JobTitle = jobTitle;
             this.Company = company;
