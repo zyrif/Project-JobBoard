@@ -59,14 +59,17 @@ namespace JobBoard.WpfApplication
 
         private void writemailBtn_Click(object sender, RoutedEventArgs e)
         {
-            WritemailWindow wnm = new WritemailWindow(currentUser);
+            WritemailWindow wnm = new WritemailWindow(currentUser, this);
             wnm.Show();
         }
 
 
-        private void ShowInboxMessages()
+        internal void ShowInboxMessages()
         {
-            /*MailboxControl mbc = */
+            this.InboxBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFA7D479"));
+            this.draftBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+            this.sentBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+
             new MailboxControl().InboxMail(currentUser);
 
             if (this.mailView.Children != null)
@@ -76,20 +79,18 @@ namespace JobBoard.WpfApplication
             {
                 if (m.ReceiverUserName == currentUser.UserName)
                 {
-                    MailUC muc = new MailUC(m);
-                    this.mailView.Children.Add(muc);
+                    this.mailView.Children.Add(new MailUC(m, this));
                 }
             }
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    MailUC muc = new MailUC();
-            //    this.mailView.Children.Add(muc);
-            //}
         }
 
-        private void ShowDraftMessages()
+        internal void ShowDraftMessages()
         {
+            this.draftBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFA7D479"));
+            this.InboxBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+            this.sentBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+
             new MailboxControl().SenderMail(currentUser);
 
             if (this.mailView.Children != null)
@@ -100,14 +101,17 @@ namespace JobBoard.WpfApplication
             {
                 if (m.SenderUserName == currentUser.UserName && m.IsDraft == 1)
                 {
-                    MailUC muc = new MailUC(m);
-                    this.mailView.Children.Add(muc);
+                    this.mailView.Children.Add(new MailUC(m, this));
                 }
             }
         }
 
-        private void ShowSentMessages()
+        internal void ShowSentMessages()
         {
+            this.sentBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFA7D479"));
+            this.InboxBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+            this.draftBtn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF808080"));
+
             new MailboxControl().SenderMail(currentUser);
 
             if (this.mailView.Children != null)
@@ -116,12 +120,22 @@ namespace JobBoard.WpfApplication
 
             foreach (Mail m in collections.mail)
             {
-                if (m.SenderUserName == currentUser.UserName && m.IsDraft != 1)
+                if (m.SenderUserName == currentUser.UserName && m.IsDraft != 1 && m.SenderDeleted != 1)
                 {
-                    MailUC muc = new MailUC(m);
-                    this.mailView.Children.Add(muc);
+                    this.mailView.Children.Add(new MailUC(m, this));
                 }
             }
+        }
+
+        private void Mailbox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Mailbox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
         }
     }
 }

@@ -21,19 +21,19 @@ namespace JobBoard.Data
 
         public void NewMailQuery(string subject, string body, string senderid, string receiverid, DateTime time, byte isdraft)
         {
-            query = "INSERT INTO mail_box (mail_subject, mail_body, sender_id, receiver_id, time, isdraft) VALUES ('" + subject.Trim() + "', '" + body.Trim() + "', '" + senderid.Trim() + "', '" + receiverid.Trim() + "', '" + time.ToString("yyyy-MM-dd") + "', " + isdraft + ")";
+            query = "INSERT INTO mail_box (mail_subject, mail_body, sender_id, receiver_id, time, isdraft) VALUES ('" + subject.Trim() + "', '" + body.Trim() + "', '" + senderid.Trim() + "', '" + receiverid.Trim() + "', '" + time.ToString("yyyy-MM-dd HH:MM") + "', " + isdraft + ")";
             dbReadWrite.insertQuery(query);
         }
 
         public DataTable RetriveInboxMailQuery(string id)
         {
-            query = "SELECT * from mail_box where receiver_id='" + id.Trim() + "'";
+            query = "SELECT * from mail_box where receiver_id='" + id.Trim() + "' and receiver_isdeleted=0";
             return dbReadWrite.selectQuery(query);
         }
 
         public DataTable RetriveSenderMailQuery(string id)
         {
-            query = "SELECT * from mail_box where sender_id='" + id.Trim() + "'";
+            query = "SELECT * from mail_box where sender_id='" + id.Trim() + "' and sender_isdeleted=0";
             return dbReadWrite.selectQuery(query);
         }
 
@@ -43,15 +43,15 @@ namespace JobBoard.Data
             dbReadWrite.updateQuery(query);
         }
 
-        public void SenderDeleteMail(string id)
+        public void SenderDeleteMail(string userid, int mailid)
         {
-            query = "UPDATE mail_box set sender_isdeleted=1 where sender_id='" + id.Trim() + "'";
+            query = "UPDATE mail_box set sender_isdeleted=1 where sender_id='" + userid.Trim() + "' and mail_id=" + mailid + "";
             dbReadWrite.updateQuery(query);
         }
 
-        public void ReceiverDeleteMail(string id)
+        public void ReceiverDeleteMail(string userid, int mailid)
         {
-            query = "UPDATE mail_box set receiver_isdeleted=1 where receiver_id='" + id.Trim() + "'";
+            query = "UPDATE mail_box set receiver_isdeleted=1 where receiver_id='" + userid.Trim() + "' and mail_id=" + mailid + "";
             dbReadWrite.updateQuery(query);
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +22,89 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class VacancyBoxUC : UserControl
     {
-        public VacancyBoxUC()
+        Vacancy vacancy;
+        Profile profile;
+
+        public VacancyBoxUC(Vacancy vacancy)
         {
             InitializeComponent();
+            this.vacancy = vacancy;
+
+            PopulateVB();
+        }
+
+        public VacancyBoxUC(User user, Vacancy vacancy, Profile profile)
+        {
+            InitializeComponent();
+            this.vacancy = vacancy;
+            this.profile = profile;
+
+            PopulateVB2();
         }
 
         private void VacancyBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Height = 110;
+
         }
 
         private void VacancyBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Height = 270;
+
+        }
+
+        private void PopulateVB()
+        {
+
+            jobtitleLabel.Content += " " + vacancy.JobTitle;
+            employerLabel.Content += " " + vacancy.Company;
+            locationLabel.Content += " " + vacancy.Location;
+            if(!vacancy.JobType)
+                jobtypeLabel.Content += " Temporary";
+            else
+                jobtypeLabel.Content += " Permanent";
+            salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+            deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+            foreach (string skill in vacancy.skillList)
+            {
+                Button btn = new Button();
+                btn.Content = skill;
+                skillPanel.Children.Add(btn);
+            }
+
+            dtlsRTxtBox.AppendText(vacancy.JobSummary);
+        }
+
+        private void PopulateVB2()
+        {
+            jobtitleLabel.Content += " " + vacancy.JobTitle;
+            employerLabel.Content += " " + vacancy.Company;
+            locationLabel.Content += " " + vacancy.Location;
+            if (vacancy.JobType == true)
+                jobtypeLabel.Content += " Permanent";
+            else
+                jobtypeLabel.Content += " Temporary";
+            salbrcktLabel.Content += " " + vacancy.MinimumSalary + "-" + vacancy.MaximumSalary;
+            deadlineLabel.Content += " " + vacancy.DeadLine.ToShortDateString();
+            foreach (string skill in vacancy.skillList)
+            {
+                Button btn = new Button();
+                btn.Content = skill;
+                skillPanel.Children.Add(btn);
+            }
+
+            dtlsRTxtBox.AppendText(vacancy.JobSummary);
+
+            VCBSubGrid.Children.Add(new EditDeleteSuggestUC(vacancy, profile, this));
+
+        }
+
+        private void VacancyBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (this.Height == 110)
+                this.Height = Double.NaN;
+            else
+                this.Height = 110;
+
         }
     }
 }
-//

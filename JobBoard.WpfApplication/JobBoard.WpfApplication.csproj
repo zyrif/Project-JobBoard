@@ -61,6 +61,18 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="AnotherJSUserOverviewUC.xaml.cs">
+      <DependentUpon>AnotherJSUserOverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CandidateBoxUC.xaml.cs">
+      <DependentUpon>CandidateBoxUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditDeleteSuggestUC.xaml.cs">
+      <DependentUpon>EditDeleteSuggestUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditDeleteUC.xaml.cs">
+      <DependentUpon>EditDeleteUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MailboxWindow.xaml.cs">
       <DependentUpon>MailboxWindow.xaml</DependentUpon>
     </Compile>
@@ -69,6 +81,12 @@
     </Compile>
     <Compile Include="ProfileSubUserControl.xaml.cs">
       <DependentUpon>ProfileSubUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnotherProfileWindow.xaml.cs">
+      <DependentUpon>AnotherProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnotherRecUserOverviewUC.xaml.cs">
+      <DependentUpon>AnotherRecUserOverviewUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="WritemailWindow.xaml.cs">
       <DependentUpon>WritemailWindow.xaml</DependentUpon>
@@ -81,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CandidateBoxUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,9 +111,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditDeleteSuggestUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditDeleteUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="JobsBoxUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AnotherJSUserOverviewUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MailboxWindow.xaml">
       <SubType>Designer</SubType>
@@ -104,6 +138,10 @@
     <Page Include="ProfileSubUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AnotherProfileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ProfileWindow.xaml">
       <SubType>Designer</SubType>
@@ -132,6 +170,10 @@
     <Page Include="JSUserOverviewUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AnotherRecUserOverviewUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="RecUserOverviewUC.xaml">
       <SubType>Designer</SubType>
@@ -327,6 +369,10 @@
       <Project>{d4cfb2d6-1ab0-4924-9607-f6c7ec298762}</Project>
       <Name>JobBoard.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\profileimage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

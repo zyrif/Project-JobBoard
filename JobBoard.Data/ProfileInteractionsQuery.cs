@@ -12,7 +12,7 @@ namespace JobBoard.Data
         DBReadWrite dbReadWrite = DBReadWrite.getInstance();
         DataTable dataTable;
         static ProfileInteractionsQuery instance;
-        string query, subQuery;
+        string query;
 
         private ProfileInteractionsQuery()
         {
@@ -32,9 +32,33 @@ namespace JobBoard.Data
             dbReadWrite.insertQuery(query);
         }
 
-        public void AddVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, string jobtype, string details)
+        public void UpdateSectionQuery(string title, string entity, DateTime sttime, DateTime edtime, string details,int expId)
         {
-            query = "INSERT INTO job_info (job_title, company_id, recruiter_id, location, posted_time, dead_line, minimum_salary, maximum_salary, job_type, details) VALUES ('" + title + "', " + empid + ", " + userid + ", '" + location + "', '" + posttime.ToString("yyyy-MM-dd") + "', '" + deadline.ToString("yyyy-MM-dd") + "', " + minsalary + ", " + maxsalary + ", '" + jobtype + "', '" + details + "')";
+            query = "UPDATE user_experience set title='" + title + "', entity='" + entity + "',start_time='" + sttime.ToString("yyyy-MM-dd") + "',end_time='" + edtime.ToString("yyyy-MM-dd") + "',details='" + details + "' where experience_id=" + expId;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void AddVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, bool jobtype, string details)
+        {
+            query = "INSERT INTO job_info (job_title, company_id, recruiter_id, location, posted_time, dead_line, minimum_salary, maximum_salary, job_type, details) VALUES ('" + title + "', " + empid + ", " + userid + ", '" + location + "', '" + posttime.ToString("yyyy-MM-dd") + "', '" + deadline.ToString("yyyy-MM-dd") + "', " + minsalary + ", " + maxsalary + ", " + jobtype + ", '" + details + "')";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void UpdateVacancyQuery(string title, int empid, int userid, string location, DateTime posttime, DateTime deadline, Double minsalary, Double maxsalary, bool jobtype, string details, int jobId)
+        {
+            query = "Update job_info set job_title='" + title + "', company_id=" + empid + ", recruiter_id=" + userid + ", location='" + location + "', posted_time='" + posttime.ToString("yyyy-MM-dd") + "', dead_line='" + deadline.ToString("yyyy-MM-dd") + "', minimum_salary=" + minsalary + ", maximum_salary=" + maxsalary + ", job_type=" + jobtype + ", details='" + details + "' where job_id="+jobId;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void deleteSkillForJob(int jobId)
+        {
+            query = "DELETE FROM user_skill where job_id="+jobId;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void addSkillListForJob(int jobId, int skillId)
+        {
+            query = "INSERT INTO user_skill (job_id, skill_id) values("+jobId+","+skillId+")";
             dbReadWrite.insertQuery(query);
         }
 
@@ -46,6 +70,50 @@ namespace JobBoard.Data
             return Convert.ToInt32(dataTable.Rows[0]["company_id"]);
         }
 
+        public DataTable getUserExperience(int userId)
+        {
+            query = "select * from user_experience where user_id="+userId +" order by exp_type";
+            dataTable = dbReadWrite.selectQuery(query);
 
+            return dataTable;
+        }
+
+        public DataTable getVacancy(int userId)
+        {
+            query = "select * from job_info where recruiter_id=" + userId + " and dead_line >='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by dead_line";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
+
+        public void DelExp(int id, string title)
+        {
+            query = "Delete from user_experience where user_id=" + id + " and title='" + title + "' ";
+            dbReadWrite.updateQuery(query);
+        }
+
+        public void DelVac(int id, string title, string location)
+        {
+            query = "Delete from job_info where recruiter_id=" + id + " and job_title='" + title + "' and location='" + location + "' ";
+            dbReadWrite.updateQuery(query);
+        }
+
+        public void writeApplication(int jobId, int userId)
+        {
+            query = "INSERT into job_applicants values("+jobId+","+userId+")";
+            dbReadWrite.insertQuery(query);
+        }
+
+        public DataTable alreadyApplied(int jobId, int userId)
+        {
+            query = "select * from job_applicants where job_id=" + jobId + " and user_id=" + userId;
+            return dbReadWrite.selectQuery(query);
+        }
+
+        public DataTable getcompanyinfo(string companyname)
+        {
+            query = "select * from company_info where company_name = '" + companyname + "'";
+            return dbReadWrite.selectQuery(query);
+        }
     }
 }

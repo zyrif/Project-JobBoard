@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JobBoard.WpfApplication"
         mc:Ignorable="d"
         Title="Compose mail" Height="514" Width="738" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" 
-        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left">
+        ResizeMode="NoResize" Background="#FF1D1D1D" HorizontalAlignment="Left" MouseLeftButtonDown="Write_Mail_MouseLeftButtonDown">
     <Grid x:Name="wmmainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,12 +18,8 @@
 
         <Label x:Name="recipientLabel" Content="Recipients:" HorizontalAlignment="Left" Margin="64,143,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
         <Label x:Name="msgbodyLabel" Content="Body:" HorizontalAlignment="Left" Margin="96,221,0,0" FontFamily="/JobBoard.WpfApplication;component/Fonts/#Segoe UI" FontSize="14" Foreground="#FFA2A2A2" VerticalAlignment="Top"/>
-        <RichTextBox x:Name="msgbodyRTBox" Margin="145,223,79,70" Background="#FF3A3A3A" BorderBrush="{x:Null}">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
+        <RichTextBox x:Name="msgbodyRTBox" Margin="145,223,79,70" Background="#FF3A3A3A" BorderBrush="{x:Null}" Foreground="#FFCBCBCB">
+            <FlowDocument/>
         </RichTextBox>
         <TextBox x:Name="recipientBox" Margin="145,140,79,0" TextWrapping="Wrap" Background="#FF3A3A3A" BorderBrush="{x:Null}" SelectionBrush="#FFA7D479" Foreground="#FFCBCBCB" Cursor="IBeam" Height="36" VerticalAlignment="Top"/>
         <Button x:Name="sendBtn" Content="Send" Margin="0,0,17,20" Style="{DynamicResource SimpleButton}" RenderTransformOrigin="-0.08,-1.002" BorderBrush="{x:Null}" Background="#FFA7D479" Foreground="#FF1D1D1D" ClickMode="Press" IsDefault="True" FontFamily="Calibri bold" FontSize="16" HorizontalAlignment="Right" Width="100" Height="29" VerticalAlignment="Bottom" BorderThickness="0" Click="sendBtn_Click"/>

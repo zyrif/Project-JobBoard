@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using JobBoard.Core.Entity;
+using JobBoard.Core.Control;
 
 namespace JobBoard.WpfApplication
 {
@@ -20,6 +22,7 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class Profile : Window
     {
+        ProfileInteractionsControl control = ProfileInteractionsControl.getInstance();
         User userRef;
         User currentUser = User.getInstance();
 
@@ -29,6 +32,7 @@ namespace JobBoard.WpfApplication
             this.userRef = usr;
             AddUserOverview();
             AddSubControl();
+            AddUserHistory();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -57,19 +61,18 @@ namespace JobBoard.WpfApplication
             {
                 AddVacancy();  
             }
-
         }
 
         private void AddUserOverview()
         {
             if (userRef.UserType == 0)
             {
-                JSUserOverviewUC uo = new JSUserOverviewUC(userRef);
+                JSUserOverviewUC uo = new JSUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(uo);
             }
             else if (userRef.UserType == 1)
             {
-                RecUserOverviewUC uo = new RecUserOverviewUC(userRef);
+                RecUserOverviewUC uo = new RecUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(uo);
             }
         }
@@ -78,21 +81,61 @@ namespace JobBoard.WpfApplication
         {
             if (this.userRef == currentUser)
             {
-                ProfileSubUserControl ps = new ProfileSubUserControl();
+                ProfileSubUserControl ps = new ProfileSubUserControl(this);
                 this.PSubGrid.Children.Add(ps);
             }
         }
 
         private void AddSection()
         {
-            AddSectionWindow sec = new AddSectionWindow(userRef);
+            AddSectionWindow sec = new AddSectionWindow(this);
             sec.Show();
         }
 
         private void AddVacancy()
         {
-            AddVacancyWindow vac = new AddVacancyWindow(userRef);
+            AddVacancyWindow vac = new AddVacancyWindow(this);
             vac.Show();
+        }
+
+        private void AddUserHistory()
+        {
+            if (userRef.UserType == 0)
+            {
+                AddCvBox();
+            }
+            else if (userRef.UserType == 1)
+            {
+                AddPostedVacancies();
+            }
+        }
+
+        private void AddCvBox()
+        {
+            List<Experience> experienceList = control.getExperienceList(userRef.UserId);
+           
+
+            foreach(Experience exp in experienceList)
+            {
+                CVBoxUC cvBox = new CVBoxUC(userRef, exp, this);
+                this.CVview.Children.Add(cvBox);
+            }
+        }
+
+        private void AddPostedVacancies()
+        {
+            List<Vacancy> vacancyList = control.getVacanciesPosted(userRef);
+            foreach (Vacancy vacancy in vacancyList)
+            {
+                VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy, this);
+                this.CVview.Children.Add(vBoxUC);
+            }
+        }
+
+        private void ProfileWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
         }
     }
 }

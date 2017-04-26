@@ -21,17 +21,34 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddVacancyWindow : Window
     {
-        User userRef;
+        Vacancy vacancy;
+        Profile profile;
+        User userRef = User.getInstance();
+        ProfileInteractionsControl piControl = ProfileInteractionsControl.getInstance();
+        List<string> skills = new List<string>();
 
-        public AddVacancyWindow(User usr)
+        bool updateVacancy = false;
+
+        public AddVacancyWindow(Profile profile)
         {
             InitializeComponent();
-            this.userRef = usr;
+            init();
+            this.profile = profile;
+        }
+
+
+        public AddVacancyWindow(Vacancy vacancy, Profile profile)
+        {
+            InitializeComponent();
+            this.vacancy = vacancy;
+            this.profile = profile;
+            updateVacancy = true;
+            UpdateVacancy();
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -46,7 +63,151 @@ namespace JobBoard.WpfApplication
 
         private void SectionAddOkay_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (jobtitleBox.Text == "" || joblocationBox.Text == "" || expDate.Text == "")
+                MessageBox.Show("Provide proper Job Information");
+            else
+            {
+                DateTime postedTime = DateTime.Now;
+                DateTime deadLine = Convert.ToDateTime(expDate.SelectedDate.ToString());
+                string[] salary = salBrcktComboBox.SelectedItem.ToString().Split('-');
+                double minimumSalary = Convert.ToDouble(salary[0]);
+                double maximumSalary = Convert.ToDouble(salary[1]);
+                string jobdetailsbox = new TextRange(jobDetailBox.Document.ContentStart, jobDetailBox.Document.ContentEnd).Text;
+                foreach (Button b in selectWrapPanel.Children)
+                {
+                    bool newSkill = true;
+
+                    if (updateVacancy)
+                    {
+                        foreach (string s in vacancy.skillList)
+                        {
+                            if (s == b.Content.ToString())
+                                newSkill = false;
+                        }
+                    }
+                    if (newSkill)
+                    {
+                        skills.Add(b.Content.ToString());
+                    }
+                }
+
+                bool empType = Convert.ToBoolean(empTypeComboBox.SelectedIndex);
+
+                Vacancy newVacancy = new Vacancy(jobtitleBox.Text, userRef.CompanyName, userRef, joblocationBox.Text, postedTime, deadLine, minimumSalary, maximumSalary, empType, jobdetailsbox, skills);
+
+                if (updateVacancy)
+                {
+                    newVacancy.JobId = vacancy.JobId;
+                    piControl.UpdateVacancy(newVacancy);
+                }
+                else
+                    piControl.AddVacancy(userRef.UserId, newVacancy);
+
+
+                Profile newprofile = new Profile(userRef);
+                newprofile.Show();
+                profile.Close();
+
+                this.Close();
+            }
+        }
+
+        private void skillComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            bool alreadyAdded = false;
+            Button skill = new Button();
+            try
+            {
+                skill.Content = skillComboBox.SelectedItem.ToString();
+                foreach (Button button in selectWrapPanel.Children)
+                {
+                    if (button.Content.ToString() == skill.Content.ToString())
+                    {
+                        alreadyAdded = true;
+                    }
+                }
+                if (alreadyAdded == false)
+                {
+                    selectWrapPanel.Children.Add(skill);
+                    skillComboBox.Text = "";
+                    skill.Click += (s, ev) => { selectWrapPanel.Children.Remove(skill); };
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+            }
+        }
+
+        private void init()
+        {
+            List<string> salaryRangeList = new List<string>();
+            List<string> jobTypeList = new List<string>();
+            List<string> skillList = LoginRegistrationControl.getInstance().getAvailableSkills();
+
+            salaryRangeList.Add("5000-10000");
+            salaryRangeList.Add("10000-20000");
+            salaryRangeList.Add("20000-40000");
+            salaryRangeList.Add("40000-80000");
+            salaryRangeList.Add("80000-120000");
+            salaryRangeList.Add("120000-150000");
+            salaryRangeList.Add("150000-200000");
+
+            jobTypeList.Add("Temporary");
+            jobTypeList.Add("Permanent");
+
+            empTypeComboBox.ItemsSource = jobTypeList;
+            if (updateVacancy)
+            {
+                empTypeComboBox.SelectedIndex = Convert.ToByte(vacancy.JobType);
+            }
+            else
+            {
+                empTypeComboBox.SelectedIndex = 0;
+            }
+
+            salBrcktComboBox.ItemsSource = salaryRangeList;
+            if (updateVacancy)
+            {
+                foreach(string sr in salaryRangeList)
+                {
+                    if (sr == vacancy.MinimumSalary + "-" + vacancy.MaximumSalary)
+                    {
+                        salBrcktComboBox.SelectedValue = sr;
+                    }
+                }
+            }
+            else
+            {
+                salBrcktComboBox.SelectedIndex = 0;
+            }
+            skillComboBox.ItemsSource = skillList;
+        }
+
+        private void UpdateVacancy()
+        {
+            init();
+
+            updateVacancy = true;
+
+            foreach(string skill in vacancy.skillList)
+            {
+                Button skillButton = new Button();
+                skillButton.Content = skill;
+                selectWrapPanel.Children.Add(skillButton);
+                skills.Add(skill);
+                skillButton.Click += (s, ev) => { selectWrapPanel.Children.Remove(skillButton); skills.Remove(skillButton.Content.ToString()); };
+            }
+            jobtitleBox.Text = vacancy.JobTitle;
+            joblocationBox.Text = vacancy.Location;
+            expDate.SelectedDate = vacancy.DeadLine;
+            jobDetailBox.Document.Blocks.Clear();
+            jobDetailBox.Document.Blocks.Add(new Paragraph(new Run(vacancy.JobSummary)));
+        }
+
+        private void SectionAddCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

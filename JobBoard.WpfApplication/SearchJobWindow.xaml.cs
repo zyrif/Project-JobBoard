@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JobBoard.Core.Control;
 using JobBoard.Core.Entity;
+using JobBoard.Core;
 
 namespace JobBoard.WpfApplication
 {
@@ -22,9 +23,11 @@ namespace JobBoard.WpfApplication
     public partial class SearchJobWindow : Window
     {
         SearchControl control = new SearchControl();
-        public SearchJobWindow()
+        User userRef;
+        public SearchJobWindow(User userRef)
         {
             InitializeComponent();
+            this.userRef = userRef;
             init();
         }
 
@@ -66,6 +69,11 @@ namespace JobBoard.WpfApplication
 
         private void expdateBtn_Click(object sender, RoutedEventArgs e)
         {
+            titleComboBox.Text = "";
+            employerComboBox.Text = "";
+            locationComboBox.Text = "";
+            salaryBrctComboBox.SelectedIndex = -1;
+            empTypeComboBox.SelectedIndex = 0;
             this.search();
         }
 
@@ -104,27 +112,19 @@ namespace JobBoard.WpfApplication
             if (empTypeComboBox.SelectedItem == null) { selection[4] = ""; } else { selection[4] = empTypeComboBox.SelectedItem.ToString(); }
 
 
-            List<Vacancy> vacancyList = control.search(selection[0], selection[1], selection[2], selection[3], selection[4]);
+
+            List<Vacancy> postedJobList = control.search(selection[0], selection[1], selection[2], selection[3], selection[4]);
             jobPanel.Children.Clear();
-            foreach(Vacancy pj in vacancyList)
+            foreach (Vacancy pj in postedJobList)
             {
-                VacancyBoxUC vBox = new VacancyBoxUC();
-                vBox.jobtitleLabel.Content += " " + pj.JobTitle;
-                vBox.employerLabel.Content += " " + pj.Company;
-                vBox.locationLabel.Content += " " + pj.Location;
-                vBox.jobtypeLabel.Content += " " + pj.JobType;
-                vBox.salbrcktLabel.Content += " " + pj.MinimumSalary + "-" + pj.MaximumSalary;
-                vBox.deadlineLabel.Content += " " + pj.DeadLine.ToShortDateString();
-                foreach(string skill in pj.skillList)
-                {
-                    Button btn = new Button();
-                    btn.Content = skill;
-                    vBox.skillPanel.Children.Add(btn);
-                }
-                vBox.dtlsRTxtBox.AppendText(pj.JobSummary);
-                this.jobPanel.Children.Add(vBox);
+                this.jobPanel.Children.Add(new JobsBoxUC(pj, this.userRef));
             }
-            
+
+        }
+
+        private void Search_Job_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

@@ -11,14 +11,18 @@ namespace JobBoard.Core.Control
 {
     public class SearchControl
     {
-        Vacancy vacancy;
+        Vacancy postedJob;
+        List<Vacancy> postedJobList;
         SearchQuery query = SearchQuery.getInstance();
         DataTable dataTable;
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
 
         public List<Vacancy> search(string jobTitle, string companyName, string location, string salaryBracket, string jobType)
         {
-            double minimumSalary=0, maximumSalary=0;
-            List<Vacancy> vacancyList = new List<Vacancy>();
+
+            double minimumSalary = 0, maximumSalary = 0;
+            postedJobList = new List<Vacancy>();
+
             if (salaryBracket != "")
             {
                 string[] salary = salaryBracket.Split('-');
@@ -34,9 +38,12 @@ namespace JobBoard.Core.Control
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                vacancy = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
+
+                postedJob = new Vacancy(dataTable.Rows[i]["job_title"].ToString(),
+                                          Convert.ToInt32(dataTable.Rows[i]["job_id"]),
+
                                           query.getCompanyName(Convert.ToInt32(dataTable.Rows[i]["company_id"])),
-                                          query.getRecruiterName(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
+                                          User.getInstanceById(Convert.ToInt32(dataTable.Rows[i]["recruiter_id"])),
                                           dataTable.Rows[i]["location"].ToString(),
                                           Convert.ToDateTime(dataTable.Rows[i]["posted_time"].ToString()),
                                           Convert.ToDateTime(dataTable.Rows[i]["dead_line"].ToString()),
@@ -46,7 +53,9 @@ namespace JobBoard.Core.Control
                                           dataTable.Rows[i]["details"].ToString(),
                                           query.getSkillList(Convert.ToInt32(dataTable.Rows[i]["job_id"])));
 
-                vacancyList.Add(vacancy);
+                
+                postedJobList.Add(postedJob);
+
             }
 
             return vacancyList;
@@ -57,7 +66,7 @@ namespace JobBoard.Core.Control
         {
             List<string> list = new List<string>();
             dataTable = query.getJobTitles();
-            for(int i=0; i<dataTable.Rows.Count; i++)
+            for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 list.Add(dataTable.Rows[i]["job_title"].ToString());
             }
@@ -87,6 +96,79 @@ namespace JobBoard.Core.Control
             }
 
             return list;
+        }
+
+        public List<User> candidateSearch(int jobId)
+        {
+            dataTable = query.getCandidateAppliedInJob(jobId);
+            List<User> candidateList = new List<User>();
+            for (int i=0; i<dataTable.Rows.Count; i++)
+                candidateList.Add(lrControl.GetJobSeekerInfo(query.getCandidateName(Convert.ToInt32(dataTable.Rows[i]["user_id"]))));
+
+            return candidateList;
+        }
+
+        public List<User> candidateSearch(List<string> jobSkills, string location)
+        {
+            List<int> jSkillIdList = new List<int>();                                                   
+            List<int> userList = new List<int>();
+            List<int> userSkills;
+
+            //initialize required skill id for a job
+            foreach(string skill in jobSkills)
+            {
+                jSkillIdList.Add(query.getSkillIdByName(skill));
+            }
+
+            //suggested candidates by nearest location
+            dataTable = query.getCandidateByLocation(location);
+            for(int i=0; i<dataTable.Rows.Count; i++)
+            {
+                userList.Add(Convert.ToInt32(dataTable.Rows[i]["user_id"]));
+            }
+            
+            //Compare required skill with users skill
+            List< KeyValuePair < int, int>> candidateIdList = new List<KeyValuePair<int, int>>();
+            foreach (int user in userList)
+            {
+                userSkills = query.getSkillListOfCandidates(user);
+
+                int skillMatch = 0;
+                foreach (int uSkill in userSkills)
+                {
+                    foreach(int jSkill in jSkillIdList)
+                    {
+                        if(uSkill == jSkill)
+                        {
+                            skillMatch++;
+                        }
+                    }
+                }
+                if(skillMatch>0)
+                    candidateIdList.Add(new KeyValuePair<int, int>(user,skillMatch));
+            }
+            
+            //sort candidates matching with skills
+            candidateIdList.Sort((x, y) => -1* x.Value.CompareTo(y.Value));
+            
+            List<User> candidateList = new List<User>();
+            foreach(KeyValuePair<int,int> candidate in candidateIdList)
+            {
+                candidateList.Add(lrControl.GetJobSeekerInfo(query.getCandidateName(candidate.Key)));
+            }
+
+            return candidateList;
+        }
+
+        public List<string> getSkillListByUserId(int userId)
+        {
+            List<int> skillList = query.getSkillListOfCandidates(userId);
+            List<string> skillNameList = new List<string>();
+            foreach (int skillId in skillList)
+            {
+                skillNameList.Add(query.getSkillById(skillId));
+            }
+            return skillNameList;
         }
     }
 }

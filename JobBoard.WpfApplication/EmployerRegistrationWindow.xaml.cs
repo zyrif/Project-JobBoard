@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JobBoard.Core;
+using JobBoard.Core.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +21,16 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class EmployerRegistration : Window
     {
-        
-        public EmployerRegistration()
+        IEHPatterns iehp = IEHPatterns.getInstance();
+        LoginRegistrationControl lrControl = LoginRegistrationControl.getInstance();
+        User currentUser;
+        RecruiterRegistration recruiter;
+        public EmployerRegistration(User currentUser, RecruiterRegistration recruiter)
         {
+            this.currentUser = currentUser;
+            this.recruiter = recruiter;
             InitializeComponent();
+            phoneBox.Text = "+880";
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -42,9 +50,136 @@ namespace JobBoard.WpfApplication
 
         private void EmpRegProceed_Click(object sender, RoutedEventArgs e)
         {
-            //Profile jp = new Profile();
-            //jp.Show();
-            //this.Hide();
+            if (iehp.isValidEmail(emailBox.Text) && iehp.isPhoneNumber(phoneBox.Text) && iehp.isUrl(websiteBox.Text))
+            {
+                Company company = new Company(nameBox.Text, addressbox.Text, countryBox.Text, phoneBox.Text, emailBox.Text, websiteBox.Text, Convert.ToByte(btypeSlider.Value));
+                lrControl.register(company);
+                currentUser.CompanyId = lrControl.getCompanyId(company.Name);
+                currentUser.CompanyName = company.Name;
+                lrControl.register(currentUser);
+                LoginRegister lr = new LoginRegister();
+                lr.Show();
+                this.Hide();
+            }
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text) && !iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide valid Information!");
+            }
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide valid Email & Web Address!");
+            }
+            else if (!iehp.isUrl(websiteBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide valid Web Address & Phone Number!");
+            }
+            else if (!iehp.isValidEmail(emailBox.Text) && !iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide valid Email & Phone Number!");
+            }
+            else if (!iehp.isValidEmail(emailBox.Text))
+            {
+                MessageBox.Show("Provide a valid Email address!");
+            }
+            else if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                MessageBox.Show("Provide a valid Phone Number!");
+            }
+            else if (!iehp.isUrl(websiteBox.Text))
+            {
+                MessageBox.Show("Provide a valid Web Address!");
+            }
+        }
+
+        private void EmployerRegWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+        }
+
+        private void btypeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void phoneBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void phoneBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isPhoneNumber(phoneBox.Text))
+            {
+                phoneBox.BorderBrush = new SolidColorBrush(Colors.Green);
+
+            }
+        }
+
+        private void emailBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void emailBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isValidEmail(emailBox.Text))
+            {
+                emailBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            recruiter.Show();
+            this.Close();
+        }
+
+        private void websiteBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
+        }
+
+        private void websiteBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else if (iehp.isUrl(websiteBox.Text))
+            {
+                websiteBox.BorderBrush = new SolidColorBrush(Colors.Green);
+            }
         }
     }
 }

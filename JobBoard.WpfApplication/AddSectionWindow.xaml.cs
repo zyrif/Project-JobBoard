@@ -21,18 +21,65 @@ namespace JobBoard.WpfApplication
     /// </summary>
     public partial class AddSectionWindow : Window
     {
-        User userRef;
+        Experience experience;
+        Profile profile;
+        User userRef = User.getInstance();
         ProfileInteractionsControl picontrol = ProfileInteractionsControl.getInstance();
+        bool forUpdate = false;
 
-        public AddSectionWindow(User usr)
+        public AddSectionWindow()
         {
             InitializeComponent();
-            this.userRef = usr;
+        }
+
+        public AddSectionWindow(Profile profile):this()
+        {
+            this.profile = profile;
+        }
+
+        public AddSectionWindow(Experience exp):this()
+        {
+            this.experience = exp;
+        }
+
+        public AddSectionWindow(Experience exp, User user, Profile profile):this()
+        {
+            SectionTypeTabControl.SelectedIndex = exp.ExpType;
+            if (exp.ExpType == 0)
+            {
+                this.TitleBox.Text = exp.Title.ToString();
+                this.expFromDate.SelectedDate = exp.StartTime.Date;
+                this.expToDate.SelectedDate = exp.EndTime.Date;
+                this.CompanyBox.Text = exp.Entity;
+                this.ExpDetailsRichBox.Document.Blocks.Clear();
+                this.ExpDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
+            else if(exp.ExpType == 1)
+            {
+                this.DegreeBox.Text = exp.Title.ToString();
+                this.eduFromDate.SelectedDate = exp.StartTime.Date;
+                this.eduToDate.SelectedDate = exp.EndTime.Date;
+                this.InstituteBox.Text = exp.Entity;
+                this.EduDetailsRichBox.Document.Blocks.Clear();
+                this.EduDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
+            else if (exp.ExpType == 2)
+            {
+                this.AwardNameBox.Text = exp.Title.ToString();
+                this.awardDate.SelectedDate = exp.StartTime.Date;
+                this.AwardIssuerBox.Text = exp.Entity;
+                this.AwardDetailsRichBox.Document.Blocks.Clear();
+                this.AwardDetailsRichBox.Document.Blocks.Add(new Paragraph(new Run(exp.Details)));
+            }
+
+            this.forUpdate = true;
+            this.profile = profile;
+            this.experience = exp;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void WindowMinimize_Click(object sender, RoutedEventArgs e)
@@ -50,44 +97,94 @@ namespace JobBoard.WpfApplication
             int exptype = SectionTypeTabControl.SelectedIndex;
             if (exptype == 0)
             {
-                DateTime stdate = Convert.ToDateTime(ExpTimeYear1Box.Text + "-" + ExpTimeMonth1Box.Text + "-" + "01");
-                DateTime eddate;
-                string details = new TextRange(ExpDetailsRichBox.Document.ContentStart, ExpDetailsRichBox.Document.ContentEnd).Text;
-                if (ExpcheckBox.IsChecked == true)
-                    eddate = DateTime.Now;
+                if (TitleBox.Text == "" || expFromDate.Text == "" || expToDate.Text == "")
+                    MessageBox.Show("Add Informations properly");
                 else
-                    eddate = Convert.ToDateTime(ExpTimeYear2Box.Text + "-" + ExpTimeMonth2Box.Text + "-" + "01");
+                {
+                    DateTime stdate = Convert.ToDateTime(expFromDate.SelectedDate);
+                    DateTime eddate;
+                    string details = new TextRange(ExpDetailsRichBox.Document.ContentStart, ExpDetailsRichBox.Document.ContentEnd).Text;
+                    if (ExpcheckBox.IsChecked == true)
+                        eddate = DateTime.Now;
+                    else
+                        eddate = Convert.ToDateTime(expToDate.SelectedDate);
 
-                Experience exp = new Experience((byte)exptype, TitleBox.Text, CompanyBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
-                this.Close();
+                    Experience exp = new Experience((byte)exptype, TitleBox.Text, CompanyBox.Text, stdate, eddate, details);
+                    if (forUpdate)
+                    {
+                        exp.ExperienceId = experience.ExperienceId;
+                        picontrol.UpdateSection(exp);
+                    }
+                    else
+                        picontrol.AddSection(userRef.UserId, exp);
+
+                    Profile newprofile = new Profile(userRef);
+                    newprofile.Show();
+                    profile.Close();
+
+                    this.Close();
+                }
             }
 
             else if (exptype == 1)
             {
-                DateTime stdate = Convert.ToDateTime(EduTimeYear1Box.Text + "-" + EduTimeMonth1Box.Text + "-" + "01");
-                DateTime eddate;
-                string details = new TextRange(EduDetailsRichBox.Document.ContentStart, EduDetailsRichBox.Document.ContentEnd).Text;
-                if (ExpcheckBox.IsChecked == true)
-                    eddate = DateTime.Now;
+                if (DegreeBox.Text == "" || eduFromDate.Text == "" || eduToDate.Text == "")
+                    MessageBox.Show("Add Informations properly");
                 else
-                    eddate = Convert.ToDateTime(EduTimeYear2Box.Text + "-" + EduTimeMonth2Box.Text + "-" + "01");
+                {
+                    DateTime stdate = Convert.ToDateTime(eduFromDate.SelectedDate);
+                    DateTime eddate;
+                    string details = new TextRange(EduDetailsRichBox.Document.ContentStart, EduDetailsRichBox.Document.ContentEnd).Text;
+                    if (EduCheckBox.IsChecked == true)
+                        eddate = DateTime.Now;
+                    else
+                        eddate = Convert.ToDateTime(eduToDate.SelectedDate);
 
-                Experience exp = new Experience((byte)exptype, DegreeBox.Text, InstituteBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
-                this.Close();
+                    Experience exp = new Experience((byte)exptype, DegreeBox.Text, InstituteBox.Text, stdate, eddate, details);
+                    if (forUpdate)
+                    {
+                        exp.ExperienceId = experience.ExperienceId;
+                        picontrol.UpdateSection(exp);
+                    }
+                    else
+                        picontrol.AddSection(userRef.UserId, exp);
+
+
+                    Profile newprofile = new Profile(userRef);
+                    newprofile.Show();
+                    profile.Close();
+
+                    this.Close();
+                }
             }
 
             else if (exptype == 2)
             {
-                DateTime stdate = Convert.ToDateTime(AwardTimeYearBox.Text + "-" + AwardTimeMonthBox.Text + "-" + AwardTimeDateBox.Text);
-                DateTime eddate;
-                string details = new TextRange(AwardDetailsRichBox.Document.ContentStart, AwardDetailsRichBox.Document.ContentEnd).Text;
-                eddate = DateTime.Now;
+                if (AwardNameBox.Text == "" || awardDate.Text == "")
+                    MessageBox.Show("Add Informations properly");
+                else
+                {
+                    DateTime stdate = Convert.ToDateTime(awardDate.SelectedDate);
+                    DateTime eddate;
+                    string details = new TextRange(AwardDetailsRichBox.Document.ContentStart, AwardDetailsRichBox.Document.ContentEnd).Text;
+                    eddate = DateTime.Now;
 
-                Experience exp = new Experience((byte)exptype, AwardNameBox.Text, AwardIssuerBox.Text, stdate, eddate, details);
-                picontrol.AddSection(userRef.UserId, exp);
-                this.Close();
+                    Experience exp = new Experience((byte)exptype, AwardNameBox.Text, AwardIssuerBox.Text, stdate, eddate, details);
+                    if (forUpdate)
+                    {
+                        exp.ExperienceId = experience.ExperienceId;
+                        picontrol.UpdateSection(exp);
+                    }
+                    else
+                        picontrol.AddSection(userRef.UserId, exp);
+
+
+                    Profile newprofile = new Profile(userRef);
+                    newprofile.Show();
+                    profile.Close();
+
+                    this.Close();
+                }
             }
         }
 

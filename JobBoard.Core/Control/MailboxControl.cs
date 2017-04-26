@@ -55,6 +55,7 @@ namespace JobBoard.Core.Control
         {
             dataTable = query.RetriveSenderMailQuery(user.UserName);
 
+            collections.mail.Clear();
             foreach (DataRow row in dataTable.Rows)
             {
                 Mail mail = new Mail();
@@ -73,6 +74,18 @@ namespace JobBoard.Core.Control
 
             }
         }
+
+        public void DeleteSenderMail(User user, Mail mail)
+        {
+            query.SenderDeleteMail(user.UserName, mail.MailId);
+        }
+
+        public void DeleteReceiverMail(User user, Mail mail)
+        {
+            query.ReceiverDeleteMail(user.UserName, mail.MailId);
+        }
+
+
 
     }
 }

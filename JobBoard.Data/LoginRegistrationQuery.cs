@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JobBoard.Data
 {
@@ -104,14 +106,27 @@ namespace JobBoard.Data
             query = "INSERT INTO user_skill(user_id, skill_id) VALUES(" + userId + "," + subQuery + ")";
             dbReadWrite.insertQuery(query);
         }
+
+        public void addimage(string username, byte[] image)
+        {
+            DBReadWrite.getInstance().insertimageQuery(username, image);
+        }
         
         //Company Registration Portion
         public void writeCompanyInfo(string companyName, string address, string country, string phone, string email, string website, byte businessType)
         {
-            query = "INSERT INTO Company VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + country + "','"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + ")";
+            query = "INSERT INTO company_info(company_name,HQ_location,country,phone,email,website,business_type) VALUES ('" + companyName.Trim() + "','" + address.Trim() + "','" + country + "','"+ phone.Trim() + "','" + email.Trim() + "','" + website.Trim() + "'," + businessType+")";
             dbReadWrite.insertQuery(query);
         }
         
+        public int getUserId(string userName)
+        {
+            query = "select user_id from user_info where user_name ='" + userName.Trim() + "'";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return Convert.ToInt32(dataTable.Rows[0]["user_id"]);
+        }
+
         public int getCompanyId(string companyName)
         {
             query = "select company_id from company_info where company_name ='" + companyName.Trim() + "'";
@@ -128,12 +143,38 @@ namespace JobBoard.Data
             return dataTable.Rows[0]["company_name"].ToString();
         }
 
+        public DataTable getAllRegisteredCompany()
+        {
+            query = "select distinct company_name from company_info";
+            dataTable = dbReadWrite.selectQuery(query);
+
+            return dataTable;
+        }
+
         public DataTable getSkillList()
         {
             query = "select skill from skill_list";
             dataTable = dbReadWrite.selectQuery(query);
 
             return dataTable;
+        }
+
+        public void UpdateJSInfo(string fname, string lname, string email, string phone, DateTime birthday, string location, int userid)
+        {
+            query = "update user_info set first_name='" + fname.Trim() + "', last_name='"+lname.Trim()+"',email='"+email.Trim()+"',phone='"+phone.Trim()+"', birth_day='"+birthday.ToString("yyyy-MM-dd")+"', location='"+location.Trim()+"' where user_id = "+userid;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void UpdateRecInfo(string fname, string lname, string email, string phone, string jobposition, int userid)
+        {
+            query = "update user_info set first_name='" + fname.Trim() + "', last_name='" + lname.Trim() + "',email='" + email.Trim() + "',phone='" + phone.Trim() + "', job_position='" + jobposition.Trim() + "' where user_id =  "+userid;
+            dbReadWrite.insertQuery(query);
+        }
+
+        public void DeleteJSSkill(int id)
+        {
+            query = "Delete from user_skill where user_id=" + id;
+            dbReadWrite.insertQuery(query);
         }
     }
 }
