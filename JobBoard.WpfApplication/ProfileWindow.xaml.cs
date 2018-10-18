@@ -69,11 +69,15 @@ namespace JobBoard.WpfApplication
             {
                 JSUserOverviewUC uo = new JSUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(uo);
+                PlaceholderTitle.Content = "Add CV Details To See Content Here";
+                PlaceholderTitle.Visibility = Visibility.Visible;
             }
             else if (userRef.UserType == 1)
             {
                 RecUserOverviewUC uo = new RecUserOverviewUC(userRef, this);
                 this.UserOverviewGrid.Children.Add(uo);
+                PlaceholderTitle.Content = "Add Job Posting To See Content Here";
+                PlaceholderTitle.Visibility = Visibility.Visible;
             }
         }
 
@@ -113,22 +117,24 @@ namespace JobBoard.WpfApplication
         private void AddCvBox()
         {
             List<Experience> experienceList = control.getExperienceList(userRef.UserId);
-           
 
             foreach(Experience exp in experienceList)
             {
                 CVBoxUC cvBox = new CVBoxUC(userRef, exp, this);
                 this.CVview.Children.Add(cvBox);
+                PlaceholderTitle.Visibility = Visibility.Hidden;
             }
         }
 
         private void AddPostedVacancies()
         {
             List<Vacancy> vacancyList = control.getVacanciesPosted(userRef);
+
             foreach (Vacancy vacancy in vacancyList)
             {
                 VacancyBoxUC vBoxUC = new VacancyBoxUC(userRef, vacancy, this);
                 this.CVview.Children.Add(vBoxUC);
+                PlaceholderTitle.Visibility = Visibility.Hidden;
             }
         }
 

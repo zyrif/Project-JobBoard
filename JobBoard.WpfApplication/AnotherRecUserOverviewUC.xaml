@@ -18,7 +18,7 @@
             <Label x:Name="unameLabel" Content="@" HorizontalAlignment="Left" Foreground="White" Margin="25,61.466,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Height="26"/>
             <Label x:Name="uemailLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,92.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
             <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,123.466,0,0" VerticalAlignment="Top" Height="26" d:LayoutOverrides="HorizontalAlignment"/>
-            <Label x:Name="ujobpositionLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,154.466,0,178.616" d:LayoutOverrides="HorizontalAlignment"/>
+            <Label x:Name="ujobpositionLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="25,154,0,0" Height="34" VerticalAlignment="Top"/>
             <Grid x:Name="EmployerInfo" Height="150" Margin="10,0,10,10" VerticalAlignment="Bottom" Background="#FF3E3E3E">
                 <Label x:Name="empnameLbl" Content="Employer: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,9,0,0" Foreground="White"/>
                 <Label x:Name="empaddLbl" Content="Address: " HorizontalAlignment="Left" Margin="10,35,0,0" Foreground="White" Height="24" VerticalAlignment="Top"/>

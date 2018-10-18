@@ -39,6 +39,7 @@ namespace JobBoard.WpfApplication
             List<string> salaryRangeList = new List<string>();
             List<string> jobTypeList = new List<string>();
 
+            salaryRangeList.Add("Search by Salary Range");
             salaryRangeList.Add("5000-10000");
             salaryRangeList.Add("10000-20000");
             salaryRangeList.Add("20000-40000");
@@ -47,6 +48,7 @@ namespace JobBoard.WpfApplication
             salaryRangeList.Add("120000-150000");
             salaryRangeList.Add("150000-200000");
 
+            jobTypeList.Add("Employment Type");
             jobTypeList.Add("Temporary");
             jobTypeList.Add("Permanent");
 
@@ -55,6 +57,9 @@ namespace JobBoard.WpfApplication
             locationComboBox.ItemsSource = locationList;
             salaryBrctComboBox.ItemsSource = salaryRangeList;
             empTypeComboBox.ItemsSource = jobTypeList;
+
+            salaryBrctComboBox.SelectedIndex = 0;
+            empTypeComboBox.SelectedIndex = 0;
         }
 
         private void WindowClose_Click(object sender, RoutedEventArgs e)
@@ -72,7 +77,7 @@ namespace JobBoard.WpfApplication
             titleComboBox.Text = "";
             employerComboBox.Text = "";
             locationComboBox.Text = "";
-            salaryBrctComboBox.SelectedIndex = -1;
+            salaryBrctComboBox.SelectedIndex = 0;
             empTypeComboBox.SelectedIndex = 0;
             this.search();
         }
@@ -105,11 +110,46 @@ namespace JobBoard.WpfApplication
         void search()
         {
             string[] selection = new string[5];
-            if (titleComboBox.SelectedItem == null) { selection[0] = ""; } else { selection[0] = titleComboBox.SelectedItem.ToString(); }
-            if (employerComboBox.SelectedItem == null) { selection[1] = ""; } else { selection[1] = employerComboBox.SelectedItem.ToString(); }
-            if (locationComboBox.SelectedItem == null) { selection[2] = ""; } else { selection[2] = locationComboBox.SelectedItem.ToString(); }
-            if (salaryBrctComboBox.SelectedItem == null) { selection[3] = ""; } else { selection[3] = salaryBrctComboBox.SelectedItem.ToString(); }
-            if (empTypeComboBox.SelectedItem == null) { selection[4] = ""; } else { selection[4] = empTypeComboBox.SelectedItem.ToString(); }
+            if (titleComboBox.SelectedItem == null)
+            {
+                selection[0] = "";
+            }
+            else
+            {
+                selection[0] = titleComboBox.SelectedItem.ToString();
+            }
+            if (employerComboBox.SelectedItem == null)
+            {
+                selection[1] = "";
+            }
+            else
+            {
+                selection[1] = employerComboBox.SelectedItem.ToString();
+            }
+            if (locationComboBox.SelectedItem == null)
+            {
+                selection[2] = "";
+            }
+            else
+            {
+                selection[2] = locationComboBox.SelectedItem.ToString();
+            }
+            if (salaryBrctComboBox.SelectedIndex == 0 || salaryBrctComboBox.SelectedItem == null)
+            {
+                selection[3] = "";
+            }
+            else
+            {
+                selection[3] = salaryBrctComboBox.SelectedItem.ToString();
+            }
+            if (empTypeComboBox.SelectedIndex == 0 || empTypeComboBox.SelectedItem == null)
+            {
+                selection[4] = "";
+            }
+            else
+            {
+                selection[4] = empTypeComboBox.SelectedItem.ToString();
+            }
 
 
 

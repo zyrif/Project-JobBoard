@@ -67,6 +67,7 @@ namespace JobBoard.WpfApplication
                 skillPanel.Children.Add(btn);
             }
 
+            dtlsRTxtBox.Document.Blocks.Clear();
             dtlsRTxtBox.AppendText(vacancy.JobSummary);
         }
 

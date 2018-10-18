@@ -27,7 +27,7 @@
             <Label x:Name="unameLabel" Content="@" HorizontalAlignment="Left" Foreground="White" Margin="15,2,0,1" Grid.Row="1"/>
             <Label x:Name="uemailLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,0,0,4.094" Grid.Row="2" Height="26" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin"/>
             <Label x:Name="ulocationLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,0.905,0,1.457" Grid.Row="3" Height="26" d:LayoutOverrides="VerticalAlignment"/>
-            <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,3.816,0,139.72" Grid.Row="4" Height="26"/>
+            <Label x:Name="uphoneLabel" Content="" HorizontalAlignment="Left" Foreground="White" Margin="15,4,0,0" Grid.Row="4" Height="26" VerticalAlignment="Top"/>
         </Grid>
         <Grid x:Name="photoGrid" Margin="10,62.01,10,0" Background="#FF444444" Height="162.078" VerticalAlignment="Top">
             <Image x:Name="profileImage" Margin="26,10"/>
