@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
-using Renci.SshNet;
+//using Renci.SshNet;
 using System.Threading;
 
 namespace JobBoard.Data
@@ -76,8 +76,7 @@ namespace JobBoard.Data
         //To create Connection with DataBase
         public void createConnection()
         {
-            //string conn = "server=127.0.0.1;PORT=3306;userid=sql8150587;password=5CgPsYX9BJ;database=sql8150587";
-            string conn = "server=127.0.0.1;PORT=3306;userid=root;password=nopass;database=project_jb";
+            string conn = "server=127.0.0.1;PORT=3306;userid=root;database=jobboarddatabase";
 
             try
             {

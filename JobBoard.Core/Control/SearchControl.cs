@@ -58,7 +58,7 @@ namespace JobBoard.Core.Control
 
             }
 
-            return vacancyList;
+            return postedJobList;
 
         }
 
