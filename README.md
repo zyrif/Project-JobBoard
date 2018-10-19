@@ -28,30 +28,30 @@ great learning experience, one that taught us things that goes beyond just the C
 
 ![Job Search Window](./screenshots/10.JPG)
 
-![Start Screen](./screenshots/11.JPG)
+![Changing Parameters 1](./screenshots/11.JPG)
 
-![Start Screen](./screenshots/12.JPG)
+![Changing Parameters 2](./screenshots/12.JPG)
 
-![Start Screen](./screenshots/13.JPG)
+![Changing Parameters 3](./screenshots/13.JPG)
 
-![Start Screen](./screenshots/14.JPG)
+![Changing Parameters 4](./screenshots/14.JPG)
 
-![Start Screen](./screenshots/15.JPG)
+![Mailbox](./screenshots/15.JPG)
 
-![Start Screen](./screenshots/16.JPG)
+![Expanded Element](./screenshots/16.JPG)
 
-![Start Screen](./screenshots/17.JPG)
+![Compose Mail](./screenshots/17.JPG)
 
-![Start Screen](./screenshots/18.JPG)
+![Profile Creation Window](./screenshots/18.JPG)
 
-![Start Screen](./screenshots/19.JPG)
+![Employer Profile](./screenshots/19.JPG)
 
-![Start Screen](./screenshots/20.JPG)
+![Example Job Posting](./screenshots/20.JPG)
 
-![Start Screen](./screenshots/21.JPG)
+![Candidate Applications](./screenshots/21.JPG)
 
-![Start Screen](./screenshots/22.JPG)
+![Empty Jobseeker Profile](./screenshots/22.JPG)
 
-![Start Screen](./screenshots/23.JPG)
+![Empty Employer Profile](./screenshots/23.JPG)
 
-![Start Screen](./screenshots/24.JPG)
+![Snape's Profile](./screenshots/24.JPG)
