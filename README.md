@@ -2,7 +2,7 @@
 A job portal application written in C# using WPF.
 
 As our first OOP project, we kind of got carried away and tried to use many techniques and technologies
-that we were unfamiliar with, while having a very short timeframe. As a result, the code is a giant mess 
+that we were unfamiliar with, within a very short timeframe. As a result, the code is a giant mess 
 that we wouldn't deploy in a production environment without some serious refactoring, but it was also a 
 great learning experience, one that taught us things that goes beyond just the C# language.
 
